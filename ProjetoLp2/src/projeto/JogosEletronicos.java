@@ -2,14 +2,15 @@ package projeto;
 
 
 
-public class JogosEletronicos {
+public class JogosEletronicos extends Item {
 	
 	private String nome;
 	private Plataforma plataforma;
 	
 	
-	public JogosEletronicos(String nome, Plataforma plataforma){
-		this.nome = nome;
+	public JogosEletronicos(String nome, int valor, boolean estadoDeEmprestimo, String nomeJogo, Plataforma plataforma){
+		super(nome, valor, estadoDeEmprestimo);
+		this.nome = nomeJogo;
 		this.plataforma = plataforma;
 	}
 	
