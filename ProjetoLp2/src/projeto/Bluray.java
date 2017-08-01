@@ -1,6 +1,6 @@
 package projeto;
 
-public abstract class Bluray extends Item {
+public class Bluray extends Item {
 
 	private int duracao;
 	private String classificacao;
