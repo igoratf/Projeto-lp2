@@ -2,6 +2,9 @@ package projeto;
 
 public abstract class Bluray extends Item {
 
+	private int duracao;
+	private String classificacao;
+
 	public Bluray(String nome, int valor, boolean estadoDeEmprestimo, int duracao, String classificacao) {
 
 		super(nome, valor, estadoDeEmprestimo);
@@ -10,7 +13,7 @@ public abstract class Bluray extends Item {
 		this.classificacao = classificacao;
 
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -35,10 +38,5 @@ public abstract class Bluray extends Item {
 			return false;
 		return true;
 	}
-
-	private int duracao;
-	private String classificacao;
-
-	
 
 }
