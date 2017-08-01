@@ -42,20 +42,13 @@ public class JogosEletronicos extends Item {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (getClass() == obj.getClass()) {
+			JogosEletronicos je = (JogosEletronicos) obj;
+			return je.getPlataforma().equals(getPlataforma()) && je.getNome().equals(getNome());
+			
+		} else {
 			return false;
-		JogosEletronicos other = (JogosEletronicos) obj;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (plataforma == null) {
-			if (other.plataforma != null)
-				return false;
-		} else if (!plataforma.equals(other.plataforma))
-			return false;
-		return true;
+		}	
 	}
 	
 	@Override
