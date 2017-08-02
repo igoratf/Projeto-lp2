@@ -12,23 +12,25 @@ public class ControllerUsuario {
 
 	public void cadastrarUsuario(String nome, String telefone, String email) {
 		Usuario usuario = new Usuario(nome, email, telefone);
-		conjuntoUsuarios.add(usuario);
+		boolean status = conjuntoUsuarios.add(usuario);
+		if (!status) {
+			throw new IllegalArgumentException("Usuario ja cadastrado");
+		}
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		Usuario usuarioEsperado = new Usuario(nome, "email", telefone);
 
-		if (atributo.equals("Email")) {
-			for (Usuario usuario : conjuntoUsuarios) {
-				if (usuario.equals(usuarioEsperado)) {
-					return usuario.getEmail();
-				}
-
+		if (!atributo.equals("Email")) {
+			throw new IllegalArgumentException("Atributo Invalido");
+		}
+		for (Usuario usuario : conjuntoUsuarios) {
+			if (usuario.equals(usuarioEsperado)) {
+				return usuario.getEmail();
 			}
 		}
-		return null;
+
+		throw new IllegalArgumentException("Usuário Invalido");
 	}
-	
-	
 
 }
