@@ -4,24 +4,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerUsuario {
-	private Map<String, Usuario> mapaUsuarios;
+	private Map<NomeTelefone, Usuario> mapaUsuarios;
 
 	public ControllerUsuario() {
-		mapaUsuarios = new HashMap<String, Usuario>();
+		mapaUsuarios = new HashMap<NomeTelefone, Usuario>();
 	}
 
 	public void cadastrarUsuario(String nome, String telefone, String email) {
-		Usuario usuario = new Usuario(nome, email, telefone);
-		String chave = nome + telefone;
+		NomeTelefone chave = new NomeTelefone(nome,telefone);
 		if (mapaUsuarios.containsKey(chave)) {
 			throw new IllegalArgumentException("Usuario ja cadastrado");
 		}
+		Usuario usuario = new Usuario(nome, email, telefone);
 		mapaUsuarios.put(chave, usuario);
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 
-		String chave = nome + telefone;
+		NomeTelefone chave = new NomeTelefone(nome,telefone);
 		validaParametrosGetInfoUsuario(nome, telefone, atributo);
 
 		if (!atributo.equals("Email")) {
@@ -78,7 +78,7 @@ public class ControllerUsuario {
 	}
 
 	public String atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		String chave = nome + telefone;
+		NomeTelefone chave = new NomeTelefone(nome,telefone);
 		validaParametrosRemoverUsuario(nome, telefone, atributo, valor);
 
 		if (!mapaUsuarios.containsKey(chave)) {
