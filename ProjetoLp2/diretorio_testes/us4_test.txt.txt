@@ -1,0 +1,29 @@
+﻿#####################
+# PROJETO LP2 - US4 #
+#####################
+
+
+iniciarSistema
+
+
+registrarEmprestimo nomeDono="Joao" telefoneDono="98888-8888" nomeRequerente="Carlos" telefoneRequerente="89999-9999" nomeItem="War" dataEmprestimo="01/01/2018" periodo=7
+
+
+expectError "Item emprestado no momento" registrarEmprestimo nomeDono="Joao" telefoneDono="98888-8888" nomeRequerente="Josefina" telefoneRequerente="77777-7777" nomeItem="War" dataEmprestimo="02/01/2018" periodo=2
+
+
+expectError "Emprestimo nao encontrado" devolverItem nomeDono="Joao" telefoneDono="98888-8888" nomeRequerente="Vilmar" telefoneRequerente="55555-9999" nomeItem="War" dataEmprestimo="01/01/2018" dataDevolucao="06/01/2018"
+
+
+registrarEmprestimo nomeDono="Joao" telefoneDono="98888-8888" nomeRequerente="Josefina" telefoneRequerente="77777-7777" nomeItem="Xadrez de Bruxo" dataEmprestimo="15/01/2018" periodo=7
+
+
+devolverItem nomeDono="Joao" telefoneDono="98888-8888" nomeRequerente="Carlos" telefoneRequerente="89999-9999" nomeItem="War" dataEmprestimo="01/01/2018" dataDevolucao="06/01/2018"
+
+
+expectError "Usuario invalido" registrarEmprestimo nomeDono="Carlos" telefoneDono="89999-9999" nomeRequerente="Lucineia" telefoneRequerente="99988-7766" nomeItem="The Walking Dead" dataEmprestimo="04/01/2018" periodo=7
+expectError "Usuario invalido" registrarEmprestimo nomeDono="Lucineia" telefoneDono="99988-7766" nomeRequerente="Carlos" telefoneRequerente="89999-9999" nomeItem="Game of Thrones" dataEmprestimo="08/01/2018" periodo=7
+expectError "Item nao encontrado" registrarEmprestimo nomeDono="Carlos" telefoneDono="89999-9999" nomeRequerente="Joao" telefoneRequerente="98888-8888" nomeItem="Game of Thrones" dataEmprestimo="025/01/2018" periodo=7
+
+
+fecharSistema
