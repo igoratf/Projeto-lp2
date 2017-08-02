@@ -14,6 +14,15 @@ public class JogoTabuleiro extends Item {
 		this.completo = completo;
 	}
 
+	public boolean comparaLista(List<String> lista) {
+		for (String string : lista) {
+			if (!(this.pecasPerdidas.contains(string))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -23,11 +32,11 @@ public class JogoTabuleiro extends Item {
 		return result;
 	}
 
-	//Override
-	// public boolean equals(Object obj) {
-	// Falta criar o equals
-	//}
-
-
+	public boolean equals(JogoTabuleiro jogo) {
+		if (jogo.getNome().equals(this.nome) && comparaLista(jogo.pecasPerdidas)) {
+			return true;
+		}
+		return false;
+	}
 
 }
