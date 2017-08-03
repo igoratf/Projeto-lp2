@@ -1,0 +1,60 @@
+﻿#####################
+# PROJETO LP2 - US2 #
+#####################
+
+
+iniciarSistema
+
+
+cadastrarEletronico nome="Joao" telefone="98888-8888" nomeItem="Pokemon Sun" preco=99.99 plataforma="NINTENDO_3DS"
+expect "99.99" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Sun" atributo="Preco"
+
+
+cadastrarEletronico nome="Joao" telefone="98888-8888" nomeItem="Pokemon Emerald" preco=15.00 plataforma="OUTRO"
+expect "15.0" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Emerald" atributo="Preco"
+
+
+cadastrarJogoTabuleiro nome="Joao" telefone="98888-8888" nomeItem="War" preco=70.00
+expect "70.0" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="War" atributo="Preco"
+
+
+adicionarPecaPerdida nome="Joao" telefone="98888-8888" nomeItem="War" nomePeca="Dado"
+
+
+cadastrarBluRayFilme nome="Maria" telefone="96666-6666" nomeItem="Crepusculo" preco=1.99 duracao=120 genero="ROMANCE" classificacao="QUATORZE_ANOS" anoLancamento=2008
+expect "1.99" getInfoItem nome="Maria" telefone="96666-6666" nomeItem="Crepusculo" atributo="Preco"
+
+
+cadastrarBluRayShow nome="Maria" telefone="96666-6666" nomeItem="RBD Ao Vivo" preco=19.99 duracao=60 numeroFaixas=20 artista="REBELDES" classificacao="DOZE_ANOS"
+expect "19.99" getInfoItem nome="Maria" telefone="96666-6666" nomeItem="RBD Ao Vivo" atributo="Preco"
+
+
+cadastrarBluRaySerie nome="Carlos" telefone="89999-9999" nomeItem="The Walking Dead" preco=79.99 descricao="Zumbis, zumbis e mais zumbis." duracao=120 classificacao="DEZESSEIS_ANOS" genero="SUSPENSE" temporada=1
+expect "79.99" getInfoItem nome="Carlos" telefone="89999-9999" nomeItem="The Walking Dead" atributo="Preco"
+
+
+adicionarBluRay nome="Carlos" telefone="89999-9999" nomeBlurayTemporada="The Walking Dead" duracao=60
+adicionarBluRay nome="Carlos" telefone="89999-9999" nomeBlurayTemporada="The Walking Dead" duracao=60
+
+
+removerItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Sun"
+expectError "Item nao encontrado" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Sun" atributo="Preco"
+
+
+atualizarItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Emerald" atributo="Preco" valor="20.00"
+expect "20.0" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Emerald" atributo="Preco"
+
+
+atualizarItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Emerald" atributo="Nome" valor="Pokemon Omega Ruby"
+expect "Pokemon Omega Ruby" getInfoItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Omega Ruby" atributo="Nome"
+
+
+expectError "Usuario invalido" cadastrarJogoTabuleiro nome="Silvio" telefone="74100-8520" nomeItem="Jogo da Vida" preco=50.00
+expectError "Preco invalido" cadastrarJogoTabuleiro nome="Carlos" telefone="89999-9999" nomeItem="Jogo da Vida" preco=-50.00
+expectError "Usuario invalido" atualizarItem nome="Silvio" telefone="74100-8520" nomeItem="Jogo da Vida" atributo="Preco" valor="80.00"
+expectError "Item nao encontrado" atualizarItem nome="Joao" telefone="98888-8888" nomeItem="Pokemon Black2" atributo="Preco" valor="80.00"
+expectError "Usuario invalido" removerItem nome="Silvio" telefone="74100-8520" nomeItem="Jogo da Vida"
+expectError "Item nao encontrado" removerItem nome="Josefina" telefone="77777-7777" nomeItem="Jogo da Vida"
+
+
+fecharSistema

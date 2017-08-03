@@ -2,19 +2,18 @@ package projeto;
 
 public class Item {
 
-	protected String nome;
-	private int valor;
-	private boolean EstadoDeEmprestimo = false;
+	private String nome;
+	private double valor;
+	private boolean EstadoDeEmprestimo;
 
 	public boolean isEstadoDeEmprestimo() {
 		return EstadoDeEmprestimo;
 	}
 
-	public Item(String nome, int valor, boolean estadoDeEmprestimo) {
-		super();
+	public Item(String nome, double valor) {
 		this.nome = nome;
 		this.valor = valor;
-		EstadoDeEmprestimo = estadoDeEmprestimo;
+		this.EstadoDeEmprestimo = false;
 	}
 
 	public void setEstadoDeEmprestimo(boolean estadoDeEmprestimo) {
@@ -25,8 +24,16 @@ public class Item {
 		return nome;
 	}
 
-	public int getValor() {
+	public double getValor() {
 		return valor;
+	}
+	
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

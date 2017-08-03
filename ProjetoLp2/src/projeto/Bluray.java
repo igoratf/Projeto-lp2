@@ -1,9 +1,14 @@
 package projeto;
 
-public abstract class Bluray extends Item {
+public class Bluray extends Item {
 
 	private int duracao;
 	private String classificacao;
+	
+	/*
+	 * Javan, ajeita esse construtor de acordo com Item
+	 * Aproveita e ajeita os outros Blurays também
+	 */
 
 	public Bluray(String nome, int valor, boolean estadoDeEmprestimo, int duracao, String classificacao) {
 
