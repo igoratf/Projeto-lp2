@@ -82,7 +82,20 @@ public class ControllerUsuario {
 
 	}
 
+	private void validaDados(String nome, String telefone) {
+		if (nome == null) {
+			throw new NullPointerException("Nome nulo invalido");
+		} else if (telefone == null) {
+			throw new NullPointerException("Telefone nulo invalido");
+		} else if (nome.trim().equals("")) {
+			throw new IllegalArgumentException("Nome vazio invalido");
+		} else if (telefone.trim().equals("")) {
+			throw new IllegalArgumentException("Telefone vazio invalido");
+		}
+	}
+
 	public void removerUsuario(String nome, String telefone) {
+		validaDados(nome, telefone);
 		for (Usuario usuario : conjuntoUsuarios) {
 			if (usuario.getNome().equals(nome) && usuario.getNumCelular().equals(telefone)) {
 				conjuntoUsuarios.remove(usuario);
