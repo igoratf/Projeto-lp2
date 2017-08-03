@@ -4,13 +4,11 @@ package projeto;
 
 public class JogosEletronicos extends Item {
 	
-	private String nome;
 	private Plataforma plataforma;
 	
 	
-	public JogosEletronicos(String nome, int valor, boolean estadoDeEmprestimo, String nomeJogo, Plataforma plataforma){
-		super(nome, valor, estadoDeEmprestimo);
-		this.nome = nomeJogo;
+	public JogosEletronicos(String nome, int valor, Plataforma plataforma){
+		super(nome, valor);
 		this.plataforma = plataforma;
 	}
 	
@@ -18,7 +16,7 @@ public class JogosEletronicos extends Item {
 
 
 	public String getNome() {
-		return nome;
+		return this.getNome();
 	}
 	
 	public Plataforma getPlataforma() {
@@ -31,7 +29,7 @@ public class JogosEletronicos extends Item {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((this.getNome() == null) ? 0 : this.getNome().hashCode());
 		result = prime * result + ((plataforma == null) ? 0 : plataforma.hashCode());
 		return result;
 	}
@@ -53,7 +51,7 @@ public class JogosEletronicos extends Item {
 	
 	@Override
 	public String toString() {
-		return "JogosEletronicos [nome=" + nome + ", plataforma=" + plataforma + "]";
+		return "JogosEletronicos [nome=" + this.getNome() + ", plataforma=" + plataforma + "]";
 	}
 	
 	
