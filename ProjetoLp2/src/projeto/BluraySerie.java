@@ -1,10 +1,10 @@
 package projeto;
 
-public class BlurayTemporada extends Bluray {
+public class BluraySerie extends Bluray {
 
 	public int temporada;
 
-	public BlurayTemporada(String nome, int valor, boolean estadoDeEmprestimo, int duracao, String classificacao,
+	public BluraySerie(String nome, int valor, int duracao, String classificacao,
 			int temporada) {
 		super(nome, valor, duracao, classificacao);
 		this.temporada = temporada;
