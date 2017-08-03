@@ -1,13 +1,14 @@
 package projeto;
 
+/**
+ * Define um item genérico.
+ * 
+ * @author javanktl
+ *
+ */
 public class Item {
 
 	private String nome;
-
-	@Override
-	public String toString() {
-		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + EstadoDeEmprestimo + "]";
-	}
 
 	private double valor;
 	private boolean EstadoDeEmprestimo;
@@ -40,6 +41,11 @@ public class Item {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + EstadoDeEmprestimo + "]";
 	}
 
 }
