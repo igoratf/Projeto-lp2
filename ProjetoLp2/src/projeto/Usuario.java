@@ -10,7 +10,7 @@ public class Usuario {
 		this.nome = nome;
 		this.email = email;
 		this.numCelular = numCelular;
-		this.controllerItem = new ControllerItem(null);
+		this.controllerItem = new ControllerItem();
 
 	}
 
