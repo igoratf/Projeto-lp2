@@ -1,17 +1,12 @@
 package projeto;
 
-public class Bluray extends Item {
+public class NomeTelefone {
+	private String nome;
+	private String telefone;
 
-	private int duracao;
-	private String classificacao;
-
-	public Bluray(String nome, int valor, boolean estadoDeEmprestimo, int duracao, String classificacao) {
-
-		super(nome, valor, estadoDeEmprestimo);
-
-		this.duracao = duracao;
-		this.classificacao = classificacao;
-
+	public NomeTelefone(String nome, String telefone) {
+		this.nome = nome;
+		this.telefone = telefone;
 	}
 
 	@Override
@@ -19,6 +14,7 @@ public class Bluray extends Item {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
 		return result;
 	}
 
@@ -30,11 +26,16 @@ public class Bluray extends Item {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Bluray other = (Bluray) obj;
+		NomeTelefone other = (NomeTelefone) obj;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
+			return false;
+		if (telefone == null) {
+			if (other.telefone != null)
+				return false;
+		} else if (!telefone.equals(other.telefone))
 			return false;
 		return true;
 	}

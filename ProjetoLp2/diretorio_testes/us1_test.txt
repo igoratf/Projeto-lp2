@@ -1,0 +1,50 @@
+﻿#####################
+# PROJETO LP2 - US1 #
+#####################
+
+
+iniciarSistema
+
+
+cadastrarUsuario nome="Joao" telefone="98888-8888" email="joao@email.com"
+expect "joao@email.com" getInfoUsuario nome="Joao" telefone="98888-8888" atributo="Email"
+
+
+cadastrarUsuario nome="Marcos" telefone="11111-9999" email="marcos@email.com"
+expect "marcos@email.com" getInfoUsuario nome="Marcos" telefone="11111-9999" atributo="Email"
+
+
+cadastrarUsuario nome="Maria" telefone="97777-7777" email="maria@email.com"
+expect "maria@email.com" getInfoUsuario nome="Maria" telefone="97777-7777" atributo="Email"
+
+
+cadastrarUsuario nome="Carlos" telefone="89999-9999" email="carlos@email.com"
+expect "carlos@email.com" getInfoUsuario nome="Carlos" telefone="89999-9999" atributo="Email"
+
+
+cadastrarUsuario nome="Josefina" telefone="77777-7777" email="josefina@email.com"
+expect "josefina@email.com" getInfoUsuario nome="Josefina" telefone="77777-7777" atributo="Email"
+
+
+cadastrarUsuario nome="Vilmar" telefone="55555-9999" email="vilmar@email.com"
+expect "vilmar@email.com" getInfoUsuario nome="Vilmar" telefone="55555-9999" atributo="Email"
+
+
+removerUsuario nome="Marcos" telefone="11111-9999"
+expectError "Usuario invalido" getInfoUsuario nome="Marcos" telefone="11111-9999" atributo="Email"
+
+
+atualizarUsuario nome="Maria" telefone="97777-7777" atributo="Email" valor="mariaS2@email.com"
+expect "mariaS2@email.com" getInfoUsuario nome="Maria" telefone="97777-7777" atributo="Email"
+
+
+atualizarUsuario nome="Maria" telefone="97777-7777" atributo="Telefone" valor="96666-6666"
+expect "mariaS2@email.com" getInfoUsuario nome="Maria" telefone="96666-6666" atributo="Email"
+
+
+expectError "Usuario ja cadastrado" cadastrarUsuario nome="Vilmar" telefone="55555-9999" email="vilmar_vil@email.com"
+expectError "Usuario invalido" atualizarUsuario nome="Priscila" telefone="4002-8922" atributo="Email" valor="pri@email.com"
+expectError "Usuario invalido" removerUsuario nome="Priscila" telefone="4002-8922"
+
+
+fecharSistema
