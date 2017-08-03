@@ -21,18 +21,29 @@ public class ControllerUsuario {
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-
 		validaParametrosGetInfoUsuario(nome, telefone, atributo);
-		if (!atributo.equals("Email")) {
-			throw new IllegalArgumentException("Atributo Invalido");
-		}
+
+		Usuario usuario = null;
 
 		for (Usuario usuario3 : conjuntoUsuarios) {
 			if (usuario3.getNome().equals(nome) && usuario3.getNumCelular().equals(telefone)) {
-				return usuario3.getEmail();
+				usuario = usuario3;
 			}
 		}
-		throw new IllegalArgumentException("Usuario invalido");
+		if (usuario == null) {
+			throw new IllegalArgumentException("Usuario invalido");
+		}
+		switch (atributo) {
+		case "Email":
+			return usuario.getEmail();
+		case "Nome":
+			return usuario.getNome();
+		case "Telefone":
+			return usuario.getNumCelular();
+
+		default:
+			throw new IllegalArgumentException("Atributo invalido");
+		}
 	}
 
 	private void validaParametrosGetInfoUsuario(String nome, String telefone, String atributo) {
