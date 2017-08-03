@@ -8,6 +8,13 @@ public class NomeTelefone {
 		this.nome = nome;
 		this.telefone = telefone;
 	}
+	
+	public void setNome(String nome){
+		this.nome = nome;
+	}
+	public void setTelefone(String telefone){
+		this.telefone = telefone;
+	}
 
 	@Override
 	public int hashCode() {
@@ -39,5 +46,7 @@ public class NomeTelefone {
 			return false;
 		return true;
 	}
+
+
 
 }
