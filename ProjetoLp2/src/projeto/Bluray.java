@@ -6,6 +6,11 @@ public class Bluray extends Item {
 	private String classificacao;
 	
 	
+	@Override
+	public String toString() {
+		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
+	}
+
 	public Bluray(String nome, int valor, int duracao, String classificacao) {
 
 		super(nome, valor);
