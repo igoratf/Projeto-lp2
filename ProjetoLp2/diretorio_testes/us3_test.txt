@@ -1,0 +1,24 @@
+﻿#####################
+# PROJETO LP2 - US3 #
+#####################
+
+
+iniciarSistema
+
+
+expect "FILME: Crepusculo, R$ 1.99, Nao emprestado, 120 min, QUATORZE_ANOS, ROMANCE, 2008|JOGO ELETRONICO: Pokemon Omega Ruby, R$ 20.0, Nao emprestado, OUTRO|SHOW: RBD Ao Vivo, R$ 19.99, Nao emprestado, 60 min, DOZE_ANOS, REBELDES, 20 faixas|SERIE: The Walking Dead, R$ 79.99, Nao emprestado, 120 min, DEZESSEIS_ANOS, SUSPENSE, Temporada 1|JOGO DE TABULEIRO: War, R$ 70.0, Nao emprestado, COM PECAS PERDIDAS|" listarItensOrdenadosPorNome
+
+
+cadastrarJogoTabuleiro nome="Joao" telefone="98888-8888" nomeItem="Xadrez de Bruxo" preco=1000.00
+
+
+expect "FILME: Crepusculo, R$ 1.99, Nao emprestado, 120 min, QUATORZE_ANOS, ROMANCE, 2008|SHOW: RBD Ao Vivo, R$ 19.99, Nao emprestado, 60 min, DOZE_ANOS, REBELDES, 20 faixas|JOGO ELETRONICO: Pokemon Omega Ruby, R$ 20.0, Nao emprestado, OUTRO|JOGO DE TABULEIRO: War, R$ 70.0, Nao emprestado, COM PECAS PERDIDAS|SERIE: The Walking Dead, R$ 79.99, Nao emprestado, 120 min, DEZESSEIS_ANOS, SUSPENSE, Temporada 1|JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 1000.0, Nao emprestado, COMPLETO|" listarItensOrdenadosPorValor
+
+
+expect "FILME: Crepusculo, R$ 1.99, Nao emprestado, 120 min, QUATORZE_ANOS, ROMANCE, 2008" pesquisarDetalhesItem nome="Maria" telefone="96666-6666" nomeItem="Crepusculo"
+expect "JOGO DE TABULEIRO: War, R$ 70.0, Nao emprestado, COM PECAS PERDIDAS" pesquisarDetalhesItem nome="Joao" telefone="98888-8888" nomeItem="War"
+expectError "Item nao encontrado" pesquisarDetalhesItem nome="Maria" telefone="96666-6666" nomeItem="The Walking Dead"
+expectError "Usuario invalido" pesquisarDetalhesItem nome="Derci" telefone="50135-6969" nomeItem="The Walking Dead"
+
+
+fecharSistema
