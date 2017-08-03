@@ -32,10 +32,14 @@ public class JogoTabuleiro extends Item {
 	}
 
 	public boolean equals(JogoTabuleiro jogo) {
-		if (jogo.getNome().equals(this.nome) && comparaLista(jogo.pecasPerdidas)) {
+		if (jogo.getNome().equals(this.getNome()) && comparaLista(jogo.pecasPerdidas)) {
 			return true;
 		}
 		return false;
+	}
+	
+	public void adicionarPecaPerdida(String pecaPerdida) {
+		this.pecasPerdidas.add(pecaPerdida);
 	}
 
 }
