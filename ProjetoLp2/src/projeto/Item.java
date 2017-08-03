@@ -3,6 +3,7 @@ package projeto;
 public class Item {
 
 	private String nome;
+
 	@Override
 	public String toString() {
 		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + EstadoDeEmprestimo + "]";
@@ -32,11 +33,11 @@ public class Item {
 	public double getValor() {
 		return valor;
 	}
-	
+
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
