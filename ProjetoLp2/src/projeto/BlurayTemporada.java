@@ -10,4 +10,9 @@ public class BlurayTemporada extends Bluray {
 		this.temporada = temporada;
 	}
 
+	@Override
+	public String toString() {
+		return "BlurayTemporada [temporada=" + temporada + "]";
+	}
+
 }

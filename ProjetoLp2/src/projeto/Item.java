@@ -3,6 +3,11 @@ package projeto;
 public class Item {
 
 	private String nome;
+	@Override
+	public String toString() {
+		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + EstadoDeEmprestimo + "]";
+	}
+
 	private double valor;
 	private boolean EstadoDeEmprestimo;
 
