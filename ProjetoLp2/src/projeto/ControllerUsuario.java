@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class ControllerUsuario {
 	private Set<Usuario> conjuntoUsuarios;
+	
 
 	public ControllerUsuario() {
 		conjuntoUsuarios = new HashSet<>();
@@ -21,18 +22,29 @@ public class ControllerUsuario {
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-
 		validaParametrosGetInfoUsuario(nome, telefone, atributo);
-		if (!atributo.equals("Email")) {
-			throw new IllegalArgumentException("Atributo Invalido");
-		}
+
+		Usuario usuario = null;
 
 		for (Usuario usuario3 : conjuntoUsuarios) {
 			if (usuario3.getNome().equals(nome) && usuario3.getNumCelular().equals(telefone)) {
-				return usuario3.getEmail();
+				usuario = usuario3;
 			}
 		}
-		throw new IllegalArgumentException("Usuario invalido");
+		if (usuario == null) {
+			throw new IllegalArgumentException("Usuario invalido");
+		}
+		switch (atributo) {
+		case "Email":
+			return usuario.getEmail();
+		case "Nome":
+			return usuario.getNome();
+		case "Telefone":
+			return usuario.getNumCelular();
+
+		default:
+			throw new IllegalArgumentException("Atributo invalido");
+		}
 	}
 
 	private void validaParametrosGetInfoUsuario(String nome, String telefone, String atributo) {
@@ -71,7 +83,20 @@ public class ControllerUsuario {
 
 	}
 
+	private void validaDados(String nome, String telefone) {
+		if (nome == null) {
+			throw new NullPointerException("Nome nulo invalido");
+		} else if (telefone == null) {
+			throw new NullPointerException("Telefone nulo invalido");
+		} else if (nome.trim().equals("")) {
+			throw new IllegalArgumentException("Nome vazio invalido");
+		} else if (telefone.trim().equals("")) {
+			throw new IllegalArgumentException("Telefone vazio invalido");
+		}
+	}
+
 	public void removerUsuario(String nome, String telefone) {
+		validaDados(nome, telefone);
 		for (Usuario usuario : conjuntoUsuarios) {
 			if (usuario.getNome().equals(nome) && usuario.getNumCelular().equals(telefone)) {
 				conjuntoUsuarios.remove(usuario);

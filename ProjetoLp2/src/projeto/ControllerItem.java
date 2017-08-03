@@ -6,6 +6,9 @@ import java.util.List;
 public class ControllerItem {
 	private List<Item> listaItens = new ArrayList<>();
 
+	public ControllerItem() {
+	}
+
 	
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, Plataforma plataforma) {
 	}
