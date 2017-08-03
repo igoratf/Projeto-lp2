@@ -1,36 +1,50 @@
 package projeto;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ControllerUsuario {
-	private Map<NomeTelefone, Usuario> mapaUsuarios;
+	private Set<Usuario> conjuntoUsuarios;
+	
 
 	public ControllerUsuario() {
-		mapaUsuarios = new HashMap<NomeTelefone, Usuario>();
+		conjuntoUsuarios = new HashSet<>();
 	}
 
 	public void cadastrarUsuario(String nome, String telefone, String email) {
-		NomeTelefone chave = new NomeTelefone(nome,telefone);
-		if (mapaUsuarios.containsKey(chave)) {
-			throw new IllegalArgumentException("Usuario ja cadastrado");
-		}
 		Usuario usuario = new Usuario(nome, email, telefone);
-		mapaUsuarios.put(chave, usuario);
+		for (Usuario usuario2 : conjuntoUsuarios) {
+			if (usuario2.getNome().equals(nome) && usuario2.getNumCelular().equals(telefone)) {
+				throw new IllegalArgumentException("Usuario ja cadastrado");
+			}
+		}
+		conjuntoUsuarios.add(usuario);
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-
-		NomeTelefone chave = new NomeTelefone(nome,telefone);
 		validaParametrosGetInfoUsuario(nome, telefone, atributo);
 
-		if (!atributo.equals("Email")) {
-			throw new IllegalArgumentException("Atributo Invalido");
-		} else if (!mapaUsuarios.containsKey(chave)) {
+		Usuario usuario = null;
+
+		for (Usuario usuario3 : conjuntoUsuarios) {
+			if (usuario3.getNome().equals(nome) && usuario3.getNumCelular().equals(telefone)) {
+				usuario = usuario3;
+			}
+		}
+		if (usuario == null) {
 			throw new IllegalArgumentException("Usuario invalido");
 		}
-		return mapaUsuarios.get(chave).getEmail();
+		switch (atributo) {
+		case "Email":
+			return usuario.getEmail();
+		case "Nome":
+			return usuario.getNome();
+		case "Telefone":
+			return usuario.getNumCelular();
 
+		default:
+			throw new IllegalArgumentException("Atributo invalido");
+		}
 	}
 
 	private void validaParametrosGetInfoUsuario(String nome, String telefone, String atributo) {
@@ -69,29 +83,52 @@ public class ControllerUsuario {
 
 	}
 
-	public void removerUsuario(String nome, String telefone) {
-		String chave = nome + telefone;
-		if (!mapaUsuarios.containsKey(chave)) {
-			throw new IllegalArgumentException("Usuario invalido");
+	private void validaDados(String nome, String telefone) {
+		if (nome == null) {
+			throw new NullPointerException("Nome nulo invalido");
+		} else if (telefone == null) {
+			throw new NullPointerException("Telefone nulo invalido");
+		} else if (nome.trim().equals("")) {
+			throw new IllegalArgumentException("Nome vazio invalido");
+		} else if (telefone.trim().equals("")) {
+			throw new IllegalArgumentException("Telefone vazio invalido");
 		}
-		mapaUsuarios.remove(chave);
 	}
 
-	public String atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		NomeTelefone chave = new NomeTelefone(nome,telefone);
-		validaParametrosRemoverUsuario(nome, telefone, atributo, valor);
+	public void removerUsuario(String nome, String telefone) {
+		validaDados(nome, telefone);
+		for (Usuario usuario : conjuntoUsuarios) {
+			if (usuario.getNome().equals(nome) && usuario.getNumCelular().equals(telefone)) {
+				conjuntoUsuarios.remove(usuario);
+				return;
+			}
+		}
+		throw new IllegalArgumentException("Usuario invalido");
+	}
 
-		if (!mapaUsuarios.containsKey(chave)) {
-			throw new IllegalArgumentException("Usuario invalido");
+	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
+		validaParametrosRemoverUsuario(nome, telefone, atributo, valor);
+		Usuario usuario = null;
+
+		for (Usuario usuario2 : conjuntoUsuarios) {
+			if (usuario2.getNome().equals(nome) && usuario2.getNumCelular().equals(telefone)) {
+				usuario = usuario2;
+			}
+		}
+		if (usuario == null) {
+			throw new NullPointerException("Usuario invalido");
 		}
 
 		switch (atributo) {
 		case "Nome":
-			mapaUsuarios.get(chave).setNome(valor);
+			usuario.setNome(valor);
+			break;
 		case "Telefone":
-			mapaUsuarios.get(chave).setNumCelular(valor);
+			usuario.setNumCelular(valor);
+			break;
 		case "Email":
-			mapaUsuarios.get(chave).setEmail(valor);
+			usuario.setEmail(valor);
+			break;
 
 		default:
 			throw new IllegalArgumentException("Atributo invalido");

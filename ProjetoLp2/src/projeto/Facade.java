@@ -2,9 +2,9 @@ package projeto;
 
 public class Facade {
 	private ControllerUsuario controller;
-	public Facade(){
+	
+	public void iniciarSistema(){
 		this.controller = new ControllerUsuario();
-		
 	}
 	public void cadastrarUsuario(String nome, String telefone, String email) {
 		controller.cadastrarUsuario(nome, telefone, email);
@@ -15,8 +15,12 @@ public class Facade {
 	public void removerUsuario(String nome, String telefone) {
 		controller.removerUsuario(nome, telefone);
 	}
-	public String atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		return controller.atualizarUsuario(nome, telefone, atributo, valor);
+	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
+		controller.atualizarUsuario(nome, telefone, atributo, valor);
+	}
+	
+	public void fecharSistema(){
+		
 	}
 
 }

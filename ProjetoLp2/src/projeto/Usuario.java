@@ -4,8 +4,13 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
+	private ControllerItem controllerItem;
 
 	public Usuario(String nome, String email, String numCelular) {
+		this.nome = nome;
+		this.email = email;
+		this.numCelular = numCelular;
+		this.controllerItem = new ControllerItem(null);
 
 	}
 
