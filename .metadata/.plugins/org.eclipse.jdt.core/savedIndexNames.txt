@@ -1,4 +1,0 @@
-INDEX VERSION 1.129+/home/javanktl/Projeto-lp2/.metadata/.plugins/org.eclipse.jdt.core
-4177240048.index
-4198345769.index
-1847091942.index
