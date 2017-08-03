@@ -1,7 +1,7 @@
 package projeto;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,8 +27,10 @@ public class JogoTabuleiro extends Item {
 	 * @return boolean correspondente ao resultado da comparação
 	 */
 	public boolean comparaPecasPerdidas(List<String> lista) {
-		for (String string : lista) {
-			if (!(this.pecasPerdidas.contains(string))) {
+		Collections.sort(lista);
+		Collections.sort(pecasPerdidas);
+		for (int i=0; i<lista.size(); i++) {
+			if (!(lista.get(i).equals(pecasPerdidas.get(i)))) {
 				return false;
 			}
 		}
