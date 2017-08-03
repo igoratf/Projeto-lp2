@@ -10,7 +10,7 @@ public class ControllerItem {
 		this.listaItem = listaItem;
 	}
 	
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, ) {
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, Plataforma plataforma) {
 		
 	}
 	
