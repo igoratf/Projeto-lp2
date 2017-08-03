@@ -4,12 +4,6 @@ public class Bluray extends Item {
 
 	private int duracao;
 	private String classificacao;
-	
-	
-	@Override
-	public String toString() {
-		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
-	}
 
 	public Bluray(String nome, int valor, int duracao, String classificacao) {
 
@@ -43,6 +37,11 @@ public class Bluray extends Item {
 		} else if (!getNome().equals(other.getNome()))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
 	}
 
 }
