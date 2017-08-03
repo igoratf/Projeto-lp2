@@ -6,21 +6,11 @@ import java.util.List;
 public class ControllerItem {
 	private List<Item> listaItens = new ArrayList<>();
 
-	public ControllerItem() {
-	}
-
-	
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, Plataforma plataforma) {
 	}
 	
 		
 
-/**
- * Metodo para cadastrar um jogo Eletronico na lista de itens.
- * @param nomeItem, nome do jogo.
- * @param preco, valor do jogo.
- * @param plataforma, plataforma do jogo.
- */
 	public void cadastrarEletronico(String nomeItem, double preco, Plataforma plataforma) {
 		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
