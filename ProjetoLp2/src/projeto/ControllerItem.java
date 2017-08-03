@@ -14,8 +14,6 @@ public class ControllerItem {
 	}
 	
 		
-
-
 	public void cadastrarEletronico(String nomeItem, double preco, Plataforma plataforma) {
 		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
@@ -61,6 +59,12 @@ public class ControllerItem {
 		return meuItem;
 	}
 	
+	/**
+	 * Metodo criado para atualizar o item de acordo com o atributo desejado passado por parametro.
+	 * @param nomeItem, nome do item a ser atualizado.
+	 * @param atributo, atributo que deseja ser alterado.
+	 * @param valor, valor do atributo para ser alterado.
+	 */
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		Item meuItem = getItem(nomeItem);
 		if (atributo.equalsIgnoreCase("preco")) {
