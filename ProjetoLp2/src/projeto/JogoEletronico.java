@@ -1,7 +1,12 @@
 package projeto;
 
 
-
+/**
+ * Classe criada referente ao jogo eletronico que é uma subclasse de Item.
+ * 
+ * @author lucasvsa
+ *
+ */
 public class JogoEletronico extends Item {
 
 	
@@ -30,6 +35,10 @@ public class JogoEletronico extends Item {
 		return result;
 	}
 	
+	/**
+	 * Metodo sobreescrito do Equals() para comparar se um jogo eletronico é igual ao outro se o nome e a plataforma
+	 * forem iguais.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
