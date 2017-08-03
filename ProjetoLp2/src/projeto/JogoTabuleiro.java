@@ -7,9 +7,8 @@ public class JogoTabuleiro extends Item {
 	private List<String> pecasPerdidas = new ArrayList<>();
 	private boolean completo;
 
-	public JogoTabuleiro(String nome, int valor, boolean estadoDeEmprestimo, List<String> pecasPerdidas,
-			boolean completo) {
-		super(nome, valor, estadoDeEmprestimo);
+	public JogoTabuleiro(String nome, double valor) {
+		super(nome, valor);
 		this.pecasPerdidas = pecasPerdidas;
 		this.completo = completo;
 	}

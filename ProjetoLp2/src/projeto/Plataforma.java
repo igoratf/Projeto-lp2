@@ -4,16 +4,16 @@ package projeto;
 
 public enum Plataforma {
 	
-	PC(1), MAC(2), PS3(3), PS4(4), XBOX360(5), XBOX_ONE(6), NINTENDO_3DS(7), OUTRO(8);
+	PC("PC"), MAC("MAC"), PS3("PS3"), PS4("PS4"), XBOX360("XBOX360"), XBOX_ONE("XBOX_ONE"), NINTENDO_3DS("NINTENDO_3DS"), OUTRO("OUTRO");
 	
-	private final int valor;
+	private final String plataforma;
 	
-	Plataforma(int valor){
-		this.valor = valor;
+	Plataforma(String plataforma){
+		this.plataforma = plataforma;
 		
 	}
 
-	public int getValor(){
-		return this.valor;
+	public String getPlataforma(){
+		return this.plataforma;
 	}
 }
