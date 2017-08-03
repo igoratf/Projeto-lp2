@@ -2,25 +2,21 @@ package projeto;
 
 
 
-public class JogosEletronicos extends Item {
+public class JogoEletronico extends Item {
+	/*
+	 * Lucas, ajeita essa classe de acordo com Item
+	 * lembra de ajeitar o equals também
+	 */
 	
-	private String nome;
 	private Plataforma plataforma;
 	
 	
-	public JogosEletronicos(String nome, int valor, boolean estadoDeEmprestimo, String nomeJogo, Plataforma plataforma){
-		super(nome, valor, estadoDeEmprestimo);
-		this.nome = nomeJogo;
+	public JogoEletronico(String nome, double valor, Plataforma plataforma) {
+		super(nome, valor);
 		this.plataforma = plataforma;
 	}
 	
 
-
-
-	public String getNome() {
-		return nome;
-	}
-	
 	public Plataforma getPlataforma() {
 		return plataforma;
 	}
@@ -44,7 +40,7 @@ public class JogosEletronicos extends Item {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		JogosEletronicos other = (JogosEletronicos) obj;
+		JogoEletronico other = (JogoEletronico) obj;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;

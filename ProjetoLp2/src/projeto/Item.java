@@ -2,7 +2,7 @@ package projeto;
 
 public class Item {
 
-	protected String nome;
+	private String nome;
 	private double valor;
 	private boolean EstadoDeEmprestimo;
 
@@ -26,6 +26,14 @@ public class Item {
 
 	public double getValor() {
 		return valor;
+	}
+	
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }
