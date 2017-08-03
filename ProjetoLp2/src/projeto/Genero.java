@@ -2,16 +2,17 @@ package projeto;
 
 public enum Genero {
 	
-	 ACAO(1), ANIMACAO(2), AVENTURA(3), COMEDIA(4), DOCUMENTARIO(5), DRAMA(6), EROTICO(7),
-	 FAROESTE(8), FICCAO(9), MUSICAL(10), POLICIAL(11), ROMANCE(12), SUSPENSE(13), TERROR(14), OUTRO(15);
+	 ACAO("ACAO"), ANIMACAO("ANIMACAO"), AVENTURA("AVENTURA"), COMEDIA("COMEDIA"), DOCUMENTARIO("DOCUMENTARIO"),
+	 DRAMA("DRAMA"), EROTICO("EROTICO"), FAROESTE("FAROESTE"), FICCAO("FICCAO"), MUSICAL("MUSICAL"), POLICIAL("POLICIAL"),
+	 ROMANCE("ROMANCE"), SUSPENSE("SUSPENSE"), TERROR("TERROR"), OUTRO("OUTRO");
 	
-	public final int valor;
+	public final String valor;
 	
-	Genero(int valor){
+	Genero(String valor){
 		this.valor = valor;
 	}
 	
-	public int getValor(){
+	public String getValor(){
 		return this.valor;
 	}
 	
