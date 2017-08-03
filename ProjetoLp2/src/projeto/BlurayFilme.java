@@ -6,7 +6,7 @@ public class BlurayFilme extends Bluray {
 
 	public BlurayFilme(String nome, int valor, boolean estadoDeEmprestimo, int duracao, String classificacao,
 			String genero) {
-		super(nome, valor, estadoDeEmprestimo, duracao, classificacao);
+		super(nome, valor, duracao, classificacao);
 		this.genero = genero;
 	}
 

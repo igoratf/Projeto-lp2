@@ -6,8 +6,13 @@ public class BlurayTemporada extends Bluray {
 
 	public BlurayTemporada(String nome, int valor, boolean estadoDeEmprestimo, int duracao, String classificacao,
 			int temporada) {
-		super(nome, valor, estadoDeEmprestimo, duracao, classificacao);
+		super(nome, valor, duracao, classificacao);
 		this.temporada = temporada;
+	}
+
+	@Override
+	public String toString() {
+		return "BlurayTemporada [temporada=" + temporada + "]";
 	}
 
 }
