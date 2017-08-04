@@ -4,15 +4,10 @@ public class Bluray extends Item {
 
 	private int duracao;
 	private String classificacao;
-	
-	/*
-	 * Javan, ajeita esse construtor de acordo com Item
-	 * Aproveita e ajeita os outros Blurays também
-	 */
 
-	public Bluray(String nome, int valor, boolean estadoDeEmprestimo, int duracao, String classificacao) {
+	public Bluray(String nome, int valor, int duracao, String classificacao) {
 
-		super(nome, valor, estadoDeEmprestimo);
+		super(nome, valor);
 
 		this.duracao = duracao;
 		this.classificacao = classificacao;
@@ -23,7 +18,7 @@ public class Bluray extends Item {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((getNome() == null) ? 0 : getNome().hashCode());
 		return result;
 	}
 
@@ -36,12 +31,17 @@ public class Bluray extends Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Bluray other = (Bluray) obj;
-		if (nome == null) {
-			if (other.nome != null)
+		if (getNome() == null) {
+			if (other.getNome() != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!getNome().equals(other.getNome()))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
 	}
 
 }

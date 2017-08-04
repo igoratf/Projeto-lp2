@@ -1,8 +1,15 @@
 package projeto;
 
+/**
+ * Define um item genérico.
+ * 
+ * @author javanktl
+ *
+ */
 public class Item {
 
 	private String nome;
+
 	private double valor;
 	private boolean EstadoDeEmprestimo;
 
@@ -27,13 +34,18 @@ public class Item {
 	public double getValor() {
 		return valor;
 	}
-	
+
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
-	
+
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + EstadoDeEmprestimo + "]";
 	}
 
 }
