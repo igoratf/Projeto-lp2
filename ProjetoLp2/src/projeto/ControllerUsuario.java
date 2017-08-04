@@ -131,7 +131,7 @@ public class ControllerUsuario {
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco,
-			Plataforma plataforma) {
+			String plataforma) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).cadastrarEletronico(nomeItem, preco, plataforma);
 	}
@@ -142,7 +142,7 @@ public class ControllerUsuario {
 	}
 
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
-			Genero genero, Classificacao classificacao, int anoLancamento) {
+			String genero, String classificacao, int anoLancamento) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 	}

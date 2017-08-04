@@ -7,7 +7,7 @@ public class BluraySeries extends Bluray {
 	private ArrayList<BluraySerie> episodios;
 	private int temporada;
 
-	public BluraySeries(String nome, double valor, int duracao, Classificacao classificacao, Genero genero, int temporada) {
+	public BluraySeries(String nome, double valor, int duracao, String classificacao, String genero, int temporada) {
 		super(nome, valor, duracao, classificacao);
 		episodios = new ArrayList<BluraySerie>();
 	}

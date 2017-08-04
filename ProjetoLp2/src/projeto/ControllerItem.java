@@ -12,7 +12,7 @@ public class ControllerItem {
 	
 	
 	
-	public void cadastrarEletronico(String nomeItem, double preco, Plataforma plataforma) {
+	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
 	}
@@ -22,17 +22,17 @@ public class ControllerItem {
 		listaItens.add(jogoTabuleiro);
 	}
 	
-	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, Genero genero, Classificacao classificacao, int anoLancamento) {
+	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
 		listaItens.add(blurayFilme);
 	}
 	
-	public void cadastrarBluRaySeries(String nomeItem, double preco, int duracao, Classificacao classificacao, Genero genero, int temporada) {
+	public void cadastrarBluRaySeries(String nomeItem, double preco, int duracao, String classificacao, String genero, int temporada) {
 		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, classificacao, genero, temporada);
 		listaItens.add(bluraySerie);
 	}
 	
-	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, Classificacao classificacao, String nomeArtista, int numFaixas) {
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
 		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
 		listaItens.add(blurayShow);
 	}
@@ -77,7 +77,7 @@ public class ControllerItem {
 	}
 	
 	/**
-	 * Metodo criado para atualizar o item de acordo com o atributo desejado passado como parâmetro.
+	 * Metodo criado para atualizar o item de acordo com o atributo desejado passado como parï¿½metro.
 	 * @param nomeItem, nome do item a ser atualizado.
 	 * @param atributo, atributo que deseja ser alterado.
 	 * @param valor, valor do atributo para ser alterado.

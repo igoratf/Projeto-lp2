@@ -5,10 +5,10 @@ public class Bluray extends Item {
 	private int duracao;
 	private Classificacao classificacao;
 
-	public Bluray(String nome, double valor, int duracao, Classificacao classificacao) {
+	public Bluray(String nome, double valor, int duracao, String classificacao) {
 		super(nome, valor);
 		this.duracao = duracao;
-		this.classificacao = classificacao;
+		this.classificacao = Classificacao.valueOf(classificacao);
 
 	}
 
