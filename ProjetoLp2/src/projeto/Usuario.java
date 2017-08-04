@@ -41,11 +41,35 @@ public class Usuario {
 		return true;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#hashCode()
-	 */
+	public void cadastrarEletronico(String nomeItem, double preco, Plataforma plataforma) {
+		controllerItem.cadastrarEletronico(nomeItem, preco, plataforma);
+	}
+
+	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
+		controllerItem.cadastrarJogoTabuleiro(nomeItem, preco);
+	}
+
+	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, Genero genero,
+			Classificacao classificacao, int anoLancamento) {
+		controllerItem.cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
+	}
+
+	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
+		controllerItem.adicionarPecaPerdida(nomeItem, nomePeca);
+	}
+
+	public void removerItem(String nomeItem) {
+		controllerItem.removerItem(nomeItem);
+	}
+
+	public Item getItem(String nomeItem) {
+		return controllerItem.getItem(nomeItem);
+	}
+
+	public void atualizarItem(String nomeItem, String atributo, String valor) {
+		controllerItem.atualizarItem(nomeItem, atributo, valor);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
