@@ -35,7 +35,7 @@ public class ControllerItem {
 		}
 	}
 
-	public void validaItem(String nomeItem) {
+	private void validaItem(String nomeItem) {
 		if (!(listaItens.contains(nomeItem))) {
 			throw new RuntimeException("Item nao encontrado");
 		}
