@@ -24,8 +24,27 @@ public class ControllerItem {
 	}
 	
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, Genero genero, Classificacao classificacao, int anoLancamento) {
-		// Bluray blurayFilme = new BlurayFilme();
-		// Quando ajeitar o BlurayFilme eu termino
+		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
+		listaItens.add(blurayFilme);
+	}
+	
+	public void cadastrarBluRaySeries(String nomeItem, double preco, int duracao, Classificacao classificacao, Genero genero, int temporada) {
+		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, classificacao, genero, temporada);
+		listaItens.add(bluraySerie);
+	}
+	
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, Classificacao classificacao, String nomeArtista, int numFaixas) {
+		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
+		listaItens.add(blurayShow);
+	}
+	
+	public void adicionarBluray(String serie, int duracao) {
+		BluraySerie blurayEpisodio = new BluraySerie(duracao);
+		for (Item item : listaItens) {
+			if (item.getNome().equals(serie)) {
+				((BluraySeries) item).adicionarBluray(blurayEpisodio);
+			}
+		}
 	}
 
 	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
@@ -59,7 +78,7 @@ public class ControllerItem {
 	}
 	
 	/**
-	 * Metodo criado para atualizar o item de acordo com o atributo desejado passado por parametro.
+	 * Metodo criado para atualizar o item de acordo com o atributo desejado passado como parâmetro.
 	 * @param nomeItem, nome do item a ser atualizado.
 	 * @param atributo, atributo que deseja ser alterado.
 	 * @param valor, valor do atributo para ser alterado.
