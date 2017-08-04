@@ -111,14 +111,14 @@ public class ControllerUsuario {
 			Usuario usuarioTemporario = mapaUsuarios.get(chave);
 			mapaUsuarios.remove(chave);
 			chave.setNome(valor);
-			mapaUsuarios.put(chave,usuarioTemporario);
+			mapaUsuarios.put(chave, usuarioTemporario);
 			break;
 		case "Telefone":
 			mapaUsuarios.get(chave).setNumCelular(valor);
 			usuarioTemporario = mapaUsuarios.get(chave);
 			mapaUsuarios.remove(chave);
 			chave.setTelefone(valor);
-			mapaUsuarios.put(chave,usuarioTemporario);
+			mapaUsuarios.put(chave, usuarioTemporario);
 			break;
 		case "Email":
 			mapaUsuarios.get(chave).setEmail(valor);
