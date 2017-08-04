@@ -130,4 +130,41 @@ public class ControllerUsuario {
 
 	}
 
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco,
+			Plataforma plataforma) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).cadastrarEletronico(nomeItem, preco, plataforma);
+	}
+
+	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).cadastrarJogoTabuleiro(nomeItem, preco);
+	}
+
+	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
+			Genero genero, Classificacao classificacao, int anoLancamento) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
+	}
+
+	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).adicionarPecaPerdida(nomeItem, nomePeca);
+	}
+
+	public void removerItem(String nome, String telefone, String nomeItem) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).removerItem(nomeItem);
+	}
+
+	public Item getItem(String nome, String telefone, String nomeItem) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).getItem(nomeItem);
+	}
+
+	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).atualizarItem(nomeItem, atributo, valor);
+	}
+
 }
