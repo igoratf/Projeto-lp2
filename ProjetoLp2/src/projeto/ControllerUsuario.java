@@ -21,7 +21,7 @@ public class ControllerUsuario {
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-		validaParametrosGetInfoUsuario(nome, telefone, atributo);
+		ValidaParametros.validaParametrosGetInfoUsuario(nome, telefone, atributo);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 
 		if (!mapaUsuarios.containsKey(chave)) {
@@ -40,56 +40,8 @@ public class ControllerUsuario {
 		}
 	}
 
-	private void validaParametrosGetInfoUsuario(String nome, String telefone, String atributo) {
-		if (nome == null) {
-			throw new NullPointerException("Nome nulo invalido!");
-		} else if (telefone == null) {
-			throw new NullPointerException("Telefone nulo invalido!");
-		} else if (atributo == null) {
-			throw new NullPointerException("Atributo nulo invalido!");
-		} else if (nome.trim().equals("")) {
-			throw new IllegalArgumentException("Nome vazio invalido!");
-		} else if (telefone.trim().equals("")) {
-			throw new IllegalArgumentException("Telefone vazio invalido!");
-		} else if (atributo.trim().equals("")) {
-			throw new IllegalArgumentException("Atributo vazio invalido!");
-		}
-
-	}
-
-	private void validaParametrosRemoverUsuario(String nome, String telefone, String atributo, String valor) {
-		if (nome == null) {
-			throw new NullPointerException("Nome nulo invalido!");
-		} else if (telefone == null) {
-			throw new NullPointerException("Telefone nulo invalido!");
-		} else if (valor == null) {
-			throw new NullPointerException("Valor nulo invalido!");
-		} else if (nome.trim().equals("")) {
-			throw new IllegalArgumentException("Nome vazio invalido!");
-		} else if (telefone.trim().equals("")) {
-			throw new IllegalArgumentException("Telefone vazio invalido!");
-		} else if (valor.trim().equals("")) {
-			throw new IllegalArgumentException("Valor vazio invalido!");
-		} else if (atributo == null) {
-			throw new NullPointerException("Atributo nulo invalido");
-		}
-
-	}
-
-	private void validaDados(String nome, String telefone) {
-		if (nome == null) {
-			throw new NullPointerException("Nome nulo invalido");
-		} else if (telefone == null) {
-			throw new NullPointerException("Telefone nulo invalido");
-		} else if (nome.trim().equals("")) {
-			throw new IllegalArgumentException("Nome vazio invalido");
-		} else if (telefone.trim().equals("")) {
-			throw new IllegalArgumentException("Telefone vazio invalido");
-		}
-	}
-
 	public void removerUsuario(String nome, String telefone) {
-		validaDados(nome, telefone);
+		ValidaParametros.validaDados(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 
 		if (!mapaUsuarios.containsKey(chave)) {
@@ -99,7 +51,7 @@ public class ControllerUsuario {
 	}
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		validaParametrosRemoverUsuario(nome, telefone, atributo, valor);
+		ValidaParametros.validaParametrosRemoverUsuario(nome, telefone, atributo, valor);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		if (!mapaUsuarios.containsKey(chave)) {
 			throw new IllegalArgumentException("Usuario invalido");
