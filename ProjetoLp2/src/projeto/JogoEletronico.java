@@ -13,9 +13,11 @@ public class JogoEletronico extends Item {
 	private Plataforma plataforma;
 	
 	
-	public JogoEletronico(String nome, double valor, Plataforma plataforma) {
+	public JogoEletronico(String nome, double valor, String plataforma) {
 		super(nome, valor);
-		this.plataforma = plataforma;
+		
+		validaAtributo(plataforma);
+		this.plataforma = Plataforma.valueOf(plataforma);
 	}
 	
 	
@@ -48,9 +50,9 @@ public class JogoEletronico extends Item {
 		if (getClass() != obj.getClass())
 			return false;
 		JogoEletronico other = (JogoEletronico) obj;
-		if (!this.getNome().equals(other.getNome()) && this.plataforma.equals(other.plataforma))
-			return false;
-		return true;
+		if (this.getNome().equals(other.getNome()) && this.plataforma.equals(other.plataforma))
+			return true;
+		return false;
 	}
 	
 	@Override
@@ -58,5 +60,11 @@ public class JogoEletronico extends Item {
 		return "JogosEletronicos [nome=" + this.getNome() + ", plataforma=" + plataforma + "]";
 	}
 	
-	
+	public boolean validaAtributo(String plataforma){
+		if (plataforma == null)
+			throw new NullPointerException("Plataforma Nula");
+		
+		
+		return true;
+	}
 }

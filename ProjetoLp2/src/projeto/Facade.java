@@ -24,7 +24,7 @@ public class Facade {
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco,
-			Plataforma plataforma) {
+			String plataforma) {
 		controller.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
@@ -33,7 +33,7 @@ public class Facade {
 	}
 
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
-			Genero genero, Classificacao classificacao, int anoLancamento) {
+			String genero, String classificacao, int anoLancamento) {
 		controller.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 	}
 
