@@ -271,34 +271,98 @@ public class ControllerUsuario {
 		mapaUsuarios.get(chave).removerItem(nomeItem);
 	}
 
+	/**
+	 * Atualiza informações de um Item
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param nomeItem
+	 *            Nome do Item.
+	 * @param atributo
+	 *            Atributo a ser Atualizado.
+	 * @param valor
+	 *            Novo valor do Atributo atualizado.
+	 */
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		checaSeUsuarioJaExiste(chave);
 		mapaUsuarios.get(chave).atualizarItem(nomeItem, atributo, valor);
 	}
 
+	/**
+	 * Retorna informações de um item.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param nomeItem
+	 *            Nome do Item.
+	 * @param atributo
+	 *            Atributo referente a informação desejada.
+	 * @return Representação em String da Informação desejada.
+	 */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return mapaUsuarios.get(chave).getInfoItem(nomeItem, atributo);
 
 	}
 
+	/**
+	 * Cadastra um BluRay de um Show
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário
+	 * @param nomeItem
+	 *            Nome do BluRay de Show.
+	 * @param preco
+	 *            Preço do BluRau de Show.
+	 * @param duracao
+	 *            Duração do BluRay de Show.
+	 * @param numFaixas
+	 *            Número de Faixas do BluRay de Show.
+	 * @param nomeArtista
+	 *            Nome de Artista do BluRay de Show.
+	 * @param classificacao
+	 *            Classificação do BluRay de Show.
+	 */
 	public void cadastrarBlurayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
 			int numFaixas, String nomeArtista, String classificacao) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 	}
 
+	/**
+	 * Adiciona um BluRay de um episodio a uma temporada de um série.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param nomeBlurayTemporada
+	 *            Nome do BluRay de Temporada da Série.
+	 * @param duracao
+	 *            Duração do Episódio.
+	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).adicionarBluray(nomeBlurayTemporada, duracao);
 	}
 
-	public boolean checaSeUsuarioJaExiste(ChaveUsuario chave) {
-		if (this.mapaUsuarios.containsKey(chave))
-			return true;
-		else
+	/**
+	 * Checa se uma chave está contida no Mapa.
+	 * @param chave
+	 * @throws IllegalArgumentException
+	 * Exceção informando que o usuário não está cadastrado.
+	 */
+	private void checaSeUsuarioJaExiste(ChaveUsuario chave) {
+		if (!this.mapaUsuarios.containsKey(chave)){
 			throw new IllegalArgumentException("Usuario invalido");
+		}
 	}
 
 }
