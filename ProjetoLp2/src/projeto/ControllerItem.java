@@ -37,9 +37,9 @@ public class ControllerItem {
 		listaItens.add(bluraySerie);
 	}
 	
-	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao,int numFaixas,String nomeArtista,String classificacao) {
 		validaPreco(preco);
-		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
+		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 		listaItens.add(blurayShow);
 	}
 	
