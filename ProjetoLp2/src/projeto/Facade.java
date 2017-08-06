@@ -33,6 +33,10 @@ public class Facade {
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		controller.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
+	
+	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
+		controller.cadastrarBluraySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+	}
 
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {

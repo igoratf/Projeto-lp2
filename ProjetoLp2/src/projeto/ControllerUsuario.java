@@ -99,6 +99,11 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 	}
+	
+	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
