@@ -79,15 +79,7 @@ public class ControllerItem {
 			if (item.getNome().equals(nomeItem))
 				return item;
 		}
-<<<<<<< HEAD
 			throw new RuntimeException("Item nao encontrado");
-=======
-		if (!existe) {
-			throw new IllegalArgumentException("Item nao encontrado");
-		}
-		return null;
-		
->>>>>>> 43022f767baedcc0c865a98c86f47d72f88f7e45
 	}
 
 	/**
