@@ -82,6 +82,11 @@ public class Usuario {
 	}
 	
 
+	public void adicionarBluray(String serie, int duracao){
+		controllerItem.adicionarBluray(serie, duracao);
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

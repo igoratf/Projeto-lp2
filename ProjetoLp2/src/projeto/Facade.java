@@ -34,10 +34,15 @@ public class Facade {
 		controller.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
 	
-	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
+	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
 		controller.cadastrarBluraySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
-
+	//L
+	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao){
+		controller.adicionarBluRay(nome, telefone, nomeBlurayTemporada, duracao);
+	}
+	
+	//L
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
 		controller.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);

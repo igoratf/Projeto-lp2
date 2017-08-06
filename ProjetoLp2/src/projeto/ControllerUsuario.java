@@ -91,6 +91,7 @@ public class ControllerUsuario {
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		checaSeUsuarioJaExiste(chave);
 		mapaUsuarios.get(chave).cadastrarJogoTabuleiro(nomeItem, preco);
 	}
 
@@ -112,6 +113,7 @@ public class ControllerUsuario {
 
 	public void removerItem(String nome, String telefone, String nomeItem) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		checaSeUsuarioJaExiste(chave);
 		mapaUsuarios.get(chave).removerItem(nomeItem);
 	}
 
@@ -122,6 +124,7 @@ public class ControllerUsuario {
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		checaSeUsuarioJaExiste(chave);
 		mapaUsuarios.get(chave).atualizarItem(nomeItem, atributo, valor);
 	}
 
@@ -133,6 +136,18 @@ public class ControllerUsuario {
 	public void cadastrarBlurayShow(String nome, String telefone,String nomeItem, double preco, int duracao, int numFaixas,String nomeArtista,String classificacao) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
+	}
+	
+	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).adicionarBluray(nomeBlurayTemporada, duracao);
+	}
+	
+	public boolean checaSeUsuarioJaExiste(ChaveUsuario chave){
+		if (this.mapaUsuarios.containsKey(chave))
+			return true;
+		else
+			throw new IllegalArgumentException("Usuario invalido");
 	}
 
 }
