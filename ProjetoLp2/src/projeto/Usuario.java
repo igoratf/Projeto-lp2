@@ -62,9 +62,6 @@ public class Usuario {
 		controllerItem.removerItem(nomeItem);
 	}
 
-	public Item getItem(String nomeItem) {
-		return controllerItem.getItem(nomeItem);
-	}
 
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		controllerItem.atualizarItem(nomeItem, atributo, valor);

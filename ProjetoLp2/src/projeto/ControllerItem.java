@@ -74,7 +74,7 @@ public class ControllerItem {
 		listaItens.remove(meuItem);
 	}
 
-	public Item getItem(String nomeItem) {
+	private Item getItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
 				return item;
