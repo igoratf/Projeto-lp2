@@ -82,7 +82,8 @@ public class ControllerUsuario {
 
 	}
 
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco,
+			String plataforma) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).cadastrarEletronico(nomeItem, preco, plataforma);
 	}
