@@ -44,7 +44,7 @@ public class ControllerItem {
 	}
 	
 	public void adicionarBluray(String serie, int duracao) {
-		BluraySerie blurayEpisodio = new BluraySerie(duracao);
+		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
 		for (Item item : listaItens) {
 			if (item.getNome().equals(serie)) {
 				((BluraySeries) item).adicionarBluray(blurayEpisodio);
@@ -81,8 +81,8 @@ public class ControllerItem {
 				existe = true;
 				return item;
 		}
-		if (existe == false) {
-			throw new RuntimeException("Item nao encontrado");
+		if (!existe) {
+			throw new IllegalArgumentException("Item nao encontrado");
 		}
 		return null;
 		
@@ -101,6 +101,8 @@ public class ControllerItem {
 	 */
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		Item meuItem = getItem(nomeItem);
+		
+		checaSeItemExiste(nomeItem); //MARCA
 		if (atributo.equalsIgnoreCase("preco")) {
 			meuItem.setValor(Float.parseFloat(valor));
 		}
@@ -111,6 +113,8 @@ public class ControllerItem {
 
 	public String getInfoItem(String nomeItem, String atributo) {
 		Item meuItem = getItem(nomeItem);
+		
+		checaSeItemExiste(nomeItem); //MARCA
 		switch (atributo) {
 		case "Preco":
 			return String.valueOf(meuItem.getValor());
@@ -127,5 +131,13 @@ public class ControllerItem {
 			throw new IllegalArgumentException("Preco invalido");
 		}
 	}
-
+	
+	public boolean checaSeItemExiste(String nomeItem){
+		for (Item item : listaItens) {
+			if (item.getNome().equals(nomeItem))
+				return true;
+	}
+		throw new IllegalArgumentException("Item nao encontrado");
+  }
+	
 }
