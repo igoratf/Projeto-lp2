@@ -12,6 +12,7 @@ public class ControllerItem {
 		Locale.setDefault(new Locale("en", "US"));
 	}
 
+
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
@@ -44,6 +45,7 @@ public class ControllerItem {
 				((BluraySeries) item).adicionarBluray(blurayEpisodio);
 			}
 		}
+
 	}
 
 	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
