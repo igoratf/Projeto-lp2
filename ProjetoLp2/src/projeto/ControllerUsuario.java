@@ -7,7 +7,7 @@ public class ControllerUsuario {
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
 
 	public ControllerUsuario() {
-		mapaUsuarios = new HashMap<>();
+		this.mapaUsuarios = new HashMap<>();
 	}
 
 	public void cadastrarUsuario(String nome, String telefone, String email) {
@@ -82,8 +82,7 @@ public class ControllerUsuario {
 
 	}
 
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco,
-			String plataforma) {
+	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).cadastrarEletronico(nomeItem, preco, plataforma);
 	}
@@ -118,11 +117,11 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).atualizarItem(nomeItem, atributo, valor);
 	}
-	public String getInfoItem(String nome, String telefone,String nomeItem,String atributo){
+
+	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return mapaUsuarios.get(chave).getInfoItem(nomeItem, atributo);
-	}
-	
 
+	}
 
 }
