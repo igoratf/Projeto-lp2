@@ -38,6 +38,9 @@ public class Facade {
 			String genero, String classificacao, int anoLancamento) {
 		controller.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 	}
+	public void cadastrarBluRayShow(String nome, String telefone,String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
+		controller.cadastrarBlurayShow(nome, telefone, nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
+	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		controller.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
