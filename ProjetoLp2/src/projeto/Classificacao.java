@@ -2,15 +2,15 @@ package projeto;
 
 public enum Classificacao {
 	
-	LIVRE(1), DEZ_ANOS(2), DOZE_ANOS(3), QUATORZE_ANOS(4), DEZESSEIS_ANOS(5), DEZOITO_ANOS(6);
+	LIVRE("LIVRE"), DEZ_ANOS("DEZ_ANOS"), DOZE_ANOS("DOZE_ANOS"), QUATORZE_ANOS("QUARTOZE_ANOS"), DEZESSEIS_ANOS("DEZESSEIS_ANOS"), DEZOITO_ANOS("DEZOITO_ANOS");
 	
-	private final int valor;
+	private final String valor;
 
-	Classificacao(int valor){
+	Classificacao(String valor){
 		this.valor = valor;
 	}
 
-	public int getValor(){
+	public String getValor(){
 		return this.valor;
 	}
 	

@@ -80,6 +80,10 @@ public class Usuario {
 	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
 		controllerItem.cadastrarBluRaySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
+	
+	public void adicionarBluray(String serie, int duracao){
+		controllerItem.adicionarBluray(serie, duracao);
+	}
 
 	@Override
 	public int hashCode() {

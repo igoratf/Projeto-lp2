@@ -1,10 +1,10 @@
 package projeto;
 
-public class BluraySerie {
+public class BlurayEpisodio {
 
 	public int duracao;
 
-	public BluraySerie(int duracao) {
+	public BlurayEpisodio(int duracao) {
 		this.duracao = duracao;
 	}
 
