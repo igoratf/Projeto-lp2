@@ -22,8 +22,7 @@ public class ControllerItem {
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
 		listaItens.add(jogoTabuleiro);
 	}
- 
-	
+
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
 		listaItens.add(blurayFilme);
