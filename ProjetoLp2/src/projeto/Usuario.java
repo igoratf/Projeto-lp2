@@ -69,6 +69,9 @@ public class Usuario {
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		controllerItem.atualizarItem(nomeItem, atributo, valor);
 	}
+	public String getInfoItem(String nomeItem,String atributo){
+		return controllerItem.getInfoItem(nomeItem, atributo);
+	}
 
 	@Override
 	public int hashCode() {

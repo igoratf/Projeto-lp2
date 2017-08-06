@@ -72,6 +72,18 @@ public class ControllerItem {
 			meuItem.setNome("valor");
 		}
 	}
+public String getInfoItem(String nomeItem,String atributo){
+	switch(atributo){
+	case "Preco":
+		return String.format("%.2f",getItem(nomeItem).getValor());
+	case "Nome":
+		return getItem(nomeItem).getNome();
+	default:
+		throw new IllegalArgumentException("Atributo invalido");
+	}
+	
+		
+	}
 	
 		
 

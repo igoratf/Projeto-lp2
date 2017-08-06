@@ -54,6 +54,9 @@ public class Facade {
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		controller.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
+	public String getInfoItem(String nome, String telefone,String nomeItem,String atributo){
+		return controller.getInfoItem(nome, telefone, nomeItem, atributo);
+	}
 
 	public void fecharSistema() {
 

@@ -118,5 +118,11 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).atualizarItem(nomeItem, atributo, valor);
 	}
+	public String getInfoItem(String nome, String telefone,String nomeItem,String atributo){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).getInfoItem(nomeItem, atributo);
+	}
+	
+
 
 }
