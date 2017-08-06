@@ -12,7 +12,7 @@ public class ControllerItem {
 	
 	
 	
-	public void cadastrarEletronico(String nomeItem, double preco, Plataforma plataforma) {
+	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
 	}

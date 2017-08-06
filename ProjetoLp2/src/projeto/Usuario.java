@@ -41,7 +41,7 @@ public class Usuario {
 		return true;
 	}
 
-	public void cadastrarEletronico(String nomeItem, double preco, Plataforma plataforma) {
+	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		controllerItem.cadastrarEletronico(nomeItem, preco, plataforma);
 	}
 

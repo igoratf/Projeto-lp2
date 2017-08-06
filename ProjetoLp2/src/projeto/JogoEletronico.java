@@ -13,9 +13,9 @@ public class JogoEletronico extends Item {
 	private Plataforma plataforma;
 	
 	
-	public JogoEletronico(String nome, double valor, Plataforma plataforma) {
+	public JogoEletronico(String nome, double valor, String plataforma) {
 		super(nome, valor);
-		this.plataforma = plataforma;
+		this.plataforma = Plataforma.valueOf(plataforma);
 	}
 	
 	
