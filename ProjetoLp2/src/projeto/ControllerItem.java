@@ -31,9 +31,9 @@ public class ControllerItem {
 		listaItens.add(blurayFilme);
 	}
 	
-	public void cadastrarBluRaySeries(String nomeItem, double preco, int duracao, String classificacao, String genero, int temporada) {
+	public void cadastrarBluRaySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
 		validaPreco(preco);
-		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, classificacao, genero, temporada);
+		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, descricao, classificacao, genero, temporada);
 		listaItens.add(bluraySerie);
 	}
 	
@@ -62,7 +62,8 @@ public class ControllerItem {
 	}
 
 	private void validaItem(String nomeItem) {
-		if (!(listaItens.contains(nomeItem))) {
+		Item meuItem = getItem(nomeItem);
+		if (!(listaItens.contains(meuItem))) {
 			throw new RuntimeException("Item nao encontrado");
 		}
 	}
@@ -74,11 +75,17 @@ public class ControllerItem {
 	}
 
 	public Item getItem(String nomeItem) {
+		boolean existe = false;
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
+				existe = true;
 				return item;
 		}
+		if (existe == false) {
+			throw new RuntimeException("Item nao encontrado");
+		}
 		return null;
+		
 	}
 
 	/**
@@ -98,16 +105,17 @@ public class ControllerItem {
 			meuItem.setValor(Float.parseFloat(valor));
 		}
 		if (atributo.equalsIgnoreCase("nome")) {
-			meuItem.setNome("valor");
+			meuItem.setNome(valor);
 		}
 	}
 
 	public String getInfoItem(String nomeItem, String atributo) {
+		Item meuItem = getItem(nomeItem);
 		switch (atributo) {
 		case "Preco":
-			return String.valueOf(getItem(nomeItem).getValor());
+			return String.valueOf(meuItem.getValor());
 		case "Nome":
-			return getItem(nomeItem).getNome();
+			return meuItem.getNome();
 		default:
 			throw new IllegalArgumentException("Atributo invalido");
 		}

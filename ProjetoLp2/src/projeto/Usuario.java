@@ -76,6 +76,10 @@ public class Usuario {
 		controllerItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 		
 	}
+	
+	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
+		controllerItem.cadastrarBluRaySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+	}
 
 	@Override
 	public int hashCode() {
