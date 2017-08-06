@@ -3,15 +3,12 @@ package projeto;
 public class Bluray extends Item {
 
 	private int duracao;
-	private String classificacao;
+	private Classificacao classificacao;
 
-	public Bluray(String nome, int valor, int duracao, String classificacao) {
-
+	public Bluray(String nome, double valor, int duracao, String classificacao) {
 		super(nome, valor);
-
 		this.duracao = duracao;
-		this.classificacao = classificacao;
-
+		this.classificacao = Classificacao.valueOf(classificacao);
 	}
 
 	@Override

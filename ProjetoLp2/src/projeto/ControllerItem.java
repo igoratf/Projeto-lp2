@@ -22,8 +22,9 @@ public class ControllerItem {
 		listaItens.add(jogoTabuleiro);
 	}
 
-	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, Genero genero,
-			Classificacao classificacao, int anoLancamento) {
+	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero,
+			String classificacao, int anoLancamento) {
+		Item bluRayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
 		// Bluray blurayFilme = new BlurayFilme();
 		// Quando ajeitar o BlurayFilme eu termino
 	}
