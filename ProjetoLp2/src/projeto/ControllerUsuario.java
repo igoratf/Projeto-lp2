@@ -125,9 +125,9 @@ public class ControllerUsuario {
 		return mapaUsuarios.get(chave).getInfoItem(nomeItem, atributo);
 
 	}
-	public void cadastrarBlurayShow(String nome, String telefone,String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
+	public void cadastrarBlurayShow(String nome, String telefone,String nomeItem, double preco, int duracao, int numFaixas,String nomeArtista,String classificacao) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).cadastrarBlurayShow(nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
+		mapaUsuarios.get(chave).cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 	}
 
 }

@@ -72,8 +72,8 @@ public class Usuario {
 	public String getInfoItem(String nomeItem,String atributo){
 		return controllerItem.getInfoItem(nomeItem, atributo);
 	}
-	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
-		controllerItem.cadastrarBlurayShow(nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao,int numFaixas, String nomeArtista,String classificacao) {
+		controllerItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 		
 	}
 

@@ -38,8 +38,8 @@ public class Facade {
 			String genero, String classificacao, int anoLancamento) {
 		controller.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 	}
-	public void cadastrarBluRayShow(String nome, String telefone,String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
-		controller.cadastrarBlurayShow(nome, telefone, nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
+	public void cadastrarBluRayShow(String nome, String telefone,String nomeItem, double preco, int duracao, int numFaixas,String nomeArtista,String classificacao) {
+		controller.cadastrarBlurayShow(nome, telefone, nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
