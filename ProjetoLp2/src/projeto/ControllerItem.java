@@ -2,16 +2,16 @@ package projeto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ControllerItem {
-	private List<Item> listaItens = new ArrayList<>();
+	private List<Item> listaItens;
 
 	public ControllerItem() {
+		this.listaItens = new ArrayList<>();
+		Locale.setDefault(new Locale("en", "US"));
 	}
 
-	
-	
-	
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
@@ -21,7 +21,7 @@ public class ControllerItem {
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
 		listaItens.add(jogoTabuleiro);
 	}
-	
+
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
 		listaItens.add(blurayFilme);
@@ -67,20 +67,23 @@ public class ControllerItem {
 	}
 
 	public Item getItem(String nomeItem) {
-		Item meuItem = null;
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
-				meuItem = item;
-			return meuItem;
+				return item;
 		}
-		return meuItem;
+		return null;
 	}
-	
+
 	/**
-	 * Metodo criado para atualizar o item de acordo com o atributo desejado passado como par�metro.
-	 * @param nomeItem, nome do item a ser atualizado.
-	 * @param atributo, atributo que deseja ser alterado.
-	 * @param valor, valor do atributo para ser alterado.
+	 * Metodo criado para atualizar o item de acordo com o atributo desejado
+	 * passado por parametro.
+	 * 
+	 * @param nomeItem,
+	 *            nome do item a ser atualizado.
+	 * @param atributo,
+	 *            atributo que deseja ser alterado.
+	 * @param valor,
+	 *            valor do atributo para ser alterado.
 	 */
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		Item meuItem = getItem(nomeItem);
@@ -91,7 +94,17 @@ public class ControllerItem {
 			meuItem.setNome("valor");
 		}
 	}
-	
-		
+
+	public String getInfoItem(String nomeItem, String atributo) {
+		switch (atributo) {
+		case "Preco":
+			return String.valueOf(getItem(nomeItem).getValor());
+		case "Nome":
+			return getItem(nomeItem).getNome();
+		default:
+			throw new IllegalArgumentException("Atributo invalido");
+		}
+
+	}
 
 }

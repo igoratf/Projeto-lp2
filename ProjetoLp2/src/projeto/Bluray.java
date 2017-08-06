@@ -9,7 +9,6 @@ public class Bluray extends Item {
 		super(nome, valor);
 		this.duracao = duracao;
 		this.classificacao = Classificacao.valueOf(classificacao);
-
 	}
 
 	@Override

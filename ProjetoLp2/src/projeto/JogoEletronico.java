@@ -15,7 +15,6 @@ public class JogoEletronico extends Item {
 	
 	public JogoEletronico(String nome, double valor, String plataforma) {
 		super(nome, valor);
-		
 		validaAtributo(plataforma);
 		this.plataforma = Plataforma.valueOf(plataforma);
 	}
