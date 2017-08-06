@@ -75,17 +75,11 @@ public class ControllerItem {
 	}
 
 	public Item getItem(String nomeItem) {
-		boolean existe = false;
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
-				existe = true;
 				return item;
 		}
-		if (existe == false) {
 			throw new RuntimeException("Item nao encontrado");
-		}
-		return null;
-		
 	}
 
 	/**
