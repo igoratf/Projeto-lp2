@@ -14,26 +14,31 @@ public class ControllerItem {
 
 
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
+		validaPreco(preco);
 		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
 	}
 
 	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
+		validaPreco(preco);
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
 		listaItens.add(jogoTabuleiro);
 	}
 
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
+		validaPreco(preco);
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
 		listaItens.add(blurayFilme);
 	}
 	
 	public void cadastrarBluRaySeries(String nomeItem, double preco, int duracao, String classificacao, String genero, int temporada) {
+		validaPreco(preco);
 		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, classificacao, genero, temporada);
 		listaItens.add(bluraySerie);
 	}
 	
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
+		validaPreco(preco);
 		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
 		listaItens.add(blurayShow);
 	}
@@ -107,6 +112,12 @@ public class ControllerItem {
 			throw new IllegalArgumentException("Atributo invalido");
 		}
 
+	}
+	
+	public void validaPreco(double preco) {
+		if (preco <=0) {
+			throw new IllegalArgumentException("Preco invalido");
+		}
 	}
 
 }
