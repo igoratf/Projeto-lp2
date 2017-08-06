@@ -22,11 +22,28 @@ public class ControllerItem {
 		listaItens.add(jogoTabuleiro);
 	}
 
-	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero,
-			String classificacao, int anoLancamento) {
-		Item bluRayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
-		// Bluray blurayFilme = new BlurayFilme();
-		// Quando ajeitar o BlurayFilme eu termino
+	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao, int anoLancamento) {
+		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
+		listaItens.add(blurayFilme);
+	}
+	
+	public void cadastrarBluRaySeries(String nomeItem, double preco, int duracao, String classificacao, String genero, int temporada) {
+		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, classificacao, genero, temporada);
+		listaItens.add(bluraySerie);
+	}
+	
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, String classificacao, String nomeArtista, int numFaixas) {
+		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, classificacao, nomeArtista, numFaixas);
+		listaItens.add(blurayShow);
+	}
+	
+	public void adicionarBluray(String serie, int duracao) {
+		BluraySerie blurayEpisodio = new BluraySerie(duracao);
+		for (Item item : listaItens) {
+			if (item.getNome().equals(serie)) {
+				((BluraySeries) item).adicionarBluray(blurayEpisodio);
+			}
+		}
 	}
 
 	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
