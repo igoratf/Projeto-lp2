@@ -1,5 +1,7 @@
 package projeto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -351,6 +353,23 @@ public class ControllerUsuario {
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).adicionarBluray(nomeBlurayTemporada, duracao);
+	}
+	
+	public String listarItensOrdenadosPorNome(){
+		String itens = "";
+		ArrayList<Item> itensSistema = new ArrayList<>();
+		for (ChaveUsuario chave: mapaUsuarios.keySet()){
+			ArrayList<Item> itensUsuario = mapaUsuarios.get(chave).getListaItens();
+			for(Item item: itensUsuario){
+				itensSistema.add(item);
+			}
+		}
+		Collections.sort(itensSistema);
+		
+		for(Item item: itensSistema){
+			itens += item.toString();
+		}
+		return itens;
 	}
 
 	/**

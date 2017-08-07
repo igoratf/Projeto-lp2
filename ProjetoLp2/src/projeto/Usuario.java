@@ -1,5 +1,7 @@
 package projeto;
 
+import java.util.ArrayList;
+
 /**
  * Classe de Usuário.
  * 
@@ -245,6 +247,10 @@ public class Usuario {
 	public void adicionarBluray(String serie, int duracao) {
 		controllerItem.adicionarBluray(serie, duracao);
 	}
+	
+	public ArrayList<Item> getListaItens(){
+		return controllerItem.getListaItens();
+	}
 
 	/**
 	 * Calcula o HashCode do Objeto.
@@ -290,5 +296,8 @@ public class Usuario {
 	public String toString() {
 		return String.format("%s , %s ,%s", nome, email, numCelular);
 	}
+
+
+
 
 }

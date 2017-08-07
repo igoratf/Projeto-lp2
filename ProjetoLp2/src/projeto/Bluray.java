@@ -10,6 +10,13 @@ public class Bluray extends Item {
 		this.duracao = duracao;
 		this.classificacao = Classificacao.valueOf(classificacao);
 	}
+	
+	public int getDuracao(){
+		return this.duracao;
+	}
+	public String getClassificao(){
+		return this.classificacao.getValor();
+	}
 
 	@Override
 	public int hashCode() {
