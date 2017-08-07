@@ -61,7 +61,9 @@ public class Usuario {
 		return email;
 	}
 
-	/**
+	/**try {
+			Usuario usuario = new Usuario("Caio", null, "numCelular");
+			fail("E
 	 * Altera o Email do Usuário.
 	 * 
 	 * @param email
