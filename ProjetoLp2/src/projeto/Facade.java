@@ -69,6 +69,9 @@ public class Facade {
 	public String listarItensOrdenadosPorNome(){
 		return controller.listarItensOrdenadosPorNome();
 	}
+	public String listarItensOrdenadosPorValor() {
+		return controller.listarItensOrdenadosPorValor();
+	}
 
 	public void fecharSistema() {
 

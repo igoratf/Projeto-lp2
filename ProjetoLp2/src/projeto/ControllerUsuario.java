@@ -354,19 +354,36 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).adicionarBluray(nomeBlurayTemporada, duracao);
 	}
-	
-	public String listarItensOrdenadosPorNome(){
+
+	public String listarItensOrdenadosPorNome() {
 		String itens = "";
 		ArrayList<Item> itensSistema = new ArrayList<>();
-		for (ChaveUsuario chave: mapaUsuarios.keySet()){
+		for (ChaveUsuario chave : mapaUsuarios.keySet()) {
 			ArrayList<Item> itensUsuario = mapaUsuarios.get(chave).getListaItens();
-			for(Item item: itensUsuario){
+			for (Item item : itensUsuario) {
 				itensSistema.add(item);
 			}
 		}
 		Collections.sort(itensSistema);
-		
-		for(Item item: itensSistema){
+
+		for (Item item : itensSistema) {
+			itens += item.toString();
+		}
+		return itens;
+	}
+
+	public String listarItensOrdenadosPorValor() {
+		String itens = "";
+		ArrayList<Item> itensSistema = new ArrayList<>();
+		for (ChaveUsuario chave : mapaUsuarios.keySet()) {
+			ArrayList<Item> itensUsuario = mapaUsuarios.get(chave).getListaItens();
+			for (Item item : itensUsuario) {
+				itensSistema.add(item);
+			}
+		}
+		itensSistema.sort(new ComparaItemValor());
+
+		for (Item item : itensSistema) {
 			itens += item.toString();
 		}
 		return itens;
@@ -374,12 +391,13 @@ public class ControllerUsuario {
 
 	/**
 	 * Checa se uma chave está contida no Mapa.
+	 * 
 	 * @param chave
 	 * @throws IllegalArgumentException
-	 * Exceção informando que o usuário não está cadastrado.
+	 *             Exceção informando que o usuário não está cadastrado.
 	 */
 	private void checaSeUsuarioJaExiste(ChaveUsuario chave) {
-		if (!this.mapaUsuarios.containsKey(chave)){
+		if (!this.mapaUsuarios.containsKey(chave)) {
 			throw new IllegalArgumentException("Usuario invalido");
 		}
 	}

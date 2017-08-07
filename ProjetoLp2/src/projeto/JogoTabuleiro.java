@@ -56,7 +56,7 @@ public class JogoTabuleiro extends Item {
 	public String haPecasPerdidas(){
 		if(pecasPerdidas.size() > 0){
 			return "COM PECAS PERDIDAS";
-		} return "SEM PECAS PERDIDAS";
+		} return "COMPLETO";
 	}
 	
 	/**
