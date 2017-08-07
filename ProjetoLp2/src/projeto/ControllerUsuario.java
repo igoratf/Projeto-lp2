@@ -355,17 +355,19 @@ public class ControllerUsuario {
 		mapaUsuarios.get(chave).adicionarBluray(nomeBlurayTemporada, duracao);
 	}
 
-	public String listarItensOrdenadosPorNome() {
-		String itens = "";
+	private ArrayList<Item> itensSistema(){
 		ArrayList<Item> itensSistema = new ArrayList<>();
 		for (ChaveUsuario chave : mapaUsuarios.keySet()) {
 			ArrayList<Item> itensUsuario = mapaUsuarios.get(chave).getListaItens();
 			for (Item item : itensUsuario) {
 				itensSistema.add(item);
 			}
-		}
+		} return itensSistema;
+	}
+	public String listarItensOrdenadosPorNome() {
+		String itens = "";
+		ArrayList<Item> itensSistema = itensSistema();
 		Collections.sort(itensSistema);
-
 		for (Item item : itensSistema) {
 			itens += item.toString();
 		}
@@ -374,15 +376,8 @@ public class ControllerUsuario {
 
 	public String listarItensOrdenadosPorValor() {
 		String itens = "";
-		ArrayList<Item> itensSistema = new ArrayList<>();
-		for (ChaveUsuario chave : mapaUsuarios.keySet()) {
-			ArrayList<Item> itensUsuario = mapaUsuarios.get(chave).getListaItens();
-			for (Item item : itensUsuario) {
-				itensSistema.add(item);
-			}
-		}
+		ArrayList<Item> itensSistema = itensSistema();
 		itensSistema.sort(new ComparaItemValor());
-
 		for (Item item : itensSistema) {
 			itens += item.toString();
 		}
