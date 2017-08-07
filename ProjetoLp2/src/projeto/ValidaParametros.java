@@ -47,5 +47,20 @@ public class ValidaParametros {
 			throw new IllegalArgumentException("Telefone vazio invalido");
 		}
 	}
+	public static void validaParametrosUsuario(String nome,String email,String numCelular){
+		if (nome == null) {
+			throw new NullPointerException("Nome nulo invalido!");
+		} else if (email == null) {
+			throw new NullPointerException("Email nulo invalido!");
+		} else if(numCelular == null) {
+			throw new NullPointerException("Numero de Celular nulo invalido!");
+		} else if(nome.trim().equals("")){
+			throw new IllegalArgumentException("Nome vazio invalido!");
+		} else if(email.trim().equals("")){
+			throw new IllegalArgumentException("Email vazio invalido!");
+		} else if(numCelular.trim().equals("")){
+			throw new IllegalArgumentException("Telefone vazio invalido!");
+		}
+	}
 
 }

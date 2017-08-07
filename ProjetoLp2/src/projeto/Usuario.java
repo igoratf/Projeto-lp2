@@ -25,9 +25,10 @@ public class Usuario {
 	 *            Número do celular do Usuário.
 	 */
 	public Usuario(String nome, String email, String numCelular) {
-		this.nome = nome;
-		this.email = email;
-		this.numCelular = numCelular;
+		ValidaParametros.validaParametrosUsuario(nome, email, numCelular);
+		this.nome = nome.trim();
+		this.email = email.trim();
+		this.numCelular = numCelular.trim();
 		this.controllerItem = new ControllerItem();
 
 	}
