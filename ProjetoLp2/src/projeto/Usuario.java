@@ -1,90 +1,254 @@
 package projeto;
 
+/**
+ * Classe de Usuário.
+ * 
+ * @author CAIO SANCHES BATISTA DE LIRA - MATRICULA: 116210403
+ * @version 1.0
+ *
+ */
+
 public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
 	private ControllerItem controllerItem;
 
+	/**
+	 * Construtor da Classe Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param email
+	 *            Email do Usuário.
+	 * @param numCelular
+	 *            Número do celular do Usuário.
+	 */
 	public Usuario(String nome, String email, String numCelular) {
-		this.nome = nome;
-		this.email = email;
-		this.numCelular = numCelular;
+		ValidaParametros.validaParametrosUsuario(nome, email, numCelular);
+		this.nome = nome.trim();
+		this.email = email.trim();
+		this.numCelular = numCelular.trim();
 		this.controllerItem = new ControllerItem();
 
 	}
 
+	/**
+	 * Retorna o nome do usuário.
+	 * 
+	 * @return nome Nome do Usuário.
+	 */
 	public String getNome() {
 		return nome;
 	}
 
-	public boolean setNome(String nome) {
+	/**
+	 * Altera o nome do Usuário.
+	 * 
+	 * @param nome
+	 *            Novo nome do Usuário.
+	 */
+	public void setNome(String nome) {
 		this.nome = nome;
-		return true;
 	}
 
+	/**
+	 * Retorna o Email de um Usuário.
+	 * 
+	 * @return email Email do Usuário.
+	 */
 	public String getEmail() {
 		return email;
 	}
 
-	public boolean setEmail(String email) {
+	/**try {
+			Usuario usuario = new Usuario("Caio", null, "numCelular");
+			fail("E
+	 * Altera o Email do Usuário.
+	 * 
+	 * @param email
+	 *            Novo Email do Usuário.
+	 */
+	public void setEmail(String email) {
 		this.email = email;
-		return true;
 	}
 
+	/**
+	 * Retorna o número do celular do Usuário.
+	 * 
+	 * @return numCelular Número do Celular do Usuário.
+	 */
 	public String getNumCelular() {
 		return numCelular;
 	}
 
-	public boolean setNumCelular(String numCelular) {
+	/**
+	 * Altera o número do Celular de um usuário.
+	 * 
+	 * @param numCelular
+	 *            Novo número de celular do Usuário.
+	 */
+	public void setNumCelular(String numCelular) {
 		this.numCelular = numCelular;
-		return true;
 	}
 
+	/**
+	 * Cadastra um novo Jogo Eletrônico no Controller de Itens.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Jogo Eletrônico.
+	 * @param preco
+	 *            Preço do Jogo Eletrônico.
+	 * @param plataforma
+	 *            Plataforma do Jogo Eletrônico.
+	 */
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		controllerItem.cadastrarEletronico(nomeItem, preco, plataforma);
 	}
 
+	/**
+	 * Cadastra um novo Jogo de Tabuleiro no Controller de Itens.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Jogo de Tabuleiro.
+	 * @param preco
+	 *            Preço do Jogo de Tabuleiro.
+	 */
 	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
 		controllerItem.cadastrarJogoTabuleiro(nomeItem, preco);
 	}
 
-	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero,
-			String classificacao, int anoLancamento) {
+	/**
+	 * Cadastra um novo Bluray de Filme no Controller de Itens.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Bluray de filme.
+	 * @param preco
+	 *            Preço do Bluray de filme.
+	 * @param duracao
+	 *            Duração do Filme.
+	 * @param genero
+	 *            Gênero do Filme.
+	 * @param classificacao
+	 *            Classificação do Filme.
+	 * @param anoLancamento
+	 *            Ano de Lançamento do Filme.
+	 */
+	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao,
+			int anoLancamento) {
 		controllerItem.cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 	}
 
+	/**
+	 * Adiciona uma peça perdida de um Jogo de Tabuleiro no Controller de Itens.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Jogo de Tabuleiro.
+	 * @param nomePeca
+	 *            Nome da peça perdida.
+	 */
 	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
 		controllerItem.adicionarPecaPerdida(nomeItem, nomePeca);
 	}
 
+	/**
+	 * Remove um item do Controller de Itens.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Item a ser removido.
+	 */
 	public void removerItem(String nomeItem) {
 		controllerItem.removerItem(nomeItem);
 	}
 
-	public Item getItem(String nomeItem) {
-		return controllerItem.getItem(nomeItem);
-	}
-
+	/**
+	 * Atualiza informações de um Item.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Item.
+	 * @param atributo
+	 *            Atributo a ser atualizado.
+	 * @param valor
+	 *            Novo valor do Atributo.
+	 */
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		controllerItem.atualizarItem(nomeItem, atributo, valor);
 	}
-	public String getInfoItem(String nomeItem,String atributo){
+
+	/**
+	 * Retorna Informações de um Item.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Item.
+	 * @param atributo
+	 *            Atributo da Informação desejada.
+	 * @return Informação.
+	 */
+	public String getInfoItem(String nomeItem, String atributo) {
 		return controllerItem.getInfoItem(nomeItem, atributo);
 	}
-	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao,int numFaixas, String nomeArtista,String classificacao) {
+
+	/**
+	 * Cadastra um Bluray de um Show em Controller de Itens.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Bluray de Show.
+	 * @param preco
+	 *            Preço do Bluray de Show.
+	 * @param duracao
+	 *            Duração do Show.
+	 * @param numFaixas
+	 *            Número de Faixas do Show.
+	 * @param nomeArtista
+	 *            Nome do Artista do Show.
+	 * @param classificacao
+	 *            Classificação do Show.
+	 */
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int numFaixas, String nomeArtista,
+			String classificacao) {
 		controllerItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
-		
+
 	}
-	
-	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
+
+	/**
+	 * Cadastra um Bluray de Serie em Controller de Itens.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Bluray de Serie.
+	 * @param preco
+	 *            Preço do Bluray de Serie.
+	 * @param descricao
+	 *            Descrição do Bluray de Serie.
+	 * @param duracao
+	 *            Duração da Serie.
+	 * @param classificacao
+	 *            Classificação da Serie.
+	 * @param genero
+	 *            Genero da Serie.
+	 * @param temporada
+	 *            Temporada da Serie.
+	 */
+	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao,
+			String genero, int temporada) {
 		controllerItem.cadastrarBluRaySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
-	
-	public void adicionarBluray(String serie, int duracao){
+
+	/**
+	 * Adiciona um Bluray de Episódio a um Bluray de Serie em Controller de
+	 * Itens.
+	 * 
+	 * @param serie
+	 *            Nome da Serie.
+	 * @param duracao
+	 *            Duração do Episodio.
+	 */
+	public void adicionarBluray(String serie, int duracao) {
 		controllerItem.adicionarBluray(serie, duracao);
 	}
 
+	/**
+	 * Calcula o HashCode do Objeto.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,10 +258,8 @@ public class Usuario {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Object#equals(java.lang.Object)
+	/**
+	 * Retorna a Igualdade do Objeto em relação a outro.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -121,6 +283,9 @@ public class Usuario {
 		return true;
 	}
 
+	/**
+	 * Retorna a Representação em String do Objeto.
+	 */
 	@Override
 	public String toString() {
 		return String.format("%s , %s ,%s", nome, email, numCelular);

@@ -59,9 +59,6 @@ public class Facade {
 		controller.removerItem(nome, telefone, nomeItem);
 	}
 
-	public Item getItem(String nome, String telefone, String nomeItem) {
-		return controller.getItem(nome, telefone, nomeItem);
-	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		controller.atualizarItem(nome, telefone, nomeItem, atributo, valor);
