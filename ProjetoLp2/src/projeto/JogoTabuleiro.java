@@ -53,12 +53,23 @@ public class JogoTabuleiro extends Item {
 		return false;
 	}
 	
+	public String haPecasPerdidas(){
+		if(pecasPerdidas.size() > 0){
+			return "COM PECAS PERDIDAS";
+		} return "SEM PECAS PERDIDAS";
+	}
+	
 	/**
 	 * Adiciona uma peça perdida à lista de peças perdidas
 	 * @param pecaPerdida
 	 */
 	public void adicionarPecaPerdida(String pecaPerdida) {
 		this.pecasPerdidas.add(pecaPerdida);
+	}
+	
+	@Override
+	public String toString(){
+		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s|", getNome(),getValor(),getEstado(),haPecasPerdidas());
 	}
 
 }

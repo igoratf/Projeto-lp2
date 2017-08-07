@@ -20,6 +20,9 @@ public class BluraySeries extends Bluray {
 	public void adicionarBluray(BlurayEpisodio blurayEpisodio) {
 		this.episodios.add(blurayEpisodio);
 	}
+	public String getDescricao(){
+		return this.descricao;
+	}
 	
 	@Override
 	public String toString(){
