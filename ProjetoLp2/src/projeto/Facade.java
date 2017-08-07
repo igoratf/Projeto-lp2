@@ -66,6 +66,12 @@ public class Facade {
 	public String getInfoItem(String nome, String telefone,String nomeItem,String atributo){
 		return controller.getInfoItem(nome, telefone, nomeItem, atributo);
 	}
+	public String listarItensOrdenadosPorNome(){
+		return controller.listarItensOrdenadosPorNome();
+	}
+	public String listarItensOrdenadosPorValor() {
+		return controller.listarItensOrdenadosPorValor();
+	}
 
 	public void fecharSistema() {
 

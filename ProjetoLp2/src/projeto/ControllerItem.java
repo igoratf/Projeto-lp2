@@ -27,7 +27,7 @@ public class ControllerItem {
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao,
 			int anoLancamento) {
 		validaPreco(preco);
-		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
+		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero,anoLancamento);
 		listaItens.add(blurayFilme);
 	}
 
@@ -121,6 +121,9 @@ public class ControllerItem {
 		}
 
 	}
+	public ArrayList<Item> getListaItens(){
+		return new ArrayList<Item>(listaItens);
+	}
 
 	public void validaPreco(double preco) {
 		if (preco <= 0) {
@@ -135,5 +138,7 @@ public class ControllerItem {
 		}
 		throw new IllegalArgumentException("Item nao encontrado");
 	}
+	
+	
 
 }
