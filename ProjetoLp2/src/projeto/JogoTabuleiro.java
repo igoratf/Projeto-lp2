@@ -20,16 +20,19 @@ public class JogoTabuleiro extends Item {
 		this.pecasPerdidas = pecasPerdidas;
 		this.completo = completo;
 	}
-	
+
 	/**
-	 * Método que compara uma lista de peças perdidas com a lista de peças perdidas do jogo
-	 * @param lista é a lista de peças perdidas
+	 * Método que compara uma lista de peças perdidas com a lista de peças
+	 * perdidas do jogo
+	 * 
+	 * @param lista
+	 *            é a lista de peças perdidas
 	 * @return boolean correspondente ao resultado da comparação
 	 */
 	public boolean comparaPecasPerdidas(List<String> lista) {
 		Collections.sort(lista);
 		Collections.sort(pecasPerdidas);
-		for (int i=0; i<lista.size(); i++) {
+		for (int i = 0; i < lista.size(); i++) {
 			if (!(lista.get(i).equals(pecasPerdidas.get(i)))) {
 				return false;
 			}
@@ -52,13 +55,29 @@ public class JogoTabuleiro extends Item {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Adiciona uma peça perdida à lista de peças perdidas
+	 * 
 	 * @param pecaPerdida
 	 */
 	public void adicionarPecaPerdida(String pecaPerdida) {
 		this.pecasPerdidas.add(pecaPerdida);
+	}
+
+	public String completoToString() {
+
+		if (this.completo) {
+			return "COMPLETO";
+		}
+
+		return "COM PECAS PERDIDAS";
+	}
+
+	@Override
+	public String toString() {
+		return "JOGO DE TABULEIRO: " + getNome() + ", R$ " + getValor() + ", " + estadoDeEmprestimoToString() + ", "
+				+ completoToString() + "|";
 	}
 
 }

@@ -11,20 +11,20 @@ public class Item {
 	private String nome;
 
 	private double valor;
-	private boolean EstadoDeEmprestimo;
+	private boolean estadoDeEmprestimo;
 
 	public boolean isEstadoDeEmprestimo() {
-		return EstadoDeEmprestimo;
+		return estadoDeEmprestimo;
 	}
 
 	public Item(String nome, double valor) {
 		this.nome = nome;
 		this.valor = valor;
-		this.EstadoDeEmprestimo = false;
+		this.estadoDeEmprestimo = false;
 	}
 
 	public void setEstadoDeEmprestimo(boolean estadoDeEmprestimo) {
-		EstadoDeEmprestimo = estadoDeEmprestimo;
+		this.estadoDeEmprestimo = estadoDeEmprestimo;
 	}
 
 	public String getNome() {
@@ -43,9 +43,20 @@ public class Item {
 		this.nome = nome;
 	}
 
+	public String estadoDeEmprestimoToString() {
+
+		if (this.estadoDeEmprestimo) {
+
+			return "Emprestado";
+
+		}
+		return "Nao emprestado";
+
+	}
+
 	@Override
 	public String toString() {
-		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + EstadoDeEmprestimo + "]";
+		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + estadoDeEmprestimo + "]";
 	}
 
 }

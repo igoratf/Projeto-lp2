@@ -40,5 +40,13 @@ public class Bluray extends Item {
 	public String toString() {
 		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
 	}
+	
+	public int getDuracao() {
+		
+		return this.duracao;
+	}
 
+	public Classificacao getClassificacao() {
+		return this.classificacao;
+	}
 }

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Classe Controladora de Usuários
+ * Classe Controladora de Usuï¿½rios
  * 
  * @author CAIO SANCHES BATISTA DE LIRA - 116210403
  * @version 1.0
@@ -15,23 +15,23 @@ public class ControllerUsuario {
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
 
 	/**
-	 * Construtor de Usuário.
+	 * Construtor de Usuï¿½rio.
 	 */
 	public ControllerUsuario() {
 		this.mapaUsuarios = new HashMap<>();
 	}
 
 	/**
-	 * Cadastra um usuário no Mapa de Usuários.
+	 * Cadastra um usuï¿½rio no Mapa de Usuï¿½rios.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param email
-	 *            Email do Usuário.
+	 *            Email do Usuï¿½rio.
 	 * @throws IllegalArgumentException
-	 *             Caso o usuário já esteja cadastrado.
+	 *             Caso o usuï¿½rio jï¿½ esteja cadastrado.
 	 */
 	public void cadastrarUsuario(String nome, String telefone, String email) {
 		Usuario usuario = new Usuario(nome, email, telefone);
@@ -44,17 +44,17 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Retorna informações de um usuário.
+	 * Retorna informaï¿½ï¿½es de um usuï¿½rio.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param atributo
-	 *            Atributo que se refere a informação desejada.
-	 * @return Informação.
+	 *            Atributo que se refere a informaï¿½ï¿½o desejada.
+	 * @return Informaï¿½ï¿½o.
 	 * @throws IllegalArgument
-	 *             Caso o atributo seja inválido
+	 *             Caso o atributo seja invï¿½lido
 	 */
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		ValidaParametros.validaParametrosGetInfoUsuario(nome, telefone, atributo);
@@ -77,14 +77,14 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Remove um usuário do mapa de Usuários.
+	 * Remove um usuï¿½rio do mapa de Usuï¿½rios.
 	 * 
 	 * @param nome
-	 *            Nome do usuário.
+	 *            Nome do usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @throws IllegalArgumentException
-	 *             Caso os dados não remetam a um usuário válido.
+	 *             Caso os dados nï¿½o remetam a um usuï¿½rio vï¿½lido.
 	 */
 	public void removerUsuario(String nome, String telefone) {
 		ValidaParametros.validaDados(nome, telefone);
@@ -97,21 +97,21 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Atualiza informações de um Usuário.
+	 * Atualiza informaï¿½ï¿½es de um Usuï¿½rio.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param atributo
-	 *            Atributo que será atulizado
+	 *            Atributo que serï¿½ atulizado
 	 * @param valor
 	 *            Novo valor do Atributo.
 	 * @throws IllegalArgumentException
-	 *             Caso as informações do usuário não remetam a um usuário
-	 *             válido.
+	 *             Caso as informaï¿½ï¿½es do usuï¿½rio nï¿½o remetam a um usuï¿½rio
+	 *             vï¿½lido.
 	 * @throws IllegalArgumentException
-	 *             Caso o Atributo informado seja inválido.
+	 *             Caso o Atributo informado seja invï¿½lido.
 	 */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		ValidaParametros.validaParametrosRemoverUsuario(nome, telefone, atributo, valor);
@@ -146,19 +146,19 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um Jogo Eletrônico em um Usuário
+	 * Cadastra um Jogo Eletrï¿½nico em um Usuï¿½rio
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
-	 *            Nome do Jogo Eletrônico.
+	 *            Nome do Jogo Eletrï¿½nico.
 	 * @param preco
-	 *            Preço do Jogo Eletrônico.
+	 *            Preï¿½o do Jogo Eletrï¿½nico.
 	 * 
 	 * @param plataforma
-	 *            Tipo da plataforma do Jogo Eletrônico.
+	 *            Tipo da plataforma do Jogo Eletrï¿½nico.
 	 */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 
@@ -167,16 +167,16 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um jogo de Tabuleiro em um Usuário.
+	 * Cadastra um jogo de Tabuleiro em um Usuï¿½rio.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
 	 *            Nome do Jogo de Tabuleiro.
 	 * @param preco
-	 *            Preço do Jogo de Tabuleiro.
+	 *            Preï¿½o do Jogo de Tabuleiro.
 	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -185,24 +185,24 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um BluRay de Filme em um Usuário.
+	 * Cadastra um BluRay de Filme em um Usuï¿½rio.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
 	 *            Nome do BluRay de Filme.
 	 * @param preco
-	 *            Preçod o BluRay de Filme.
+	 *            Preï¿½od o BluRay de Filme.
 	 * @param duracao
-	 *            Duração do Filme.
+	 *            Duraï¿½ï¿½o do Filme.
 	 * @param genero
-	 *            Gênero do Filme.
+	 *            Gï¿½nero do Filme.
 	 * @param classificacao
-	 *            Classificação do Filme.
+	 *            Classificaï¿½ï¿½o do Filme.
 	 * @param anoLancamento
-	 *            Ano de Lançamento de um filme.
+	 *            Ano de Lanï¿½amento de um filme.
 	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
@@ -211,24 +211,24 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um BluRay de Série em um Usuário.
+	 * Cadastra um BluRay de Sï¿½rie em um Usuï¿½rio.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
-	 *            Nome do BluRay de Série.
+	 *            Nome do BluRay de Sï¿½rie.
 	 * @param preco
-	 *            Preço do BluRay de Série.
+	 *            Preï¿½o do BluRay de Sï¿½rie.
 	 * @param descricao
-	 *            Decrição do BluRay de Série.
+	 *            Decriï¿½ï¿½o do BluRay de Sï¿½rie.
 	 * @param duracao
-	 *            Duração do BluRay de Série.
+	 *            Duraï¿½ï¿½o do BluRay de Sï¿½rie.
 	 * @param classificacao
-	 *            Classificação do BluRay de Série.
+	 *            Classificaï¿½ï¿½o do BluRay de Sï¿½rie.
 	 * @param genero
-	 *            Gênero do BluRau de Série.
+	 *            Gï¿½nero do BluRau de Sï¿½rie.
 	 * @param temporada
 	 */
 	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
@@ -239,16 +239,16 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona uma peça perdida de um Jogo de Tabuleiro.
+	 * Adiciona uma peï¿½a perdida de um Jogo de Tabuleiro.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
 	 *            Nome do Jogo de Tabuleiro.
 	 * @param nomePeca
-	 *            Nome da Peça.
+	 *            Nome da Peï¿½a.
 	 */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -256,12 +256,12 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Remove um Item da Coleção de Itens de um Usuário.
+	 * Remove um Item da Coleï¿½ï¿½o de Itens de um Usuï¿½rio.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
 	 *            Nome do Item a ser removido.
 	 */
@@ -272,12 +272,12 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Atualiza informações de um Item
+	 * Atualiza informaï¿½ï¿½es de um Item
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
 	 *            Nome do Item.
 	 * @param atributo
@@ -292,17 +292,17 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Retorna informações de um item.
+	 * Retorna informaï¿½ï¿½es de um item.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeItem
 	 *            Nome do Item.
 	 * @param atributo
-	 *            Atributo referente a informação desejada.
-	 * @return Representação em String da Informação desejada.
+	 *            Atributo referente a informaï¿½ï¿½o desejada.
+	 * @return Representaï¿½ï¿½o em String da Informaï¿½ï¿½o desejada.
 	 */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -314,21 +314,21 @@ public class ControllerUsuario {
 	 * Cadastra um BluRay de um Show
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário
+	 *            Telefone do Usuï¿½rio
 	 * @param nomeItem
 	 *            Nome do BluRay de Show.
 	 * @param preco
-	 *            Preço do BluRau de Show.
+	 *            Preï¿½o do BluRau de Show.
 	 * @param duracao
-	 *            Duração do BluRay de Show.
+	 *            Duraï¿½ï¿½o do BluRay de Show.
 	 * @param numFaixas
-	 *            Número de Faixas do BluRay de Show.
+	 *            Nï¿½mero de Faixas do BluRay de Show.
 	 * @param nomeArtista
 	 *            Nome de Artista do BluRay de Show.
 	 * @param classificacao
-	 *            Classificação do BluRay de Show.
+	 *            Classificaï¿½ï¿½o do BluRay de Show.
 	 */
 	public void cadastrarBlurayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
 			int numFaixas, String nomeArtista, String classificacao) {
@@ -337,16 +337,16 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona um BluRay de um episodio a uma temporada de um série.
+	 * Adiciona um BluRay de um episodio a uma temporada de um sï¿½rie.
 	 * 
 	 * @param nome
-	 *            Nome do Usuário.
+	 *            Nome do Usuï¿½rio.
 	 * @param telefone
-	 *            Telefone do Usuário.
+	 *            Telefone do Usuï¿½rio.
 	 * @param nomeBlurayTemporada
-	 *            Nome do BluRay de Temporada da Série.
+	 *            Nome do BluRay de Temporada da Sï¿½rie.
 	 * @param duracao
-	 *            Duração do Episódio.
+	 *            Duraï¿½ï¿½o do Episï¿½dio.
 	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -354,13 +354,14 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Checa se uma chave está contida no Mapa.
+	 * Checa se uma chave estï¿½ contida no Mapa.
+	 * 
 	 * @param chave
 	 * @throws IllegalArgumentException
-	 * Exceção informando que o usuário não está cadastrado.
+	 *             Exceï¿½ï¿½o informando que o usuï¿½rio nï¿½o estï¿½ cadastrado.
 	 */
 	private void checaSeUsuarioJaExiste(ChaveUsuario chave) {
-		if (!this.mapaUsuarios.containsKey(chave)){
+		if (!this.mapaUsuarios.containsKey(chave)) {
 			throw new IllegalArgumentException("Usuario invalido");
 		}
 	}

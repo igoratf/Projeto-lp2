@@ -1,9 +1,12 @@
 package projeto;
 
 public class Facade {
+	
 	private ControllerUsuario controller;
+	
 	public Facade(){
 		this.controller = new ControllerUsuario();
+		
 	}
 
 	public void iniciarSistema() {
@@ -69,6 +72,11 @@ public class Facade {
 
 	public void fecharSistema() {
 
+	}
+	
+	public String listarItensOrdenadosPorNome() {
+		
+		return "retorno";
 	}
 
 }

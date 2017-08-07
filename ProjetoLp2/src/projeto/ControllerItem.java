@@ -1,11 +1,39 @@
 package projeto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 public class ControllerItem {
 	private List<Item> listaItens;
+
+	
+	
+	public String exibeItensOrdenadosPorNome() {
+		
+		ordenaPorNome();
+		
+		String saida = "";
+		
+		for (Item item : this.listaItens) {
+			
+			saida += item.toString();
+			
+		}
+		return saida;
+	}
+	
+	
+	
+	private void ordenaPorNome() {
+		
+		
+		OrdenaPorNome ordenaNome = new OrdenaPorNome();
+		
+		Collections.sort(this.listaItens, ordenaNome);
+		
+	}
 
 	public ControllerItem() {
 		this.listaItens = new ArrayList<>();
@@ -27,7 +55,7 @@ public class ControllerItem {
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao,
 			int anoLancamento) {
 		validaPreco(preco);
-		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero);
+		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero, anoLancamento);
 		listaItens.add(blurayFilme);
 	}
 
