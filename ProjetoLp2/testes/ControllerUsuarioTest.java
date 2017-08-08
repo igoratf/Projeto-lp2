@@ -98,4 +98,39 @@ public class ControllerUsuarioTest {
 
 	}
 
+	/**
+	 * Testa se o método atualiza os atributos requeridos podendo ser este: em
+	 * um usuário, nome,telefone ou email e se lança exceção ao tentar atualizar
+	 * um usuário inexistente ou um atributo inválido
+	 */
+	@Test
+	public void atualizarUsuarioTest() {
+		controllerUsuario.cadastrarUsuario("Igor", "190", "igor@ventila.com");
+		assertTrue(controllerUsuario.checaSeUsuarioJaExiste("Igor", "190"));
+
+		controllerUsuario.atualizarUsuario("Igor", "190", "Nome", "Lucas");
+
+		try {
+			controllerUsuario.checaSeUsuarioJaExiste("Igor", "190");
+			fail("Usuario não removido");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Usuario invalido", e.getMessage());
+		}
+
+		assertTrue(controllerUsuario.checaSeUsuarioJaExiste("Lucas", "190"));
+		controllerUsuario.atualizarUsuario("Lucas", "190", "Telefone", "999");
+		assertTrue(controllerUsuario.checaSeUsuarioJaExiste("Lucas", "999"));
+
+		controllerUsuario.atualizarUsuario("Lucas", "999", "Email", "lucas@ventila.com");
+		assertEquals("lucas@ventila.com", controllerUsuario.getInfoUsuario("Lucas", "999", "Email"));
+
+		try {
+			controllerUsuario.atualizarUsuario("Lucas", "999", "Invalido", "lucas2@ventila.com");
+			fail("Exceção de atributo invalido não lançada");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Atributo invalido", e.getMessage());
+		}
+
+	}
+
 }
