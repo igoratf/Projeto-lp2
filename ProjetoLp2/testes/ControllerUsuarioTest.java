@@ -77,4 +77,25 @@ public class ControllerUsuarioTest {
 		}
 	}
 
+	/**
+	 * Testa o método removerUsuario, testa se ao remover um Usuário com mesmo
+	 * nome porém número diferente, o usuário com mesmo nome e telefone
+	 * diferente se mantém, e o usuário com mesmo nome e telefone é removido.
+	 */
+	@Test
+	public void removerUsuarioTest() {
+		controllerUsuario.cadastrarUsuario("Igor", "190", "igor@ventila.com");
+		controllerUsuario.cadastrarUsuario("Igor", "191", "igor@ventila.com");
+		assertTrue(controllerUsuario.checaSeUsuarioJaExiste("Igor", "190"));
+		controllerUsuario.removerUsuario("Igor", "190");
+		assertTrue(controllerUsuario.checaSeUsuarioJaExiste("Igor", "191"));
+		try {
+			controllerUsuario.checaSeUsuarioJaExiste("Igor", "190");
+			fail("Usuario não removido");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Usuario invalido", e.getMessage());
+		}
+
+	}
+
 }
