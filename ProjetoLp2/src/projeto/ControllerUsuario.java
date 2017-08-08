@@ -439,5 +439,10 @@ public class ControllerUsuario {
 			throw new IllegalArgumentException("Usuario invalido");
 		} return true;
 	}
+	
+	public void validaItemUsuario(String nome,String telefone,String nomeItem){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).validaItem(nomeItem);
+	}
 
 }

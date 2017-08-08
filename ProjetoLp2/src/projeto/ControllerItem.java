@@ -144,7 +144,7 @@ public class ControllerItem {
 		}
 	}
 
-	private void validaItem(String nomeItem) {
+	public void validaItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
 				return;
@@ -156,6 +156,8 @@ public class ControllerItem {
 		Item meuItem = getItem(nomeItem);
 		return meuItem.toString();
 	}
+	
+	
 	
 	
 

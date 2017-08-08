@@ -298,6 +298,12 @@ public class Usuario {
 		}
 		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
+	
+	public void validaItem(String nomeItem){
+		controllerItem.validaItem(nomeItem);
+	}
+	
+	
 
 	/**
 	 * Calcula o HashCode do Objeto.

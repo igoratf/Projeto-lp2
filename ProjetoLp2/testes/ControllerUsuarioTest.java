@@ -132,5 +132,13 @@ public class ControllerUsuarioTest {
 		}
 
 	}
+	/**
+	 * Testa se o método cadastrarEletronico cadastra corretamente um item em um usuário.
+	 */
+	public void cadastrarEletronicoTest(){
+		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
+		controllerUsuario.cadastrarEletronico("Mario", "8398", "Mario", 2.99, "PS4");
+		controllerUsuario.validaItemUsuario("Caio", "8398", "Mario");
+	}
 
 }
