@@ -26,7 +26,7 @@ public class BluraySeries extends Bluray {
 	
 	@Override
 	public String toString(){
-		return String.format("SERIE: %s, R$ %.2f, %s, %d min, %s, %s, Temporada %d|",getNome(),getValor(),getEstado(),getDuracao(),getClassificao(),this.genero.getValor(),this.temporada);
+		return String.format("SERIE: %s, R$ %.2f, %s, %d min, %s, %s, Temporada %d",getNome(),getValor(),getEstado(),getDuracao(),getClassificao(),this.genero.getValor(),this.temporada);
 	}
 
 }

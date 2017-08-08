@@ -72,6 +72,10 @@ public class Facade {
 	public String listarItensOrdenadosPorValor() {
 		return controller.listarItensOrdenadosPorValor();
 	}
+	
+	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
+		return controller.pesquisarDetalhesItem(nome, telefone, nomeItem);
+	}
 
 	public void fecharSistema() {
 

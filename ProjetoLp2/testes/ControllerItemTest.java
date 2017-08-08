@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import projeto.BlurayFilme;
 import projeto.ControllerItem;
 
 public class ControllerItemTest {
@@ -32,6 +33,13 @@ public class ControllerItemTest {
 		} catch (Exception e) {
 			assertEquals("Item nao encontrado", e.getMessage());
 		}
+	}
+	
+	@Test
+	public void pesquisarDetalhesItemTest() {
+		controller.cadastrarBluRayFilme("Avengers", 1.99, 120, "ACAO", "QUATORZE_ANOS", 2016);
+		assertEquals("FILME: Avengers, R$ 1.99, Nao emprestado, 120 min, QUATORZE_ANOS, ACAO, 2016", controller.pesquisarDetalhesItem("Avengers"));
+		
 	}
 
 }

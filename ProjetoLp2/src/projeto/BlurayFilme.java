@@ -16,7 +16,7 @@ public class BlurayFilme extends Bluray {
 
 
 	public String toString() {
-		return String.format("FILME: %s, R$ %.2f, %s, %d min, %s, %s, %d|", getNome(), getValor(), getEstado(),
+		return String.format("FILME: %s, R$ %.2f, %s, %d min, %s, %s, %d", getNome(), getValor(), getEstado(),
 				getDuracao(), getClassificao(), this.genero.getValor(), this.anoLancamento);
 	}
 
