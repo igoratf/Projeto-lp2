@@ -420,8 +420,7 @@ public class ControllerUsuario {
 		Usuario dono = this.mapaUsuarios.get(chaveDono);
 		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
 		dono.devolverItem(nomeItem);
-		Item item = dono.getItem(nomeItem);
-		
+	
 		dono.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo).setDataDevolucao(dataDevolucao);
 		requerente.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo).setDataDevolucao(dataDevolucao);
 	}
@@ -434,11 +433,11 @@ public class ControllerUsuario {
 	 * @throws IllegalArgumentException
 	 *             Exce��o informando que o usu�rio n�o est� cadastrado.
 	 */
-	private void checaSeUsuarioJaExiste(String nome, String telefone) {
+	public boolean checaSeUsuarioJaExiste(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		if (!this.mapaUsuarios.containsKey(chave)) {
 			throw new IllegalArgumentException("Usuario invalido");
-		}
+		} return true;
 	}
 
 }
