@@ -69,7 +69,7 @@ public class ControllerItem {
 		listaItens.remove(meuItem);
 	}
 
-	private Item getItem(String nomeItem) {
+	public Item getItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
 				return item;
@@ -99,7 +99,27 @@ public class ControllerItem {
 			meuItem.setNome(valor);
 		}
 	}
+			
+		
+	public void emprestarItem(String nomeItem){
+		Item meuItem = getItem(nomeItem);
 
+		validaItem(nomeItem); // MARCA
+		
+		if (meuItem.getEstado().equals("Emprestado"))
+			throw new IllegalArgumentException("Item emprestado no momento");
+		else
+			meuItem.setEstadoDeEmprestimo(true);
+	}
+	
+	public void devolverItem(String nomeItem){
+		Item meuItem = getItem(nomeItem);
+
+		validaItem(nomeItem); // MARCA
+		
+		meuItem.setEstadoDeEmprestimo(false);
+	}
+	
 	public String getInfoItem(String nomeItem, String atributo) {
 		Item meuItem = getItem(nomeItem);
 

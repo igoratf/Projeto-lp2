@@ -389,6 +389,43 @@ public class ControllerUsuario {
 		}
 		return itens;
 	}
+	
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo){
+		
+		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
+		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+		
+		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente , telefoneRequerente);
+		Usuario dono = this.mapaUsuarios.get(chaveDono);
+		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
+		dono.emprestarItem(nomeItem);
+		Item item = dono.getItem(nomeItem);
+		
+		
+		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
+		dono.cadastroEmprestimo(emprestimo);
+		requerente.cadastroEmprestimo(emprestimo);
+		
+	}
+	
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){
+		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
+		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+		
+		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente , telefoneRequerente);
+		Usuario dono = this.mapaUsuarios.get(chaveDono);
+		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
+		dono.devolverItem(nomeItem);
+		Item item = dono.getItem(nomeItem);
+		
+		dono.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo).setDataDevolucao(dataDevolucao);
+		requerente.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo).setDataDevolucao(dataDevolucao);
+	}
+	
 
 	/**
 	 * Checa se uma chave est� contida no Mapa.
