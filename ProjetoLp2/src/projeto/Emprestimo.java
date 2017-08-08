@@ -10,6 +10,8 @@ public class Emprestimo {
 	
 	public Emprestimo(Usuario dono, Usuario requerente, Item item,
 			String dataInicial, int periodo){
+		checaValidadeAtributos(dono, requerente, item, dataInicial, periodo);
+		
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
@@ -57,7 +59,7 @@ public class Emprestimo {
 			return false;
 		Emprestimo other = (Emprestimo) obj;
 		if (this.dono.equals(other.dono) && (this.requerente.equals(other.requerente)) 
-				&& (this.item.equals(other.item)))
+				&& (this.item.equals(other.item) && this.dataEmprestimo.equals(other.dataEmprestimo)))
 					return true;
 		else
 			return false;
@@ -78,4 +80,15 @@ public class Emprestimo {
 		return result;
 	}
 	
+	public void checaValidadeAtributos(Usuario dono, Usuario requerente, Item item,
+			String dataInicial, int periodo){
+			
+		if (dono == null) throw new NullPointerException("Dono nulo");
+		if (requerente == null) throw new NullPointerException("Requerente nulo");
+		if (item == null) throw new NullPointerException("Item nulo");
+		if (dataInicial == null) throw new NullPointerException("Data inicial nulo");
+		if (dataInicial.trim().equals("")) throw new IllegalArgumentException("Data inicial vazia");
+		if (periodo < 0) throw new IllegalArgumentException("Periodo invalido");
+		
+	}
 }
