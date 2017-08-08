@@ -56,7 +56,7 @@ public class JogoEletronico extends Item {
 	
 	@Override
 	public String toString() {
-		return String.format("JOGO ELETRONICO: %s, R$ %.1f, %s, %s|",getNome(),getValor(),getEstado(),this.plataforma.getPlataforma());
+		return String.format("JOGO ELETRONICO: %s, R$ %.1f, %s, %s",getNome(),getValor(),getEstado(),this.plataforma.getPlataforma());
 	}
 	
 	public boolean validaAtributo(String plataforma){

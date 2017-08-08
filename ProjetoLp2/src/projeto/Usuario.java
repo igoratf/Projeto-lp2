@@ -248,6 +248,10 @@ public class Usuario {
 		controllerItem.adicionarBluray(serie, duracao);
 	}
 	
+	public String pesquisarDetalhesItem(String nomeItem) {
+		return controllerItem.pesquisarDetalhesItem(nomeItem);
+	}
+	
 	public ArrayList<Item> getListaItens(){
 		return controllerItem.getListaItens();
 	}

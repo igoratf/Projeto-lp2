@@ -69,7 +69,7 @@ public class JogoTabuleiro extends Item {
 	
 	@Override
 	public String toString(){
-		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s|", getNome(),getValor(),getEstado(),haPecasPerdidas());
+		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(),getValor(),getEstado(),haPecasPerdidas());
 	}
 
 }

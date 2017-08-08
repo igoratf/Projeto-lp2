@@ -63,13 +63,6 @@ public class ControllerItem {
 		}
 	}
 
-	private void validaItem(String nomeItem) {
-		Item meuItem = getItem(nomeItem);
-		if (!(listaItens.contains(meuItem))) {
-			throw new RuntimeException("Item nao encontrado");
-		}
-	}
-
 	public void removerItem(String nomeItem) {
 		validaItem(nomeItem);
 		Item meuItem = getItem(nomeItem);
@@ -98,7 +91,7 @@ public class ControllerItem {
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
 		Item meuItem = getItem(nomeItem);
 
-		checaSeItemExiste(nomeItem); // MARCA
+		validaItem(nomeItem); // MARCA
 		if (atributo.equalsIgnoreCase("preco")) {
 			meuItem.setValor(Float.parseFloat(valor));
 		}
@@ -110,7 +103,7 @@ public class ControllerItem {
 	public String getInfoItem(String nomeItem, String atributo) {
 		Item meuItem = getItem(nomeItem);
 
-		checaSeItemExiste(nomeItem); // MARCA
+		validaItem(nomeItem); // MARCA
 		switch (atributo) {
 		case "Preco":
 			return String.valueOf(meuItem.getValor());
@@ -131,12 +124,17 @@ public class ControllerItem {
 		}
 	}
 
-	private void checaSeItemExiste(String nomeItem) {
+	private void validaItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
 				return;
 		}
 		throw new IllegalArgumentException("Item nao encontrado");
+	}
+	
+	public String pesquisarDetalhesItem(String nomeItem) {
+		Item meuItem = getItem(nomeItem);
+		return meuItem.toString();
 	}
 	
 	
