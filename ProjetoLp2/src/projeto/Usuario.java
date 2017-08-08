@@ -1,6 +1,7 @@
 package projeto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe de Usuário.
@@ -15,6 +16,7 @@ public class Usuario {
 	private String email;
 	private String numCelular;
 	private ControllerItem controllerItem;
+	private List<Emprestimo> emprestimos;
 
 	/**
 	 * Construtor da Classe Usuário.
@@ -32,6 +34,7 @@ public class Usuario {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.controllerItem = new ControllerItem();
+		this.emprestimos = new ArrayList<>();
 
 	}
 
@@ -189,6 +192,24 @@ public class Usuario {
 	public String getInfoItem(String nomeItem, String atributo) {
 		return controllerItem.getInfoItem(nomeItem, atributo);
 	}
+	
+	/**
+	 * Metodo para realizar um emprestimo em um item de um usuario.
+	 * @param nomeItem
+	 * 				Nome do item.
+	 */
+	public void emprestarItem(String nomeItem){
+		controllerItem.emprestarItem(nomeItem);
+	}
+	
+	/**
+	 * Metodo para devolver item de um usuario.
+	 * @param nomeItem
+	 * 				Nome do item.
+	 */				
+	public void devolverItem(String nomeItem){
+		controllerItem.devolverItem(nomeItem);
+	}
 
 	/**
 	 * Cadastra um Bluray de um Show em Controller de Itens.
@@ -254,6 +275,28 @@ public class Usuario {
 	
 	public ArrayList<Item> getListaItens(){
 		return controllerItem.getListaItens();
+	}
+	
+	public Item getItem(String nomeItem){
+		return controllerItem.getItem(nomeItem);
+	}
+	
+	public void cadastroEmprestimo(Emprestimo emprestimo){
+		this.emprestimos.add(emprestimo);
+	}
+	
+	public Emprestimo getEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo){
+		for (Emprestimo emprestimo: emprestimos){
+			if (emprestimo.getDono().getNome().equals(nomeDono)
+					&& emprestimo.getDono().getNumCelular().equals(telefoneDono)
+					&& emprestimo.getRequerente().getNumCelular().equals(telefoneRequerente)
+					&& emprestimo.getRequerente().getNome().equals(nomeRequerente)
+					&& emprestimo.getItem().getNome().equals(nomeItem) 
+					&& emprestimo.getDataEmprestimo().equals(dataEmprestimo))
+				return emprestimo;
+		}
+		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
 
 	/**
