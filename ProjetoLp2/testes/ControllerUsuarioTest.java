@@ -1,9 +1,9 @@
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 
 import projeto.ControllerUsuario;
-import projeto.Usuario;
 
 import org.junit.Test;
 
@@ -132,31 +132,102 @@ public class ControllerUsuarioTest {
 		}
 
 	}
+
 	/**
-	 * Testa se o método cadastrarEletronico cadastra corretamente um item em um usuário.
+	 * Testa se o método cadastrarEletronico cadastra corretamente um item em um
+	 * usuário.
 	 */
-	public void cadastrarEletronicoTest(){
+	public void cadastrarEletronicoTest() {
 		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
 		controllerUsuario.cadastrarEletronico("Mario", "8398", "Mario", 2.99, "PS");
 		controllerUsuario.validaItemUsuario("Caio", "8398", "Mario");
 	}
+
 	/**
-	 * Testa se o método cadastrarJogoTabuleiro cadastra corretamente um item em um usuário.
+	 * Testa se o método cadastrarJogoTabuleiro cadastra corretamente um item em
+	 * um usuário.
 	 */
 	@Test
-	public void cadastrarJogoTabuleiroTest(){
+	public void cadastrarJogoTabuleiroTest() {
 		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
 		controllerUsuario.cadastrarJogoTabuleiro("Caio", "8398", "War", 25.99);
 		controllerUsuario.validaItemUsuario("Caio", "8398", "War");
 	}
+
 	/**
-	 * Testa se o método cadastrarBluRayFilme cadastra corretamente um item em um usuário.
+	 * Testa se o método cadastrarBluRayFilme cadastra corretamente um item em
+	 * um usuário.
 	 */
 	@Test
-	public void cadastrarBluRayFilmeTest(){
+	public void cadastrarBluRayFilmeTest() {
 		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
 		controllerUsuario.cadastrarBluRayFilme("Caio", "8398", "Avatar", 59.90, 120, "DRAMA", "LIVRE", 2009);
 		controllerUsuario.validaItemUsuario("Caio", "8398", "Avatar");
+	}
+
+	/**
+	 * Testa se o método cadastraBluRaySerie cadastra corretamente um item em um
+	 * usuário.
+	 */
+	@Test
+	public void cadastraBluRaySerieTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
+		controllerUsuario.cadastrarBluraySerie("Caio", "8398", "Prision Break", 10.99, "Srie desc", 200, "LIVRE",
+				"ACAO", 1);
+		controllerUsuario.validaItemUsuario("Caio", "8398", "Prision Break");
+	}
+
+	/**
+	 * Testa se o método adiciona corretamente uma peça perdida em um jogo de
+	 * tabuleiro.
+	 */
+	@Test
+	public void adicionarPecaPerdidaTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
+		controllerUsuario.cadastrarJogoTabuleiro("Caio", "8398", "War", 22.90);
+
+		assertEquals("COMPLETO", controllerUsuario.haPecasPerdidasItem("Caio", "8398", "War"));
+		controllerUsuario.adicionarPecaPerdida("Caio", "8398", "War", "Peca");
+		assertEquals("COM PECAS PERDIDAS", controllerUsuario.haPecasPerdidasItem("Caio", "8398", "War"));
+	}
+
+	/**
+	 * Testa se o método removerItem remove corretamente um item.
+	 */
+	@Test
+	public void removerItemTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
+		controllerUsuario.cadastrarJogoTabuleiro("Caio", "8398", "Damas", 10.0);
+		controllerUsuario.validaItemUsuario("Caio", "8398", "Damas");
+
+		controllerUsuario.removerItem("Caio", "8398", "Damas");
+		try {
+			controllerUsuario.validaItemUsuario("Caio", "8398", "Damas");
+			fail("Item não removido");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Item nao encontrado", e.getMessage());
+		}
+	}
+	public void atualizarItemTest(){
+		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
+		controllerUsuario.cadastrarJogoTabuleiro("Caio", "8398", "Damas", 10.0);
+		
+
+		controllerUsuario.atualizarItem("Caio", "8398", "Damas", "nome", "Xadrez");
+		controllerUsuario.validaItemUsuario("Caio", "8398", "Xadrez");
+		
+		try{
+			controllerUsuario.validaItemUsuario("Caio", "8398", "Damas");
+			fail("Item com nome Antigo não removido");
+		}
+		catch(IllegalArgumentException e){
+			assertEquals("Item nao encontrado", e.getMessage());
+		}
+		
+		assertEquals(10.0,controllerUsuario.getInfoItem("Caio", "8398", "Xadrez", "Valor"));
+		
+		controllerUsuario.atualizarItem("Caio", "8398", "Xadrez", "Valor", "15.0");
+		assertEquals(15.0,controllerUsuario.getInfoItem("Caio", "8398", "Xadrez", "Valor"));
 	}
 
 }

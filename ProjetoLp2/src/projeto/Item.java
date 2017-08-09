@@ -6,7 +6,7 @@ package projeto;
  * @author javanktl
  *
  */
-public class Item implements Comparable<Item> {
+public  abstract class Item implements Comparable<Item> {
 
 	private String nome;
 
