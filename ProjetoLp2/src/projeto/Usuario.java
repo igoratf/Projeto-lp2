@@ -387,6 +387,10 @@ public class Usuario {
 		}
 		throw new IllegalArgumentException("Item nao encontrado");
 	}
+	
+	public boolean contemEmprestimo(){
+		return emprestimos.size() > 0;
+	}
 
 	/**
 	 * Calcula o HashCode do Objeto.

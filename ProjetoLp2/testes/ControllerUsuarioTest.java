@@ -242,34 +242,123 @@ public class ControllerUsuarioTest {
 		controllerUsuario.cadastrarBlurayShow("João", "8345", "Alok Live", 199.90, 90, 21, "Alok", "LIVRE");
 		controllerUsuario.validaItemUsuario("João", "8345", "Alok Live");
 	}
+
 	/**
-	 * Testa se o método cadastra corretamente um Bluray de episódio em um bluray de séries.
+	 * Testa se o método cadastra corretamente um Bluray de episódio em um
+	 * bluray de séries.
 	 */
-	public void cadastrarBluRayTest(){
+	public void cadastrarBluRayTest() {
 		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
-		controllerUsuario.cadastrarBluraySerie("João", "8345", "Narcos", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO", 1);
-		
+		controllerUsuario.cadastrarBluraySerie("João", "8345", "Narcos", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO",
+				1);
+
 		assertFalse(controllerUsuario.haEpisodiosBluRaySeries("João", "8345", "Narcos"));
 		controllerUsuario.adicionarBluRay("João", "8345", "Narcos", 60);
 		assertTrue((controllerUsuario.haEpisodiosBluRaySeries("João", "8345", "Narcos")));
 	}
+
 	/**
-	 * Testa se o método pesquisarDetalhesItens retorna o toString do Item desejado, e lança a
-	 * devida 
+	 * Testa se o método pesquisarDetalhesItens retorna o toString do Item
+	 * desejado, e lança a devida
 	 */
-	public void pesquisarDetalhesItensTest(){
+	public void pesquisarDetalhesItensTest() {
 		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
-		controllerUsuario.cadastrarBluraySerie("João", "8345", "Narcos", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO", 1);
-		
-		String esperado = "SERIE: Narcos, R$ 199.90, Nao Emprestado, 160 min, LIVRE, ACAO, Temporada 1";
-		assertEquals(esperado,controllerUsuario.pesquisarDetalhesItem("João", "8345", "Narcos"));
-		
-		try{
+		controllerUsuario.cadastrarBluraySerie("João", "8345", "Narcos", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO",
+				1);
+
+		String esperado = "SERIE: Narcos, R$ 199.90, Nao emprestado, 160 min, LIVRE, ACAO, Temporada 1";
+		assertEquals(esperado, controllerUsuario.pesquisarDetalhesItem("João", "8345", "Narcos"));
+
+		try {
 			controllerUsuario.pesquisarDetalhesItem("Joã", "8345", "Narcos");
 			fail("Exceção de usuário inválido não foi lançada");
-		}catch (IllegalArgumentException e){
-			assertEquals("Usuario invalido",e.getMessage());
+		} catch (IllegalArgumentException e) {
+			assertEquals("Usuario invalido", e.getMessage());
 		}
+	}
+
+	/**
+	 * Testa se o método listarItensOrdenadosPorValor retorna a lista de itens
+	 * ordenada corretamente.
+	 */
+	@Test
+	public void listarItensOrdenadosPorValorTest() {
+		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarUsuario("Joã", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarBluraySerie("João", "8345", "Narcos", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO",
+				1);
+		controllerUsuario.cadastrarBluraySerie("Joã", "8345", "Narcos 2", 199.80, "Soy el fuego", 160, "LIVRE", "ACAO",
+				1);
+
+		String esperado = "SERIE: Narcos 2, R$ 199.80, Nao emprestado, 160 min, LIVRE, ACAO, Temporada 1" + "|"
+				+ "SERIE: Narcos, R$ 199.90, Nao emprestado, 160 min, LIVRE, ACAO, Temporada 1" + "|";
+
+		assertEquals(esperado, controllerUsuario.listarItensOrdenadosPorValor());
+
+	}
+
+	/**
+	 * Testa se o método listarItensOrdenadosPorNome retorna a lista de itens
+	 * ordenada corretamente.
+	 */
+	@Test
+	public void listarItensOrdenadosPorNomeTest() {
+		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarUsuario("Joã", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarBluraySerie("João", "8345", "Ave", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO", 1);
+		controllerUsuario.cadastrarBluraySerie("Joã", "8345", "Brasil", 199.80, "Soy el fuego", 160, "LIVRE", "ACAO",
+				1);
+
+		String esperado = "SERIE: Ave, R$ 199.90, Nao emprestado, 160 min, LIVRE, ACAO, Temporada 1" + "|"
+				+ "SERIE: Brasil, R$ 199.80, Nao emprestado, 160 min, LIVRE, ACAO, Temporada 1" + "|";
+
+		assertEquals(esperado, controllerUsuario.listarItensOrdenadosPorNome());
+
+	}
+
+	/**
+	 * Testa se o método registrarEmprestimo registra os empréstimos em Dono e
+	 * em Requerente.
+	 */
+	@Test
+	public void registrarEmprestimoTest() {
+		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarUsuario("Lucas", "8345", "joao@joa.com");
+
+		controllerUsuario.cadastrarJogoTabuleiro("João", "8345", "Guerra", 15);
+		controllerUsuario.registrarEmprestimo("João", "8345", "Lucas", "8345", "Guerra", "10/08/2017", 7);
+
+		assertTrue(controllerUsuario.contemEmprestimo("João", "8345"));
+		assertTrue(controllerUsuario.contemEmprestimo("Lucas", "8345"));
+	}
+
+	/**
+	 * Testa se o método devolverItem seta corretamente a data de devolução de
+	 * um empréstimo
+	 */
+	@Test
+	public void devolverItemTest() {
+		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarUsuario("Lucas", "8345", "joao@joa.com");
+
+		controllerUsuario.cadastrarJogoTabuleiro("João", "8345", "Guerra", 15);
+		controllerUsuario.registrarEmprestimo("João", "8345", "Lucas", "8345", "Guerra", "10/08/2017", 7);
+
+		assertEquals("",
+				controllerUsuario.getEmprestimo("João", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
+						.getDataDevolucao());
+		assertEquals("",
+				controllerUsuario
+						.getEmprestimo("Lucas", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
+						.getDataDevolucao());
+		controllerUsuario.devolverItem("João", "8345", "Lucas", "8345", "Guerra", "10/08/2017", "11/08/2017");
+		assertEquals("11/08/2017",
+				controllerUsuario.getEmprestimo("João", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
+						.getDataDevolucao());
+		assertEquals("11/08/2017",
+				controllerUsuario
+						.getEmprestimo("Lucas", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
+						.getDataDevolucao());
 	}
 
 }

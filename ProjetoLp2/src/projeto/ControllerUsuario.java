@@ -457,5 +457,15 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return ((BluraySeries) mapaUsuarios.get(chave).getItem(nomeItem)).contemEpisodio();
 	}
+	
+	public boolean contemEmprestimo(String nome, String telefone){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).contemEmprestimo();
+	}
+	
+	public Emprestimo getEmprestimo(String nome, String telefone,String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo);
+	}
 
 }
