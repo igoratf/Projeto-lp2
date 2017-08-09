@@ -2,12 +2,13 @@ package projeto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Classe de Usuário.
  * 
- * @author CAIO SANCHES BATISTA DE LIRA - MATRICULA: 116210403
- * @version 1.0
+ * @author CAIO SANCHES BATISTA DE LIRA - MATRICULA: 116210403, igoratf
+ * @version 2.0
  *
  */
 
@@ -15,7 +16,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
-	private ControllerItem controllerItem;
+	private List<Item> listaItens;
 	private List<Emprestimo> emprestimos;
 
 	/**
@@ -30,10 +31,11 @@ public class Usuario {
 	 */
 	public Usuario(String nome, String email, String numCelular) {
 		ValidaParametros.validaParametrosUsuario(nome, email, numCelular);
+		Locale.setDefault(new Locale("en", "US"));
 		this.nome = nome.trim();
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
-		this.controllerItem = new ControllerItem();
+		this.listaItens = new ArrayList<Item>();
 		this.emprestimos = new ArrayList<>();
 
 	}
@@ -66,9 +68,7 @@ public class Usuario {
 		return email;
 	}
 
-	/**try {
-			Usuario usuario = new Usuario("Caio", null, "numCelular");
-			fail("E
+	/**
 	 * Altera o Email do Usuário.
 	 * 
 	 * @param email
@@ -98,7 +98,7 @@ public class Usuario {
 	}
 
 	/**
-	 * Cadastra um novo Jogo Eletrônico no Controller de Itens.
+	 * Cadastra um novo Jogo Eletrônico na lista de itens do Usuario.
 	 * 
 	 * @param nomeItem
 	 *            Nome do Jogo Eletrônico.
@@ -108,11 +108,13 @@ public class Usuario {
 	 *            Plataforma do Jogo Eletrônico.
 	 */
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
-		controllerItem.cadastrarEletronico(nomeItem, preco, plataforma);
+		validaPreco(preco);
+		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
+		listaItens.add(jogoEletronico);
 	}
 
 	/**
-	 * Cadastra um novo Jogo de Tabuleiro no Controller de Itens.
+	 * Cadastra um novo Jogo de Tabuleiro na lista de itens do Usuario.
 	 * 
 	 * @param nomeItem
 	 *            Nome do Jogo de Tabuleiro.
@@ -120,11 +122,13 @@ public class Usuario {
 	 *            Preço do Jogo de Tabuleiro.
 	 */
 	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
-		controllerItem.cadastrarJogoTabuleiro(nomeItem, preco);
+		validaPreco(preco);
+		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
+		listaItens.add(jogoTabuleiro);
 	}
 
 	/**
-	 * Cadastra um novo Bluray de Filme no Controller de Itens.
+	 * Cadastra um novo Bluray de Filme na lista de itens do Usuario.
 	 * 
 	 * @param nomeItem
 	 *            Nome do Bluray de filme.
@@ -141,11 +145,13 @@ public class Usuario {
 	 */
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao,
 			int anoLancamento) {
-		controllerItem.cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
+		validaPreco(preco);
+		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero, anoLancamento);
+		listaItens.add(blurayFilme);
 	}
 
 	/**
-	 * Adiciona uma peça perdida de um Jogo de Tabuleiro no Controller de Itens.
+	 * Adiciona uma peça perdida de um Jogo de Tabuleiro do Usuario.
 	 * 
 	 * @param nomeItem
 	 *            Nome do Jogo de Tabuleiro.
@@ -153,66 +159,27 @@ public class Usuario {
 	 *            Nome da peça perdida.
 	 */
 	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
-		controllerItem.adicionarPecaPerdida(nomeItem, nomePeca);
+		for (Item item : listaItens) {
+			if (item.getNome().equals(nomeItem)) {
+				((JogoTabuleiro) item).adicionarPecaPerdida(nomePeca);
+			}
+		}
 	}
 
-	/**
-	 * Remove um item do Controller de Itens.
-	 * 
-	 * @param nomeItem
-	 *            Nome do Item a ser removido.
-	 */
-	public void removerItem(String nomeItem) {
-		controllerItem.removerItem(nomeItem);
-	}
-
-	/**
-	 * Atualiza informações de um Item.
-	 * 
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @param atributo
-	 *            Atributo a ser atualizado.
-	 * @param valor
-	 *            Novo valor do Atributo.
-	 */
-	public void atualizarItem(String nomeItem, String atributo, String valor) {
-		controllerItem.atualizarItem(nomeItem, atributo, valor);
-	}
-
-	/**
-	 * Retorna Informações de um Item.
-	 * 
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @param atributo
-	 *            Atributo da Informação desejada.
-	 * @return Informação.
-	 */
-	public String getInfoItem(String nomeItem, String atributo) {
-		return controllerItem.getInfoItem(nomeItem, atributo);
-	}
-	
-	/**
-	 * Metodo para realizar um emprestimo em um item de um usuario.
-	 * @param nomeItem
-	 * 				Nome do item.
-	 */
-	public void emprestarItem(String nomeItem){
-		controllerItem.emprestarItem(nomeItem);
-	}
-	
 	/**
 	 * Metodo para devolver item de um usuario.
+	 * 
 	 * @param nomeItem
-	 * 				Nome do item.
-	 */				
-	public void devolverItem(String nomeItem){
-		controllerItem.devolverItem(nomeItem);
+	 *            Nome do item.
+	 */
+	public void devolverItem(String nomeItem) {
+		Item meuItem = getItem(nomeItem);
+		validaItem(nomeItem);
+		meuItem.setEstadoDeEmprestimo(false);
 	}
 
 	/**
-	 * Cadastra um Bluray de um Show em Controller de Itens.
+	 * Cadastra um Bluray de um Show na lista de itens do Usuario.
 	 * 
 	 * @param nomeItem
 	 *            Nome do Bluray de Show.
@@ -229,12 +196,13 @@ public class Usuario {
 	 */
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int numFaixas, String nomeArtista,
 			String classificacao) {
-		controllerItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
-
+		validaPreco(preco);
+		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
+		listaItens.add(blurayShow);
 	}
 
 	/**
-	 * Cadastra um Bluray de Serie em Controller de Itens.
+	 * Cadastra um Bluray de Serie na lista de itens do Usuario
 	 * 
 	 * @param nomeItem
 	 *            Nome do Bluray de Serie.
@@ -253,12 +221,14 @@ public class Usuario {
 	 */
 	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao,
 			String genero, int temporada) {
-		controllerItem.cadastrarBluRaySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+		validaPreco(preco);
+		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, descricao, classificacao, genero, temporada);
+		listaItens.add(bluraySerie);
 	}
 
 	/**
-	 * Adiciona um Bluray de Episódio a um Bluray de Serie em Controller de
-	 * Itens.
+	 * Adiciona um Bluray de Episódio a um Bluray de Serie à lista de itens do
+	 * Usuario
 	 * 
 	 * @param serie
 	 *            Nome da Serie.
@@ -266,33 +236,125 @@ public class Usuario {
 	 *            Duração do Episodio.
 	 */
 	public void adicionarBluray(String serie, int duracao) {
-		controllerItem.adicionarBluray(serie, duracao);
+		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
+		for (Item item : listaItens) {
+			if (item.getNome().equals(serie)) {
+				((BluraySeries) item).adicionarBluray(blurayEpisodio);
+			}
+		}
 	}
-	
-	public String pesquisarDetalhesItem(String nomeItem) {
-		return controllerItem.pesquisarDetalhesItem(nomeItem);
+
+	/**
+	 * Remove um item do Usuario.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Item a ser removido.
+	 */
+	public void removerItem(String nomeItem) {
+		validaItem(nomeItem);
+		Item meuItem = getItem(nomeItem);
+		listaItens.remove(meuItem);
 	}
-	
-	public ArrayList<Item> getListaItens(){
-		return controllerItem.getListaItens();
+
+	/**
+	 * Atualiza informações de um Item.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Item.
+	 * @param atributo
+	 *            Atributo a ser atualizado.
+	 * @param valor
+	 *            Novo valor do Atributo.
+	 */
+	public void atualizarItem(String nomeItem, String atributo, String valor) {
+		validaItem(nomeItem);
+		Item meuItem = getItem(nomeItem);
+		if (atributo.equalsIgnoreCase("preco")) {
+			meuItem.setValor(Float.parseFloat(valor));
+		}
+		if (atributo.equalsIgnoreCase("nome")) {
+			meuItem.setNome(valor);
+		}
 	}
-	
-	public Item getItem(String nomeItem){
-		return controllerItem.getItem(nomeItem);
+
+	/**
+	 * Retorna Informações de um Item.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Item.
+	 * @param atributo
+	 *            Atributo da Informação desejada.
+	 * @return Informação.
+	 */
+	public String getInfoItem(String nomeItem, String atributo) {
+		Item meuItem = getItem(nomeItem);
+		validaItem(nomeItem);
+		switch (atributo) {
+		case "Preco":
+			return String.valueOf(meuItem.getValor());
+		case "Nome":
+			return meuItem.getNome();
+		default:
+			throw new IllegalArgumentException("Atributo invalido");
+		}
 	}
-	
-	public void cadastroEmprestimo(Emprestimo emprestimo){
+
+	/**
+	 * Metodo para realizar um emprestimo de um item do Usuario.
+	 * 
+	 * @param nomeItem
+	 *            Nome do item.
+	 */
+	public void emprestarItem(String nomeItem) {
+		Item meuItem = getItem(nomeItem);
+		validaItem(nomeItem);
+		if (meuItem.getEstado().equals("Emprestado"))
+			throw new IllegalArgumentException("Item emprestado no momento");
+		else
+			meuItem.setEstadoDeEmprestimo(true);
+	}
+
+	/**
+	 * Cadastra um empréstimo na lista de empréstimos
+	 * 
+	 * @param emprestimo
+	 */
+	public void cadastroEmprestimo(Emprestimo emprestimo) {
 		this.emprestimos.add(emprestimo);
 	}
-	
+
+	/**
+	 * Exibe informações sobre um item
+	 * 
+	 * @param nomeItem
+	 *            é o nome do item
+	 * @return informações do item
+	 */
+	public String pesquisarDetalhesItem(String nomeItem) {
+		Item meuItem = getItem(nomeItem);
+		return meuItem.toString();
+	}
+
+	public ArrayList<Item> getListaItens() {
+		return new ArrayList<Item>(listaItens);
+	}
+
+	public Item getItem(String nomeItem) {
+		for (Item item : listaItens) {
+			if (item.getNome().equals(nomeItem))
+				return item;
+		}
+		throw new RuntimeException("Item nao encontrado");
+	}
+
 	public Emprestimo getEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo){
-		for (Emprestimo emprestimo: emprestimos){
+			String telefoneRequerente, String nomeItem, String dataEmprestimo) {
+		for (Emprestimo emprestimo : emprestimos) {
 			if (emprestimo.getDono().getNome().equals(nomeDono)
 					&& emprestimo.getDono().getNumCelular().equals(telefoneDono)
 					&& emprestimo.getRequerente().getNumCelular().equals(telefoneRequerente)
 					&& emprestimo.getRequerente().getNome().equals(nomeRequerente)
-					&& emprestimo.getItem().getNome().equals(nomeItem) 
+					&& emprestimo.getItem().getNome().equals(nomeItem)
 					&& emprestimo.getDataEmprestimo().equals(dataEmprestimo))
 				return emprestimo;
 		}
@@ -304,6 +366,30 @@ public class Usuario {
 	}
 	
 	
+
+	/**
+	 * Verifica se o preço inserido é válido
+	 * 
+	 * @param preco
+	 */
+	private void validaPreco(double preco) {
+		if (preco <= 0) {
+			throw new IllegalArgumentException("Preco invalido");
+		}
+	}
+
+	/**
+	 * Verifica se um item existe na lista de itens a partir de seu nome
+	 * 
+	 * @param nomeItem
+	 */
+	private void validaItem(String nomeItem) {
+		for (Item item : listaItens) {
+			if (item.getNome().equals(nomeItem))
+				return;
+		}
+		throw new IllegalArgumentException("Item nao encontrado");
+	}
 
 	/**
 	 * Calcula o HashCode do Objeto.
@@ -349,8 +435,5 @@ public class Usuario {
 	public String toString() {
 		return String.format("%s , %s ,%s", nome, email, numCelular);
 	}
-
-
-
 
 }

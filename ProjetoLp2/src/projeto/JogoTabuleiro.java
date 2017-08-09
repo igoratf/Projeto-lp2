@@ -53,7 +53,7 @@ public class JogoTabuleiro extends Item {
 		return false;
 	}
 	
-	public String haPecasPerdidas(){
+	public String existePecasPerdidas(){
 		if(pecasPerdidas.size() > 0){
 			return "COM PECAS PERDIDAS";
 		} return "COMPLETO";
@@ -69,7 +69,7 @@ public class JogoTabuleiro extends Item {
 	
 	@Override
 	public String toString(){
-		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(),getValor(),getEstado(),haPecasPerdidas());
+		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(),getValor(),getEstado(),existePecasPerdidas());
 	}
 
 }
