@@ -361,9 +361,6 @@ public class Usuario {
 		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
 	
-	public void validaItem(String nomeItem){
-		controllerItem.validaItem(nomeItem);
-	}
 	
 	
 
@@ -383,7 +380,7 @@ public class Usuario {
 	 * 
 	 * @param nomeItem
 	 */
-	private void validaItem(String nomeItem) {
+	public void validaItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
 				return;

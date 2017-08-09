@@ -450,7 +450,7 @@ public class ControllerUsuario {
 
 	public String haPecasPerdidasItem(String nome, String telefone, String nomeItem) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		return ((JogoTabuleiro) mapaUsuarios.get(chave).getItem(nomeItem)).haPecasPerdidas();
+		return ((JogoTabuleiro) mapaUsuarios.get(chave).getItem(nomeItem)).existePecasPerdidas();
 	}
 	
 	public boolean haEpisodiosBluRaySeries(String nome, String telefone, String nomeItem){

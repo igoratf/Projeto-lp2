@@ -17,8 +17,8 @@ public class JogoTabuleiro extends Item {
 
 	public JogoTabuleiro(String nome, double valor) {
 		super(nome, valor);
-		this.pecasPerdidas = pecasPerdidas;
-		this.completo = completo;
+		this.completo = true;
+	
 	}
 	
 	/**
