@@ -7,6 +7,12 @@ import projeto.ControllerUsuario;
 
 import org.junit.Test;
 
+/**
+ * Testes da classe Controller Usuário.
+ * @author caiosbl
+ *
+ */
+
 public class ControllerUsuarioTest {
 	private ControllerUsuario controllerUsuario;
 
