@@ -253,5 +253,23 @@ public class ControllerUsuarioTest {
 		controllerUsuario.adicionarBluRay("João", "8345", "Narcos", 60);
 		assertTrue((controllerUsuario.haEpisodiosBluRaySeries("João", "8345", "Narcos")));
 	}
+	/**
+	 * Testa se o método pesquisarDetalhesItens retorna o toString do Item desejado, e lança a
+	 * devida 
+	 */
+	public void pesquisarDetalhesItensTest(){
+		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarBluraySerie("João", "8345", "Narcos", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO", 1);
+		
+		String esperado = "SERIE: Narcos, R$ 199.90, Nao Emprestado, 160 min, LIVRE, ACAO, Temporada 1";
+		assertEquals(esperado,controllerUsuario.pesquisarDetalhesItem("João", "8345", "Narcos"));
+		
+		try{
+			controllerUsuario.pesquisarDetalhesItem("Joã", "8345", "Narcos");
+			fail("Exceção de usuário inválido não foi lançada");
+		}catch (IllegalArgumentException e){
+			assertEquals("Usuario invalido",e.getMessage());
+		}
+	}
 
 }
