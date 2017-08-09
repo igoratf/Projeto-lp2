@@ -208,26 +208,50 @@ public class ControllerUsuarioTest {
 			assertEquals("Item nao encontrado", e.getMessage());
 		}
 	}
-	public void atualizarItemTest(){
+
+	/**
+	 * Testa se o método atualizarItem e getInfoItem se comporta como esperado.
+	 */
+	public void atualizarItemTest() {
 		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
 		controllerUsuario.cadastrarJogoTabuleiro("Caio", "8398", "Damas", 10.0);
-		
 
 		controllerUsuario.atualizarItem("Caio", "8398", "Damas", "nome", "Xadrez");
 		controllerUsuario.validaItemUsuario("Caio", "8398", "Xadrez");
-		
-		try{
+
+		try {
 			controllerUsuario.validaItemUsuario("Caio", "8398", "Damas");
 			fail("Item com nome Antigo não removido");
-		}
-		catch(IllegalArgumentException e){
+		} catch (IllegalArgumentException e) {
 			assertEquals("Item nao encontrado", e.getMessage());
 		}
-		
-		assertEquals(10.0,controllerUsuario.getInfoItem("Caio", "8398", "Xadrez", "Valor"));
-		
+
+		assertEquals(10.0, controllerUsuario.getInfoItem("Caio", "8398", "Xadrez", "Valor"));
+
 		controllerUsuario.atualizarItem("Caio", "8398", "Xadrez", "Valor", "15.0");
-		assertEquals(15.0,controllerUsuario.getInfoItem("Caio", "8398", "Xadrez", "Valor"));
+		assertEquals(15.0, controllerUsuario.getInfoItem("Caio", "8398", "Xadrez", "Valor"));
+	}
+
+	/**
+	 * Testa se o método cadastrarBluRayShow cadastra corretamente um item em
+	 * usuário.
+	 */
+	@Test
+	public void cadastrarBluRayShowTest() {
+		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarBlurayShow("João", "8345", "Alok Live", 199.90, 90, 21, "Alok", "LIVRE");
+		controllerUsuario.validaItemUsuario("João", "8345", "Alok Live");
+	}
+	/**
+	 * Testa se o método cadastra corretamente um Bluray de episódio em um bluray de séries.
+	 */
+	public void cadastrarBluRayTest(){
+		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
+		controllerUsuario.cadastrarBluraySerie("João", "8345", "Narcos", 199.90, "Soy el fuego", 160, "LIVRE", "ACAO", 1);
+		
+		assertFalse(controllerUsuario.haEpisodiosBluRaySeries("João", "8345", "Narcos"));
+		controllerUsuario.adicionarBluRay("João", "8345", "Narcos", 60);
+		assertTrue((controllerUsuario.haEpisodiosBluRaySeries("João", "8345", "Narcos")));
 	}
 
 }

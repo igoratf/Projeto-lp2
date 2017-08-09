@@ -452,5 +452,10 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return ((JogoTabuleiro) mapaUsuarios.get(chave).getItem(nomeItem)).haPecasPerdidas();
 	}
+	
+	public boolean haEpisodiosBluRaySeries(String nome, String telefone, String nomeItem){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return ((BluraySeries) mapaUsuarios.get(chave).getItem(nomeItem)).contemEpisodio();
+	}
 
 }
