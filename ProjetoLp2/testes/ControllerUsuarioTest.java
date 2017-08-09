@@ -137,8 +137,26 @@ public class ControllerUsuarioTest {
 	 */
 	public void cadastrarEletronicoTest(){
 		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
-		controllerUsuario.cadastrarEletronico("Mario", "8398", "Mario", 2.99, "PS4");
+		controllerUsuario.cadastrarEletronico("Mario", "8398", "Mario", 2.99, "PS");
 		controllerUsuario.validaItemUsuario("Caio", "8398", "Mario");
+	}
+	/**
+	 * Testa se o método cadastrarJogoTabuleiro cadastra corretamente um item em um usuário.
+	 */
+	@Test
+	public void cadastrarJogoTabuleiroTest(){
+		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
+		controllerUsuario.cadastrarJogoTabuleiro("Caio", "8398", "War", 25.99);
+		controllerUsuario.validaItemUsuario("Caio", "8398", "War");
+	}
+	/**
+	 * Testa se o método cadastrarBluRayFilme cadastra corretamente um item em um usuário.
+	 */
+	@Test
+	public void cadastrarBluRayFilmeTest(){
+		controllerUsuario.cadastrarUsuario("Caio", "8398", "caiolira@d.c");
+		controllerUsuario.cadastrarBluRayFilme("Caio", "8398", "Avatar", 59.90, 120, "DRAMA", "LIVRE", 2009);
+		controllerUsuario.validaItemUsuario("Caio", "8398", "Avatar");
 	}
 
 }
