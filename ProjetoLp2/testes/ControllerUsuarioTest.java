@@ -213,7 +213,7 @@ public class ControllerUsuarioTest {
 		try {
 			controllerUsuario.validaItemUsuario("Caio", "8398", "Damas");
 			fail("Item não removido");
-		} catch (IllegalArgumentException e) {
+		} catch (RuntimeException e) {
 			assertEquals("Item nao encontrado", e.getMessage());
 		}
 	}
