@@ -14,7 +14,9 @@ import projeto.Usuario;
 public class EmprestimoTest {
 	private Emprestimo emprestimo;
 
-	
+	/**
+	 * Teste de validade do Objeto dono caso seja nulo.
+	 */
 	@Test
 	public void testValidadeAtributoDono() {
 		try{
@@ -27,7 +29,9 @@ public class EmprestimoTest {
 			assertEquals("Dono nulo", e.getMessage());
 		}
 	}
-	
+	/**
+	 * Teste de validade do Objeto requerente caso seja nulo.
+	 */
 	@Test
 	public void testValidadeAtributoRequerente() {
 		try{
@@ -41,6 +45,9 @@ public class EmprestimoTest {
 		}
 	}
 	
+	/**
+	 * Teste de validade do Objeto Item caso seja nulo.
+	 */
 	@Test
 	public void testValidadeAtributoItem() {
 		try{
@@ -54,6 +61,9 @@ public class EmprestimoTest {
 		}
 	}
 	
+	/**
+	 * Teste de validade do atributo data de emprestimo caso seja nulo.
+	 */
 	@Test (expected = NullPointerException.class )
 	public void testValidadeAtributoData() {
 		
@@ -64,7 +74,9 @@ public class EmprestimoTest {
 		
 		}
 	
-	
+	/**
+	 * Teste de validade do atributo data de emprestimo caso seja vazia.
+	 */
 	@Test
 	public void testValidadeAtributoDataVazia() {
 		try{
@@ -78,6 +90,9 @@ public class EmprestimoTest {
 		}
 	}
 	
+	/**
+	 * Teste de validade do atributo periodo caso seja negativo.
+	 */
 	@Test
 	public void testValidadeAtributoPeriodo() {
 		try{
@@ -91,13 +106,17 @@ public class EmprestimoTest {
 		}
 	}
 	
+	/**
+	 * Teste de equidade de dois emprestimos caso possuam os atributos necessario para serem iguais,
+	 * são eles: Donos, Requerentes, Item e dataEmprestimo iguais.
+	 */
 	@Test
 	public void testEmprestimos() {
 		
 			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
 			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
 			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
-			Emprestimo emprestimo1 = new Emprestimo(dono, requerente, item, "10/08/2017", 5);
+			Emprestimo emprestimo1 = new Emprestimo(dono, requerente, item, "10/08/2017", 7);
 			Emprestimo emprestimo2 = new Emprestimo(dono, requerente, item, "10/08/2017", 5);
 		
 			assertTrue(emprestimo1.equals(emprestimo2));

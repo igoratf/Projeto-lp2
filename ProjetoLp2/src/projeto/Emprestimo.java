@@ -31,30 +31,57 @@ public class Emprestimo {
 	
 	}
 
+	/**
+	 * Metodo para retornar o Objeto Usuario.
+	 * @return, retorna o Objeto dono.
+	 */
 	public Usuario getDono() {
 		return dono;
 	}
-
+	/**
+	 * Metodo para retornar o Objeto Usuario.
+	 * @return, retorna o Objeto requerente.
+	 */
 	public Usuario getRequerente() {
 		return requerente;
 	}
 
+	/**
+	 * Metodo para retornar o Objeto Item.
+	 * @return, retorna o Objeto item.
+	 */
 	public Item getItem() {
 		return item;
 	}
 
+	/**
+	 * Metodo para retornar a string da data do emprestimo.
+	 * @return, retorna a string dataEmprestimo.
+	 */
 	public String getDataEmprestimo() {
 		return dataEmprestimo;
 	}
 
+	/**
+	 * Metodo para retornar o periodo do emprestimo em dias.
+	 * @return, retorna o inteiro de dias.
+	 */
 	public int getPeriodo() {
 		return periodo;
 	}
 
+	/**
+	 * Metodo para retornar a data de devolução de um emprestimo.
+	 * @return, retorna a string dataDevolução.
+	 */
 	public String getDataDevolucao() {
 		return dataDevolucao;
 	}
 
+	/**
+	 * Metodo para alterar a data de devolução de um emprestimo conforme o usuario do sistema deseje.
+	 * @param data, String a ser alterado passado por paramtro.
+	 */
 	public void setDataDevolucao(String data){
 		this.dataDevolucao = data;
 	}
@@ -80,7 +107,9 @@ public class Emprestimo {
 		
 	}
 	
-	
+	/**
+	 * Metodo sobreescrito de hashCode() de emprestimo.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;

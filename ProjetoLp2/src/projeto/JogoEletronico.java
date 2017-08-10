@@ -12,7 +12,12 @@ public class JogoEletronico extends Item {
 	
 	private Plataforma plataforma;
 	
-	
+	/**
+	 * Construtor de JogoEletronico.
+	 * @param nome, String passsado por parametro.
+	 * @param valor, Double passsado por parametro.
+	 * @param plataforma, String passsado por parametro.
+	 */
 	public JogoEletronico(String nome, double valor, String plataforma) {
 		super(nome, valor);
 		validaAtributo(plataforma);
@@ -20,7 +25,10 @@ public class JogoEletronico extends Item {
 	}
 	
 	
-	
+	/**
+	 * Metodo para retornar a plataforma desse objeto.
+	 * @return, retorna a String plataforma.
+	 */
 	public Plataforma getPlataforma() {
 		return plataforma;
 	}
@@ -54,11 +62,19 @@ public class JogoEletronico extends Item {
 		return false;
 	}
 	
+	/**
+	 * Metodo sobreescrito do toString() para mostrar o nome do Jogo com padrão alterado.
+	 */
 	@Override
 	public String toString() {
 		return String.format("JOGO ELETRONICO: %s, R$ %.1f, %s, %s",getNome(),getValor(),getEstado(),this.plataforma.getPlataforma());
 	}
 	
+	/**
+	 * Metodo para validar os atributos passados no construtor de JogoEletronico.
+	 * @param plataforma, , String passsado por parametro.
+	 * @return, , retorna true ou false dependendo da validade dos atributos passados.
+	 */
 	public boolean validaAtributo(String plataforma){
 		if (plataforma == null)
 			throw new NullPointerException("Plataforma Nula");
