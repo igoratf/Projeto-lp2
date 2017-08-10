@@ -10,6 +10,7 @@ public class BlurayShow extends Bluray {
 		super(nome, valor, duracao, classificacao);
 		this.nomeArtista = nomeArtista;
 		this.numFaixas = numFaixas;
+	
 
 	}
 

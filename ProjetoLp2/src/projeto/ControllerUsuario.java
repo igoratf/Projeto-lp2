@@ -354,22 +354,24 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).adicionarBluray(nomeBlurayTemporada, duracao);
 	}
-	
+
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		checaSeUsuarioJaExiste(nome, telefone);
 		return mapaUsuarios.get(chave).pesquisarDetalhesItem(nomeItem);
 	}
 
-	private ArrayList<Item> itensSistema(){
+	private ArrayList<Item> itensSistema() {
 		ArrayList<Item> itensSistema = new ArrayList<>();
 		for (ChaveUsuario chave : mapaUsuarios.keySet()) {
 			ArrayList<Item> itensUsuario = mapaUsuarios.get(chave).getListaItens();
 			for (Item item : itensUsuario) {
 				itensSistema.add(item);
 			}
-		} return itensSistema;
+		}
+		return itensSistema;
 	}
+
 	public String listarItensOrdenadosPorNome() {
 		String itens = "";
 		ArrayList<Item> itensSistema = itensSistema();
@@ -389,43 +391,42 @@ public class ControllerUsuario {
 		}
 		return itens;
 	}
-	
+
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo){
-		
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
-		
+
 		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
-		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente , telefoneRequerente);
+		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Usuario dono = this.mapaUsuarios.get(chaveDono);
 		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
 		dono.emprestarItem(nomeItem);
 		Item item = dono.getItem(nomeItem);
-		
-		
+
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
 		dono.cadastroEmprestimo(emprestimo);
 		requerente.cadastroEmprestimo(emprestimo);
-		
+
 	}
-	
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){
+
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
+			String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
-		
+
 		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
-		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente , telefoneRequerente);
+		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Usuario dono = this.mapaUsuarios.get(chaveDono);
 		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
 		dono.devolverItem(nomeItem);
-		Item item = dono.getItem(nomeItem);
-		
-		dono.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo).setDataDevolucao(dataDevolucao);
-		requerente.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo).setDataDevolucao(dataDevolucao);
+
+		dono.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo)
+				.setDataDevolucao(dataDevolucao);
+		requerente.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo)
+				.setDataDevolucao(dataDevolucao);
 	}
-	
 
 	/**
 	 * Checa se uma chave est� contida no Mapa.
@@ -434,11 +435,37 @@ public class ControllerUsuario {
 	 * @throws IllegalArgumentException
 	 *             Exce��o informando que o usu�rio n�o est� cadastrado.
 	 */
-	private void checaSeUsuarioJaExiste(String nome, String telefone) {
+	public boolean checaSeUsuarioJaExiste(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		if (!this.mapaUsuarios.containsKey(chave)) {
 			throw new IllegalArgumentException("Usuario invalido");
 		}
+		return true;
+	}
+
+	public void validaItemUsuario(String nome, String telefone, String nomeItem) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).validaItem(nomeItem);
+	}
+
+	public String haPecasPerdidasItem(String nome, String telefone, String nomeItem) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return ((JogoTabuleiro) mapaUsuarios.get(chave).getItem(nomeItem)).existePecasPerdidas();
+	}
+	
+	public boolean haEpisodiosBluRaySeries(String nome, String telefone, String nomeItem){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return ((BluraySeries) mapaUsuarios.get(chave).getItem(nomeItem)).contemEpisodio();
+	}
+	
+	public boolean contemEmprestimo(String nome, String telefone){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).contemEmprestimo();
+	}
+	
+	public Emprestimo getEmprestimo(String nome, String telefone,String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo){
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo);
 	}
 
 }

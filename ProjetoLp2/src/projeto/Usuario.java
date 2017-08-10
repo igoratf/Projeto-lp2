@@ -360,6 +360,9 @@ public class Usuario {
 		}
 		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
+	
+	
+	
 
 	/**
 	 * Verifica se o preço inserido é válido
@@ -377,12 +380,16 @@ public class Usuario {
 	 * 
 	 * @param nomeItem
 	 */
-	private void validaItem(String nomeItem) {
+	public void validaItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
 				return;
 		}
 		throw new IllegalArgumentException("Item nao encontrado");
+	}
+	
+	public boolean contemEmprestimo(){
+		return emprestimos.size() > 0;
 	}
 
 	/**
