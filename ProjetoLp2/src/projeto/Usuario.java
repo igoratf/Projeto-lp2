@@ -347,15 +347,10 @@ public class Usuario {
 		throw new RuntimeException("Item nao encontrado");
 	}
 
-	public Emprestimo getEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo) {
+	public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo) {
+		Emprestimo emprestimoParametro = new Emprestimo(dono, requerente, item, dataEmprestimo, 0);
 		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getDono().getNome().equals(nomeDono)
-					&& emprestimo.getDono().getNumCelular().equals(telefoneDono)
-					&& emprestimo.getRequerente().getNumCelular().equals(telefoneRequerente)
-					&& emprestimo.getRequerente().getNome().equals(nomeRequerente)
-					&& emprestimo.getItem().getNome().equals(nomeItem)
-					&& emprestimo.getDataEmprestimo().equals(dataEmprestimo))
+			if (emprestimo.equals(emprestimoParametro))
 				return emprestimo;
 		}
 		throw new IllegalArgumentException("Emprestimo nao encontrado");

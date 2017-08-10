@@ -420,11 +420,12 @@ public class ControllerUsuario {
 		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Usuario dono = this.mapaUsuarios.get(chaveDono);
 		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
+		Item item = dono.getItem(nomeItem);
 		dono.devolverItem(nomeItem);
 
-		dono.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo)
+		dono.getEmprestimo(dono, requerente, item, dataEmprestimo)
 				.setDataDevolucao(dataDevolucao);
-		requerente.getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo)
+		requerente.getEmprestimo(dono, requerente, item, dataEmprestimo)
 				.setDataDevolucao(dataDevolucao);
 	}
 
@@ -463,9 +464,9 @@ public class ControllerUsuario {
 		return mapaUsuarios.get(chave).contemEmprestimo();
 	}
 	
-	public Emprestimo getEmprestimo(String nome, String telefone,String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente, String nomeItem, String dataEmprestimo){
+	public Emprestimo getEmprestimo(String nome, String telefone,Usuario dono, Usuario requerente, Item item, String dataEmprestimo){
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		return mapaUsuarios.get(chave).getEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo);
+		return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item, dataEmprestimo);
 	}
 
 }
