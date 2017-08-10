@@ -8,6 +8,14 @@ public class Emprestimo {
 	private int periodo;
 	private String dataDevolucao;
 	
+	/**
+	 * Metodo construtor da classe Emprestimo.
+	 * @param dono, objeto repassado por parametro.
+	 * @param requerente, objeto repassado por parametro.
+	 * @param item, objeto repassado por parametro.
+	 * @param dataInicial, String repassado por parametro.
+	 * @param periodo, inteiro repassado por parametro.
+	 */
 	public Emprestimo(Usuario dono, Usuario requerente, Item item,
 			String dataInicial, int periodo){
 		checaValidadeAtributos(dono, requerente, item, dataInicial, periodo);
@@ -49,6 +57,10 @@ public class Emprestimo {
 		this.dataDevolucao = data;
 	}
 	
+	/**
+	 * Metodo para comparar um emprestimo caso o dono, o requerente, o item e a data sejam
+	 * iguais.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -80,6 +92,14 @@ public class Emprestimo {
 		return result;
 	}
 	
+	/**
+	 * Metodo para validar os atributos repassados como parametro.
+	 * @param dono, valor passado por parametro.
+	 * @param requerente, valor passado por parametro.
+	 * @param item, valor passado por parametro.
+	 * @param dataInicial, valor passado por parametro.
+	 * @param periodo, valor passado por parametro.
+	 */
 	public void checaValidadeAtributos(Usuario dono, Usuario requerente, Item item,
 			String dataInicial, int periodo){
 			
