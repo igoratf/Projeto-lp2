@@ -349,29 +349,10 @@ public class ControllerUsuarioTest {
 	public void devolverItemTest() {
 		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
 		controllerUsuario.cadastrarUsuario("Lucas", "8345", "joao@joa.com");
-
 		controllerUsuario.cadastrarJogoTabuleiro("João", "8345", "Guerra", 15);
 		controllerUsuario.registrarEmprestimo("João", "8345", "Lucas", "8345", "Guerra", "10/08/2017", 7);
-<<<<<<< HEAD
-		
-=======
 
-		assertEquals("",
-				controllerUsuario.getEmprestimo("Igor", "1239", "Lucas", "Igor", "Star Wars", "10/08/2017")
-						.getDataDevolucao());
-		assertEquals("",
-				controllerUsuario
-						.getEmprestimo("Lucas", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
-						.getDataDevolucao());
-		controllerUsuario.devolverItem("João", "8345", "Lucas", "8345", "Guerra", "10/08/2017", "11/08/2017");
-		assertEquals("11/08/2017",
-				controllerUsuario.getEmprestimo("João", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
-						.getDataDevolucao());
-		assertEquals("11/08/2017",
-				controllerUsuario
-						.getEmprestimo("Lucas", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
-						.getDataDevolucao());
->>>>>>> 1bb2ab510a4cc0027d19f8d4838061af41753634
+
 	}
 
 }
