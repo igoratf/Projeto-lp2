@@ -8,6 +8,8 @@ public class Emprestimo {
 	private int periodo;
 	private String dataDevolucao;
 	
+	
+	
 	/**
 	 * Metodo construtor da classe Emprestimo.
 	 * @param dono, objeto repassado por parametro.
