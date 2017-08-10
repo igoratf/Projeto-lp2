@@ -7,6 +7,7 @@ public class Bluray extends Item {
 
 	public Bluray(String nome, double valor, int duracao, String classificacao) {
 		super(nome, valor);
+		validaBluray(nome, valor, duracao, classificacao);
 		this.duracao = duracao;
 		this.classificacao = Classificacao.valueOf(classificacao);
 	}
@@ -46,6 +47,15 @@ public class Bluray extends Item {
 	@Override
 	public String toString() {
 		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
+	}
+	
+	public void validaBluray(String nome, double valor, int duracao, String classificacao) {
+		if (nome == null) throw new NullPointerException("Nome nulo");
+		if (classificacao == null) throw new NullPointerException("Classificacao nula");
+		if (nome.trim().equals("")) throw new IllegalArgumentException("Nome vazio");
+		if (classificacao.trim().equals("")) throw new IllegalArgumentException("Classificacao vazia");
+		if (valor <= 0) throw new IllegalArgumentException("Valor invalido");
+		if (duracao <= 0) throw new IllegalArgumentException("Duracao invalida");
 	}
 
 }

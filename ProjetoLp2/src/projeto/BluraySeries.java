@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Classe que irá modelar objetos do tipo BluraySeries, que terá uma coleção de
  * BlurayEpisodios
  * 
- * @author igoratf
+ * @author igoratf, javanlacerda
  *
  */
 

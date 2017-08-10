@@ -3,7 +3,7 @@ package projeto;
 /**
  * Classe que modela a construção de objetos do tipo BlurayShow
  * 
- * @author igoratf
+ * @author igoratf, javanlacerda
  *
  */
 public class BlurayShow extends Bluray {
