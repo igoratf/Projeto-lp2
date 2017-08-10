@@ -345,7 +345,7 @@ public class ControllerUsuarioTest {
 		controllerUsuario.registrarEmprestimo("João", "8345", "Lucas", "8345", "Guerra", "10/08/2017", 7);
 
 		assertEquals("",
-				controllerUsuario.getEmprestimo("João", "8345", "João", "8345", "Lucas", "8345", "Guerra", "10/08/2017")
+				controllerUsuario.getEmprestimo("Igor", "1239", "Lucas", "Igor", "Star Wars", "10/08/2017")
 						.getDataDevolucao());
 		assertEquals("",
 				controllerUsuario
