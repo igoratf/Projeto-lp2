@@ -333,10 +333,19 @@ public class Usuario {
 		return meuItem.toString();
 	}
 
+	/**
+	 * Metodo para retornar a lista de itens que o usuario possui.
+	 * @return, lista de itens do usuario.
+	 */
 	public ArrayList<Item> getListaItens() {
 		return new ArrayList<Item>(listaItens);
 	}
 
+	/**
+	 * Metodo para retornar um item baseado em seu nome pertencente a esse usuario.
+	 * @param nomeItem, String passado por parametro.
+	 * @return, retorna o item desejado.
+	 */
 	public Item getItem(String nomeItem) {
 		for (Item item : listaItens) {
 			if (item.getNome().equals(nomeItem))
@@ -345,6 +354,14 @@ public class Usuario {
 		throw new RuntimeException("Item nao encontrado");
 	}
 
+	/**
+	 * Metodo para retornar um emprestimo cadastrado nesse usuario.
+	 * @param dono, Objeto passado por parametro.
+	 * @param requerente, Objeto passado por parametro.
+	 * @param item, Objeto passado por parametro.
+	 * @param dataEmprestimo, String passado por parametro.
+	 * @return, Emprestimo encontrado no usuario.
+	 */
 	public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo) {
 		Emprestimo emprestimoParametro = new Emprestimo(dono, requerente, item, dataEmprestimo, 0);
 		for (Emprestimo emprestimo : emprestimos) {

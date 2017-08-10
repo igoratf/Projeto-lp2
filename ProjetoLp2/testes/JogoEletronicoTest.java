@@ -7,6 +7,9 @@ import projeto.JogoEletronico;
 
 public class JogoEletronicoTest {
 	
+	/**
+	 * Teste de equidade de dois jogos eletronicos caso eles possuam a mesma plataforma e nome.
+	 */
 	@Test
 	public void testJogoEletronico() {
 		JogoEletronico jogo1 = new JogoEletronico("Doom", 100.90, "PC");
@@ -17,12 +20,16 @@ public class JogoEletronicoTest {
 		assertEquals("Erro", true, jogo1.equals(jogo3));
 	}
 
+	/**
+	 * Teste de validade do atributo plataforma caso seja 
+	 */
 	@Test
 	public void testJogoEletronicoAtributos() {
 		try{
-		JogoEletronico jogo1 = new JogoEletronico("Doom", 100.90, "PC");
+		JogoEletronico jogo1 = new JogoEletronico("Doom", 100.90, null);
+		fail("Exceção de plataforma nula não lançada!");
 		} catch (Exception e){
-			Assert.assertEquals("Plataforma Nula", e.getMessage());
+			assertEquals("Plataforma Nula", e.getMessage());
 		}
 	}
 

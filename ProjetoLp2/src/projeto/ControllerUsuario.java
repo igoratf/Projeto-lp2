@@ -392,6 +392,17 @@ public class ControllerUsuario {
 		return itens;
 	}
 
+	/**
+	 * Metodo para registrar um emprestimo entre um Usuario dono e um Usuario requerente, passando o item 
+	 * que pertence ao dono para um estado de emprestimo true.
+	 * @param nomeDono, String passsado por parametro.
+	 * @param telefoneDono, String passsado por parametro.
+	 * @param nomeRequerente, String passsado por parametro.
+	 * @param telefoneRequerente, String passsado por parametro.
+	 * @param nomeItem, String passsado por parametro.
+	 * @param dataEmprestimo, String passsado por parametro.
+	 * @param periodo, Inteiro passado por paramtro.
+	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
 
@@ -411,6 +422,17 @@ public class ControllerUsuario {
 
 	}
 
+	/**
+	 * Metodo para devolver um item que já esteja emprestado, tornado o item que pertence ao Usuario dono para
+	 * um estado de emprestimo false.
+	 * @param nomeDono, String passsado por parametro.
+	 * @param telefoneDono, String passsado por parametro.
+	 * @param nomeRequerente, String passsado por parametro.
+	 * @param telefoneRequerente, String passsado por parametro.
+	 * @param nomeItem, String passsado por parametro.
+	 * @param dataEmprestimo, String passsado por parametro.
+	 * @param dataDevolucao, String passsado por parametro.
+	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) {
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
@@ -458,12 +480,27 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return ((BluraySeries) mapaUsuarios.get(chave).getItem(nomeItem)).contemEpisodio();
 	}
-	
+	/**
+	 * Metodo para verficar a existencia de um emprestimo no usuario.
+	 * @param nome, String passsado por parametro.
+	 * @param telefone, String passsado por parametro.
+	 * @return, retorna true ou false caso o item exista.
+	 */
 	public boolean contemEmprestimo(String nome, String telefone){
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return mapaUsuarios.get(chave).contemEmprestimo();
 	}
 	
+	/**
+	 * Metodo para retornar um emprestimo que o usuario possui em seu historico.
+	 * @param nome, String passsado por parametro.
+	 * @param telefone, String passsado por parametro.
+	 * @param dono, Objeto Usuario passsado por parametro.
+	 * @param requerente, Objeto Usuario passsado por parametro.
+	 * @param item, Objeto Item passsado por parametro.
+	 * @param dataEmprestimo, String passsado por parametro.
+	 * @return, retorna o emprestimo existente no usuario.
+	 */
 	public Emprestimo getEmprestimo(String nome, String telefone,Usuario dono, Usuario requerente, Item item, String dataEmprestimo){
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		
