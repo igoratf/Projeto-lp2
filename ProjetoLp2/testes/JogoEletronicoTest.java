@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import junit.framework.Assert;
+
 import projeto.JogoEletronico;
 
 public class JogoEletronicoTest {
@@ -22,7 +22,7 @@ public class JogoEletronicoTest {
 		try{
 		JogoEletronico jogo1 = new JogoEletronico("Doom", 100.90, "PC");
 		} catch (Exception e){
-			Assert.assertEquals("Plataforma Nula", e.getMessage());
+			assertEquals("Plataforma Nula", e.getMessage());
 		}
 	}
 
