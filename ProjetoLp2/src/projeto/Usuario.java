@@ -50,7 +50,8 @@ public class Usuario {
 	}
 
 	/**
-	 * Altera o nome do Usuário.
+	 * imo("João", "8345", "João", "8345", "Lucas", "8345", "Guerra",
+	 * "10/08/2017") Altera o nome do Usuário.
 	 * 
 	 * @param nome
 	 *            Novo nome do Usuário.
@@ -79,7 +80,8 @@ public class Usuario {
 	}
 
 	/**
-	 * Retorna o número do celular do Usuário.
+	 * Retorna o número do celular do Usuário. imo("João", "8345", "João",
+	 * "8345", "Lucas", "8345", "Guerra", "10/08/2017")
 	 * 
 	 * @return numCelular Número do Celular do Usuário.
 	 */
@@ -251,7 +253,6 @@ public class Usuario {
 	 *            Nome do Item a ser removido.
 	 */
 	public void removerItem(String nomeItem) {
-		getItem(nomeItem);
 		Item meuItem = getItem(nomeItem);
 		listaItens.remove(meuItem);
 	}
@@ -267,7 +268,6 @@ public class Usuario {
 	 *            Novo valor do Atributo.
 	 */
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
-		getItem(nomeItem);
 		Item meuItem = getItem(nomeItem);
 		if (atributo.equalsIgnoreCase("preco")) {
 			meuItem.setValor(Float.parseFloat(valor));
@@ -288,7 +288,6 @@ public class Usuario {
 	 */
 	public String getInfoItem(String nomeItem, String atributo) {
 		Item meuItem = getItem(nomeItem);
-		getItem(nomeItem);
 		switch (atributo) {
 		case "Preco":
 			return String.valueOf(meuItem.getValor());
@@ -307,7 +306,6 @@ public class Usuario {
 	 */
 	public void emprestarItem(String nomeItem) {
 		Item meuItem = getItem(nomeItem);
-		getItem(nomeItem);
 		if (meuItem.getEstado().equals("Emprestado"))
 			throw new IllegalArgumentException("Item emprestado no momento");
 		else
@@ -355,9 +353,6 @@ public class Usuario {
 		}
 		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
-	
-	
-	
 
 	/**
 	 * Verifica se o preço inserido é válido
@@ -370,8 +365,14 @@ public class Usuario {
 		}
 	}
 
-	
-	public boolean contemEmprestimo(){
+
+	/**
+	 * Verifica se o usuário contém algum empréstimo
+	 * 
+	 * @return boolean que afirma se o usuário contém ou não empréstimo
+	 */
+
+	public boolean contemEmprestimo() {
 		return emprestimos.size() > 0;
 	}
 

@@ -45,6 +45,7 @@ public class UsuarioTest {
 			assertEquals("Numero de Celular nulo invalido!", e.getMessage());
 		}
 	}
+	
 
 	/**
 	 * Testa os métodos getNome e setNome.
