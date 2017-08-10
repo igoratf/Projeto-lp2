@@ -446,7 +446,7 @@ public class ControllerUsuario {
 
 	public void validaItemUsuario(String nome, String telefone, String nomeItem) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).validaItem(nomeItem);
+		mapaUsuarios.get(chave).getItem(nomeItem);
 	}
 
 	public String haPecasPerdidasItem(String nome, String telefone, String nomeItem) {
@@ -466,6 +466,7 @@ public class ControllerUsuario {
 	
 	public Emprestimo getEmprestimo(String nome, String telefone,Usuario dono, Usuario requerente, Item item, String dataEmprestimo){
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		
 		return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item, dataEmprestimo);
 	}
 

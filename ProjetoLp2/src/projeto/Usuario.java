@@ -109,7 +109,7 @@ public class Usuario {
 	 */
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		validaPreco(preco);
-		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
+		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
 	}
 
@@ -174,7 +174,7 @@ public class Usuario {
 	 */
 	public void devolverItem(String nomeItem) {
 		Item meuItem = getItem(nomeItem);
-		validaItem(nomeItem);
+		getItem(nomeItem);
 		meuItem.setEstadoDeEmprestimo(false);
 	}
 
@@ -251,7 +251,7 @@ public class Usuario {
 	 *            Nome do Item a ser removido.
 	 */
 	public void removerItem(String nomeItem) {
-		validaItem(nomeItem);
+		getItem(nomeItem);
 		Item meuItem = getItem(nomeItem);
 		listaItens.remove(meuItem);
 	}
@@ -267,7 +267,7 @@ public class Usuario {
 	 *            Novo valor do Atributo.
 	 */
 	public void atualizarItem(String nomeItem, String atributo, String valor) {
-		validaItem(nomeItem);
+		getItem(nomeItem);
 		Item meuItem = getItem(nomeItem);
 		if (atributo.equalsIgnoreCase("preco")) {
 			meuItem.setValor(Float.parseFloat(valor));
@@ -288,7 +288,7 @@ public class Usuario {
 	 */
 	public String getInfoItem(String nomeItem, String atributo) {
 		Item meuItem = getItem(nomeItem);
-		validaItem(nomeItem);
+		getItem(nomeItem);
 		switch (atributo) {
 		case "Preco":
 			return String.valueOf(meuItem.getValor());
@@ -307,7 +307,7 @@ public class Usuario {
 	 */
 	public void emprestarItem(String nomeItem) {
 		Item meuItem = getItem(nomeItem);
-		validaItem(nomeItem);
+		getItem(nomeItem);
 		if (meuItem.getEstado().equals("Emprestado"))
 			throw new IllegalArgumentException("Item emprestado no momento");
 		else
@@ -370,18 +370,6 @@ public class Usuario {
 		}
 	}
 
-	/**
-	 * Verifica se um item existe na lista de itens a partir de seu nome
-	 * 
-	 * @param nomeItem
-	 */
-	public void validaItem(String nomeItem) {
-		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem))
-				return;
-		}
-		throw new IllegalArgumentException("Item nao encontrado");
-	}
 	
 	public boolean contemEmprestimo(){
 		return emprestimos.size() > 0;
