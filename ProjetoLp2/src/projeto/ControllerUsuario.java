@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Classe Controladora de Usu�rios
+ * Classe Controladora de Usuarios
  * 
- * @author CAIO SANCHES BATISTA DE LIRA - 116210403
+ * @author caiosbl
  * @version 1.0
  *
  */
@@ -17,23 +17,23 @@ public class ControllerUsuario {
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
 
 	/**
-	 * Construtor de Usu�rio.
+	 * Construtor de Usuario.
 	 */
 	public ControllerUsuario() {
 		this.mapaUsuarios = new HashMap<>();
 	}
 
 	/**
-	 * Cadastra um usu�rio no Mapa de Usu�rios.
+	 * Cadastra um usuario no Mapa de Usuarios.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param email
-	 *            Email do Usu�rio.
+	 *            Email do Usuario.
 	 * @throws IllegalArgumentException
-	 *             Caso o usu�rio j� esteja cadastrado.
+	 *             Caso o usuario ja esteja cadastrado.
 	 */
 	public void cadastrarUsuario(String nome, String telefone, String email) {
 		Usuario usuario = new Usuario(nome, email, telefone);
@@ -46,17 +46,17 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Retorna informa��es de um usu�rio.
+	 * Retorna informacoes de um usuario.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param atributo
-	 *            Atributo que se refere a informa��o desejada.
-	 * @return Informa��o.
+	 *            Atributo que se refere a informacao desejada.
+	 * @return Informacao.
 	 * @throws IllegalArgument
-	 *             Caso o atributo seja inv�lido
+	 *             Caso o atributo seja invalido
 	 */
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		ValidaParametros.validaParametrosGetInfoUsuario(nome, telefone, atributo);
@@ -79,14 +79,14 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Remove um usu�rio do mapa de Usu�rios.
+	 * Remove um usuario do mapa de Usuarios.
 	 * 
 	 * @param nome
-	 *            Nome do usu�rio.
+	 *            Nome do usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @throws IllegalArgumentException
-	 *             Caso os dados n�o remetam a um usu�rio v�lido.
+	 *             Caso os dados nao remetam a um usuario valido.
 	 */
 	public void removerUsuario(String nome, String telefone) {
 		ValidaParametros.validaDados(nome, telefone);
@@ -99,21 +99,21 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Atualiza informa��es de um Usu�rio.
+	 * Atualiza informacoes de um Usuario.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param atributo
-	 *            Atributo que ser� atulizado
+	 *            Atributo que sera atulizado
 	 * @param valor
 	 *            Novo valor do Atributo.
 	 * @throws IllegalArgumentException
-	 *             Caso as informa��es do usu�rio n�o remetam a um usu�rio
-	 *             v�lido.
+	 *             Caso as informacoes do usuario nao remetam a um usuario
+	 *             valido.
 	 * @throws IllegalArgumentException
-	 *             Caso o Atributo informado seja inv�lido.
+	 *             Caso o Atributo informado seja invalido.
 	 */
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		ValidaParametros.validaParametrosRemoverUsuario(nome, telefone, atributo, valor);
@@ -148,19 +148,19 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um Jogo Eletr�nico em um Usu�rio
+	 * Cadastra um Jogo Eletronico em um Usuario
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
-	 *            Nome do Jogo Eletr�nico.
+	 *            Nome do Jogo Eletronico.
 	 * @param preco
-	 *            Pre�o do Jogo Eletr�nico.
+	 *            Preco do Jogo Eletronico.
 	 * 
 	 * @param plataforma
-	 *            Tipo da plataforma do Jogo Eletr�nico.
+	 *            Tipo da plataforma do Jogo Eletronico.
 	 */
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 
@@ -169,16 +169,16 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um jogo de Tabuleiro em um Usu�rio.
+	 * Cadastra um jogo de Tabuleiro em um Usuario.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
 	 *            Nome do Jogo de Tabuleiro.
 	 * @param preco
-	 *            Pre�o do Jogo de Tabuleiro.
+	 *            Preco do Jogo de Tabuleiro.
 	 */
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -187,24 +187,24 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um BluRay de Filme em um Usu�rio.
+	 * Cadastra um BluRay de Filme em um Usuario.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
 	 *            Nome do BluRay de Filme.
 	 * @param preco
-	 *            Pre�od o BluRay de Filme.
+	 *            Preco o BluRay de Filme.
 	 * @param duracao
-	 *            Dura��o do Filme.
+	 *            Duracao do Filme.
 	 * @param genero
-	 *            G�nero do Filme.
+	 *            Genero do Filme.
 	 * @param classificacao
-	 *            Classifica��o do Filme.
+	 *            Classificacao do Filme.
 	 * @param anoLancamento
-	 *            Ano de Lan�amento de um filme.
+	 *            Ano de Lancamento de um filme.
 	 */
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
@@ -213,24 +213,24 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um BluRay de S�rie em um Usu�rio.
+	 * Cadastra um BluRay de Serie em um Usuario.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
-	 *            Nome do BluRay de S�rie.
+	 *            Nome do BluRay de Serie.
 	 * @param preco
-	 *            Pre�o do BluRay de S�rie.
+	 *            Preco do BluRay de Serie.
 	 * @param descricao
-	 *            Decri��o do BluRay de S�rie.
+	 *            Decricaoo do BluRay de Serie.
 	 * @param duracao
-	 *            Dura��o do BluRay de S�rie.
+	 *            Duracao do BluRay de Serie.
 	 * @param classificacao
-	 *            Classifica��o do BluRay de S�rie.
+	 *            Classificacao do BluRay de Serie.
 	 * @param genero
-	 *            G�nero do BluRau de S�rie.
+	 *            Genero do BluRau de Serie.
 	 * @param temporada
 	 */
 	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
@@ -241,16 +241,16 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona uma pe�a perdida de um Jogo de Tabuleiro.
+	 * Adiciona uma peca perdida de um Jogo de Tabuleiro.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
 	 *            Nome do Jogo de Tabuleiro.
 	 * @param nomePeca
-	 *            Nome da Pe�a.
+	 *            Nome da Peca.
 	 */
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -258,12 +258,12 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Remove um Item da Cole��o de Itens de um Usu�rio.
+	 * Remove um Item da Colecao de Itens de um Usuario.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
 	 *            Nome do Item a ser removido.
 	 */
@@ -274,12 +274,12 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Atualiza informa��es de um Item
+	 * Atualiza informacoes de um Item
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
 	 *            Nome do Item.
 	 * @param atributo
@@ -294,17 +294,17 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Retorna informa��es de um item.
+	 * Retorna informacoes de um item.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeItem
 	 *            Nome do Item.
 	 * @param atributo
-	 *            Atributo referente a informa��o desejada.
-	 * @return Representa��o em String da Informa��o desejada.
+	 *            Atributo referente a informacao desejada.
+	 * @return Representacao em String da Informacao desejada.
 	 */
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -316,21 +316,21 @@ public class ControllerUsuario {
 	 * Cadastra um BluRay de um Show
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio
+	 *            Telefone do Usuario
 	 * @param nomeItem
 	 *            Nome do BluRay de Show.
 	 * @param preco
-	 *            Pre�o do BluRau de Show.
+	 *            Preco do BluRay de Show.
 	 * @param duracao
-	 *            Dura��o do BluRay de Show.
+	 *            Duracao do BluRay de Show.
 	 * @param numFaixas
-	 *            N�mero de Faixas do BluRay de Show.
+	 *            Numero de Faixas do BluRay de Show.
 	 * @param nomeArtista
 	 *            Nome de Artista do BluRay de Show.
 	 * @param classificacao
-	 *            Classifica��o do BluRay de Show.
+	 *            Classificacao do BluRay de Show.
 	 */
 	public void cadastrarBlurayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
 			int numFaixas, String nomeArtista, String classificacao) {
@@ -339,16 +339,16 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona um BluRay de um episodio a uma temporada de um s�rie.
+	 * Adiciona um BluRay de um episodio a uma temporada de um serie.
 	 * 
 	 * @param nome
-	 *            Nome do Usu�rio.
+	 *            Nome do Usuario.
 	 * @param telefone
-	 *            Telefone do Usu�rio.
+	 *            Telefone do Usuario.
 	 * @param nomeBlurayTemporada
-	 *            Nome do BluRay de Temporada da S�rie.
+	 *            Nome do BluRay de Temporada da Serie.
 	 * @param duracao
-	 *            Dura��o do Epis�dio.
+	 *            Duracao do Episodio.
 	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -430,11 +430,11 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Checa se uma chave est� contida no Mapa.
+	 * Checa se uma chave esta contida no Mapa.
 	 * 
 	 * @param chave
 	 * @throws IllegalArgumentException
-	 *             Exce��o informando que o usu�rio n�o est� cadastrado.
+	 *             Excecao informando que o usuario nao esta cadastrado.
 	 */
 	public boolean checaSeUsuarioJaExiste(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -446,7 +446,7 @@ public class ControllerUsuario {
 
 	public void validaItemUsuario(String nome, String telefone, String nomeItem) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).validaItem(nomeItem);
+		mapaUsuarios.get(chave).getItem(nomeItem);
 	}
 
 	public String haPecasPerdidasItem(String nome, String telefone, String nomeItem) {
@@ -466,6 +466,7 @@ public class ControllerUsuario {
 	
 	public Emprestimo getEmprestimo(String nome, String telefone,Usuario dono, Usuario requerente, Item item, String dataEmprestimo){
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		
 		return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item, dataEmprestimo);
 	}
 

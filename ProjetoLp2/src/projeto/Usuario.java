@@ -111,7 +111,7 @@ public class Usuario {
 	 */
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		validaPreco(preco);
-		Item jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
+		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		listaItens.add(jogoEletronico);
 	}
 
@@ -176,7 +176,7 @@ public class Usuario {
 	 */
 	public void devolverItem(String nomeItem) {
 		Item meuItem = getItem(nomeItem);
-		validaItem(nomeItem);
+		getItem(nomeItem);
 		meuItem.setEstadoDeEmprestimo(false);
 	}
 
@@ -364,6 +364,7 @@ public class Usuario {
 			throw new IllegalArgumentException("Preco invalido");
 		}
 	}
+
 
 	/**
 	 * Verifica se o usuário contém algum empréstimo

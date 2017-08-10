@@ -62,6 +62,9 @@ public class JogoEletronico extends Item {
 	public boolean validaAtributo(String plataforma){
 		if (plataforma == null)
 			throw new NullPointerException("Plataforma Nula");
+		else if(plataforma.trim().equals("")){
+			throw new NullPointerException("Plataforma Vazia Invalida");
+		}
 		
 		
 		return true;
