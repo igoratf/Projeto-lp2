@@ -231,7 +231,7 @@ public class ControllerUsuarioTest {
 		try {
 			controllerUsuario.validaItemUsuario("Caio", "8398", "Damas");
 			fail("Item com nome Antigo não removido");
-		} catch (IllegalArgumentException e) {
+		} catch (RuntimeException e) {
 			assertEquals("Item nao encontrado", e.getMessage());
 		}
 
