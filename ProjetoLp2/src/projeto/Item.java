@@ -6,7 +6,7 @@ package projeto;
  * @author javanktl
  *
  */
-public  abstract class Item implements Comparable<Item> {
+public abstract class Item implements Comparable<Item> {
 
 	private String nome;
 
@@ -45,6 +45,8 @@ public  abstract class Item implements Comparable<Item> {
 		}
 		return "Nao emprestado";
 	}
+
+	
 
 	@Override
 	public String toString() {

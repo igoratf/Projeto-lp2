@@ -1,14 +1,15 @@
+package testes;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
 import org.junit.Before;
 
-import projeto.BluraySeries;
 import projeto.Emprestimo;
 import projeto.Item;
-import projeto.JogoTabuleiro;
 import projeto.Usuario;
+import projeto.Jogo.JogoTabuleiro;
+import projeto.bluray.BluraySeries;
 
 import org.junit.Test;
 

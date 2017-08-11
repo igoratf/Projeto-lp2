@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import projeto.Jogo.JogoEletronico;
+import projeto.Jogo.JogoTabuleiro;
+import projeto.bluray.Bluray;
+import projeto.bluray.BlurayEpisodio;
+import projeto.bluray.BlurayFilme;
+import projeto.bluray.BluraySeries;
+import projeto.bluray.BlurayShow;
+
 /**
  * Classe de Usuário.
  * 

@@ -1,6 +1,8 @@
-package projeto;
+package projeto.bluray;
 
 import java.util.ArrayList;
+
+import projeto.enums.Genero;
 
 /**
  * Classe que irá modelar objetos do tipo BluraySeries, que terá uma coleção de

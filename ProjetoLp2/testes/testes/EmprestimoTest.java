@@ -1,3 +1,4 @@
+package testes;
 
 
 import static org.junit.Assert.*;
@@ -8,8 +9,8 @@ import org.junit.Test;
 import projeto.Emprestimo;
 
 import projeto.Item;
-import projeto.JogoTabuleiro;
 import projeto.Usuario;
+import projeto.Jogo.JogoTabuleiro;
 
 public class EmprestimoTest {
 	private Emprestimo emprestimo;

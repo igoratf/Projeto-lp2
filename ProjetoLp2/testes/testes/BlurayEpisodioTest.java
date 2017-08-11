@@ -1,8 +1,9 @@
+package testes;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import projeto.BlurayEpisodio;
+import projeto.bluray.BlurayEpisodio;
 /**
  * Classe de teste de BlurayEpisodio
  * @author igoratf
