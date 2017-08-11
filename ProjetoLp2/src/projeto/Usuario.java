@@ -7,7 +7,7 @@ import java.util.Locale;
 /**
  * Classe de Usuário.
  * 
- * @author CAIO SANCHES BATISTA DE LIRA - MATRICULA: 116210403, igoratf
+ * @author caiosbl, igoratf
  * @version 2.0
  *
  */
