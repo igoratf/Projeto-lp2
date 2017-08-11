@@ -5,7 +5,11 @@ import org.junit.Test;
 
 import projeto.BlurayEpisodio;
 import projeto.BluraySeries;
-
+/**
+ * Classe de teste de BluraySeries
+ * @author igoratf
+ *
+ */
 public class BluraySeriesTest {
 	
 	BluraySeries bluraySerie = new BluraySeries("Game of Thrones", 90.00, 120, "Melhor série", "DEZESSEIS_ANOS", "AVENTURA", 7);
@@ -35,6 +39,63 @@ public class BluraySeriesTest {
 		BlurayEpisodio episodio1 = new BlurayEpisodio(60);
 		bluraySerie2.adicionarBluray(episodio1);
 		assertEquals(true, bluraySerie2.contemEpisodio());
+	}
+	
+	/**
+	 * Verifica se parâmetros nulos estão retornando exceção
+	 */
+	@Test
+	public void BlurayNullTest() {
+		try {
+			BluraySeries bluraySerie3 = new BluraySeries(null,90.00, 120, "Serio","LIVRE", "OUTRO", 1);
+		} catch (Exception e) {
+			assertEquals("Nome nulo", e.getMessage());
+		}
+		try {
+			BluraySeries bluraySerie3 = new BluraySeries("Get Down", 200.0, 120, "Serio", null, "OUTRO", 2);
+		} catch (Exception e) {
+			assertEquals("Classificacao nula", e.getMessage());
+		}
+		try {
+			BluraySeries bluraySerie = new BluraySeries("GetDown", 200, 120, null, "LIVRE", "OUTRO", 2);
+		} catch (Exception e) {
+			assertEquals("Descricao nula", e.getMessage());
+		}
+	}
+	
+	/**
+	 * Verifica se nome e classificação vazios estão retornando exceção
+	 */
+	@Test
+	public void BlurayVazioTest() {
+		try {
+			BluraySeries bluray = new BluraySeries("", 90.00, 120, "Serio", "LIVRE", "OUTRO", 1);
+		} catch (Exception e) {
+			assertEquals("Nome vazio", e.getMessage());
+		}
+		try {
+			BluraySeries bluray = new BluraySeries("Nome", 90.00, 120, "","LIVRE", "OUTRO", 1);
+		} catch (Exception e) {
+			assertEquals("Descricao vazia", e.getMessage());
+		}
+	}
+	
+	/**
+	 * Verifica se números inválidos estão retornando exceção
+	 */
+	@Test
+	public void BlurayNumbersTest() {
+		try {
+			BluraySeries bluray = new BluraySeries("Nome", -1, 120, "Serio", "LIVRE", "OUTRO", 1);
+		} catch (Exception e) {
+			assertEquals("Valor invalido", e.getMessage());
+		}
+		
+		try {
+			BluraySeries bluray = new BluraySeries("Nome", 90.00, -300, "Serio", "LIVRE", "OUTRO", 1);
+		} catch (Exception e) {
+			assertEquals("Duracao invalida", e.getMessage());
+		}
 	}
 
 }
