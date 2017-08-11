@@ -31,6 +31,7 @@ public class BluraySeries extends Bluray {
 	public BluraySeries(String nome, double valor, int duracao, String descricao, String classificacao, String genero,
 			int temporada) {
 		super(nome, valor, duracao, classificacao);
+		validaBluray(nome, valor, duracao, classificacao, genero, temporada);
 		episodios = new ArrayList<BlurayEpisodio>();
 		this.descricao = descricao;
 		this.genero = Genero.valueOf(genero);
@@ -114,6 +115,12 @@ public class BluraySeries extends Bluray {
 		return true;
 	}
 	
+	public void validaBluray(String nome, double valor, int duracao, String classificacao, String genero, int temporada) {
+		super.validaBluray(nome, valor, duracao, classificacao);
+		if (genero == null) throw new NullPointerException("Genero nulo");
+		if (genero.trim().equals("")) throw new IllegalArgumentException("Genero vazio");
+		if (temporada <= 0) throw new IllegalArgumentException("Temporada invalida");
+	}
 	
 
 }

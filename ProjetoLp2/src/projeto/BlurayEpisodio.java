@@ -20,6 +20,7 @@ public class BlurayEpisodio {
 	 */
 
 	public BlurayEpisodio(int duracao) {
+		if (duracao <= 0) throw new IllegalArgumentException("Duracao invalida");
 		this.duracao = duracao;
 	}
 
@@ -44,4 +45,5 @@ public class BlurayEpisodio {
 			return false;
 		return true;
 	}
+	
 }

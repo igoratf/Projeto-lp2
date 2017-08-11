@@ -1,10 +1,21 @@
 package projeto;
-
+/**
+ * Classe que representa um Bluray genérico
+ * @author igoratf, javanlacerda
+ *
+ */
 public class Bluray extends Item {
 
 	private int duracao;
 	private Classificacao classificacao;
-
+	
+	/**
+	 * Construtor de objetos do tipo Bluray
+	 * @param nome é o nome do bluray
+	 * @param valor é o valor do bluray
+	 * @param duracao é a duração do bluray
+	 * @param classificacao é a classificação indicativa do bluray
+	 */
 	public Bluray(String nome, double valor, int duracao, String classificacao) {
 		super(nome, valor);
 		validaBluray(nome, valor, duracao, classificacao);
