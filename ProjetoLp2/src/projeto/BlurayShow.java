@@ -3,7 +3,7 @@ package projeto;
 /**
  * Classe que modela a construção de objetos do tipo BlurayShow
  * 
- * @author igoratf
+ * @author igoratf, javanlacerda
  *
  */
 public class BlurayShow extends Bluray {
@@ -30,6 +30,7 @@ public class BlurayShow extends Bluray {
 
 	public BlurayShow(String nome, double valor, int duracao, int numFaixas, String nomeArtista, String classificacao) {
 		super(nome, valor, duracao, classificacao);
+		validaBluray(nome, valor, duracao, numFaixas, nomeArtista, classificacao);
 		this.nomeArtista = nomeArtista;
 		this.numFaixas = numFaixas;
 
@@ -67,6 +68,15 @@ public class BlurayShow extends Bluray {
 		if (numFaixas != other.numFaixas)
 			return false;
 		return true;
+	}
+	
+	public void validaBluray(String nome, double valor, int duracao, int numFaixas, String nomeArtista, String classificacao) {
+		super.validaBluray(nome, valor, duracao, classificacao);
+		if (nomeArtista == null) throw new NullPointerException("Nome do artista nulo");
+		if (classificacao == null) throw new NullPointerException("Classificacao nula");
+		if (nomeArtista.trim().equals("")) throw new IllegalArgumentException("Nome do artista vazio");
+		if (classificacao.trim().equals("")) throw new IllegalArgumentException("Classificacao vazia");
+		if (numFaixas <= 0) throw new IllegalArgumentException("Numero de faixas invalido");
 	}
 
 }

@@ -1,12 +1,24 @@
 package projeto;
-
+/**
+ * Classe que representa um Bluray genérico
+ * @author igoratf, javanlacerda
+ *
+ */
 public class Bluray extends Item {
 
 	private int duracao;
 	private Classificacao classificacao;
-
+	
+	/**
+	 * Construtor de objetos do tipo Bluray
+	 * @param nome é o nome do bluray
+	 * @param valor é o valor do bluray
+	 * @param duracao é a duração do bluray
+	 * @param classificacao é a classificação indicativa do bluray
+	 */
 	public Bluray(String nome, double valor, int duracao, String classificacao) {
 		super(nome, valor);
+		validaBluray(nome, valor, duracao, classificacao);
 		this.duracao = duracao;
 		this.classificacao = Classificacao.valueOf(classificacao);
 	}
@@ -46,6 +58,15 @@ public class Bluray extends Item {
 	@Override
 	public String toString() {
 		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
+	}
+	
+	public void validaBluray(String nome, double valor, int duracao, String classificacao) {
+		if (nome == null) throw new NullPointerException("Nome nulo");
+		if (classificacao == null) throw new NullPointerException("Classificacao nula");
+		if (nome.trim().equals("")) throw new IllegalArgumentException("Nome vazio");
+		if (classificacao.trim().equals("")) throw new IllegalArgumentException("Classificacao vazia");
+		if (valor <= 0) throw new IllegalArgumentException("Valor invalido");
+		if (duracao <= 0) throw new IllegalArgumentException("Duracao invalida");
 	}
 
 }
