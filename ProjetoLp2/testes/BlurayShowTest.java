@@ -4,6 +4,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projeto.BlurayShow;
+/**
+ * Testes de BluRayShow
+ * 
+ * @author caiosbl
+ *
+ */
 
 public class BlurayShowTest {
 	private BlurayShow bluRay;
@@ -18,7 +24,7 @@ public class BlurayShowTest {
 	 * inválidos.
 	 */
 	@Test
-	public void cadastraBlurayInvalidoTest() {
+	public void criaBlurayShowInvalidoTest() {
 
 		try {
 			bluRay = new BlurayShow("", 199, 120, 20, "Anitta", "Livre");
@@ -46,7 +52,7 @@ public class BlurayShowTest {
 		}
 		try {
 			bluRay = new BlurayShow("AN LIVE", 20, 100, 0, "Anitta", "LIVRE");
-			fail("Exceção de Duração invalida não lançada");
+			fail("Exceção de Numero de faixas invalida não lançada");
 		} catch (IllegalArgumentException e) {
 			assertEquals("Numero de faixas invalido", e.getMessage());
 		}
