@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import projeto.Jogo.JogoTabuleiro;
+import projeto.bluray.BluraySeries;
+
 /**
  * Classe Controladora de Usuarios
  * 

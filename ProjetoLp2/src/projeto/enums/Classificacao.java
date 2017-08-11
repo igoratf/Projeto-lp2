@@ -1,4 +1,4 @@
-package projeto;
+package projeto.enums;
 
 public enum Classificacao {
 	

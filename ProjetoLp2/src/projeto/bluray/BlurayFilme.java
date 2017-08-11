@@ -1,4 +1,6 @@
-package projeto;
+package projeto.bluray;
+
+import projeto.enums.Genero;
 
 /**
  * Classe que serve como modelo para a criação de objetos do tipo BlurayFilme

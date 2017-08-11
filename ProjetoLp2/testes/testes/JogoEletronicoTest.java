@@ -1,9 +1,9 @@
+package testes;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
-import projeto.JogoEletronico;
+import projeto.Jogo.JogoEletronico;
 
 public class JogoEletronicoTest {
 	

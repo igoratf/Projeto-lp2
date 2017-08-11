@@ -1,9 +1,10 @@
+package testes;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import projeto.BlurayFilme;
+import projeto.bluray.BlurayFilme;
 /**
  * Testes de BlurayFilme
  * 

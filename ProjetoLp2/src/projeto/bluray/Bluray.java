@@ -1,4 +1,8 @@
-package projeto;
+package projeto.bluray;
+
+import projeto.Item;
+import projeto.enums.Classificacao;
+
 /**
  * Classe que representa um Bluray genérico
  * @author igoratf, javanlacerda

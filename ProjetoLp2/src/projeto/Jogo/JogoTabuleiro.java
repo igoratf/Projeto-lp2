@@ -1,8 +1,10 @@
-package projeto;
+package projeto.Jogo;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import projeto.Item;
 
 /**
  * Classe correspondente a um jogo de tabuleiro, um tipo de item que pode ser

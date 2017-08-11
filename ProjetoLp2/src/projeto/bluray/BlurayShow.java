@@ -1,4 +1,4 @@
-package projeto;
+package projeto.bluray;
 
 /**
  * Classe que modela a construção de objetos do tipo BlurayShow
@@ -69,14 +69,36 @@ public class BlurayShow extends Bluray {
 			return false;
 		return true;
 	}
-	
-	public void validaBluray(String nome, double valor, int duracao, int numFaixas, String nomeArtista, String classificacao) {
+
+	/**
+	 * Valida os parâmetros que constroem o objeto BlurayShow
+	 * 
+	 * @param nome
+	 *            Nome do Bluray
+	 * @param valor
+	 *            Valor do Bluray
+	 * @param duracao
+	 *            Duração do Bluray
+	 * @param numFaixas
+	 *            Número de faixas do Bluray
+	 * @param nomeArtista
+	 *            Nome do Artista
+	 * @param classificacao
+	 *            Classificação do Bluray.
+	 */
+	public void validaBluray(String nome, double valor, int duracao, int numFaixas, String nomeArtista,
+			String classificacao) {
 		super.validaBluray(nome, valor, duracao, classificacao);
-		if (nomeArtista == null) throw new NullPointerException("Nome do artista nulo");
-		if (classificacao == null) throw new NullPointerException("Classificacao nula");
-		if (nomeArtista.trim().equals("")) throw new IllegalArgumentException("Nome do artista vazio");
-		if (classificacao.trim().equals("")) throw new IllegalArgumentException("Classificacao vazia");
-		if (numFaixas <= 0) throw new IllegalArgumentException("Numero de faixas invalido");
+		if (nomeArtista == null)
+			throw new NullPointerException("Nome do artista nulo");
+		if (classificacao == null)
+			throw new NullPointerException("Classificacao nula");
+		if (nomeArtista.trim().equals(""))
+			throw new IllegalArgumentException("Nome do artista vazio");
+		if (classificacao.trim().equals(""))
+			throw new IllegalArgumentException("Classificacao vazia");
+		if (numFaixas <= 0)
+			throw new IllegalArgumentException("Numero de faixas invalido");
 	}
 
 }

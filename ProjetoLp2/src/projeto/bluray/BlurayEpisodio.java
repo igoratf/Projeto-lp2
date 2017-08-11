@@ -1,4 +1,4 @@
-package projeto;
+package projeto.bluray;
 
 /**
  * Classe que possui informações para a construção de objetos do tipo BlurayEpisodio que irá

@@ -1,5 +1,7 @@
-package projeto;
+package projeto.Jogo;
 
+import projeto.Item;
+import projeto.enums.Plataforma;
 
 /**
  * Classe criada referente ao jogo eletronico que é uma subclasse de Item.

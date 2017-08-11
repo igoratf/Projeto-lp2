@@ -1,10 +1,11 @@
+package testes;
 import static org.junit.Assert.*;
 
 
 import org.junit.Test;
 
-import projeto.BlurayEpisodio;
-import projeto.BluraySeries;
+import projeto.bluray.BlurayEpisodio;
+import projeto.bluray.BluraySeries;
 /**
  * Classe de teste de BluraySeries
  * @author igoratf
