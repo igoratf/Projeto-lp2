@@ -60,6 +60,13 @@ public class Bluray extends Item {
 		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
 	}
 	
+	/**
+	 * Método de validação do bluray
+	 * @param nome é o nome do bluray
+	 * @param valor é o valor do bluray
+	 * @param duracao é a duração do bluray
+	 * @param classificacao é a classificação do bluray
+	 */
 	public void validaBluray(String nome, double valor, int duracao, String classificacao) {
 		if (nome == null) throw new NullPointerException("Nome nulo");
 		if (classificacao == null) throw new NullPointerException("Classificacao nula");
