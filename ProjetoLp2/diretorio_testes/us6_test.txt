@@ -1,0 +1,80 @@
+﻿#####################
+# PROJETO LP2 - US6 #
+#####################
+
+
+iniciarSistema
+
+
+cadastrarUsuario nome="Jericho" telefone="90510-2010" email="jericho@email.com"
+expect "0.0" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Reputacao"
+
+
+cadastrarUsuario nome="Shauna" telefone="91005-2011" email="shauna@email.com"
+expect "0.0" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
+
+
+cadastrarUsuario nome="Sarah" telefone="90809-2010" email="sarah@email.com"
+expect "0.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
+
+
+cadastrarEletronico nome="Jericho" telefone="90510-2010" nomeItem="Age of Empires III" preco=70.00 plataforma="PC"
+# Reputcao de Jericho: 0 + 70 * 0.05 = 3.5
+expect "3.5" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Reputacao"
+
+
+cadastrarEletronico nome="Jericho" telefone="90510-2010" nomeItem="Age of Empires II" preco=37.00 plataforma="PC"
+# Reputcao de Jericho: 3.5 + 37 * 0.05 = 3.5 + 1.85 = 5.35
+expect "5.35" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Reputacao"
+
+
+cadastrarBluRayShow nome="Jericho" telefone="90510-2010" nomeItem="DJ Sona: Ultimate Concert" preco=3250.00 duracao=13 numeroFaixas=3 artista="Sona" classificacao="LIVRE"
+# Reputcao de Jericho: 5.35 + 3250 * 0.05 = 5.35 + 162.5 = 5.35
+expect "167.85" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Reputacao"
+
+
+cadastrarJogoTabuleiro nome="Shauna" telefone="91005-2011" nomeItem="MECHS VS MINIONS" preco=230.00
+# Reputcao de Shauna: 0 + 230 * 0.05 = 11.5
+expect "11.5" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
+
+
+cadastrarBluRaySerie nome="Shauna" telefone="91005-2011" nomeItem="A Lenda de Sleepy Hollow" preco=115.00 descricao="Ressurreicao, cavaleiros do apocalipse, bruxas..." duracao=42 classificacao="QUATORZE_ANOS" genero="ACAO" temporada=2
+# Reputcao de Shauna: 11.5 + 115 * 0.05 = 11.5 + 5.75 = 17.25
+expect "17.25" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
+
+
+cadastrarBluRayFilme nome="Sarah" telefone="90809-2010" nomeItem="Piratas do Caribe: A Vingança de Salazar" preco=60.00 duracao=129 genero="AVENTURA" classificacao="DOZE_ANOS" anoLancamento=2017
+# Reputcao de Sarah: 0 + 60 * 0.05 = 3
+expect "3.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
+
+
+cadastrarBluRayFilme nome="Sarah" telefone="90809-2010" nomeItem="Piratas do Caribe: A Maldição do Pérola Negra" preco=20.00 duracao=136 genero="AVENTURA" classificacao="QUATORZE_ANOS" anoLancamento=2003
+# Reputcao de Sarah: 3.0 + 20 * 0.05 = 3.0 + 1.0 = 4.0
+expect "4.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
+
+
+registrarEmprestimo nomeDono="Jericho" telefoneDono="90510-2010" nomeRequerente="Sarah" telefoneRequerente="90809-2010" nomeItem="DJ Sona: Ultimate Concert" dataEmprestimo="03/05/2018" periodo=7
+# Reputcao de Jericho: 167.85 + 3250 * 0.1 = 167.85 + 325.0 = 492.85
+expect "492.85" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Reputacao"
+expect "4.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
+
+
+devolverItem nomeDono="Jericho" telefoneDono="90510-2010" nomeRequerente="Sarah" telefoneRequerente="90809-2010" nomeItem="DJ Sona: Ultimate Concert" dataEmprestimo="03/05/2018" dataDevolucao="12/05/2018"
+# Reputcao de Sarah: 4.0 - 3250 * 2 * 0.01 = 4.0 - 65.0 = -61.0
+expect "-61.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
+expect "492.85" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Reputacao"
+
+
+registrarEmprestimo nomeDono="Sarah" telefoneDono="90809-2010" nomeRequerente="Shauna" telefoneRequerente="91005-2011" nomeItem="Piratas do Caribe: A Vingança de Salazar" dataEmprestimo="05/05/2018" periodo=7
+# Reputcao de Sarah: -61.0 + 60 * 0.1 = -61.0 + 6 = -55.0
+expect "-55.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
+expect "17.25" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
+
+
+devolverItem nomeDono="Sarah" telefoneDono="90809-2010" nomeRequerente="Shauna" telefoneRequerente="91005-2011" nomeItem="Piratas do Caribe: A Vingança de Salazar" dataEmprestimo="05/05/2018" dataDevolucao="12/05/2018"
+# Reputcao de Shauna: 17.25 + 60 * 0.05 = 17.25 + 3.0 = 20.25
+expect "20.25" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
+expect "-55.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
+
+
+fecharSistema
