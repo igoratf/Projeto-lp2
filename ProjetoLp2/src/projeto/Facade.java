@@ -87,6 +87,30 @@ public class Facade {
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){
 		controller.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		controller.listarEmprestimosUsuarioEmprestando(nome, telefone);
+	}
+	
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
+		controller.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+	}
+	
+	public String listarEmprestimosItem(String nomeItem) {
+		controller.listarEmprestimosItem(nomeItem);
+	}
+	
+	public String listarItensEmprestados() {
+		controller.listarItensEmprestados();
+	}
+	
+	public String listarItensNaoEmprestados() {
+		controller.listarItensNaoEmprestados();
+	}
+	
+	public String listarTop10Itens() {
+		controller.listarTop10itens();
+	}
 
 	public void fecharSistema() {
 

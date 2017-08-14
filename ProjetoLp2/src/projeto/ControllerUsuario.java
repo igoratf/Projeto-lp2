@@ -589,5 +589,41 @@ public class ControllerUsuario {
 
 		return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item, dataEmprestimo);
 	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		/*
+		 * Corpo do método aqui
+		 */
+	}
+	
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
+		/*
+		 * Corpo do método aqui
+		 */
+	}
+	
+	public String listarEmprestimosItem(String nomeItem) {
+		/*
+		 * Corpo do método aqui
+		 */
+	}
+	
+	public String listarItensEmprestados() {
+		/*
+		 * Corpo do método aqui
+		 */
+	}
+	
+	public String listarItensNaoEmprestados() {
+		/*
+		 * Corpo do método aqui
+		 */
+	}
+	
+	public String listarTop10Itens() {
+		/*
+		 * Corpo do método aqui
+		 */
+	}
 
 }
