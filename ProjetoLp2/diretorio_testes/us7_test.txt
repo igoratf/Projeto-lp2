@@ -1,0 +1,57 @@
+﻿#####################
+# PROJETO LP2 - US7 #
+#####################
+
+
+iniciarSistema
+
+
+expect "BomAmigo" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Cartao"
+expect "Noob" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Cartao"
+expect "Caloteiro" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Cartao"
+
+
+expectError "Usuario nao pode pegar nenhum item emprestado" registrarEmprestimo nomeDono="Jericho" telefoneDono="90510-2010" nomeRequerente="Sarah" telefoneRequerente="90809-2010" nomeItem="Age of Empires III" dataEmprestimo="03/06/2018" periodo=1
+
+
+cadastrarUsuario nome="Evaine" telefone="90211-2010" email="evaine@email.com"
+expect "FreeRyder" getInfoUsuario nome="Evaine" telefone="90211-2010" atributo="Cartao"
+
+
+cadastrarUsuario nome="Tobias" telefone="92102-2009" email="tobias@email.com"
+expect "FreeRyder" getInfoUsuario nome="Tobias" telefone="92102-2009" atributo="Cartao"
+
+
+cadastrarBluRayShow nome="Evaine" telefone="90211-2010" nomeItem="Smite and Ignite" preco=2666.00 duracao=30 numeroFaixas=8 artista="Pentakill" classificacao="DEZOITO_ANOS"
+expect "BomAmigo" getInfoUsuario nome="Evaine" telefone="90211-2010" atributo="Cartao"
+
+
+expectError "Usuario impossiblitado de pegar emprestado por esse periodo" registrarEmprestimo nomeDono="Evaine" telefoneDono="90211-2010" nomeRequerente="Tobias" telefoneRequerente="92102-2009" nomeItem="Smite and Ignite" dataEmprestimo="04/06/2018" periodo=6
+
+
+cadastrarEletronico nome="Tobias" telefone="92102-2009" nomeItem="Yu-Gi-Oh! Power of Chaos: Yugi the Destiny" preco=50.00 plataforma="PC"
+expect "Noob" getInfoUsuario nome="Tobias" telefone="92102-2009" atributo="Cartao"
+
+
+expectError "Usuario impossiblitado de pegar emprestado por esse periodo" registrarEmprestimo nomeDono="Evaine" telefoneDono="90211-2010" nomeRequerente="Tobias" telefoneRequerente="92102-2009" nomeItem="Smite and Ignite" dataEmprestimo="04/06/2018" periodo=8
+
+
+registrarEmprestimo nomeDono="Evaine" telefoneDono="90211-2010" nomeRequerente="Tobias" telefoneRequerente="92102-2009" nomeItem="Smite and Ignite" dataEmprestimo="04/06/2018" periodo=7
+devolverItem nomeDono="Evaine" telefoneDono="90211-2010" nomeRequerente="Tobias" telefoneRequerente="92102-2009" nomeItem="Smite and Ignite" dataEmprestimo="04/06/2018" dataDevolucao="15/06/2018"
+expect "Caloteiro" getInfoUsuario nome="Tobias" telefone="92102-2009" atributo="Cartao"
+
+
+cadastrarUsuario nome="Atreus" telefone="90202-2010" email="energumeno@email.com"
+expect "FreeRyder" getInfoUsuario nome="Atreus" telefone="90202-2010" atributo="Cartao"
+
+
+registrarEmprestimo nomeDono="Tobias" telefoneDono="92102-2009" nomeRequerente="Atreus" telefoneRequerente="90202-2010" nomeItem="Yu-Gi-Oh! Power of Chaos: Yugi the Destiny" dataEmprestimo="20/06/2018" periodo=5
+devolverItem  nomeDono="Tobias" telefoneDono="92102-2009" nomeRequerente="Atreus" telefoneRequerente="90202-2010" nomeItem="Yu-Gi-Oh! Power of Chaos: Yugi the Destiny" dataEmprestimo="20/06/2018" dataDevolucao="26/06/2018"
+expect "Caloteiro" getInfoUsuario nome="Atreus" telefone="90202-2010" atributo="Cartao"
+
+
+cadastrarEletronico nome="Atreus" telefone="90202-2010" nomeItem="God of War III" preco=70.00 plataforma="PS3"
+expect "Noob" getInfoUsuario nome="Atreus" telefone="90202-2010" atributo="Cartao"
+
+
+fecharSistema

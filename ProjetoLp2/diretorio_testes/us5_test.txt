@@ -1,0 +1,49 @@
+﻿#####################
+# PROJETO LP2 - US5 #
+#####################
+
+
+iniciarSistema
+
+
+expect "Emprestimos: EMPRESTIMO - De: Joao, Para: Carlos, War, 1/1/2018, 7 dias, ENTREGA: 6/1/2018|EMPRESTIMO - De: Joao, Para: Josefina, Xadrez de Bruxo, 15/1/2018, 7 dias, ENTREGA: Emprestimo em andamento|" listarEmprestimosUsuarioEmprestando nome="Joao" telefone="98888-8888"
+expect "Nenhum item emprestado" listarEmprestimosUsuarioEmprestando nome="Carlos" telefone="89999-9999"
+
+
+expect "Nenhum item pego emprestado" listarEmprestimosUsuarioPegandoEmprestado nome="Joao" telefone="98888-8888"
+expect "Emprestimos pegos: EMPRESTIMO - De: Joao, Para: Carlos, War, 1/1/2018, 7 dias, ENTREGA: 6/1/2018|" listarEmprestimosUsuarioPegandoEmprestado nome="Carlos" telefone="89999-9999"
+expect "Emprestimos pegos: EMPRESTIMO - De: Joao, Para: Josefina, Xadrez de Bruxo, 15/1/2018, 7 dias, ENTREGA: Emprestimo em andamento|" listarEmprestimosUsuarioPegandoEmprestado nome="Josefina" telefone="77777-7777"
+
+
+registrarEmprestimo nomeDono="Joao" telefoneDono="98888-8888" nomeRequerente="Maria" telefoneRequerente="96666-6666" nomeItem="War" dataEmprestimo="07/01/2018" periodo=7
+
+
+expect "Emprestimos associados ao item: EMPRESTIMO - De: Joao, Para: Carlos, War, 1/1/2018, 7 dias, ENTREGA: 6/1/2018|EMPRESTIMO - De: Joao, Para: Maria, War, 7/1/2018, 7 dias, ENTREGA: Emprestimo em andamento|" listarEmprestimosItem nomeItem="War"
+expect "Emprestimos associados ao item: EMPRESTIMO - De: Joao, Para: Josefina, Xadrez de Bruxo, 15/1/2018, 7 dias, ENTREGA: Emprestimo em andamento|" listarEmprestimosItem nomeItem="Xadrez de Bruxo"
+expect "Nenhum mprestimos associados ao item" listarEmprestimosItem nomeItem="Pokemon Omega Ruby"
+
+
+expect "FILME: Crepusculo, R$ 1.99, Nao emprestado, 120 min, QUATORZE_ANOS, ROMANCE, 2008|SHOW: RBD Ao Vivo, R$ 19.99, Nao emprestado, 60 min, DOZE_ANOS, REBELDES, 20 faixas|SERIE: The Walking Dead, R$ 79.99, Nao emprestado, 120 min, DEZESSEIS_ANOS, SUSPENSE, Temporada 1|JOGO ELETRONICO: Pokemon Omega Ruby, R$ 20.0, Nao emprestado, OUTRO|" listarItensNaoEmprestados
+expect "Dono do item: Joao, Nome do item emprestado: Xadrez de Bruxo|Dono do item: Joao, Nome do item emprestado: War|" listarItensEmprestados
+
+
+registrarEmprestimo nomeDono="Carlos" telefoneDono="89999-9999" nomeRequerente="Vilmar" telefoneRequerente="55555-9999" nomeItem="The Walking Dead" dataEmprestimo="03/01/2018" periodo=7
+
+
+expect "Dono do item: Carlos, Nome do item emprestado: The Walking Dead|Dono do item: Joao, Nome do item emprestado: Xadrez de Bruxo|Dono do item: Joao, Nome do item emprestado: War|" listarItensEmprestados
+
+
+devolverItem nomeDono="Carlos" telefoneDono="89999-9999" nomeRequerente="Vilmar" telefoneRequerente="55555-9999" nomeItem="The Walking Dead" dataEmprestimo="03/01/2018" dataDevolucao="10/01/2018"
+
+
+expect "FILME: Crepusculo, R$ 1.99, Nao emprestado, 120 min, QUATORZE_ANOS, ROMANCE, 2008|SHOW: RBD Ao Vivo, R$ 19.99, Nao emprestado, 60 min, DOZE_ANOS, REBELDES, 20 faixas|SERIE: The Walking Dead, R$ 79.99, Nao emprestado, 120 min, DEZESSEIS_ANOS, SUSPENSE, Temporada 1|JOGO ELETRONICO: Pokemon Omega Ruby, R$ 20.0, Nao emprestado, OUTRO|" listarItensNaoEmprestados
+
+
+expect "1) 2 emprestimos - JOGO DE TABULEIRO: War, R$ 70.0, Emprestado, COM PECAS PERDIDAS|2) 1 emprestimos - SERIE: The Walking Dead, R$ 79.99, Nao emprestado, 120 min, DEZESSEIS_ANOS, SUSPENSE, Temporada 1|3) 1 emprestimos - JOGO DE TABULEIRO: Xadrez de Bruxo, R$ 1000.0, Emprestado, COMPLETO|" listarTop10Itens
+
+
+expectError "Usuario invalido" listarEmprestimosUsuarioEmprestando nome="Paulo" telefone="56662-1999"
+expectError "Usuario invalido" listarEmprestimosUsuarioEmprestando nome="Paulo" telefone="56662-1999"
+
+
+fecharSistema
