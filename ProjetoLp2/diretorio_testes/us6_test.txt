@@ -1,4 +1,4 @@
-ï»¿#####################
+#####################
 # PROJETO LP2 - US6 #
 #####################
 
@@ -43,12 +43,12 @@ cadastrarBluRaySerie nome="Shauna" telefone="91005-2011" nomeItem="A Lenda de Sl
 expect "17.25" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
 
 
-cadastrarBluRayFilme nome="Sarah" telefone="90809-2010" nomeItem="Piratas do Caribe: A VinganÃ§a de Salazar" preco=60.00 duracao=129 genero="AVENTURA" classificacao="DOZE_ANOS" anoLancamento=2017
+cadastrarBluRayFilme nome="Sarah" telefone="90809-2010" nomeItem="Piratas do Caribe: A Vingança de Salazar" preco=60.00 duracao=129 genero="AVENTURA" classificacao="DOZE_ANOS" anoLancamento=2017
 # Reputcao de Sarah: 0 + 60 * 0.05 = 3
 expect "3.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
 
 
-cadastrarBluRayFilme nome="Sarah" telefone="90809-2010" nomeItem="Piratas do Caribe: A MaldiÃ§Ã£o do PÃ©rola Negra" preco=20.00 duracao=136 genero="AVENTURA" classificacao="QUATORZE_ANOS" anoLancamento=2003
+cadastrarBluRayFilme nome="Sarah" telefone="90809-2010" nomeItem="Piratas do Caribe: A Maldição do Pérola Negra" preco=20.00 duracao=136 genero="AVENTURA" classificacao="QUATORZE_ANOS" anoLancamento=2003
 # Reputcao de Sarah: 3.0 + 20 * 0.05 = 3.0 + 1.0 = 4.0
 expect "4.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
 
@@ -65,13 +65,13 @@ expect "-61.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reput
 expect "492.85" getInfoUsuario nome="Jericho" telefone="90510-2010" atributo="Reputacao"
 
 
-registrarEmprestimo nomeDono="Sarah" telefoneDono="90809-2010" nomeRequerente="Shauna" telefoneRequerente="91005-2011" nomeItem="Piratas do Caribe: A VinganÃ§a de Salazar" dataEmprestimo="05/05/2018" periodo=7
+registrarEmprestimo nomeDono="Sarah" telefoneDono="90809-2010" nomeRequerente="Shauna" telefoneRequerente="91005-2011" nomeItem="Piratas do Caribe: A Vingança de Salazar" dataEmprestimo="05/05/2018" periodo=7
 # Reputcao de Sarah: -61.0 + 60 * 0.1 = -61.0 + 6 = -55.0
 expect "-55.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
 expect "17.25" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
 
 
-devolverItem nomeDono="Sarah" telefoneDono="90809-2010" nomeRequerente="Shauna" telefoneRequerente="91005-2011" nomeItem="Piratas do Caribe: A VinganÃ§a de Salazar" dataEmprestimo="05/05/2018" dataDevolucao="12/05/2018"
+devolverItem nomeDono="Sarah" telefoneDono="90809-2010" nomeRequerente="Shauna" telefoneRequerente="91005-2011" nomeItem="Piratas do Caribe: A Vingança de Salazar" dataEmprestimo="05/05/2018" dataDevolucao="12/05/2018"
 # Reputcao de Shauna: 17.25 + 60 * 0.05 = 17.25 + 3.0 = 20.25
 expect "20.25" getInfoUsuario nome="Shauna" telefone="91005-2011" atributo="Reputacao"
 expect "-55.0" getInfoUsuario nome="Sarah" telefone="90809-2010" atributo="Reputacao"
