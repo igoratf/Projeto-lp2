@@ -26,7 +26,11 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
+<<<<<<< HEAD
+	private List<Item> listaItens;
+=======
 	private Map<String, Item> mapaItens;
+>>>>>>> 5c614896bcc2a12b934d5a856a615351145d57ca
 
 	/**
 	 * Construtor da Classe Usuário.
@@ -44,7 +48,11 @@ public class Usuario {
 		this.nome = nome.trim();
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
+<<<<<<< HEAD
+		this.listaItens = new ArrayList<Item>();
+=======
 		this.mapaItens = new HashMap<String, Item>();
+>>>>>>> 5c614896bcc2a12b934d5a856a615351145d57ca
 
 	}
 
@@ -327,9 +335,7 @@ public class Usuario {
 	 * 
 	 * @param emprestimo
 	 */
-	public void cadastroEmprestimo(Emprestimo emprestimo) {
-		this.emprestimos.add(emprestimo);
-	}
+
 
 	/**
 	 * Exibe informações sobre um item
@@ -390,6 +396,7 @@ public class Usuario {
 		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
 
+
 	/**
 	 * Verifica se o preço inserido é válido
 	 * 
@@ -407,9 +414,7 @@ public class Usuario {
 	 * @return boolean que afirma se o usuário contém ou não empréstimo
 	 */
 
-	public boolean contemEmprestimo() {
-		return emprestimos.size() > 0;
-	}
+
 
 	public ArrayList<Emprestimo> getEmprestimosFeitos() {
 		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();

@@ -421,6 +421,7 @@ public class ControllerUsuario {
 		return itens;
 	}
 
+
 	/**
 	 * Metodo para registrar um emprestimo entre um Usuario dono e um Usuario
 	 * requerente, passando o item que pertence ao dono para um estado de
