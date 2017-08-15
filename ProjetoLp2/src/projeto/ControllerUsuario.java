@@ -245,7 +245,7 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona uma peca perdida de um Jogo de Tabuleiro.o> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
+	 * Adiciona uma peca perdida de um Jogo de Tabuleiroo> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
 	 * 
 	 * @param nome
 	 *            Nome do Usuario.
@@ -626,9 +626,17 @@ public class ControllerUsuario {
 		return retorno;
 	}
 	
-	public Usuario getUsuario (ChaveUsuario chave) {
-		
+	public Usuario getUsuario (String nome, String telefone) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		if(mapaUsuarios.containsKey(chave)) {
+			throw new IllegalArgumentException("Usuário inválido");
+		}
 		return mapaUsuarios.get(chave);
+	}
+	
+	public Map getItensUsuario(String nome, String telefone) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).getItens();
 	}
 	/*
 	 * 
