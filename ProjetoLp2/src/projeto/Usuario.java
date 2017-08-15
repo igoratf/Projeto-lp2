@@ -25,7 +25,6 @@ public class Usuario {
 	private String email;
 	private String numCelular;
 	private List<Item> listaItens;
-	private List<Emprestimo> emprestimos;
 
 	/**
 	 * Construtor da Classe Usuário.
@@ -44,7 +43,6 @@ public class Usuario {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.listaItens = new ArrayList<Item>();
-		this.emprestimos = new ArrayList<>();
 
 	}
 
@@ -325,9 +323,7 @@ public class Usuario {
 	 * 
 	 * @param emprestimo
 	 */
-	public void cadastroEmprestimo(Emprestimo emprestimo) {
-		this.emprestimos.add(emprestimo);
-	}
+
 
 	/**
 	 * Exibe informações sobre um item
@@ -362,22 +358,7 @@ public class Usuario {
 		throw new RuntimeException("Item nao encontrado");
 	}
 
-	/**
-	 * Metodo para retornar um emprestimo cadastrado nesse usuario.
-	 * @param dono, Objeto passado por parametro.
-	 * @param requerente, Objeto passado por parametro.
-	 * @param item, Objeto passado por parametro.
-	 * @param dataEmprestimo, String passado por parametro.
-	 * @return, Emprestimo encontrado no usuario.
-	 */
-	public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo) {
-		Emprestimo emprestimoParametro = new Emprestimo(dono, requerente, item, dataEmprestimo, 0);
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.equals(emprestimoParametro))
-				return emprestimo;
-		}
-		throw new IllegalArgumentException("Emprestimo nao encontrado");
-	}
+
 
 	/**
 	 * Verifica se o preço inserido é válido
@@ -397,9 +378,7 @@ public class Usuario {
 	 * @return boolean que afirma se o usuário contém ou não empréstimo
 	 */
 
-	public boolean contemEmprestimo() {
-		return emprestimos.size() > 0;
-	}
+
 
 	/**
 	 * Calcula o HashCode do Objeto.

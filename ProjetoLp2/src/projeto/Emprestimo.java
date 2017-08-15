@@ -1,9 +1,9 @@
 package projeto;
 
 public class Emprestimo {
-	private Usuario dono;
-	private Usuario requerente;
-	private Item item;
+	private ChaveUsuario dono;
+	private ChaveUsuario requerente;
+	private String item;
 	private String dataEmprestimo;
 	private int periodo;
 	private String dataDevolucao;
@@ -18,7 +18,7 @@ public class Emprestimo {
 	 * @param dataInicial, String repassado por parametro.
 	 * @param periodo, inteiro repassado por parametro.
 	 */
-	public Emprestimo(Usuario dono, Usuario requerente, Item item,
+	public Emprestimo(ChaveUsuario dono, ChaveUsuario requerente, String item,
 			String dataInicial, int periodo){
 		checaValidadeAtributos(dono, requerente, item, dataInicial, periodo);
 		
@@ -35,14 +35,14 @@ public class Emprestimo {
 	 * Metodo para retornar o Objeto Usuario.
 	 * @return, retorna o Objeto dono.
 	 */
-	public Usuario getDono() {
+	public ChaveUsuario getDono() {
 		return dono;
 	}
 	/**
 	 * Metodo para retornar o Objeto Usuario.
 	 * @return, retorna o Objeto requerente.
 	 */
-	public Usuario getRequerente() {
+	public ChaveUsuario getRequerente() {
 		return requerente;
 	}
 
@@ -50,7 +50,7 @@ public class Emprestimo {
 	 * Metodo para retornar o Objeto Item.
 	 * @return, retorna o Objeto item.
 	 */
-	public Item getItem() {
+	public String getItem() {
 		return item;
 	}
 
@@ -131,7 +131,7 @@ public class Emprestimo {
 	 * @param dataInicial, valor passado por parametro.
 	 * @param periodo, valor passado por parametro.
 	 */
-	public void checaValidadeAtributos(Usuario dono, Usuario requerente, Item item,
+	public void checaValidadeAtributos(ChaveUsuario dono, ChaveUsuario requerente, String item,
 			String dataInicial, int periodo){
 			
 		if (dono == null) throw new NullPointerException("Dono nulo");
