@@ -6,17 +6,20 @@ package projeto;
  * @author javanktl
  *
  */
-public class Item {
+public abstract class Item implements Comparable<Item> {
 
 	private String nome;
 
 	private double valor;
 	private boolean estadoDeEmprestimo;
 
+<<<<<<< HEAD
 	public boolean isEstadoDeEmprestimo() {
 		return estadoDeEmprestimo;
 	}
 
+=======
+>>>>>>> 4c13af4fbfddd82cffcf3b2be0c9e0412d4040cb
 	public Item(String nome, double valor) {
 		this.nome = nome;
 		this.valor = valor;
@@ -43,6 +46,7 @@ public class Item {
 		this.nome = nome;
 	}
 
+<<<<<<< HEAD
 	public String estadoDeEmprestimoToString() {
 
 		if (this.estadoDeEmprestimo) {
@@ -54,9 +58,25 @@ public class Item {
 
 	}
 
+=======
+	public String getEstado() {
+		if (EstadoDeEmprestimo) {
+			return "Emprestado";
+		}
+		return "Nao emprestado";
+	}
+
+	
+
+>>>>>>> 4c13af4fbfddd82cffcf3b2be0c9e0412d4040cb
 	@Override
 	public String toString() {
 		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + estadoDeEmprestimo + "]";
+	}
+
+	@Override
+	public int compareTo(Item item) {
+		return this.nome.compareTo(item.nome);
 	}
 
 }

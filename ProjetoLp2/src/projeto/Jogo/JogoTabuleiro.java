@@ -1,8 +1,10 @@
-package projeto;
+package projeto.Jogo;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import projeto.Item;
 
 /**
  * Classe correspondente a um jogo de tabuleiro, um tipo de item que pode ser
@@ -17,8 +19,8 @@ public class JogoTabuleiro extends Item {
 
 	public JogoTabuleiro(String nome, double valor) {
 		super(nome, valor);
-		this.pecasPerdidas = pecasPerdidas;
-		this.completo = completo;
+		this.completo = true;
+	
 	}
 
 	/**
@@ -55,7 +57,17 @@ public class JogoTabuleiro extends Item {
 		}
 		return false;
 	}
+<<<<<<< HEAD:ProjetoLp2/src/projeto/JogoTabuleiro.java
 
+=======
+	
+	public String existePecasPerdidas(){
+		if(pecasPerdidas.size() > 0){
+			return "COM PECAS PERDIDAS";
+		} return "COMPLETO";
+	}
+	
+>>>>>>> 4c13af4fbfddd82cffcf3b2be0c9e0412d4040cb:ProjetoLp2/src/projeto/Jogo/JogoTabuleiro.java
 	/**
 	 * Adiciona uma peça perdida à lista de peças perdidas
 	 * 
@@ -63,6 +75,11 @@ public class JogoTabuleiro extends Item {
 	 */
 	public void adicionarPecaPerdida(String pecaPerdida) {
 		this.pecasPerdidas.add(pecaPerdida);
+	}
+	
+	@Override
+	public String toString(){
+		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(),getValor(),getEstado(),existePecasPerdidas());
 	}
 
 	public String completoToString() {

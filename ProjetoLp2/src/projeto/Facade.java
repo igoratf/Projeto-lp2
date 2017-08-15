@@ -1,5 +1,7 @@
 package projeto;
 
+import java.text.ParseException;
+
 public class Facade {
 	
 	private ControllerUsuario controller;
@@ -69,6 +71,51 @@ public class Facade {
 	public String getInfoItem(String nome, String telefone,String nomeItem,String atributo){
 		return controller.getInfoItem(nome, telefone, nomeItem, atributo);
 	}
+	public String listarItensOrdenadosPorNome(){
+		return controller.listarItensOrdenadosPorNome();
+	}
+	public String listarItensOrdenadosPorValor() {
+		return controller.listarItensOrdenadosPorValor();
+	}
+	
+	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
+		return controller.pesquisarDetalhesItem(nome, telefone, nomeItem);
+	}
+	
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException{
+		controller.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
+		
+	}
+	
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException{
+		controller.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+	}
+	
+	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		return controller.listarEmprestimosUsuarioEmprestando(nome, telefone);
+	}
+	
+	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
+		return controller.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+	}
+	/*
+	public String listarEmprestimosItem(String nomeItem) {
+		return controller.listarEmprestimosItem(nomeItem);
+	}
+	
+	public String listarItensEmprestados() {
+		return controller.listarItensEmprestados();
+	}
+	
+	public String listarItensNaoEmprestados() {
+		return controller.listarItensNaoEmprestados();
+	}
+	
+	public String listarTop10Itens() {
+		return controller.listarTop10itens();
+	}*/
 
 	public void fecharSistema() {
 
