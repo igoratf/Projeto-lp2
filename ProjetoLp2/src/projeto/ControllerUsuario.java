@@ -497,7 +497,6 @@ public class ControllerUsuario {
 		dono.getEmprestimo(dono, requerente, item, dataEmprestimo).setDataDevolucao(dataDevolucao);
 		requerente.getEmprestimo(dono, requerente, item, dataEmprestimo).setDataDevolucao(dataDevolucao);
 	}
->>>>>>> aacd42ca51a6e505e0db35a8041a27d59a6934a1
 
 	/**
 	 * Checa se uma chave esta contida no Mapa.
