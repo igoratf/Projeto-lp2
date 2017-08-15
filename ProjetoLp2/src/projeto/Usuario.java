@@ -430,6 +430,10 @@ public class Usuario {
 		}
 		return emprestimosTemp;
 	}
+	
+	public Map getItens() {
+		return mapaItens;
+	}
 
 	/**
 	 * Calcula o HashCode do Objeto.
