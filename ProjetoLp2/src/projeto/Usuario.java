@@ -2,8 +2,9 @@ package projeto;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import projeto.Jogo.JogoEletronico;
 import projeto.Jogo.JogoTabuleiro;
@@ -25,7 +26,11 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
+<<<<<<< HEAD
 	private List<Item> listaItens;
+=======
+	private Map<String, Item> mapaItens;
+>>>>>>> 5c614896bcc2a12b934d5a856a615351145d57ca
 
 	/**
 	 * Construtor da Classe Usuário.
@@ -43,7 +48,11 @@ public class Usuario {
 		this.nome = nome.trim();
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
+<<<<<<< HEAD
 		this.listaItens = new ArrayList<Item>();
+=======
+		this.mapaItens = new HashMap<String, Item>();
+>>>>>>> 5c614896bcc2a12b934d5a856a615351145d57ca
 
 	}
 
@@ -119,7 +128,7 @@ public class Usuario {
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		validaPreco(preco);
 		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
-		listaItens.add(jogoEletronico);
+		mapaItens.put(nomeItem, jogoEletronico);
 	}
 
 	/**
@@ -181,11 +190,13 @@ public class Usuario {
 	 * @param nomeItem
 	 *            Nome do item.
 	 */
-	public void devolverItem(String nomeItem) {
+	/*
+	 * public void devolverItem(String nomeItem) {
+	 *
 		Item meuItem = getItem(nomeItem);
 		getItem(nomeItem);
 		meuItem.setEstadoDeEmprestimo(false);
-	}
+	}*/
 
 	/**
 	 * Cadastra um Bluray de um Show na lista de itens do Usuario.
@@ -423,6 +434,10 @@ public class Usuario {
 			}
 		}
 		return emprestimosTemp;
+	}
+	
+	public Map getItens() {
+		return mapaItens;
 	}
 
 	/**

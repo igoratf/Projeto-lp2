@@ -17,6 +17,10 @@ import projeto.bluray.BluraySeries;
  *
  */
 
+/*
+ * APAGAR MÉTODOS DE CADASTRAR ITENS
+ */
+
 public class ControllerUsuario {
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
 
