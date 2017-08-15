@@ -245,7 +245,7 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona uma peca perdida de um Jogo de Tabuleiro.
+	 * Adiciona uma peca perdida de um Jogo de Tabuleiro.o> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
 	 * 
 	 * @param nome
 	 *            Nome do Usuario.
@@ -621,6 +621,11 @@ public class ControllerUsuario {
 		}
 
 		return retorno;
+	}
+	
+	public Usuario getUsuario (ChaveUsuario chave) {
+		
+		return mapaUsuarios.get(chave);
 	}
 	/*
 	 * 
