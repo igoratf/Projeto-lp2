@@ -1,5 +1,6 @@
 package projeto;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +92,41 @@ public class ControllerEmprestimo {
 	public List<Emprestimo> getEmprestimos() {
 		return emprestimos;
 	}
+	
+	/*
+	 * public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo)
+			throws ParseException {
+		Emprestimo emprestimoParametro = new Emprestimo(dono, requerente, item, dataEmprestimo, 0);
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.equals(emprestimoParametro))
+				return emprestimo;
+		}
+		throw new IllegalArgumentException("Emprestimo nao encontrado");
+	}
+	 */
+	/*
+	 * public ArrayList<Emprestimo> getEmprestimosFeitos() {
+		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getDono().getNome().equals(this.nome)
+					&& emprestimo.getDono().getNumCelular() == this.numCelular) {
+				emprestimosTemp.add(emprestimo);
+			}
+		}
+		return emprestimosTemp;
+	}
+
+	public ArrayList<Emprestimo> getEmprestimosPegos() {
+		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getRequerente().getNome().equals(this.nome)
+					&& emprestimo.getRequerente().getNumCelular() == this.numCelular) {
+				emprestimosTemp.add(emprestimo);
+			}
+		}
+		return emprestimosTemp;
+	}
+	 */
 	
 
 }

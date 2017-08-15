@@ -1,18 +1,14 @@
 package projeto;
 
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import projeto.Jogo.*;
+import projeto.bluray.*;
 
-import projeto.Jogo.JogoEletronico;
-import projeto.Jogo.JogoTabuleiro;
-import projeto.bluray.Bluray;
-import projeto.bluray.BlurayEpisodio;
-import projeto.bluray.BlurayFilme;
-import projeto.bluray.BluraySeries;
-import projeto.bluray.BlurayShow;
 
 /**
  * Classe de Usuário.
@@ -26,11 +22,8 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
-<<<<<<< HEAD
-	private List<Item> listaItens;
-=======
 	private Map<String, Item> mapaItens;
->>>>>>> 5c614896bcc2a12b934d5a856a615351145d57ca
+
 
 	/**
 	 * Construtor da Classe Usuário.
@@ -48,11 +41,8 @@ public class Usuario {
 		this.nome = nome.trim();
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
-<<<<<<< HEAD
-		this.listaItens = new ArrayList<Item>();
-=======
 		this.mapaItens = new HashMap<String, Item>();
->>>>>>> 5c614896bcc2a12b934d5a856a615351145d57ca
+
 
 	}
 
@@ -126,7 +116,7 @@ public class Usuario {
 	 *            Plataforma do Jogo Eletrônico.
 	 */
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
-		validaPreco(preco);
+		ValidaParametros.validaPreco(preco);
 		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		mapaItens.put(nomeItem, jogoEletronico);
 	}
@@ -140,7 +130,7 @@ public class Usuario {
 	 *            Preço do Jogo de Tabuleiro.
 	 */
 	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
-		validaPreco(preco);
+		ValidaParametros.validaPreco(preco);
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
 		mapaItens.put(nomeItem, jogoTabuleiro);
 	}
@@ -163,7 +153,7 @@ public class Usuario {
 	 */
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao,
 			int anoLancamento) {
-		validaPreco(preco);
+		ValidaParametros.validaPreco(preco);
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero, anoLancamento);
 		mapaItens.put(nomeItem, blurayFilme);
 	}
@@ -214,7 +204,7 @@ public class Usuario {
 	 */
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int numFaixas, String nomeArtista,
 			String classificacao) {
-		validaPreco(preco);
+		ValidaParametros.validaPreco(preco);
 		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 		mapaItens.put(nomeItem, blurayShow);
 	}
@@ -239,7 +229,7 @@ public class Usuario {
 	 */
 	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao,
 			String genero, int temporada) {
-		validaPreco(preco);
+		ValidaParametros.validaPreco(preco);
 		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, descricao, classificacao, genero, temporada);
 		mapaItens.put(nomeItem, bluraySerie);
 	}
@@ -369,71 +359,6 @@ public class Usuario {
 
 	}
 
-	/**
-	 * Metodo para retornar um emprestimo cadastrado nesse usuario.
-	 * 
-	 * @param dono,
-	 *            Objeto passado por parametro.
-	 * @param requerente,
-	 *            Objeto passado por parametro.
-	 * @param item,
-	 *            Objeto passado por parametro.
-	 * @param dataEmprestimo,
-	 *            String passado por parametro. @return, Emprestimo encontrado
-	 *            no usuario.
-	 * @throws ParseException
-	 */
-	public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo)
-			throws ParseException {
-		Emprestimo emprestimoParametro = new Emprestimo(dono, requerente, item, dataEmprestimo, 0);
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.equals(emprestimoParametro))
-				return emprestimo;
-		}
-		throw new IllegalArgumentException("Emprestimo nao encontrado");
-	}
-
-
-	/**
-	 * Verifica se o preço inserido é válido
-	 * 
-	 * @param preco
-	 */
-	private void validaPreco(double preco) {
-		if (preco <= 0) {
-			throw new IllegalArgumentException("Preco invalido");
-		}
-	}
-
-	/**
-	 * Verifica se o usuário contém algum empréstimo
-	 * 
-	 * @return boolean que afirma se o usuário contém ou não empréstimo
-	 */
-
-
-
-	public ArrayList<Emprestimo> getEmprestimosFeitos() {
-		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getDono().getNome().equals(this.nome)
-					&& emprestimo.getDono().getNumCelular() == this.numCelular) {
-				emprestimosTemp.add(emprestimo);
-			}
-		}
-		return emprestimosTemp;
-	}
-
-	public ArrayList<Emprestimo> getEmprestimosPegos() {
-		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
-		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getRequerente().getNome().equals(this.nome)
-					&& emprestimo.getRequerente().getNumCelular() == this.numCelular) {
-				emprestimosTemp.add(emprestimo);
-			}
-		}
-		return emprestimosTemp;
-	}
 
 	public Map getItens() {
 		return mapaItens;

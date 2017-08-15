@@ -17,10 +17,6 @@ import projeto.bluray.BluraySeries;
  *
  */
 
-/*
- * APAGAR MÉTODOS DE CADASTRAR ITENS
- */
-
 public class ControllerUsuario {
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
 
@@ -177,79 +173,8 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Cadastra um jogo de Tabuleiro em um Usuario.
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do Jogo de Tabuleiro.
-	 * @param preco
-	 *            Preco do Jogo de Tabuleiro.
-	 */
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		checaSeUsuarioJaExiste(nome, telefone);
-		mapaUsuarios.get(chave).cadastrarJogoTabuleiro(nomeItem, preco);
-	}
-
-	/**
-	 * Cadastra um BluRay de Filme em um Usuario.
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do BluRay de Filme.
-	 * @param preco
-	 *            Preco o BluRay de Filme.
-	 * @param duracao
-	 *            Duracao do Filme.
-	 * @param genero
-	 *            Genero do Filme.
-	 * @param classificacao
-	 *            Classificacao do Filme.
-	 * @param anoLancamento
-	 *            Ano de Lancamento de um filme.
-	 */
-	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
-			String genero, String classificacao, int anoLancamento) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento);
-	}
-
-	/**
-	 * Cadastra um BluRay de Serie em um Usuario.
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do BluRay de Serie.
-	 * @param preco
-	 *            Preco do BluRay de Serie.
-	 * @param descricao
-	 *            Decricaoo do BluRay de Serie.
-	 * @param duracao
-	 *            Duracao do BluRay de Serie.
-	 * @param classificacao
-	 *            Classificacao do BluRay de Serie.
-	 * @param genero
-	 *            Genero do BluRau de Serie.
-	 * @param temporada
-	 */
-	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
-			int duracao, String classificacao, String genero, int temporada) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero,
-				temporada);
-	}
-
-	/**
-	 * Adiciona uma peca perdida de um Jogo de Tabuleiroo> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
+	 * Adiciona uma peca perdida de um Jogo de Tabuleiroo> emprestimos =
+	 * mapaUsuarios.get(chave).getEmprestimosFeitos();
 	 * 
 	 * @param nome
 	 *            Nome do Usuario.
@@ -263,22 +188,6 @@ public class ControllerUsuario {
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).adicionarPecaPerdida(nomeItem, nomePeca);
-	}
-
-	/**
-	 * Remove um Item da Colecao de Itens de um Usuario.
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do Item a ser removido.
-	 */
-	public void removerItem(String nome, String telefone, String nomeItem) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		checaSeUsuarioJaExiste(nome, telefone);
-		mapaUsuarios.get(chave).removerItem(nomeItem);
 	}
 
 	/**
@@ -318,49 +227,6 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return mapaUsuarios.get(chave).getInfoItem(nomeItem, atributo);
 
-	}
-
-	/**
-	 * Cadastra um BluRay de um Show
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario
-	 * @param nomeItem
-	 *            Nome do BluRay de Show.
-	 * @param preco
-	 *            Preco do BluRay de Show.
-	 * @param duracao
-	 *            Duracao do BluRay de Show.
-	 * @param numFaixas
-	 *            Numero de Faixas do BluRay de Show.
-	 * @param nomeArtista
-	 *            Nome de Artista do BluRay de Show.
-	 * @param classificacao
-	 *            Classificacao do BluRay de Show.
-	 */
-	public void cadastrarBlurayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
-			int numFaixas, String nomeArtista, String classificacao) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
-	}
-
-	/**
-	 * Adiciona um BluRay de um episodio a uma temporada de um serie.
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeBlurayTemporada
-	 *            Nome do BluRay de Temporada da Serie.
-	 * @param duracao
-	 *            Duracao do Episodio.
-	 */
-	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).adicionarBluray(nomeBlurayTemporada, duracao);
 	}
 
 	/**
@@ -419,83 +285,6 @@ public class ControllerUsuario {
 			itens += item.toString() + "|";
 		}
 		return itens;
-	}
-
-
-	/**
-	 * Metodo para registrar um emprestimo entre um Usuario dono e um Usuario
-	 * requerente, passando o item que pertence ao dono para um estado de
-	 * emprestimo true.
-	 * 
-	 * @param nomeDono,
-	 *            String passsado por parametro.
-	 * @param telefoneDono,
-	 *            String passsado por parametro.
-	 * @param nomeRequerente,
-	 *            String passsado por parametro.
-	 * @param telefoneRequerente,
-	 *            String passsado por parametro.
-	 * @param nomeItem,
-	 *            String passsado por parametro.
-	 * @param dataEmprestimo,
-	 *            String passsado por parametro.
-	 * @param periodo,
-	 *            Inteiro passado por paramtro.
-	 * @throws ParseException
-	 */
-	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
-
-		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
-		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
-
-		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
-		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
-		Usuario dono = this.mapaUsuarios.get(chaveDono);
-		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
-		dono.emprestarItem(nomeItem);
-		Item item = dono.getItem(nomeItem);
-
-		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
-		dono.cadastroEmprestimo(emprestimo);
-		requerente.cadastroEmprestimo(emprestimo);
-
-	}
-
-	/**
-	 * Metodo para devolver um item que já esteja emprestado, tornado o item que
-	 * pertence ao Usuario dono para um estado de emprestimo false.
-	 * 
-	 * @param nomeDono,
-	 *            String passsado por parametro.
-	 * @param telefoneDono,
-	 *            String passsado por parametro.
-	 * @param nomeRequerente,
-	 *            String passsado por parametro.
-	 * @param telefoneRequerente,
-	 *            String passsado por parametro.
-	 * @param nomeItem,
-	 *            String passsado por parametro.
-	 * @param dataEmprestimo,
-	 *            String passsado por parametro.
-	 * @param dataDevolucao,
-	 *            String passsado por parametro.
-	 * @throws ParseException
-	 */
-	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
-			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
-		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
-		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
-
-		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
-		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
-		Usuario dono = this.mapaUsuarios.get(chaveDono);
-		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
-		Item item = dono.getItem(nomeItem);
-		dono.devolverItem(nomeItem);
-
-		dono.getEmprestimo(dono, requerente, item, dataEmprestimo).setDataDevolucao(dataDevolucao);
-		requerente.getEmprestimo(dono, requerente, item, dataEmprestimo).setDataDevolucao(dataDevolucao);
 	}
 
 	/**
@@ -560,104 +349,17 @@ public class ControllerUsuario {
 		return ((BluraySeries) mapaUsuarios.get(chave).getItem(nomeItem)).contemEpisodio();
 	}
 
-	/**
-	 * Metodo para verficar a existencia de um emprestimo no usuario.
-	 * 
-	 * @param nome,
-	 *            String passsado por parametro.
-	 * @param telefone,
-	 *            String passsado por parametro. @return, retorna true ou false
-	 *            caso o item exista.
-	 */
-	public boolean contemEmprestimo(String nome, String telefone) {
+	public Usuario getUsuario(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		return mapaUsuarios.get(chave).contemEmprestimo();
-	}
-
-	/**
-	 * Metodo para retornar um emprestimo que o usuario possui em seu historico.
-	 * 
-	 * @param nome,
-	 *            String passsado por parametro.
-	 * @param telefone,
-	 *            String passsado por parametro.
-	 * @param dono,
-	 *            Objeto Usuario passsado por parametro.
-	 * @param requerente,
-	 *            Objeto Usuario passsado por parametro.
-	 * @param item,
-	 *            Objeto Item passsado por parametro.
-	 * @param dataEmprestimo,
-	 *            String passsado por parametro. @return, retorna o emprestimo
-	 *            existente no usuario.
-	 * @throws ParseException
-	 */
-	public Emprestimo getEmprestimo(String nome, String telefone, Usuario dono, Usuario requerente, Item item,
-			String dataEmprestimo) throws ParseException {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-
-		return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item, dataEmprestimo);
-	}
-
-	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		String retorno = "Emprestimos: ";
-		ArrayList<Emprestimo> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
-		for (Emprestimo emprestimo : emprestimos) {
-			retorno += emprestimo.toString() + "|";
-		}
-		if (emprestimos.size() == 0) {
-			return "Nenhum item emprestado";
-		}
-
-		return retorno;
-
-	}
-
-	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		String retorno = "Emprestimos pegos: ";
-		ArrayList<Emprestimo> emprestimos = mapaUsuarios.get(chave).getEmprestimosPegos();
-		for (Emprestimo emprestimo : emprestimos) {
-			retorno += emprestimo.toString() + "|";
-		}
-		if (emprestimos.size() == 0) {
-			return "Nenhum item pego emprestado";
-		}
-
-		return retorno;
-	}
-	
-	public Usuario getUsuario (String nome, String telefone) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		if(mapaUsuarios.containsKey(chave)) {
+		if (mapaUsuarios.containsKey(chave)) {
 			throw new IllegalArgumentException("Usuário inválido");
 		}
 		return mapaUsuarios.get(chave);
 	}
-	
+
 	public Map getItensUsuario(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return mapaUsuarios.get(chave).getItens();
 	}
-	/*
-	 * 
-	 * 
-	 * public String listarEmprestimosItem(String nomeItem) {
-	 * 
-	 * }
-	 * 
-	 * public String listarItensEmprestados() {
-	 * 
-	 * }
-	 * 
-	 * public String listarItensNaoEmprestados() {
-	 * 
-	 * }
-	 * 
-	 * public String listarTop10Itens() {
-	 * 
-	 * }
-	 */
 
 }
