@@ -1,5 +1,6 @@
 package projeto;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -435,9 +436,10 @@ public class ControllerUsuario {
 	 *            String passsado por parametro.
 	 * @param periodo,
 	 *            Inteiro passado por paramtro.
+	 * @throws ParseException
 	 */
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) {
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
 
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
@@ -473,9 +475,10 @@ public class ControllerUsuario {
 	 *            String passsado por parametro.
 	 * @param dataDevolucao,
 	 *            String passsado por parametro.
+	 * @throws ParseException
 	 */
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
-			String nomeItem, String dataEmprestimo, String dataDevolucao) {
+			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
 
@@ -582,48 +585,61 @@ public class ControllerUsuario {
 	 * @param dataEmprestimo,
 	 *            String passsado por parametro. @return, retorna o emprestimo
 	 *            existente no usuario.
+	 * @throws ParseException
 	 */
 	public Emprestimo getEmprestimo(String nome, String telefone, Usuario dono, Usuario requerente, Item item,
-			String dataEmprestimo) {
+			String dataEmprestimo) throws ParseException {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 
 		return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item, dataEmprestimo);
 	}
-	
+
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		/*
-		 * Corpo do método aqui
-		 */
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		String retorno = "Emprestimos: ";
+		ArrayList<Emprestimo> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
+		for (Emprestimo emprestimo : emprestimos) {
+			retorno += emprestimo.toString() + "|";
+		}
+		if (emprestimos.size() == 0) {
+			return "Nenhum item emprestado";
+		}
+
+		return retorno;
+
 	}
-	
+
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
-		/*
-		 * Corpo do método aqui
-		 */
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		String retorno = "Emprestimos pegos: ";
+		ArrayList<Emprestimo> emprestimos = mapaUsuarios.get(chave).getEmprestimosPegos();
+		for (Emprestimo emprestimo : emprestimos) {
+			retorno += emprestimo.toString() + "|";
+		}
+		if (emprestimos.size() == 0) {
+			return "Nenhum item pego emprestado";
+		}
+
+		return retorno;
 	}
-	
-	public String listarEmprestimosItem(String nomeItem) {
-		/*
-		 * Corpo do método aqui
-		 */
-	}
-	
-	public String listarItensEmprestados() {
-		/*
-		 * Corpo do método aqui
-		 */
-	}
-	
-	public String listarItensNaoEmprestados() {
-		/*
-		 * Corpo do método aqui
-		 */
-	}
-	
-	public String listarTop10Itens() {
-		/*
-		 * Corpo do método aqui
-		 */
-	}
+	/*
+	 * 
+	 * 
+	 * public String listarEmprestimosItem(String nomeItem) {
+	 * 
+	 * }
+	 * 
+	 * public String listarItensEmprestados() {
+	 * 
+	 * }
+	 * 
+	 * public String listarItensNaoEmprestados() {
+	 * 
+	 * }
+	 * 
+	 * public String listarTop10Itens() {
+	 * 
+	 * }
+	 */
 
 }

@@ -1,5 +1,7 @@
 package projeto;
 
+import java.text.ParseException;
+
 public class Facade {
 	private ControllerUsuario controller;
 	public Facade(){
@@ -78,39 +80,39 @@ public class Facade {
 	}
 	
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo){
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException{
 		controller.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
 		
 	}
 	
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente,
-			String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao){
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException{
 		controller.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		controller.listarEmprestimosUsuarioEmprestando(nome, telefone);
+		return controller.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 	
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
-		controller.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+		return controller.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 	}
-	
+	/*
 	public String listarEmprestimosItem(String nomeItem) {
-		controller.listarEmprestimosItem(nomeItem);
+		return controller.listarEmprestimosItem(nomeItem);
 	}
 	
 	public String listarItensEmprestados() {
-		controller.listarItensEmprestados();
+		return controller.listarItensEmprestados();
 	}
 	
 	public String listarItensNaoEmprestados() {
-		controller.listarItensNaoEmprestados();
+		return controller.listarItensNaoEmprestados();
 	}
 	
 	public String listarTop10Itens() {
-		controller.listarTop10itens();
-	}
+		return controller.listarTop10itens();
+	}*/
 
 	public void fecharSistema() {
 

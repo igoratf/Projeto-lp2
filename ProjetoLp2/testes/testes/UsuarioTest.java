@@ -1,6 +1,7 @@
 package testes;
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -207,9 +208,10 @@ public class UsuarioTest {
 	/**
 	 * Testa se o método cadastroEmprestimo cadastra corretamente um Empréstimo
 	 * e se o método contemEmprestimo funciona como esperado.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void cadastroEmprestimo() {
+	public void cadastroEmprestimo() throws ParseException {
 		assertFalse(usuario.contemEmprestimo());
 		Emprestimo emprestimo = new Emprestimo(new Usuario("nome", "email", "numCelular"),
 				new Usuario("nomew", "email", "numCelular"), new JogoTabuleiro("nome", 10), "10/08/98", 7);

@@ -4,6 +4,8 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+
 import org.junit.Before;
 
 import projeto.ControllerUsuario;
@@ -329,9 +331,10 @@ public class ControllerUsuarioTest {
 	/**
 	 * Testa se o método registrarEmprestimo registra os empréstimos em Dono e
 	 * em Requerente.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void registrarEmprestimoTest() {
+	public void registrarEmprestimoTest() throws ParseException {
 		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
 		controllerUsuario.cadastrarUsuario("Lucas", "8345", "joao@joa.com");
 
@@ -345,9 +348,10 @@ public class ControllerUsuarioTest {
 	/**
 	 * Testa se o método devolverItem se comporta corretamente a data de devolução de
 	 * um empréstimo
+	 * @throws ParseException 
 	 */
 	@Test
-	public void devolverItemTest() {
+	public void devolverItemTest() throws ParseException {
 		controllerUsuario.cadastrarUsuario("João", "8345", "joao@joa.com");
 		controllerUsuario.cadastrarUsuario("Lucas", "8345", "joao@joa.com");
 		controllerUsuario.cadastrarJogoTabuleiro("João", "8345", "Guerra", 15);
