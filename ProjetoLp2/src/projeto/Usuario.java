@@ -410,10 +410,20 @@ public class Usuario {
 		return emprestimos.size() > 0;
 	}
 
-	public ArrayList<Emprestimo> getEmprestimosEmprestados() {
+	public ArrayList<Emprestimo> getEmprestimosFeitos() {
 		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
 		for (Emprestimo emprestimo : emprestimos) {
 			if (emprestimo.getDono().getNome().equals(this.nome) && emprestimo.getDono().getNumCelular() == this.numCelular) {
+				emprestimosTemp.add(emprestimo);
+			}
+		}
+		return emprestimosTemp;
+	}
+	
+	public ArrayList<Emprestimo> getEmprestimosPegos() {
+		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getRequerente().getNome().equals(this.nome) && emprestimo.getRequerente().getNumCelular() == this.numCelular) {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
