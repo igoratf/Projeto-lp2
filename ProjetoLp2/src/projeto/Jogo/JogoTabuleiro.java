@@ -22,16 +22,19 @@ public class JogoTabuleiro extends Item {
 		this.completo = true;
 	
 	}
-	
+
 	/**
-	 * Método que compara uma lista de peças perdidas com a lista de peças perdidas do jogo
-	 * @param lista é a lista de peças perdidas
+	 * Método que compara uma lista de peças perdidas com a lista de peças
+	 * perdidas do jogo
+	 * 
+	 * @param lista
+	 *            é a lista de peças perdidas
 	 * @return boolean correspondente ao resultado da comparação
 	 */
 	public boolean comparaPecasPerdidas(List<String> lista) {
 		Collections.sort(lista);
 		Collections.sort(pecasPerdidas);
-		for (int i=0; i<lista.size(); i++) {
+		for (int i = 0; i < lista.size(); i++) {
 			if (!(lista.get(i).equals(pecasPerdidas.get(i)))) {
 				return false;
 			}
@@ -54,6 +57,9 @@ public class JogoTabuleiro extends Item {
 		}
 		return false;
 	}
+<<<<<<< HEAD:ProjetoLp2/src/projeto/JogoTabuleiro.java
+
+=======
 	
 	public String existePecasPerdidas(){
 		if(pecasPerdidas.size() > 0){
@@ -61,8 +67,10 @@ public class JogoTabuleiro extends Item {
 		} return "COMPLETO";
 	}
 	
+>>>>>>> 4c13af4fbfddd82cffcf3b2be0c9e0412d4040cb:ProjetoLp2/src/projeto/Jogo/JogoTabuleiro.java
 	/**
 	 * Adiciona uma peça perdida à lista de peças perdidas
+	 * 
 	 * @param pecaPerdida
 	 */
 	public void adicionarPecaPerdida(String pecaPerdida) {
@@ -72,6 +80,21 @@ public class JogoTabuleiro extends Item {
 	@Override
 	public String toString(){
 		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(),getValor(),getEstado(),existePecasPerdidas());
+	}
+
+	public String completoToString() {
+
+		if (this.completo) {
+			return "COMPLETO";
+		}
+
+		return "COM PECAS PERDIDAS";
+	}
+
+	@Override
+	public String toString() {
+		return "JOGO DE TABULEIRO: " + getNome() + ", R$ " + getValor() + ", " + estadoDeEmprestimoToString() + ", "
+				+ completoToString() + "|";
 	}
 
 }

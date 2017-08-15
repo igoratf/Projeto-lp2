@@ -11,16 +11,23 @@ public abstract class Item implements Comparable<Item> {
 	private String nome;
 
 	private double valor;
-	private boolean EstadoDeEmprestimo;
+	private boolean estadoDeEmprestimo;
 
+<<<<<<< HEAD
+	public boolean isEstadoDeEmprestimo() {
+		return estadoDeEmprestimo;
+	}
+
+=======
+>>>>>>> 4c13af4fbfddd82cffcf3b2be0c9e0412d4040cb
 	public Item(String nome, double valor) {
 		this.nome = nome;
 		this.valor = valor;
-		this.EstadoDeEmprestimo = false;
+		this.estadoDeEmprestimo = false;
 	}
 
 	public void setEstadoDeEmprestimo(boolean estadoDeEmprestimo) {
-		EstadoDeEmprestimo = estadoDeEmprestimo;
+		this.estadoDeEmprestimo = estadoDeEmprestimo;
 	}
 
 	public String getNome() {
@@ -39,6 +46,19 @@ public abstract class Item implements Comparable<Item> {
 		this.nome = nome;
 	}
 
+<<<<<<< HEAD
+	public String estadoDeEmprestimoToString() {
+
+		if (this.estadoDeEmprestimo) {
+
+			return "Emprestado";
+
+		}
+		return "Nao emprestado";
+
+	}
+
+=======
 	public String getEstado() {
 		if (EstadoDeEmprestimo) {
 			return "Emprestado";
@@ -48,9 +68,10 @@ public abstract class Item implements Comparable<Item> {
 
 	
 
+>>>>>>> 4c13af4fbfddd82cffcf3b2be0c9e0412d4040cb
 	@Override
 	public String toString() {
-		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + EstadoDeEmprestimo + "]";
+		return "Item [nome=" + nome + ", valor=" + valor + ", EstadoDeEmprestimo=" + estadoDeEmprestimo + "]";
 	}
 
 	@Override
