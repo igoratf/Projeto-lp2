@@ -2,8 +2,9 @@ package projeto;
 
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import projeto.Jogo.JogoEletronico;
 import projeto.Jogo.JogoTabuleiro;
@@ -25,8 +26,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
-	private List<Item> listaItens;
-	private List<Emprestimo> emprestimos;
+	private Map<String, Item> mapaItens;
 
 	/**
 	 * Construtor da Classe Usuário.
@@ -44,8 +44,7 @@ public class Usuario {
 		this.nome = nome.trim();
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
-		this.listaItens = new ArrayList<Item>();
-		this.emprestimos = new ArrayList<>();
+		this.mapaItens = new HashMap<String, Item>();
 
 	}
 
@@ -121,7 +120,7 @@ public class Usuario {
 	public void cadastrarEletronico(String nomeItem, double preco, String plataforma) {
 		validaPreco(preco);
 		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
-		listaItens.add(jogoEletronico);
+		mapaItens.put(nomeItem, jogoEletronico);
 	}
 
 	/**
@@ -183,11 +182,13 @@ public class Usuario {
 	 * @param nomeItem
 	 *            Nome do item.
 	 */
-	public void devolverItem(String nomeItem) {
+	/*
+	 * public void devolverItem(String nomeItem) {
+	 *
 		Item meuItem = getItem(nomeItem);
 		getItem(nomeItem);
 		meuItem.setEstadoDeEmprestimo(false);
-	}
+	}*/
 
 	/**
 	 * Cadastra um Bluray de um Show na lista de itens do Usuario.
