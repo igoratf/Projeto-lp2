@@ -134,7 +134,7 @@ public class Usuario {
 	public void cadastrarJogoTabuleiro(String nomeItem, double preco) {
 		validaPreco(preco);
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
-		listaItens.add(jogoTabuleiro);
+		mapaItens.put(nomeItem, jogoTabuleiro);
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class Usuario {
 			int anoLancamento) {
 		validaPreco(preco);
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero, anoLancamento);
-		listaItens.add(blurayFilme);
+		mapaItens.put(nomeItem, blurayFilme);
 	}
 
 	/**
@@ -169,11 +169,10 @@ public class Usuario {
 	 *            Nome da peça perdida.
 	 */
 	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
-		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem)) {
-				((JogoTabuleiro) item).adicionarPecaPerdida(nomePeca);
-			}
+		if (!mapaItens.containsKey(nomeItem)) {
+			throw new IllegalArgumentException("Jogo Inválido!");
 		}
+		((JogoTabuleiro) mapaItens.get(nomeItem)).adicionarPecaPerdida(nomePeca);
 	}
 
 	/**
@@ -185,10 +184,9 @@ public class Usuario {
 	/*
 	 * public void devolverItem(String nomeItem) {
 	 *
-		Item meuItem = getItem(nomeItem);
-		getItem(nomeItem);
-		meuItem.setEstadoDeEmprestimo(false);
-	}*/
+	 * Item meuItem = getItem(nomeItem); getItem(nomeItem);
+	 * meuItem.setEstadoDeEmprestimo(false); }
+	 */
 
 	/**
 	 * Cadastra um Bluray de um Show na lista de itens do Usuario.
@@ -210,7 +208,7 @@ public class Usuario {
 			String classificacao) {
 		validaPreco(preco);
 		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
-		listaItens.add(blurayShow);
+		mapaItens.put(nomeItem, blurayShow);
 	}
 
 	/**
@@ -235,7 +233,7 @@ public class Usuario {
 			String genero, int temporada) {
 		validaPreco(preco);
 		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, descricao, classificacao, genero, temporada);
-		listaItens.add(bluraySerie);
+		mapaItens.put(nomeItem, bluraySerie);
 	}
 
 	/**
@@ -248,12 +246,11 @@ public class Usuario {
 	 *            Duração do Episodio.
 	 */
 	public void adicionarBluray(String serie, int duracao) {
-		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
-		for (Item item : listaItens) {
-			if (item.getNome().equals(serie)) {
-				((BluraySeries) item).adicionarBluray(blurayEpisodio);
-			}
+		if (!mapaItens.containsKey(serie)) {
+			throw new IllegalArgumentException("Serie invalida!");
 		}
+		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
+		((BluraySeries) mapaItens.get(serie)).adicionarBluray(blurayEpisodio);
 	}
 
 	/**
@@ -263,8 +260,7 @@ public class Usuario {
 	 *            Nome do Item a ser removido.
 	 */
 	public void removerItem(String nomeItem) {
-		Item meuItem = getItem(nomeItem);
-		listaItens.remove(meuItem);
+		mapaItens.remove(nomeItem);
 	}
 
 	/**
@@ -348,7 +344,7 @@ public class Usuario {
 	 * lista de itens do usuario.
 	 */
 	public ArrayList<Item> getListaItens() {
-		return new ArrayList<Item>(listaItens);
+		return new ArrayList<Item>(mapaItens.values());
 	}
 
 	/**
@@ -360,11 +356,11 @@ public class Usuario {
 	 *            desejado.
 	 */
 	public Item getItem(String nomeItem) {
-		for (Item item : listaItens) {
-			if (item.getNome().equals(nomeItem))
-				return item;
+		if (!mapaItens.containsKey(nomeItem)) {
+			throw new RuntimeException("Item nao encontrado");
 		}
-		throw new RuntimeException("Item nao encontrado");
+		return mapaItens.get(nomeItem);
+
 	}
 
 	/**
@@ -379,9 +375,10 @@ public class Usuario {
 	 * @param dataEmprestimo,
 	 *            String passado por parametro. @return, Emprestimo encontrado
 	 *            no usuario.
-	 * @throws ParseException 
+	 * @throws ParseException
 	 */
-	public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo) throws ParseException {
+	public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo)
+			throws ParseException {
 		Emprestimo emprestimoParametro = new Emprestimo(dono, requerente, item, dataEmprestimo, 0);
 		for (Emprestimo emprestimo : emprestimos) {
 			if (emprestimo.equals(emprestimoParametro))
@@ -414,23 +411,25 @@ public class Usuario {
 	public ArrayList<Emprestimo> getEmprestimosFeitos() {
 		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
 		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getDono().getNome().equals(this.nome) && emprestimo.getDono().getNumCelular() == this.numCelular) {
+			if (emprestimo.getDono().getNome().equals(this.nome)
+					&& emprestimo.getDono().getNumCelular() == this.numCelular) {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
 		return emprestimosTemp;
 	}
-	
+
 	public ArrayList<Emprestimo> getEmprestimosPegos() {
 		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
 		for (Emprestimo emprestimo : emprestimos) {
-			if (emprestimo.getRequerente().getNome().equals(this.nome) && emprestimo.getRequerente().getNumCelular() == this.numCelular) {
+			if (emprestimo.getRequerente().getNome().equals(this.nome)
+					&& emprestimo.getRequerente().getNumCelular() == this.numCelular) {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
 		return emprestimosTemp;
 	}
-	
+
 	public Map getItens() {
 		return mapaItens;
 	}
