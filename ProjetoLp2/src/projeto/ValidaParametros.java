@@ -108,5 +108,13 @@ public class ValidaParametros {
 			throw new IllegalArgumentException("Telefone vazio invalido!");
 		}
 	}
+	
+	
+	
+	public static void validaPreco(double preco) {
+		if (preco <= 0) {
+			throw new IllegalArgumentException("Preco invalido");
+		}
+	}
 
 }
