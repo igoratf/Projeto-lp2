@@ -34,7 +34,11 @@ public class ControllerEmprestimo {
 	 */
 	public void registrarEmprestimo(ChaveUsuario dono, ChaveUsuario requerente, String nomeItem, String dataEmprestimo, int periodo) {
 
+		
 
+		Usuario dono = this.mapaUsuarios.get(chaveDono);
+		Usuario requerente = this.mapaUsuarios.get(chaveRequerente); 
+		
 		dono.emprestarItem(nomeItem);
 
 
