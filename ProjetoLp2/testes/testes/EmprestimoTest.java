@@ -3,6 +3,8 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+
 import org.junit.Test;
 
 
@@ -17,9 +19,10 @@ public class EmprestimoTest {
 
 	/**
 	 * Teste de validade do Objeto dono caso seja nulo.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testValidadeAtributoDono() {
+	public void testValidadeAtributoDono() throws ParseException {
 		try{
 			Usuario dono = null;
 			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
@@ -32,9 +35,10 @@ public class EmprestimoTest {
 	}
 	/**
 	 * Teste de validade do Objeto requerente caso seja nulo.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testValidadeAtributoRequerente() {
+	public void testValidadeAtributoRequerente() throws ParseException {
 		try{
 			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
 			Usuario requerente = null;
@@ -48,9 +52,10 @@ public class EmprestimoTest {
 	
 	/**
 	 * Teste de validade do Objeto Item caso seja nulo.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testValidadeAtributoItem() {
+	public void testValidadeAtributoItem() throws ParseException {
 		try{
 			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
 			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
@@ -64,9 +69,10 @@ public class EmprestimoTest {
 	
 	/**
 	 * Teste de validade do atributo data de emprestimo caso seja nulo.
+	 * @throws ParseException 
 	 */
 	@Test (expected = NullPointerException.class )
-	public void testValidadeAtributoData() {
+	public void testValidadeAtributoData() throws ParseException {
 		
 			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
 			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
@@ -77,9 +83,10 @@ public class EmprestimoTest {
 	
 	/**
 	 * Teste de validade do atributo data de emprestimo caso seja vazia.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testValidadeAtributoDataVazia() {
+	public void testValidadeAtributoDataVazia() throws ParseException {
 		try{
 			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
 			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
@@ -93,9 +100,10 @@ public class EmprestimoTest {
 	
 	/**
 	 * Teste de validade do atributo periodo caso seja negativo.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testValidadeAtributoPeriodo() {
+	public void testValidadeAtributoPeriodo() throws ParseException {
 		try{
 			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
 			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
@@ -110,9 +118,10 @@ public class EmprestimoTest {
 	/**
 	 * Teste de equidade de dois emprestimos caso possuam os atributos necessario para serem iguais,
 	 * são eles: Donos, Requerentes, Item e dataEmprestimo iguais.
+	 * @throws ParseException 
 	 */
 	@Test
-	public void testEmprestimos() {
+	public void testEmprestimos() throws ParseException {
 		
 			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
 			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");

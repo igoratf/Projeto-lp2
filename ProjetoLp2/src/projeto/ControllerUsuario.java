@@ -1,5 +1,6 @@
 package projeto;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -244,7 +245,7 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona uma peca perdida de um Jogo de Tabuleiro.
+	 * Adiciona uma peca perdida de um Jogo de Tabuleiro.o> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
 	 * 
 	 * @param nome
 	 *            Nome do Usuario.
@@ -416,6 +417,84 @@ public class ControllerUsuario {
 		return itens;
 	}
 
+<<<<<<< HEAD
+=======
+	/**
+	 * Metodo para registrar um emprestimo entre um Usuario dono e um Usuario
+	 * requerente, passando o item que pertence ao dono para um estado de
+	 * emprestimo true.
+	 * 
+	 * @param nomeDono,
+	 *            String passsado por parametro.
+	 * @param telefoneDono,
+	 *            String passsado por parametro.
+	 * @param nomeRequerente,
+	 *            String passsado por parametro.
+	 * @param telefoneRequerente,
+	 *            String passsado por parametro.
+	 * @param nomeItem,
+	 *            String passsado por parametro.
+	 * @param dataEmprestimo,
+	 *            String passsado por parametro.
+	 * @param periodo,
+	 *            Inteiro passado por paramtro.
+	 * @throws ParseException
+	 */
+	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
+			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
+
+		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
+		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+
+		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
+		Usuario dono = this.mapaUsuarios.get(chaveDono);
+		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
+		dono.emprestarItem(nomeItem);
+		Item item = dono.getItem(nomeItem);
+
+		Emprestimo emprestimo = new Emprestimo(dono, requerente, item, dataEmprestimo, periodo);
+		dono.cadastroEmprestimo(emprestimo);
+		requerente.cadastroEmprestimo(emprestimo);
+
+	}
+
+	/**
+	 * Metodo para devolver um item que já esteja emprestado, tornado o item que
+	 * pertence ao Usuario dono para um estado de emprestimo false.
+	 * 
+	 * @param nomeDono,
+	 *            String passsado por parametro.
+	 * @param telefoneDono,
+	 *            String passsado por parametro.
+	 * @param nomeRequerente,
+	 *            String passsado por parametro.
+	 * @param telefoneRequerente,
+	 *            String passsado por parametro.
+	 * @param nomeItem,
+	 *            String passsado por parametro.
+	 * @param dataEmprestimo,
+	 *            String passsado por parametro.
+	 * @param dataDevolucao,
+	 *            String passsado por parametro.
+	 * @throws ParseException
+	 */
+	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
+			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
+		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
+		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+
+		ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
+		Usuario dono = this.mapaUsuarios.get(chaveDono);
+		Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
+		Item item = dono.getItem(nomeItem);
+		dono.devolverItem(nomeItem);
+
+		dono.getEmprestimo(dono, requerente, item, dataEmprestimo).setDataDevolucao(dataDevolucao);
+		requerente.getEmprestimo(dono, requerente, item, dataEmprestimo).setDataDevolucao(dataDevolucao);
+	}
+>>>>>>> aacd42ca51a6e505e0db35a8041a27d59a6934a1
 
 	/**
 	 * Checa se uma chave esta contida no Mapa.
@@ -509,48 +588,66 @@ public class ControllerUsuario {
 	 * @param dataEmprestimo,
 	 *            String passsado por parametro. @return, retorna o emprestimo
 	 *            existente no usuario.
+	 * @throws ParseException
 	 */
 	public Emprestimo getEmprestimo(String nome, String telefone, Usuario dono, Usuario requerente, Item item,
-			String dataEmprestimo) {
+			String dataEmprestimo) throws ParseException {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 
 		return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item, dataEmprestimo);
 	}
-	
+
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		/*
-		 * Corpo do método aqui
-		 */
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		String retorno = "Emprestimos: ";
+		ArrayList<Emprestimo> emprestimos = mapaUsuarios.get(chave).getEmprestimosFeitos();
+		for (Emprestimo emprestimo : emprestimos) {
+			retorno += emprestimo.toString() + "|";
+		}
+		if (emprestimos.size() == 0) {
+			return "Nenhum item emprestado";
+		}
+
+		return retorno;
+
 	}
-	
+
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
-		/*
-		 * Corpo do método aqui
-		 */
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		String retorno = "Emprestimos pegos: ";
+		ArrayList<Emprestimo> emprestimos = mapaUsuarios.get(chave).getEmprestimosPegos();
+		for (Emprestimo emprestimo : emprestimos) {
+			retorno += emprestimo.toString() + "|";
+		}
+		if (emprestimos.size() == 0) {
+			return "Nenhum item pego emprestado";
+		}
+
+		return retorno;
 	}
 	
-	public String listarEmprestimosItem(String nomeItem) {
-		/*
-		 * Corpo do método aqui
-		 */
+	public Usuario getUsuario (ChaveUsuario chave) {
+		
+		return mapaUsuarios.get(chave);
 	}
-	
-	public String listarItensEmprestados() {
-		/*
-		 * Corpo do método aqui
-		 */
-	}
-	
-	public String listarItensNaoEmprestados() {
-		/*
-		 * Corpo do método aqui
-		 */
-	}
-	
-	public String listarTop10Itens() {
-		/*
-		 * Corpo do método aqui
-		 */
-	}
+	/*
+	 * 
+	 * 
+	 * public String listarEmprestimosItem(String nomeItem) {
+	 * 
+	 * }
+	 * 
+	 * public String listarItensEmprestados() {
+	 * 
+	 * }
+	 * 
+	 * public String listarItensNaoEmprestados() {
+	 * 
+	 * }
+	 * 
+	 * public String listarTop10Itens() {
+	 * 
+	 * }
+	 */
 
 }

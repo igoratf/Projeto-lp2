@@ -1,5 +1,6 @@
 package projeto;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -338,17 +339,20 @@ public class Usuario {
 	}
 
 	/**
-	 * Metodo para retornar a lista de itens que o usuario possui.
-	 * @return, lista de itens do usuario.
+	 * Metodo para retornar a lista de itens que o usuario possui. @return,
+	 * lista de itens do usuario.
 	 */
 	public ArrayList<Item> getListaItens() {
 		return new ArrayList<Item>(listaItens);
 	}
 
 	/**
-	 * Metodo para retornar um item baseado em seu nome pertencente a esse usuario.
-	 * @param nomeItem, String passado por parametro.
-	 * @return, retorna o item desejado.
+	 * Metodo para retornar um item baseado em seu nome pertencente a esse
+	 * usuario.
+	 * 
+	 * @param nomeItem,
+	 *            String passado por parametro. @return, retorna o item
+	 *            desejado.
 	 */
 	public Item getItem(String nomeItem) {
 		for (Item item : listaItens) {
@@ -358,6 +362,28 @@ public class Usuario {
 		throw new RuntimeException("Item nao encontrado");
 	}
 
+	/**
+	 * Metodo para retornar um emprestimo cadastrado nesse usuario.
+	 * 
+	 * @param dono,
+	 *            Objeto passado por parametro.
+	 * @param requerente,
+	 *            Objeto passado por parametro.
+	 * @param item,
+	 *            Objeto passado por parametro.
+	 * @param dataEmprestimo,
+	 *            String passado por parametro. @return, Emprestimo encontrado
+	 *            no usuario.
+	 * @throws ParseException 
+	 */
+	public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item item, String dataEmprestimo) throws ParseException {
+		Emprestimo emprestimoParametro = new Emprestimo(dono, requerente, item, dataEmprestimo, 0);
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.equals(emprestimoParametro))
+				return emprestimo;
+		}
+		throw new IllegalArgumentException("Emprestimo nao encontrado");
+	}
 
 
 	/**
@@ -371,7 +397,6 @@ public class Usuario {
 		}
 	}
 
-
 	/**
 	 * Verifica se o usuário contém algum empréstimo
 	 * 
@@ -379,6 +404,26 @@ public class Usuario {
 	 */
 
 
+
+	public ArrayList<Emprestimo> getEmprestimosFeitos() {
+		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getDono().getNome().equals(this.nome) && emprestimo.getDono().getNumCelular() == this.numCelular) {
+				emprestimosTemp.add(emprestimo);
+			}
+		}
+		return emprestimosTemp;
+	}
+	
+	public ArrayList<Emprestimo> getEmprestimosPegos() {
+		ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>();
+		for (Emprestimo emprestimo : emprestimos) {
+			if (emprestimo.getRequerente().getNome().equals(this.nome) && emprestimo.getRequerente().getNumCelular() == this.numCelular) {
+				emprestimosTemp.add(emprestimo);
+			}
+		}
+		return emprestimosTemp;
+	}
 
 	/**
 	 * Calcula o HashCode do Objeto.
