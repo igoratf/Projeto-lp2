@@ -21,6 +21,7 @@ import projeto.bluray.BluraySeries;
 public class ControllerUsuario {
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
 
+
 	/**
 	 * Construtor de Usuario.
 	 */

@@ -13,7 +13,7 @@ public class Sistema {
 	public Sistema() {
 
 		this.cUsuario = new ControllerUsuario();
-		this.cItem = new ControllerItem();
+		this.cItem = new ControllerItem(this);
 		this.cEmprestimo = new ControllerEmprestimo();
 
 	}
