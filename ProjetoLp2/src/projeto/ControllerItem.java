@@ -10,8 +10,9 @@ import projeto.bluray.*;
 public class ControllerItem {
 	private Sistema sistema;
 
-	public ControllerItem() {
-		this.sistema = new Sistema();
+	public ControllerItem(Sistema sistema) {
+		this.sistema = sistema;
+
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
@@ -88,7 +89,7 @@ public class ControllerItem {
 		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		switch (atributo) {
 		case "Preco":
-			return String.format("%.2f", mapaItens.get(nomeItem).getValor());
+			return String.valueOf(mapaItens.get(nomeItem).getValor());
 		case "Nome":
 			return mapaItens.get(nomeItem).getNome();
 		default:
