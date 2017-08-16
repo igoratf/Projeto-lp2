@@ -178,6 +178,9 @@ public class ControllerUsuario {
 
 	public Map<String, Item> getItensUsuario(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		if(!mapaUsuarios.containsKey(chave)){
+			throw new IllegalArgumentException("Usuario invalido");
+		}
 		return mapaUsuarios.get(chave).getItens();
 	}
 
