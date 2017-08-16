@@ -1,6 +1,8 @@
 package projeto;
 
 import java.text.ParseException;
+import java.util.List;
+import java.util.Map;
 
 public class Sistema {
 	
@@ -21,6 +23,12 @@ public class Sistema {
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		return cUsuario.getInfoUsuario(nome, telefone, atributo);
+	}
+	public Map<String,Item> getItensUsuario(String nome, String telefone){
+		return cUsuario.getItensUsuario(nome, telefone);
+	}
+	public List<Item> getItensUsuarios() {
+		return cUsuario.getItensUsuarios();
 	}
 
 	public void removerUsuario(String nome, String telefone) {

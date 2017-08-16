@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import projeto.Jogo.JogoTabuleiro;
@@ -151,9 +152,6 @@ public class ControllerUsuario {
 
 	}
 
-
-
-
 	/**
 	 * Checa se uma chave esta contida no Mapa.
 	 * 
@@ -169,24 +167,6 @@ public class ControllerUsuario {
 		return true;
 	}
 
-
-	/**
-	 * Retorna se o jogo está completo ou não.
-	 * 
-	 * @param nome
-	 *            Nome do Usuário.
-	 * @param telefone
-	 *            Telefone do Usuário.
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @return String estado do Jogo de Tabuleiro.
-	 */
-	public String haPecasPerdidasItem(String nome, String telefone, String nomeItem) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		return ((JogoTabuleiro) mapaUsuarios.get(chave).getItem(nomeItem)).existePecasPerdidas();
-	}
-	
-
 	public Usuario getUsuario(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		if (mapaUsuarios.containsKey(chave)) {
@@ -198,6 +178,17 @@ public class ControllerUsuario {
 	public Map<String, Item> getItensUsuario(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return mapaUsuarios.get(chave).getItens();
+	}
+
+	public List<Item> getItensUsuarios() {
+		ArrayList<Item> itensUsuarios =  new ArrayList<>();
+		for (Usuario usuario : mapaUsuarios.values()) {
+			ArrayList<Item> itensUsuario = new ArrayList<>(usuario.getItens().values());
+			for (Item item : itensUsuario) {
+				itensUsuarios.add(item);
+			}
+		}
+		return itensUsuarios;
 	}
 
 }

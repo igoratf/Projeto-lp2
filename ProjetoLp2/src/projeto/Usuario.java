@@ -99,21 +99,6 @@ public class Usuario {
 		this.numCelular = numCelular;
 	}
 
-	/**
-	 * Metodo para retornar um item baseado em seu nome pertencente a esse
-	 * usuario.
-	 * 
-	 * @param nomeItem,
-	 *            String passado por parametro. @return, retorna o item
-	 *            desejado.
-	 */
-	public Item getItem(String nomeItem) {
-		if (!mapaItens.containsKey(nomeItem)) {
-			throw new RuntimeException("Item nao encontrado");
-		}
-		return mapaItens.get(nomeItem);
-
-	}
 
 	public Map<String, Item> getItens() {
 		return mapaItens;
