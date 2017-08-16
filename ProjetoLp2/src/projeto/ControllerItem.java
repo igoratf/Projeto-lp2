@@ -1,5 +1,8 @@
 package projeto;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import projeto.Jogo.JogoEletronico;
 import projeto.Jogo.JogoTabuleiro;
 import projeto.bluray.Bluray;
@@ -53,6 +56,61 @@ public class ControllerItem {
 	public void removerItem(String nome, String telefone, String nomeItem) {
 		Item meuItem = getItem(nomeItem);
 		listaItens.remove(meuItem);
+	}
+	
+	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
+		if (!mapaItens.containsKey(nomeItem)) {
+			throw new IllegalArgumentException("Jogo Inválido!");
+		}
+		((JogoTabuleiro) mapaItens.get(nomeItem)).adicionarPecaPerdida(nomePeca);
+	}
+	
+	public void atualizarItem(String nomeItem, String atributo, String valor) {
+		Item meuItem = getItem(nomeItem);
+		if (atributo.equalsIgnoreCase("preco")) {
+			meuItem.setValor(Float.parseFloat(valor));
+		}
+		if (atributo.equalsIgnoreCase("nome")) {
+			meuItem.setNome(valor);
+		}
+	}
+	
+	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		return mapaUsuarios.get(chave).getInfoItem(nomeItem, atributo);
+
+	}
+	public String pesquisarDetalhesItem(String nomeItem) {
+		Item meuItem = getItem(nomeItem);
+		return meuItem.toString();
+	}
+	
+	public void emprestarItem(String nomeItem) {
+		Item meuItem = getItem(nomeItem);
+		if (meuItem.getEstado().equals("Emprestado"))
+			throw new IllegalArgumentException("Item emprestado no momento");
+		else
+			meuItem.setEstadoDeEmprestimo(true);
+	}
+	
+	public String listarItensOrdenadosPorNome() {
+		String itens = "";
+		ArrayList<Item> itensSistema = itensSistema();
+		Collections.sort(itensSistema);
+		for (Item item : itensSistema) {
+			itens += item.toString() + "|";
+		}
+		return itens;
+	}
+	
+	public String listarItensOrdenadosPorValor() {
+		String itens = "";
+		ArrayList<Item> itensSistema = itensSistema();
+		itensSistema.sort(new ComparaItemValor());
+		for (Item item : itensSistema) {
+			itens += item.toString() + "|";
+		}
+		return itens;
 	}
 
 }
