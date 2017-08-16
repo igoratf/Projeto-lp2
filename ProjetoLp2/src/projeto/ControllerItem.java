@@ -62,8 +62,8 @@ public class ControllerItem {
 
 	public void removerItem(String nome, String telefone, String nomeItem) {
 		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
-		Item meuItem = mapaItens.get(nomeItem);
-		mapaItens.remove(meuItem);
+		ValidaParametros.validaItem(mapaItens, nomeItem);
+		mapaItens.remove(nomeItem);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
@@ -76,17 +76,21 @@ public class ControllerItem {
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
 		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (atributo.equalsIgnoreCase("preco")) {
 			meuItem.setValor(Float.parseFloat(valor));
 		}
 		if (atributo.equalsIgnoreCase("nome")) {
+			mapaItens.remove(nomeItem);
 			meuItem.setNome(valor);
+			mapaItens.put(valor, meuItem);
 		}
 	}
 
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
 		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+		ValidaParametros.validaItem(mapaItens, nomeItem);
 		switch (atributo) {
 		case "Preco":
 			return String.valueOf(mapaItens.get(nomeItem).getValor());
@@ -100,12 +104,14 @@ public class ControllerItem {
 
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
 		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		return meuItem.toString();
 	}
 
 	public void emprestarItem(String nome, String telefone, String nomeItem) {
 		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (meuItem.getEstado().equals("Emprestado"))
 			throw new IllegalArgumentException("Item emprestado no momento");
