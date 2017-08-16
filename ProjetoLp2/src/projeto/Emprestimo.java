@@ -33,7 +33,7 @@ public class Emprestimo {
 	 * @throws ParseException 
 	 */
 	public Emprestimo(ChaveUsuario dono, ChaveUsuario requerente, String item,
-			String dataInicial, int periodo){
+			String dataInicial, int periodo) throws ParseException{
 		checaValidadeAtributos(dono, requerente, item, dataInicial, periodo);
 
 		this.dono = dono;
