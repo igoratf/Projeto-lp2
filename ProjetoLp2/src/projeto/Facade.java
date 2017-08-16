@@ -3,99 +3,99 @@ package projeto;
 import java.text.ParseException;
 
 public class Facade {
-	private ControllerUsuario controller;
+	private Sistema sistema;
 	public Facade(){
-		this.controller = new ControllerUsuario();
+		this.sistema = new Sistema();
 	}
 
 	public void iniciarSistema() {
 	}
 
 	public void cadastrarUsuario(String nome, String telefone, String email) {
-		controller.cadastrarUsuario(nome, telefone, email);
+		sistema.cadastrarUsuario(nome, telefone, email);
 	}
 
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
-		return controller.getInfoUsuario(nome, telefone, atributo);
+		return sistema.getInfoUsuario(nome, telefone, atributo);
 	}
 
 	public void removerUsuario(String nome, String telefone) {
-		controller.removerUsuario(nome, telefone);
+		sistema.removerUsuario(nome, telefone);
 	}
 
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
-		controller.atualizarUsuario(nome, telefone, atributo, valor);
+		sistema.atualizarUsuario(nome, telefone, atributo, valor);
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco,
 			String plataforma) {
-		controller.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
+		sistema.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-		controller.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
+		sistema.cadastrarJogoTabuleiro(nome, telefone, nomeItem, preco);
 	}
 	
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao, int duracao, String classificacao, String genero, int temporada) {
-		controller.cadastrarBluraySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
+		sistema.cadastrarBluRaySerie(nome, telefone, nomeItem, preco, descricao, duracao, classificacao, genero, temporada);
 	}
 	//L
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao){
-		controller.adicionarBluRay(nome, telefone, nomeBlurayTemporada, duracao);
+		sistema.adicionarBluRay(nome, telefone, nomeBlurayTemporada, duracao);
 	}
 	
 	//L
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
-		controller.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);
+		sistema.cadastrarBluRayFilme(nome, telefone, nomeItem, preco, duracao, genero, classificacao, anoLancamento);
 	}
 	public void cadastrarBluRayShow(String nome, String telefone,String nomeItem, double preco, int duracao, int numFaixas,String nomeArtista,String classificacao) {
-		controller.cadastrarBlurayShow(nome, telefone, nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
+		sistema.cadastrarBluRayShow(nome, telefone, nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		controller.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
+		sistema.adicionarPecaPerdida(nome, telefone, nomeItem, nomePeca);
 	}
 
 	public void removerItem(String nome, String telefone, String nomeItem) {
-		controller.removerItem(nome, telefone, nomeItem);
+		sistema.removerItem(nome, telefone, nomeItem);
 	}
 
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		controller.atualizarItem(nome, telefone, nomeItem, atributo, valor);
+		sistema.atualizarItem(nome, telefone, nomeItem, atributo, valor);
 	}
 	public String getInfoItem(String nome, String telefone,String nomeItem,String atributo){
-		return controller.getInfoItem(nome, telefone, nomeItem, atributo);
+		return sistema.getInfoItem(nome, telefone, nomeItem, atributo);
 	}
 	public String listarItensOrdenadosPorNome(){
-		return controller.listarItensOrdenadosPorNome();
+		return sistema.listarItensOrdenadosPorNome();
 	}
 	public String listarItensOrdenadosPorValor() {
-		return controller.listarItensOrdenadosPorValor();
+		return sistema.listarItensOrdenadosPorValor();
 	}
 	
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-		return controller.pesquisarDetalhesItem(nome, telefone, nomeItem);
+		return sistema.pesquisarDetalhesItem(nome, telefone, nomeItem);
 	}
 	
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException{
-		controller.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
+		sistema.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, periodo);
 		
 	}
 	
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException{
-		controller.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
+		sistema.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 	
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
-		return controller.listarEmprestimosUsuarioEmprestando(nome, telefone);
+		return sistema.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 	
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
-		return controller.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
+		return sistema.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 	}
 	/*
 	public String listarEmprestimosItem(String nomeItem) {

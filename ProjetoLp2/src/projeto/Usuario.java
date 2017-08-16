@@ -1,10 +1,8 @@
 package projeto;
 
-
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 
 /**
  * Classe de Usuário.
@@ -98,7 +96,6 @@ public class Usuario {
 	public void setNumCelular(String numCelular) {
 		this.numCelular = numCelular;
 	}
-
 
 	public Map<String, Item> getItens() {
 		return mapaItens;
