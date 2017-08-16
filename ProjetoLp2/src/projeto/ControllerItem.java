@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
-import projeto.Jogo.JogoEletronico;
-import projeto.Jogo.JogoTabuleiro;
-import projeto.bluray.Bluray;
-import projeto.bluray.BlurayEpisodio;
-import projeto.bluray.BlurayFilme;
-import projeto.bluray.BluraySeries;
-import projeto.bluray.BlurayShow;
+import projeto.Jogo.*;
+import projeto.bluray.*;
 
 public class ControllerItem {
+	private Sistema sistema;
+
+	public ControllerItem() {
+		this.sistema = new Sistema();
+	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		ValidaParametros.validaPreco(preco);
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		mapaItens.put(nomeItem, jogoEletronico);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		ValidaParametros.validaPreco(preco);
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
 		mapaItens.put(nomeItem, jogoTabuleiro);
 	}
@@ -31,42 +31,42 @@ public class ControllerItem {
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
 		ValidaParametros.validaPreco(preco);
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero, anoLancamento);
 		mapaItens.put(nomeItem, blurayFilme);
 	}
 
-	public Item cadastrarBlurayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
+	public void cadastrarBlurayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
 			int numFaixas, String nomeArtista, String classificacao) {
 		ValidaParametros.validaPreco(preco);
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 		mapaItens.put(nomeItem, blurayShow);
 	}
 
-	public Item cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
+	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) {
 		ValidaParametros.validaPreco(preco);
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, descricao, classificacao, genero, temporada);
 		mapaItens.put(nomeItem, bluraySerie);
 	}
 
 	public void adicionarBluray(String nome, String telefone, String serie, int duracao) {
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		BluraySeries bluraySerie = (BluraySeries) mapaItens.get(serie);
 		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
 		bluraySerie.adicionarBluray(blurayEpisodio);
 	}
 
 	public void removerItem(String nome, String telefone, String nomeItem) {
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Item meuItem = mapaItens.get(nomeItem);
 		mapaItens.remove(meuItem);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		if (!mapaItens.containsKey(nomeItem)) {
 			throw new IllegalArgumentException("Jogo Inválido!");
 		}
@@ -74,7 +74,7 @@ public class ControllerItem {
 	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (atributo.equalsIgnoreCase("preco")) {
 			meuItem.setValor(Float.parseFloat(valor));
@@ -85,7 +85,7 @@ public class ControllerItem {
 	}
 
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		switch (atributo) {
 		case "Preco":
 			return String.format("%.2f", mapaItens.get(nomeItem).getValor());
@@ -98,13 +98,13 @@ public class ControllerItem {
 	}
 
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Item meuItem = mapaItens.get(nomeItem);
 		return meuItem.toString();
 	}
 
 	public void emprestarItem(String nome, String telefone, String nomeItem) {
-		Map<String, Item> mapaItens = sistema.getItens(nome, telefone);
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (meuItem.getEstado().equals("Emprestado"))
 			throw new IllegalArgumentException("Item emprestado no momento");
@@ -114,9 +114,9 @@ public class ControllerItem {
 
 	public String listarItensOrdenadosPorNome() {
 		String itens = "";
-		ArrayList<Item> itensSistema = itensSistema();
-		Collections.sort(itensSistema);
-		for (Item item : itensSistema) {
+		ArrayList<Item> itensUsuarios = (ArrayList<Item>) sistema.getItensUsuarios();
+		Collections.sort(itensUsuarios);
+		for (Item item : itensUsuarios) {
 			itens += item.toString() + "|";
 		}
 		return itens;
@@ -124,9 +124,9 @@ public class ControllerItem {
 
 	public String listarItensOrdenadosPorValor() {
 		String itens = "";
-		ArrayList<Item> itensSistema = itensSistema();
-		itensSistema.sort(new ComparaItemValor());
-		for (Item item : itensSistema) {
+		ArrayList<Item> itensUsuarios = (ArrayList<Item>) sistema.getItensUsuarios();
+		itensUsuarios.sort(new ComparaItemValor());
+		for (Item item : itensUsuarios) {
 			itens += item.toString() + "|";
 		}
 		return itens;

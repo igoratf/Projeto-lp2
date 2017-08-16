@@ -1,10 +1,8 @@
 package projeto;
 
-
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 
 /**
  * Classe de Usuário.
@@ -97,22 +95,6 @@ public class Usuario {
 	 */
 	public void setNumCelular(String numCelular) {
 		this.numCelular = numCelular;
-	}
-
-	/**
-	 * Metodo para retornar um item baseado em seu nome pertencente a esse
-	 * usuario.
-	 * 
-	 * @param nomeItem,
-	 *            String passado por parametro. @return, retorna o item
-	 *            desejado.
-	 */
-	public Item getItem(String nomeItem) {
-		if (!mapaItens.containsKey(nomeItem)) {
-			throw new RuntimeException("Item nao encontrado");
-		}
-		return mapaItens.get(nomeItem);
-
 	}
 
 	public Map<String, Item> getItens() {
