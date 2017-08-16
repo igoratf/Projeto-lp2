@@ -4,17 +4,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
-import projeto.Jogo.JogoEletronico;
-import projeto.Jogo.JogoTabuleiro;
-import projeto.bluray.Bluray;
-import projeto.bluray.BlurayEpisodio;
-import projeto.bluray.BlurayFilme;
-import projeto.bluray.BluraySeries;
-import projeto.bluray.BlurayShow;
+import projeto.Jogo.*;
+import projeto.bluray.*;
 
 public class ControllerItem {
 	private Sistema sistema;
-	public ControllerItem(){
+
+	public ControllerItem() {
 		this.sistema = new Sistema();
 	}
 
