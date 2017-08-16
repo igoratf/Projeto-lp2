@@ -1,5 +1,7 @@
 package projeto;
 
+import java.util.Map;
+
 /**
  * Classe utilitária para validar Parâmetros.
  * 
@@ -114,6 +116,12 @@ public class ValidaParametros {
 	public static void validaPreco(double preco) {
 		if (preco <= 0) {
 			throw new IllegalArgumentException("Preco invalido");
+		}
+	}
+	
+	public static void validaItem(Map<String, Item> mapaItens, String nomeItem) {
+		if (!(mapaItens.containsKey(nomeItem))) {
+			throw new IllegalArgumentException("Item nao encontrado");
 		}
 	}
 
