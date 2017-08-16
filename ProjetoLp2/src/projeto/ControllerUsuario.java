@@ -151,141 +151,8 @@ public class ControllerUsuario {
 
 	}
 
-	/**
-	 * Cadastra um Jogo Eletronico em um Usuario
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do Jogo Eletronico.
-	 * @param preco
-	 *            Preco do Jogo Eletronico.
-	 * 
-	 * @param plataforma
-	 *            Tipo da plataforma do Jogo Eletronico.
-	 */
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).cadastrarEletronico(nomeItem, preco, plataforma);
-	}
 
-	/**
-	 * Adiciona uma peca perdida de um Jogo de Tabuleiroo> emprestimos =
-	 * mapaUsuarios.get(chave).getEmprestimosFeitos();
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do Jogo de Tabuleiro.
-	 * @param nomePeca
-	 *            Nome da Peca.
-	 */
-	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).adicionarPecaPerdida(nomeItem, nomePeca);
-	}
-
-	/**
-	 * Atualiza informacoes de um Item
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @param atributo
-	 *            Atributo a ser Atualizado.
-	 * @param valor
-	 *            Novo valor do Atributo atualizado.
-	 */
-	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		checaSeUsuarioJaExiste(nome, telefone);
-		mapaUsuarios.get(chave).atualizarItem(nomeItem, atributo, valor);
-	}
-
-	/**
-	 * Retorna informacoes de um item.
-	 * 
-	 * @param nome
-	 *            Nome do Usuario.
-	 * @param telefone
-	 *            Telefone do Usuario.
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @param atributo
-	 *            Atributo referente a informacao desejada.
-	 * @return Representacao em String da Informacao desejada.
-	 */
-	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		return mapaUsuarios.get(chave).getInfoItem(nomeItem, atributo);
-
-	}
-
-	/**
-	 * Pesquisa detalhes de um Item
-	 * 
-	 * @param nome
-	 *            Nome do usuário.
-	 * @param telefone
-	 *            Telefone do Usuário.
-	 * @param nomeItem
-	 *            Nome do Item a ser Pesquisado.
-	 * @return Detalhes do Item.
-	 */
-	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		checaSeUsuarioJaExiste(nome, telefone);
-		return mapaUsuarios.get(chave).pesquisarDetalhesItem(nomeItem);
-	}
-
-	private ArrayList<Item> itensSistema() {
-		ArrayList<Item> itensSistema = new ArrayList<>();
-		for (ChaveUsuario chave : mapaUsuarios.keySet()) {
-			ArrayList<Item> itensUsuario = mapaUsuarios.get(chave).getListaItens();
-			for (Item item : itensUsuario) {
-				itensSistema.add(item);
-			}
-		}
-		return itensSistema;
-	}
-
-	/**
-	 * Retorna em String os Itens do Sistema ordenados por Nome.
-	 * 
-	 * @return String listaItensOrdenadosNome
-	 */
-	public String listarItensOrdenadosPorNome() {
-		String itens = "";
-		ArrayList<Item> itensSistema = itensSistema();
-		Collections.sort(itensSistema);
-		for (Item item : itensSistema) {
-			itens += item.toString() + "|";
-		}
-		return itens;
-	}
-
-	/**
-	 * Retorna em String os Itens do Sistema ordenados por Valor.
-	 * 
-	 * @return String listaItensOrdenadosValor
-	 */
-	public String listarItensOrdenadosPorValor() {
-		String itens = "";
-		ArrayList<Item> itensSistema = itensSistema();
-		itensSistema.sort(new ComparaItemValor());
-		for (Item item : itensSistema) {
-			itens += item.toString() + "|";
-		}
-		return itens;
-	}
 
 	/**
 	 * Checa se uma chave esta contida no Mapa.
@@ -302,20 +169,6 @@ public class ControllerUsuario {
 		return true;
 	}
 
-	/**
-	 * Valida a presença de um Item em um Usuário.
-	 * 
-	 * @param nome
-	 *            Nome do Usuário.
-	 * @param telefone
-	 *            Telefone do Usuário.
-	 * @param nomeItem
-	 *            Nome do Item.
-	 */
-	public void validaItemUsuario(String nome, String telefone, String nomeItem) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).getItem(nomeItem);
-	}
 
 	/**
 	 * Retorna se o jogo está completo ou não.
@@ -332,22 +185,7 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return ((JogoTabuleiro) mapaUsuarios.get(chave).getItem(nomeItem)).existePecasPerdidas();
 	}
-
-	/**
-	 * Retorna um valor booleano que indica se há algum episódio cadastrado
-	 * 
-	 * @param nome
-	 *            Nome do Usuário.
-	 * @param telefone
-	 *            Telefone do Usuário.
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @return valor Booleano.
-	 */
-	public boolean haEpisodiosBluRaySeries(String nome, String telefone, String nomeItem) {
-		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		return ((BluraySeries) mapaUsuarios.get(chave).getItem(nomeItem)).contemEpisodio();
-	}
+	
 
 	public Usuario getUsuario(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
@@ -357,7 +195,7 @@ public class ControllerUsuario {
 		return mapaUsuarios.get(chave);
 	}
 
-	public Map getItensUsuario(String nome, String telefone) {
+	public Map<String, Item> getItensUsuario(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		return mapaUsuarios.get(chave).getItens();
 	}

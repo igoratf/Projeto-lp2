@@ -202,6 +202,12 @@ public class ControllerEmprestimo {
 
 		return retorno;
 	}
+	
+	
+	public void devolverItem(String nomeItem) {
+	 
+	  Item meuItem = getItem(nomeItem); getItem(nomeItem);
+	  meuItem.setEstadoDeEmprestimo(false); }
 	 */
 	
 

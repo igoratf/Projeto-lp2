@@ -1,13 +1,9 @@
 package projeto;
 
 
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import projeto.Jogo.*;
-import projeto.bluray.*;
 
 
 /**
@@ -23,7 +19,6 @@ public class Usuario {
 	private String email;
 	private String numCelular;
 	private Map<String, Item> mapaItens;
-
 
 	/**
 	 * Construtor da Classe Usuário.
@@ -42,7 +37,6 @@ public class Usuario {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.mapaItens = new HashMap<String, Item>();
-
 
 	}
 
@@ -105,125 +99,6 @@ public class Usuario {
 		this.numCelular = numCelular;
 	}
 
-
-
-
-	/**
-	 * Adiciona uma peça perdida de um Jogo de Tabuleiro do Usuario.
-	 * 
-	 * @param nomeItem
-	 *            Nome do Jogo de Tabuleiro.
-	 * @param nomePeca
-	 *            Nome da peça perdida.
-	 */
-	public void adicionarPecaPerdida(String nomeItem, String nomePeca) {
-		if (!mapaItens.containsKey(nomeItem)) {
-			throw new IllegalArgumentException("Jogo Inválido!");
-		}
-		((JogoTabuleiro) mapaItens.get(nomeItem)).adicionarPecaPerdida(nomePeca);
-	}
-
-	/**
-	 * Metodo para devolver item de um usuario.
-	 * 
-	 * @param nomeItem
-	 *            Nome do item.
-	 */
-	/*
-	 * public void devolverItem(String nomeItem) {
-	 *
-	 * Item meuItem = getItem(nomeItem); getItem(nomeItem);
-	 * meuItem.setEstadoDeEmprestimo(false); }
-	 */
-
-
-
-	
-
-	
-
-	/**
-	 * Atualiza informações de um Item.
-	 * 
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @param atributo
-	 *            Atributo a ser atualizado.
-	 * @param valor
-	 *            Novo valor do Atributo.
-	 */
-	public void atualizarItem(String nomeItem, String atributo, String valor) {
-		Item meuItem = getItem(nomeItem);
-		if (atributo.equalsIgnoreCase("preco")) {
-			meuItem.setValor(Float.parseFloat(valor));
-		}
-		if (atributo.equalsIgnoreCase("nome")) {
-			meuItem.setNome(valor);
-		}
-	}
-
-	/**
-	 * Retorna Informações de um Item.
-	 * 
-	 * @param nomeItem
-	 *            Nome do Item.
-	 * @param atributo
-	 *            Atributo da Informação desejada.
-	 * @return Informação.
-	 */
-	public String getInfoItem(String nomeItem, String atributo) {
-		Item meuItem = getItem(nomeItem);
-		switch (atributo) {
-		case "Preco":
-			return String.valueOf(meuItem.getValor());
-		case "Nome":
-			return meuItem.getNome();
-		default:
-			throw new IllegalArgumentException("Atributo invalido");
-		}
-	}
-
-	/**
-	 * Metodo para realizar um emprestimo de um item do Usuario.
-	 * 
-	 * @param nomeItem
-	 *            Nome do item.
-	 */
-	public void emprestarItem(String nomeItem) {
-		Item meuItem = getItem(nomeItem);
-		if (meuItem.getEstado().equals("Emprestado"))
-			throw new IllegalArgumentException("Item emprestado no momento");
-		else
-			meuItem.setEstadoDeEmprestimo(true);
-	}
-
-	/**
-	 * Cadastra um empréstimo na lista de empréstimos
-	 * 
-	 * @param emprestimo
-	 */
-
-
-	/**
-	 * Exibe informações sobre um item
-	 * 
-	 * @param nomeItem
-	 *            é o nome do item
-	 * @return informações do item
-	 */
-	public String pesquisarDetalhesItem(String nomeItem) {
-		Item meuItem = getItem(nomeItem);
-		return meuItem.toString();
-	}
-
-	/**
-	 * Metodo para retornar a lista de itens que o usuario possui. @return,
-	 * lista de itens do usuario.
-	 */
-	public ArrayList<Item> getListaItens() {
-		return new ArrayList<Item>(mapaItens.values());
-	}
-
 	/**
 	 * Metodo para retornar um item baseado em seu nome pertencente a esse
 	 * usuario.
@@ -240,8 +115,7 @@ public class Usuario {
 
 	}
 
-
-	public Map getItens() {
+	public Map<String, Item> getItens() {
 		return mapaItens;
 	}
 
