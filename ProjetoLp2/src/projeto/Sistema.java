@@ -105,15 +105,23 @@ public class Sistema {
 
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
-		cEmprestimo.registrarEmprestimo(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem,
-				dataEmprestimo, periodo);
+		
+		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario requerente = new ChaveUsuario(nomeDono, telefoneDono);
+		
+		cItem.emprestarItem(nomeDono, telefoneDono, nomeItem);
+		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem,dataEmprestimo, periodo);
 
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
-		cEmprestimo.devolverItem(nomeDono, telefoneDono, nomeRequerente, telefoneRequerente, nomeItem, dataEmprestimo,
-				dataDevolucao);
+		
+		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario requerente = new ChaveUsuario(nomeDono, telefoneDono);
+		
+		cItem.emprestarItem(nomeDono, telefoneDono, nomeItem);
+		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 	}
 
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
