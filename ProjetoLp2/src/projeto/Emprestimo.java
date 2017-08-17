@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class Emprestimo {
+public class Emprestimo implements Comparable<Emprestimo>{
 	
 
 	private ChaveUsuario dono;
@@ -187,5 +187,11 @@ public class Emprestimo {
 		return String.format("EMPRESTIMO - De: %s, Para: %s, %s, %s, %d dias, ENTREGA: %s", getDono().getNome(),
 				getRequerente().getNome(),this.getItem(), getDataEmprestimo(), this.periodo, getDataDevolucao());
 
+	}
+
+	@Override
+	public int compareTo(Emprestimo o) {
+			
+		return this.getDono().getNome().compareTo(o.getDono().getNome());
 	}
 }

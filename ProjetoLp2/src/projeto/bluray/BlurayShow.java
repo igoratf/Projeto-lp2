@@ -91,12 +91,8 @@ public class BlurayShow extends Bluray {
 		super.validaBluray(nome, valor, duracao, classificacao);
 		if (nomeArtista == null)
 			throw new NullPointerException("Nome do artista nulo");
-		if (classificacao == null)
-			throw new NullPointerException("Classificacao nula");
 		if (nomeArtista.trim().equals(""))
 			throw new IllegalArgumentException("Nome do artista vazio");
-		if (classificacao.trim().equals(""))
-			throw new IllegalArgumentException("Classificacao vazia");
 		if (numFaixas <= 0)
 			throw new IllegalArgumentException("Numero de faixas invalido");
 	}
