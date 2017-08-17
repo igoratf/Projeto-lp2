@@ -138,6 +138,10 @@ public class Sistema {
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
 		return cEmprestimo.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 	}
+	
+	public String listarEmprestimosItem(String nomeItem) {
+		return cEmprestimo.listarEmprestimosItem(nomeItem);
+	}
 	/*
 	 * public String listarEmprestimosItem(String nomeItem) { return
 	 * controller.listarEmprestimosItem(nomeItem); }
