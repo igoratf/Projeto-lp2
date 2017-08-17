@@ -128,6 +128,18 @@ public class ControllerEmprestimo {
 		}
 		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
+	
+	public String listarEmprestimosItem(String nomeItem) {
+		String retorno = "Emprestimos associados ao item: ";
+		for (Emprestimo emprestimo: emprestimos) {
+			if (emprestimo.getItem().equals(nomeItem))
+				retorno += emprestimo.toString() + "|";
+		}
+		if (retorno.equals("Emprestimos associados ao item: "))
+			return "Nenhum mprestimos associados ao item";
+		
+		return retorno;
+	}
 
 
 	public List<Emprestimo> getEmprestimos() {
