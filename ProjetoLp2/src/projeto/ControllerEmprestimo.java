@@ -2,6 +2,7 @@ package projeto;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ControllerEmprestimo {
@@ -75,7 +76,7 @@ public class ControllerEmprestimo {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
-		emprestimosTemp.sort(new ComparaNomeEmprestimo());
+		Collections.sort(emprestimosTemp);;
 		return emprestimosTemp;
 	}
 
