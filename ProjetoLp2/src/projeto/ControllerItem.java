@@ -296,6 +296,14 @@ public class ControllerItem {
 		else
 			meuItem.setEstadoDeEmprestimo(true);
 	}
+	
+	public void devolverItem(String nome, String telefone, String nomeItem){
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+		ValidaParametros.validaItem(mapaItens, nomeItem);
+		Item meuItem = mapaItens.get(nomeItem);
+		
+		meuItem.setEstadoDeEmprestimo(false);
+	}
 
 	/**
 	 * Lista os itens dos usuários ordenados por nome
