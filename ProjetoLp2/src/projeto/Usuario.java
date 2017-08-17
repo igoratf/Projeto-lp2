@@ -7,8 +7,8 @@ import java.util.Map;
 /**
  * Classe de Usuário.
  * 
- * @author caiosbl, igoratf
- * @version 2.0
+ * @author caiosbl
+ * @version 4.0
  *
  */
 
@@ -48,8 +48,7 @@ public class Usuario {
 	}
 
 	/**
-	 * imo("João", "8345", "João", "8345", "Lucas", "8345", "Guerra",
-	 * "10/08/2017") Altera o nome do Usuário.
+	 * Altera o nome do Usuário.
 	 * 
 	 * @param nome
 	 *            Novo nome do Usuário.
@@ -78,17 +77,16 @@ public class Usuario {
 	}
 
 	/**
-	 * Retorna o número do celular do Usuário. imo("João", "8345", "João",
-	 * "8345", "Lucas", "8345", "Guerra", "10/08/2017")
+	 * Retorna o número do Celular do Usuário.
 	 * 
-	 * @return numCelular Número do Celular do Usuário.
+	 * @return numCelular.
 	 */
 	public String getNumCelular() {
 		return numCelular;
 	}
 
 	/**
-	 * Altera o número do Celular de um usuário.
+	 * Altera o número do Celular do Usuário.
 	 * 
 	 * @param numCelular
 	 *            Novo número de celular do Usuário.
@@ -97,6 +95,11 @@ public class Usuario {
 		this.numCelular = numCelular;
 	}
 
+	/**
+	 * Retorna o mapa de Itens do Usuário.
+	 * 
+	 * @return mapaItens
+	 */
 	public Map<String, Item> getItens() {
 		return mapaItens;
 	}

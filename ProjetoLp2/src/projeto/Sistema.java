@@ -44,6 +44,10 @@ public class Sistema {
 	public void atualizarUsuario(String nome, String telefone, String atributo, String valor) {
 		cUsuario.atualizarUsuario(nome, telefone, atributo, valor);
 	}
+	
+	public boolean checaSeUsuarioJaExiste(String nome,String telefone){
+		return cUsuario.checaSeUsuarioJaExiste(nome, telefone);
+	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		cItem.cadastrarEletronico(nome, telefone, nomeItem, preco, plataforma);
