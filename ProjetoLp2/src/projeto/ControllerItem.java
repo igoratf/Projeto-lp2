@@ -34,7 +34,7 @@ public class ControllerItem {
 	 * @param plataforma
 	 *            é a plataforma do jogo
 	 */
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma, Map<String, Item> mapaItens) {
+	public void cadastrarEletronico(String nomeItem, double preco, String plataforma, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		mapaItens.put(nomeItem, jogoEletronico);
@@ -52,7 +52,7 @@ public class ControllerItem {
 	 * @param preco
 	 *            é o valor do jogo
 	 */
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco, Map<String, Item> mapaItens) {
+	public void cadastrarJogoTabuleiro(String nomeItem, double preco, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
 		mapaItens.put(nomeItem, jogoTabuleiro);
@@ -78,7 +78,7 @@ public class ControllerItem {
 	 * @param anoLancamento
 	 *            é o ano de lançamento do filme
 	 */
-	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
+	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero, anoLancamento);
@@ -105,7 +105,7 @@ public class ControllerItem {
 	 * @param classificacao
 	 *            é a classificação indicativa do show
 	 */
-	public void cadastrarBlurayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao,
 			int numFaixas, String nomeArtista, String classificacao, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
@@ -134,7 +134,7 @@ public class ControllerItem {
 	 * @param temporada
 	 *            é a temporada da série que corresponde o bluray
 	 */
-	public void cadastrarBluraySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
+	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, descricao, classificacao, genero, temporada);
@@ -153,7 +153,7 @@ public class ControllerItem {
 	 * @param duracao
 	 *            é a duração do episódio
 	 */
-	public void adicionarBluray(String nome, String telefone, String serie, int duracao, Map<String, Item> mapaItens) {
+	public void adicionarBluray(String serie, int duracao, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, serie);
 		BluraySeries bluraySerie = (BluraySeries) mapaItens.get(serie);
 		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
@@ -170,7 +170,7 @@ public class ControllerItem {
 	 * @param nomeItem
 	 *            é o nome do item
 	 */
-	public void removerItem(String nome, String telefone, String nomeItem, Map<String, Item> mapaItens) {
+	public void removerItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		mapaItens.remove(nomeItem);
 	}
@@ -187,7 +187,7 @@ public class ControllerItem {
 	 * @param nomePeca
 	 *            é o nome da peça perdida
 	 */
-	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca, Map<String, Item> mapaItens) {
+	public void adicionarPecaPerdida(String nomeItem, String nomePeca, Map<String, Item> mapaItens) {
 		if (!mapaItens.containsKey(nomeItem)) {
 			throw new IllegalArgumentException("Jogo Inválido!");
 		}
@@ -208,7 +208,7 @@ public class ControllerItem {
 	 * @param valor
 	 *            é o novo atributo atualizado após a modificação
 	 */
-	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor, Map<String, Item> mapaItens) {
+	public void atualizarItem(String nomeItem, String atributo, String valor, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (atributo.equalsIgnoreCase("preco")) {
@@ -234,7 +234,7 @@ public class ControllerItem {
 	 *            é o atributo cuja informação será exibida
 	 * @return informação correspondente a um atributo do item
 	 */
-	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo, Map<String, Item> mapaItens) {
+	public String getInfoItem(String nomeItem, String atributo, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		switch (atributo) {
 		case "Preco":
@@ -258,7 +258,7 @@ public class ControllerItem {
 	 *            é o nome do itme
 	 * @return representação textual do item
 	 */
-	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem, Map<String, Item> mapaItens) {
+	public String pesquisarDetalhesItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		return meuItem.toString();
@@ -274,7 +274,7 @@ public class ControllerItem {
 	 * @param nomeItem
 	 *            é o nome do item
 	 */
-	public void emprestarItem(String nome, String telefone, String nomeItem, Map<String, Item> mapaItens) {
+	public void emprestarItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (meuItem.getEstado().equals("Emprestado"))
@@ -283,7 +283,7 @@ public class ControllerItem {
 			meuItem.setEstadoDeEmprestimo(true);
 	}
 	
-	public void devolverItem(String nome, String telefone, String nomeItem, Map<String, Item> mapaItens){
+	public void devolverItem(String nomeItem, Map<String, Item> mapaItens){
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		meuItem.setEstadoDeEmprestimo(false);
@@ -300,7 +300,7 @@ public class ControllerItem {
 	 *            é o nome do item
 	 * @return item do Usuario
 	 */
-	public Item getItem(String nome, String telefone, String nomeItem, Map<String, Item> mapaItens) {
+	public Item getItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		return mapaItens.get(nomeItem);
 	}
@@ -318,7 +318,7 @@ public class ControllerItem {
 		}
 		return itens;
 	}
-
+	
 	/**
 	 * Lista os itens dos usuários ordenados por valor
 	 * 
@@ -332,5 +332,20 @@ public class ControllerItem {
 		}
 		return itens;
 	}
+	
+	public String listarItensEmprestados(ArrayList<Item> itensUsuarios) {
+		String itens = "";
+		Collections.sort(itensUsuarios);
+		for (Item item : itensUsuarios) {
+			if (item.getEstado().equals("Emprestado")) {
+				itens += item.toString() + "|";
+			}
+		}
+		return itens;
+	}
+	
+	//public String listarItensNaoEmprestados(ArrayList<Item> itensUsuarios) {
+		// escrever método
+	//}
 
 }
