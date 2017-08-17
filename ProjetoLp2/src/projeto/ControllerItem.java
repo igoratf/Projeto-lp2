@@ -163,6 +163,7 @@ public class ControllerItem {
 	 */
 	public void adicionarBluray(String nome, String telefone, String serie, int duracao) {
 		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+		ValidaParametros.validaItem(mapaItens, serie);
 		BluraySeries bluraySerie = (BluraySeries) mapaItens.get(serie);
 		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
 		bluraySerie.adicionarBluray(blurayEpisodio);
@@ -303,6 +304,23 @@ public class ControllerItem {
 		Item meuItem = mapaItens.get(nomeItem);
 		
 		meuItem.setEstadoDeEmprestimo(false);
+	}
+
+	/**
+	 * Retorna um item pertencente ao Usuario
+	 * 
+	 * @param nome
+	 *            é o nome do usuário
+	 * @param telefone
+	 *            é o telefone do usuário
+	 * @param nomeItem
+	 *            é o nome do item
+	 * @return item do Usuario
+	 */
+	public Item getItem(String nome, String telefone, String nomeItem) {
+		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+		ValidaParametros.validaItem(mapaItens, nomeItem);
+		return mapaItens.get(nomeItem);
 	}
 
 	/**
