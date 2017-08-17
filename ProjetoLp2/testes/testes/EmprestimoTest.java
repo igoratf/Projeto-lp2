@@ -11,7 +11,7 @@ import org.junit.Test;
 import projeto.Emprestimo;
 
 import projeto.Item;
-import projeto.Usuario;
+import projeto.ChaveUsuario;
 import projeto.Jogo.JogoTabuleiro;
 
 public class EmprestimoTest {
@@ -24,10 +24,10 @@ public class EmprestimoTest {
 	@Test
 	public void testValidadeAtributoDono() throws ParseException {
 		try{
-			Usuario dono = null;
-			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
+			ChaveUsuario dono = null;
+			ChaveUsuario requerente = new ChaveUsuario("Carlos",  "83955558877");
 			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
-			emprestimo = new Emprestimo(dono, requerente, item, "10/08/2017", 5);
+			emprestimo = new Emprestimo(dono, requerente, item.getNome(), "10/08/2017", 5);
 			fail("Exceção de dono nulo não lançada!");
 		} catch(NullPointerException e){
 			assertEquals("Dono nulo", e.getMessage());
@@ -40,10 +40,10 @@ public class EmprestimoTest {
 	@Test
 	public void testValidadeAtributoRequerente() throws ParseException {
 		try{
-			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
-			Usuario requerente = null;
+			ChaveUsuario dono = new ChaveUsuario("Joao","8399995555" );
+			ChaveUsuario requerente = null;
 			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
-			emprestimo = new Emprestimo(dono, requerente, item, "10/08/2017", 5);
+			emprestimo = new Emprestimo(dono, requerente, item.getNome(), "10/08/2017", 5);
 			fail("Exceção de Requerente nulo não lançada!");
 		} catch(NullPointerException e){
 			assertEquals("Requerente nulo", e.getMessage());
@@ -57,9 +57,9 @@ public class EmprestimoTest {
 	@Test
 	public void testValidadeAtributoItem() throws ParseException {
 		try{
-			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
-			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
-			Item item = null;
+			ChaveUsuario dono = new ChaveUsuario("Joao","8399995555" );
+			ChaveUsuario requerente = new ChaveUsuario("Carlos", "83955558877");
+			String item = null;
 			emprestimo = new Emprestimo(dono, requerente, item, "10/08/2017", 5);
 			fail("Exceção de Item nulo não lançada!");
 		} catch(NullPointerException e){
@@ -74,10 +74,10 @@ public class EmprestimoTest {
 	@Test (expected = NullPointerException.class )
 	public void testValidadeAtributoData() throws ParseException {
 		
-			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
-			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
+			ChaveUsuario dono = new ChaveUsuario("Joao","8399995555" );
+			ChaveUsuario requerente = new ChaveUsuario("Carlos", "83955558877");
 			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
-			emprestimo = new Emprestimo(dono, requerente, item, null, 5);
+			emprestimo = new Emprestimo(dono, requerente, item.getNome(), null, 5);
 		
 		}
 	
@@ -88,10 +88,10 @@ public class EmprestimoTest {
 	@Test
 	public void testValidadeAtributoDataVazia() throws ParseException {
 		try{
-			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
-			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
+			ChaveUsuario dono = new ChaveUsuario("Joao","8399995555" );
+			ChaveUsuario requerente = new ChaveUsuario("Carlos", "83955558877");
 			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
-			emprestimo = new Emprestimo(dono, requerente, item, "  ", 5);
+			emprestimo = new Emprestimo(dono, requerente, item.getNome(), "  ", 5);
 			fail("Exceção de data inicial vazia não lançada!");
 		} catch(IllegalArgumentException e){
 			assertEquals("Data inicial vazia", e.getMessage());
@@ -105,10 +105,10 @@ public class EmprestimoTest {
 	@Test
 	public void testValidadeAtributoPeriodo() throws ParseException {
 		try{
-			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
-			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
+			ChaveUsuario dono = new ChaveUsuario("Joao","8399995555" );
+			ChaveUsuario requerente = new ChaveUsuario("Carlos", "83955558877");
 			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
-			emprestimo = new Emprestimo(dono, requerente, item, "10/08/2017", -1);
+			emprestimo = new Emprestimo(dono, requerente, item.getNome(), "10/08/2017", -1);
 			fail("Exceção de periodo invalido não lançada!");
 		} catch(IllegalArgumentException e){
 			assertEquals("Periodo invalido", e.getMessage());
@@ -123,11 +123,11 @@ public class EmprestimoTest {
 	@Test
 	public void testEmprestimos() throws ParseException {
 		
-			Usuario dono = new Usuario("Joao", "joao@gmail.com" ,"8399995555" );
-			Usuario requerente = new Usuario("Carlos", "carlos@gmail.com", "83955558877");
+			ChaveUsuario dono = new ChaveUsuario("Joao","8399995555" );
+			ChaveUsuario requerente = new ChaveUsuario("Carlos", "83955558877");
 			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
-			Emprestimo emprestimo1 = new Emprestimo(dono, requerente, item, "10/08/2017", 7);
-			Emprestimo emprestimo2 = new Emprestimo(dono, requerente, item, "10/08/2017", 5);
+			Emprestimo emprestimo1 = new Emprestimo(dono, requerente, item.getNome(), "10/08/2017", 7);
+			Emprestimo emprestimo2 = new Emprestimo(dono, requerente, item.getNome(), "10/08/2017", 5);
 		
 			assertTrue(emprestimo1.equals(emprestimo2));
 		}
