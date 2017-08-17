@@ -131,8 +131,8 @@ public class Emprestimo {
 		if (getClass() != obj.getClass())
 			return false;
 		Emprestimo other = (Emprestimo) obj;
-		if (this.dono.equals(other.dono) && (this.requerente.equals(other.requerente))
-				&& (this.item.equals(other.item) && this.dataEmprestimo.equals(other.dataEmprestimo)))
+		if ((this.dono.equals(other.dono)) && (this.requerente.equals(other.requerente))
+				&& (this.item.equals(other.item)) && (this.dataEmprestimo.equals(other.dataEmprestimo)))
 			return true;
 		else
 			return false;

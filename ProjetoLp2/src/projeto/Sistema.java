@@ -109,9 +109,10 @@ public class Sistema {
 
 	public void registrarEmprestimo(String nomeDono, String telefoneDono, String nomeRequerente,
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
-		
+		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
+		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
-		ChaveUsuario requerente = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		
 		cItem.emprestarItem(nomeDono, telefoneDono, nomeItem);
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem,dataEmprestimo, periodo);
@@ -119,13 +120,15 @@ public class Sistema {
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
-			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
+			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException  {
 		
+		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
+		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
-		ChaveUsuario requerente = new ChaveUsuario(nomeDono, telefoneDono);
+		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		
-		cItem.emprestarItem(nomeDono, telefoneDono, nomeItem);
 		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
+		cItem.devolverItem(nomeDono, telefoneDono, nomeItem);
 	}
 
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {

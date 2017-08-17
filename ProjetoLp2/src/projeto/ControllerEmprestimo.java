@@ -39,14 +39,13 @@ public class ControllerEmprestimo {
 	 * @throws ParseException
 	 */
 	public void devolverItem(ChaveUsuario dono, ChaveUsuario requerente, String nomeItem, String dataEmprestimo,
-			String dataDevolucao) throws ParseException {
+			String dataDevolucao) throws ParseException{
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, nomeItem, dataEmprestimo, 0);
-		for (Emprestimo emprestimoLista : emprestimos) {
-			if (emprestimoLista.equals(emprestimo))
-				;
-			emprestimoLista.setDataDevolucao(dataDevolucao);
-		}
-
+		
+		if (!emprestimos.contains(emprestimo)) throw new IllegalArgumentException("Emprestimo nao encontrado");
+		
+		getEmprestimoEspecifico(emprestimo).setDataDevolucao(dataDevolucao);
+		
 	}
 
 	/**
@@ -121,6 +120,14 @@ public class ControllerEmprestimo {
 		}
 
 		return retorno;
+	}
+	
+	public Emprestimo getEmprestimoEspecifico(Emprestimo emprestimo){
+		for (Emprestimo emprestimoLista : emprestimos) {
+			if (emprestimoLista.equals(emprestimo))
+				return emprestimoLista;
+		}
+		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
 
 
