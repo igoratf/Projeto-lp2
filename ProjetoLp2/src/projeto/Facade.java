@@ -97,10 +97,11 @@ public class Facade {
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
 		return sistema.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
 	}
-	/*
+	
 	public String listarEmprestimosItem(String nomeItem) {
-		return controller.listarEmprestimosItem(nomeItem);
+		return sistema.listarEmprestimosItem(nomeItem);
 	}
+	/*
 	
 	public String listarItensEmprestados() {
 		return controller.listarItensEmprestados();
