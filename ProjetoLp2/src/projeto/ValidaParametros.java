@@ -110,19 +110,38 @@ public class ValidaParametros {
 			throw new IllegalArgumentException("Telefone vazio invalido!");
 		}
 	}
-	
-	
-	
+
 	public static void validaPreco(double preco) {
 		if (preco <= 0) {
 			throw new IllegalArgumentException("Preco invalido");
 		}
 	}
-	
+
 	public static void validaItem(Map<String, Item> mapaItens, String nomeItem) {
 		if (!(mapaItens.containsKey(nomeItem))) {
 			throw new IllegalArgumentException("Item nao encontrado");
 		}
+	}
+
+	/**
+	 * Valida os parâmetros da chave de um usuário.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 */
+	public static void validaChaveUsuario(String nome, String telefone) {
+		if (nome == null) {
+			throw new NullPointerException("Nome nulo invalido!");
+		} else if (telefone == null) {
+			throw new NullPointerException("Telefone nulo invalido!");
+		} else if (nome.trim().equals("")) {
+			throw new IllegalArgumentException("Nome vazio invalido!");
+		} else if (telefone.trim().equals("")) {
+			throw new IllegalArgumentException("Telefone vazio invalido!");
+		}
+
 	}
 
 }

@@ -1,26 +1,21 @@
 package projeto;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import projeto.Jogo.JogoTabuleiro;
-import projeto.bluray.BluraySeries;
 
 /**
  * Classe Controladora de Usuarios
  * 
  * @author caiosbl
- * @version 1.0
+ * @version 2.0
  *
  */
 
 public class ControllerUsuario {
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
-
 
 	/**
 	 * Construtor de Usuario.
@@ -168,24 +163,43 @@ public class ControllerUsuario {
 		return true;
 	}
 
+	/**
+	 * Retorna um Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @return Usuário.
+	 */
 	public Usuario getUsuario(String nome, String telefone) {
+		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		if (mapaUsuarios.containsKey(chave)) {
-			throw new IllegalArgumentException("Usuário inválido");
-		}
 		return mapaUsuarios.get(chave);
 	}
 
+	/**
+	 * Retorna o mapa de itens de um Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @return Mapa de Itens.
+	 */
 	public Map<String, Item> getItensUsuario(String nome, String telefone) {
+		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		if(!mapaUsuarios.containsKey(chave)){
-			throw new IllegalArgumentException("Usuario invalido");
-		}
 		return mapaUsuarios.get(chave).getItens();
 	}
 
+	/**
+	 * Retorna uma lista com os itens de todos os usuários.
+	 * 
+	 * @return itensUsuarios
+	 */
 	public List<Item> getItensUsuarios() {
-		ArrayList<Item> itensUsuarios =  new ArrayList<>();
+		ArrayList<Item> itensUsuarios = new ArrayList<>();
 		for (Usuario usuario : mapaUsuarios.values()) {
 			ArrayList<Item> itensUsuario = new ArrayList<>(usuario.getItens().values());
 			for (Item item : itensUsuario) {
