@@ -78,8 +78,8 @@ public class ControllerItem {
 	 * @param anoLancamento
 	 *            é o ano de lançamento do filme
 	 */
-	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao,
-			String genero, String classificacao, int anoLancamento, Map<String, Item> mapaItens) {
+	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao,
+			int anoLancamento, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		Bluray blurayFilme = new BlurayFilme(nomeItem, preco, duracao, classificacao, genero, anoLancamento);
 		mapaItens.put(nomeItem, blurayFilme);
@@ -105,8 +105,8 @@ public class ControllerItem {
 	 * @param classificacao
 	 *            é a classificação indicativa do show
 	 */
-	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao,
-			int numFaixas, String nomeArtista, String classificacao, Map<String, Item> mapaItens) {
+	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int numFaixas, String nomeArtista,
+			String classificacao, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		Bluray blurayShow = new BlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao);
 		mapaItens.put(nomeItem, blurayShow);
@@ -134,8 +134,8 @@ public class ControllerItem {
 	 * @param temporada
 	 *            é a temporada da série que corresponde o bluray
 	 */
-	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao,
-			int duracao, String classificacao, String genero, int temporada, Map<String, Item> mapaItens) {
+	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao,
+			String genero, int temporada, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
 		Bluray bluraySerie = new BluraySeries(nomeItem, preco, duracao, descricao, classificacao, genero, temporada);
 		mapaItens.put(nomeItem, bluraySerie);
@@ -281,9 +281,10 @@ public class ControllerItem {
 			throw new IllegalArgumentException("Item emprestado no momento");
 		else
 			meuItem.setEstadoDeEmprestimo(true);
+		meuItem.contaEmprestimos();
 	}
-	
-	public void devolverItem(String nomeItem, Map<String, Item> mapaItens){
+
+	public void devolverItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		meuItem.setEstadoDeEmprestimo(false);
@@ -318,7 +319,7 @@ public class ControllerItem {
 		}
 		return itens;
 	}
-	
+
 	/**
 	 * Lista os itens dos usuários ordenados por valor
 	 * 
@@ -333,6 +334,16 @@ public class ControllerItem {
 		return itens;
 	}
 	
+	/*
+	 * Alterar esse método, é diferente
+	 */
+	/**
+	 * Lista os itens emprestados ordenados por nome
+	 * 
+	 * @param itensUsuarios
+	 *            é a lista de itens de todos os usuários
+	 * @return informações dos itens emprestados ordenados por nome
+	 */
 	public String listarItensEmprestados(ArrayList<Item> itensUsuarios) {
 		String itens = "";
 		Collections.sort(itensUsuarios);
@@ -344,8 +355,37 @@ public class ControllerItem {
 		return itens;
 	}
 	
-	//public String listarItensNaoEmprestados(ArrayList<Item> itensUsuarios) {
-		// escrever método
-	//}
+	/**
+	 * Lista os itens não emprestados ordenados por nome
+	 * 
+	 * @param itensUsuarios
+	 *            é a lista de itens de todos os usuários
+	 * @return informações dos itens não emprestados ordenados por nome
+	 */
+	public String listarItensNaoEmprestados(ArrayList<Item> itensUsuarios) {
+		String itens = "";
+		Collections.sort(itensUsuarios);
+		for (Item item : itensUsuarios) {
+			if (item.getEstado().equals("Nao emprestado")) {
+				itens += item.toString() + "|";
+			}
+		}
+		return itens;
+	}
 
+	/**
+	 * Lista os 10 itens com maior quantidade de empréstimos em ordem
+	 * decrescente
+	 * 
+	 * @param itensUsuarios
+	 * @return
+	 */
+	public String listarTop10Itens(ArrayList<Item> itensUsuarios) {
+		String itens = "";
+		itensUsuarios.sort(new ComparaItemNumEmprestimos());
+		for (int i = 0; i < 10; i++) {
+			itens += itensUsuarios.get(i).toString() + "|";
+		}
+		return itens;
+	}
 }

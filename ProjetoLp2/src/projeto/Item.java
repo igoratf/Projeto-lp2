@@ -3,13 +3,13 @@ package projeto;
 /**
  * Define um item genérico.
  * 
- * @author javanktl
+ * @author javanktl, igoratf
  *
  */
 public abstract class Item implements Comparable<Item> {
 
 	private String nome;
-
+	private int numEmprestimos;
 	private double valor;
 	private boolean EstadoDeEmprestimo;
 
@@ -45,8 +45,14 @@ public abstract class Item implements Comparable<Item> {
 		}
 		return "Nao emprestado";
 	}
-
 	
+	public int getNumEmprestimos() {
+		return this.numEmprestimos;
+	}
+	
+	public void contaEmprestimos() {
+		this.numEmprestimos += 1;
+	}
 
 	@Override
 	public String toString() {
