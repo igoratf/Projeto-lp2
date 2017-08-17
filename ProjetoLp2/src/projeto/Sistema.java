@@ -50,20 +50,20 @@ public class Sistema {
 	}
 
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 		
 		cItem.cadastrarEletronico(nomeItem, preco, plataforma, mapaItensDono);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 		
 		cItem.cadastrarJogoTabuleiro(nomeItem, preco, mapaItensDono);
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 		
 		cItem.cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero,
 				temporada, mapaItensDono);
@@ -72,62 +72,62 @@ public class Sistema {
 	
 	public void adicionarBluRay(String nome, String telefone, String serie, int duracao) {
 		
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 		cItem.adicionarBluray(serie, duracao, mapaItensDono);
 	}
 
 	
 	public void cadastrarBluRayFilme(String nome, String telefone, String nomeItem, double preco, int duracao,
 			String genero, String classificacao, int anoLancamento) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		cItem.cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento, mapaItensDono);
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
 			int numFaixas, String nomeArtista, String classificacao) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		cItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao, mapaItensDono);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		cItem.adicionarPecaPerdida(nomeItem, nomePeca, mapaItensDono);
 	}
 
 	public void removerItem(String nome, String telefone, String nomeItem) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		cItem.removerItem(nomeItem, mapaItensDono);
 	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		cItem.atualizarItem(nomeItem, atributo, valor, mapaItensDono);
 	}
 
 	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		Map mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		return cItem.getInfoItem(nomeItem, atributo, mapaItensDono);
 	}
 
 	public String listarItensOrdenadosPorNome() {
-		List listItens = cUsuario.getItensUsuarios();
+		List<Item> listItens = cUsuario.getItensUsuarios();
 
 		return cItem.listarItensOrdenadosPorNome(listItens);
 	}
 
 	public String listarItensOrdenadosPorValor() {
-		List listItens = cUsuario.getItensUsuarios();
+		List<Item> listItens = cUsuario.getItensUsuarios();
 		return cItem.listarItensOrdenadosPorValor(listItens);
 	}
 
 	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-		Map mapaItensUsuario = cUsuario.getItensUsuario(nome, telefone);
+		Map<String, Item> mapaItensUsuario = cUsuario.getItensUsuario(nome, telefone);
 		return cItem.pesquisarDetalhesItem(nome, telefone, nomeItem, mapaItensUsuario);
 	}
 
@@ -137,7 +137,7 @@ public class Sistema {
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
-		Map mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
 		
 		cItem.emprestarItem(nomeDono, telefoneDono, nomeItem, mapaItensDono);
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem,dataEmprestimo, periodo);
@@ -151,7 +151,7 @@ public class Sistema {
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
-		Map mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);	
+		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);	
 		
 		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 		cItem.devolverItem(nomeDono, telefoneDono, nomeItem, mapaItensDono);
