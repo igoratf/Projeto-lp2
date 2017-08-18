@@ -95,23 +95,38 @@ public class UsuarioTest {
 		assertEquals(mapa, usuario.getItens());
 
 	}
+
 	/**
 	 * Testa o método Equals de Usuário.
 	 */
 	@Test
-	public void equalsTest(){
+	public void equalsTest() {
 		Usuario usuario1 = new Usuario("Caio", "caio@caio.com.br", "8398056654");
 		Usuario usuario2 = new Usuario("Caioo", "caio@caio.com.br", "8398056654");
 		assertEquals(usuario, usuario1);
 		assertFalse(usuario.equals(usuario2));
 	}
+
 	/**
 	 * Testa o método toString de Usuário.
 	 */
 	@Test
-	public void toStringTest(){
-		assertEquals("Caio , caio@caio.com.br ,8398056654",usuario.toString());
-		
+	public void toStringTest() {
+		assertEquals("Caio , caio@caio.com.br ,8398056654", usuario.toString());
+
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemAdicionada calcula corretamente a
+	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo
+	 * Reputação.
+	 */
+	@Test
+	public void addReputacaoItemAdicionado() {
+		usuario.addReputacaoItemAdicionado(2000);
+		assertEquals(100.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemAdicionado(1000);
+		assertEquals(150.0, usuario.getReputacao(), 0.0);
 	}
 
 }
