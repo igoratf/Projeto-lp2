@@ -216,5 +216,20 @@ public class ControllerUsuarioTest {
 		assertEquals(listaTest, sistema.getItensUsuarios());
 
 	}
+	
+	@Test
+	public void addReputacaoItemAdicionadoTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+		
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0",reputacao);
+		
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 100);
+		reputacao = "5.0";
+		assertEquals("5.0",reputacao);
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 1000);
+		reputacao = "55.0";
+		assertEquals("55.0",reputacao);
+	}
 
 }
