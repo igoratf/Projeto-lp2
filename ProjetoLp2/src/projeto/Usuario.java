@@ -16,6 +16,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String numCelular;
+	private double reputacao;
 	private Map<String, Item> mapaItens;
 
 	/**
@@ -34,6 +35,7 @@ public class Usuario {
 		this.nome = nome.trim();
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
+		this.reputacao = 0.0;
 		this.mapaItens = new HashMap<String, Item>();
 
 	}
@@ -102,6 +104,22 @@ public class Usuario {
 	 */
 	public Map<String, Item> getItens() {
 		return mapaItens;
+	}
+
+	public void addReputacaoItemAdicionado(double valorItem) {
+		reputacao += valorItem * 0.05;
+	}
+
+	public void addReputacaoItemEmprestado(double valorItem) {
+		reputacao += valorItem * 0.10;
+	}
+
+	public void addReputacaoItemDevolvidoNoPrazo(double valorItem) {
+		reputacao += valorItem * 0.05;
+	}
+
+	public void addReputacaoItemDevolvidoAtrasado(double valorItem, int diasAtraso) {
+		reputacao -= valorItem * (0.01 * diasAtraso);
 	}
 
 	/**
