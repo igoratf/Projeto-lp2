@@ -113,8 +113,7 @@ public class ControllerUsuario {
 	 * @param valor
 	 *            Novo valor do Atributo.
 	 * @throws IllegalArgumentException
-	 *             Caso as informacoes do usuario nao remetam a um usuario
-	 *             valido.
+	 *             Caso as informacoes do usuario nao remetam a um usuario valido.
 	 * @throws IllegalArgumentException
 	 *             Caso o Atributo informado seja invalido.
 	 */
@@ -212,8 +211,8 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 5%
-	 * referente ao valor do item adicionado.
+	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 5% referente ao
+	 * valor do item adicionado.
 	 * 
 	 * @param nome
 	 *            Nome do Usuário.
@@ -229,8 +228,8 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 10%
-	 * referente ao valor do item emprestado.
+	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 10% referente
+	 * ao valor do item emprestado.
 	 * 
 	 * @param nome
 	 *            Nome do Usuário.
@@ -242,12 +241,15 @@ public class ControllerUsuario {
 	public void addReputacaoItemEmprestado(String nome, String telefone, double valorItem) {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).addReputacaoItemEmprestado(valorItem);
+
+		Usuario usuario = this.mapaUsuarios.get(chave);
+		
+		usuario.addReputacaoItemEmprestado(valorItem);
 	}
 
 	/**
-	 * Adiciona ao atributo reputação do Usuário a porcentagem de 5% referente
-	 * ao valor do Item devolvido.
+	 * Adiciona ao atributo reputação do Usuário a porcentagem de 5% referente ao
+	 * valor do Item devolvido.
 	 * 
 	 * @param nome
 	 *            Nome do Usuário.
@@ -264,8 +266,8 @@ public class ControllerUsuario {
 
 	/**
 	 * Decrementa o atributo reputação do Usuário o valor calculado referente a
-	 * porcentagem de 1% vezes o número de dias em atraso da devolução vezes o
-	 * valor do Item devolvido.
+	 * porcentagem de 1% vezes o número de dias em atraso da devolução vezes o valor
+	 * do Item devolvido.
 	 * 
 	 * @param valorItem
 	 *            Valor do Item devolvido.

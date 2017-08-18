@@ -141,21 +141,32 @@ public class Sistema {
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
-
+		double valorItem = mapaItensDono.get(nomeItem).getValor();
+		
 		cItem.emprestarItem(nomeItem, mapaItensDono);
+		
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
-
+		cUsuario.addReputacaoItemEmprestado(nomeDono, telefoneDono, valorItem);
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
 			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
 
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
-		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
+		int diasAtraso = cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
+
+		double valorItem = mapaItensDono.get(nomeItem).getValor();
+
+		if (diasAtraso <= 0) {
+			cUsuario.addReputacaoItemDevolvidoNoPrazo(nomeRequerente, telefoneRequerente, valorItem);
+		} else {
+			cUsuario.addReputacaoItemDevolvidoAtrasado(nomeRequerente, telefoneRequerente, valorItem, diasAtraso);
+		}
 
 		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 		cItem.devolverItem(nomeItem, mapaItensDono);
