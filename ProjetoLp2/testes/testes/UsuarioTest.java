@@ -122,11 +122,22 @@ public class UsuarioTest {
 	 * Reputação.
 	 */
 	@Test
-	public void addReputacaoItemAdicionado() {
+	public void addReputacaoItemAdicionadoTest() {
 		usuario.addReputacaoItemAdicionado(2000);
 		assertEquals(100.0, usuario.getReputacao(), 0.0);
 		usuario.addReputacaoItemAdicionado(1000);
 		assertEquals(150.0, usuario.getReputacao(), 0.0);
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemEmprestado calcula corretamente a
+	 * porcentagem de 10% sobre o valor do Item e a incrementa em Reputação.
+	 */
+	@Test
+	public void addReputacaoItemEmprestado() {
+		usuario.addReputacaoItemEmprestado(100);
+		assertEquals(10.0, usuario.getReputacao(), 0.0);
+
 	}
 
 }
