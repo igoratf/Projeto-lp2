@@ -78,6 +78,7 @@ public class ControllerItem {
 	 * @param anoLancamento
 	 *            é o ano de lançamento do filme
 	 */
+
 	public void cadastrarBluRayFilme(String nomeItem, double preco, int duracao, String genero, String classificacao,
 			int anoLancamento, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
@@ -105,6 +106,7 @@ public class ControllerItem {
 	 * @param classificacao
 	 *            é a classificação indicativa do show
 	 */
+
 	public void cadastrarBlurayShow(String nomeItem, double preco, int duracao, int numFaixas, String nomeArtista,
 			String classificacao, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
@@ -134,6 +136,7 @@ public class ControllerItem {
 	 * @param temporada
 	 *            é a temporada da série que corresponde o bluray
 	 */
+
 	public void cadastrarBluraySerie(String nomeItem, double preco, String descricao, int duracao, String classificacao,
 			String genero, int temporada, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
@@ -287,6 +290,7 @@ public class ControllerItem {
 	public void devolverItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
+
 		meuItem.setEstadoDeEmprestimo(false);
 	}
 
@@ -313,6 +317,7 @@ public class ControllerItem {
 	 */
 	public String listarItensOrdenadosPorNome(ArrayList<Item> itensUsuarios) {
 		String itens = "";
+
 		Collections.sort(itensUsuarios);
 		for (Item item : itensUsuarios) {
 			itens += item.toString() + "|";
@@ -333,7 +338,7 @@ public class ControllerItem {
 		}
 		return itens;
 	}
-	
+
 	/*
 	 * Alterar esse método, é diferente
 	 */
@@ -354,7 +359,7 @@ public class ControllerItem {
 		}
 		return itens;
 	}
-	
+
 	/**
 	 * Lista os itens não emprestados ordenados por nome
 	 * 
