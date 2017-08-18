@@ -3,6 +3,7 @@ package testes;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.Before;
 
@@ -175,11 +176,28 @@ public class ControllerUsuarioTest {
 	}
 
 	/**
+	 * Testa se o método getItensUsuario retorna corretamente o mapa de Itens de
+	 * um usuário.
+	 */
+	public void getItensUsuarioTest() {
+		Sistema sistema = new Sistema();
+		sistema.cadastrarUsuario("Caio", "8398056654", "djcaiopb@gmail.com");
+		HashMap<String, Item> mapaTest = new HashMap<>();
+
+		assertEquals(mapaTest, sistema.getItensUsuario("Caio", "8398056654"));
+
+		sistema.cadastrarJogoTabuleiro("Caio", "8398056554", "War", 100);
+		JogoTabuleiro jogo = new JogoTabuleiro("War", 100);
+		mapaTest.put("War", jogo);
+		assertEquals(sistema.getItensUsuario("Caio", "8398056654"), mapaTest);
+	}
+
+	/**
 	 * Testa se o método getItensUsuario retorna corretamente a lista de Itens
 	 * de todos os usuários.
 	 */
 	@Test
-	public void getItensUsuarioTest() {
+	public void getItensUsuariosTest() {
 		Sistema sistema = new Sistema();
 		sistema.cadastrarUsuario("Caio", "8398056654", "djcaiopb@gmail.com");
 		sistema.cadastrarUsuario("Joao", "8398056654", "djcaiopb@gmail.com");
