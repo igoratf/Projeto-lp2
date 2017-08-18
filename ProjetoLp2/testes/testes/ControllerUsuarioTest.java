@@ -216,20 +216,57 @@ public class ControllerUsuarioTest {
 		assertEquals(listaTest, sistema.getItensUsuarios());
 
 	}
-	
+
+	/**
+	 * Testa se o método addReputacaoItemAdicionado adiciona corretamente a taxa
+	 * de 5% do valor do Item adicionado.
+	 */
 	@Test
 	public void addReputacaoItemAdicionadoTest() {
 		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
-		
+
 		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
-		assertEquals("0.0",reputacao);
-		
+		assertEquals("0.0", reputacao);
+
 		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 100);
-		reputacao = "5.0";
-		assertEquals("5.0",reputacao);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("5.0", reputacao);
+
 		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 1000);
-		reputacao = "55.0";
-		assertEquals("55.0",reputacao);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("55.0", reputacao);
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemEmprestado adiciona corretamente o
+	 * valor de 10% do Item emprestado ao atributo Reputação.
+	 */
+	@Test
+	public void addReputacaoItemEmprestadoTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0", reputacao);
+
+		controllerUsuario.addReputacaoItemEmprestado("Caio", "190", 1000);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("100.0", reputacao);
+	}
+	
+	@Test
+	public void addReputacaoItemDevolvidoNoPrazo() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoNoPrazo("Caio", "190", 10000);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("500.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoNoPrazo("Caio", "190", 1000);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("550.0", reputacao);
 	}
 
 }
