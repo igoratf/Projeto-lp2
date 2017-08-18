@@ -16,11 +16,8 @@ import projeto.bluray.*;
  */
 
 public class ControllerItem {
-	private Sistema sistema;
 
-	public ControllerItem(Sistema sistema) {
-		this.sistema = sistema;
-
+	public ControllerItem() {
 	}
 
 	/**
@@ -37,9 +34,8 @@ public class ControllerItem {
 	 * @param plataforma
 	 *            é a plataforma do jogo
 	 */
-	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
+	public void cadastrarEletronico(String nomeItem, double preco, String plataforma, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		JogoEletronico jogoEletronico = new JogoEletronico(nomeItem, preco, plataforma);
 		mapaItens.put(nomeItem, jogoEletronico);
 	}
@@ -56,9 +52,8 @@ public class ControllerItem {
 	 * @param preco
 	 *            é o valor do jogo
 	 */
-	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
+	public void cadastrarJogoTabuleiro(String nomeItem, double preco, Map<String, Item> mapaItens) {
 		ValidaParametros.validaPreco(preco);
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
 		Item jogoTabuleiro = new JogoTabuleiro(nomeItem, preco);
 		mapaItens.put(nomeItem, jogoTabuleiro);
 	}
@@ -161,8 +156,8 @@ public class ControllerItem {
 	 * @param duracao
 	 *            é a duração do episódio
 	 */
-	public void adicionarBluray(String nome, String telefone, String serie, int duracao) {
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+	public void adicionarBluray(String serie, int duracao, Map<String, Item> mapaItens) {
+		ValidaParametros.validaItem(mapaItens, serie);
 		BluraySeries bluraySerie = (BluraySeries) mapaItens.get(serie);
 		BlurayEpisodio blurayEpisodio = new BlurayEpisodio(duracao);
 		bluraySerie.adicionarBluray(blurayEpisodio);
@@ -178,8 +173,7 @@ public class ControllerItem {
 	 * @param nomeItem
 	 *            é o nome do item
 	 */
-	public void removerItem(String nome, String telefone, String nomeItem) {
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+	public void removerItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		mapaItens.remove(nomeItem);
 	}
@@ -196,8 +190,7 @@ public class ControllerItem {
 	 * @param nomePeca
 	 *            é o nome da peça perdida
 	 */
-	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+	public void adicionarPecaPerdida(String nomeItem, String nomePeca, Map<String, Item> mapaItens) {
 		if (!mapaItens.containsKey(nomeItem)) {
 			throw new IllegalArgumentException("Jogo Inválido!");
 		}
@@ -218,8 +211,7 @@ public class ControllerItem {
 	 * @param valor
 	 *            é o novo atributo atualizado após a modificação
 	 */
-	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+	public void atualizarItem(String nomeItem, String atributo, String valor, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (atributo.equalsIgnoreCase("preco")) {
@@ -245,8 +237,7 @@ public class ControllerItem {
 	 *            é o atributo cuja informação será exibida
 	 * @return informação correspondente a um atributo do item
 	 */
-	public String getInfoItem(String nome, String telefone, String nomeItem, String atributo) {
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+	public String getInfoItem(String nomeItem, String atributo, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		switch (atributo) {
 		case "Preco":
@@ -270,8 +261,7 @@ public class ControllerItem {
 	 *            é o nome do itme
 	 * @return representação textual do item
 	 */
-	public String pesquisarDetalhesItem(String nome, String telefone, String nomeItem) {
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+	public String pesquisarDetalhesItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		return meuItem.toString();
@@ -287,8 +277,7 @@ public class ControllerItem {
 	 * @param nomeItem
 	 *            é o nome do item
 	 */
-	public void emprestarItem(String nome, String telefone, String nomeItem) {
-		Map<String, Item> mapaItens = sistema.getItensUsuario(nome, telefone);
+	public void emprestarItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
 		if (meuItem.getEstado().equals("Emprestado"))
@@ -301,8 +290,24 @@ public class ControllerItem {
 	public void devolverItem(String nomeItem, Map<String, Item> mapaItens) {
 		ValidaParametros.validaItem(mapaItens, nomeItem);
 		Item meuItem = mapaItens.get(nomeItem);
-		
+
 		meuItem.setEstadoDeEmprestimo(false);
+	}
+
+	/**
+	 * Retorna um item pertencente ao Usuario
+	 * 
+	 * @param nome
+	 *            é o nome do usuário
+	 * @param telefone
+	 *            é o telefone do usuário
+	 * @param nomeItem
+	 *            é o nome do item
+	 * @return item do Usuario
+	 */
+	public Item getItem(String nomeItem, Map<String, Item> mapaItens) {
+		ValidaParametros.validaItem(mapaItens, nomeItem);
+		return mapaItens.get(nomeItem);
 	}
 
 	/**
@@ -310,9 +315,9 @@ public class ControllerItem {
 	 * 
 	 * @return informações dos itens ordenados por nome
 	 */
-	public String listarItensOrdenadosPorNome() {
+	public String listarItensOrdenadosPorNome(ArrayList<Item> itensUsuarios) {
 		String itens = "";
-		ArrayList<Item> itensUsuarios = (ArrayList<Item>) sistema.getItensUsuarios();
+
 		Collections.sort(itensUsuarios);
 		for (Item item : itensUsuarios) {
 			itens += item.toString() + "|";
@@ -325,9 +330,8 @@ public class ControllerItem {
 	 * 
 	 * @return informações dos itens ordenados por valor
 	 */
-	public String listarItensOrdenadosPorValor() {
+	public String listarItensOrdenadosPorValor(ArrayList<Item> itensUsuarios) {
 		String itens = "";
-		ArrayList<Item> itensUsuarios = (ArrayList<Item>) sistema.getItensUsuarios();
 		itensUsuarios.sort(new ComparaItemValor());
 		for (Item item : itensUsuarios) {
 			itens += item.toString() + "|";
@@ -335,7 +339,6 @@ public class ControllerItem {
 		return itens;
 	}
 
-	
 	/*
 	 * Alterar esse método, é diferente
 	 */
@@ -356,7 +359,7 @@ public class ControllerItem {
 		}
 		return itens;
 	}
-	
+
 	/**
 	 * Lista os itens não emprestados ordenados por nome
 	 * 
@@ -374,7 +377,6 @@ public class ControllerItem {
 		}
 		return itens;
 	}
-
 
 	/**
 	 * Lista os 10 itens com maior quantidade de empréstimos em ordem
