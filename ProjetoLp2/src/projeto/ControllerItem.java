@@ -376,7 +376,7 @@ public class ControllerItem {
 				itens += item.toString() + "|";
 			}
 		}
-		return itens;
+		return itens; 	
 	}
 
 	/**

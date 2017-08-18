@@ -137,7 +137,7 @@ public class ControllerEmprestimo {
 				retorno += emprestimo.toString() + "|";
 		}
 		if (retorno.equals("Emprestimos associados ao item: "))
-			return "Nenhum mprestimos associados ao item";
+			return "Nenhum emprestimos associados ao item";
 		
 		return retorno;
 	}
