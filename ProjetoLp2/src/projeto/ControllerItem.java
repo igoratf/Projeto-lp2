@@ -282,9 +282,10 @@ public class ControllerItem {
 		Item meuItem = mapaItens.get(nomeItem);
 		if (meuItem.getEstado().equals("Emprestado"))
 			throw new IllegalArgumentException("Item emprestado no momento");
-		else
+		else {
 			meuItem.setEstadoDeEmprestimo(true);
-		meuItem.contaEmprestimos();
+			meuItem.contaEmprestimos();
+		}
 	}
 
 	public void devolverItem(String nomeItem, Map<String, Item> mapaItens) {
@@ -388,8 +389,13 @@ public class ControllerItem {
 	public String listarTop10Itens(List<Item> itensUsuarios) {
 		String itens = "";
 		itensUsuarios.sort(new ComparaItemNumEmprestimos());
-		for (int i = 0; i < 10; i++) {
-			itens += itensUsuarios.get(i).toString() + "|";
+		int i = 1;
+		while ((i <= 10) && (i<=itensUsuarios.size())) {
+			Item item = itensUsuarios.get(i-1);
+			if (item.getNumEmprestimos() > 0) {
+				itens += i + ") " + item.getNumEmprestimos() + " emprestimos" + " - "  + item.toString() + "|";
+			}
+			i++;
 		}
 		return itens;
 	}
