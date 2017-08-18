@@ -252,7 +252,7 @@ public class ControllerUsuarioTest {
 		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
 		assertEquals("100.0", reputacao);
 	}
-	
+
 	@Test
 	public void addReputacaoItemDevolvidoNoPrazo() {
 		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
@@ -267,6 +267,36 @@ public class ControllerUsuarioTest {
 		controllerUsuario.addReputacaoItemDevolvidoNoPrazo("Caio", "190", 1000);
 		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
 		assertEquals("550.0", reputacao);
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemDevolvidoAtrasado calcula corretamente
+	 * a porcentagem em relação aos dias atrasados e decrementa do valor de
+	 * Reputação.
+	 */
+	@Test
+	public void addReputacaoItemDevolvidoAtrasado() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 1000, 1);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-10.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 1000, 2);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-30.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 1000, 100);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-1030.0", reputacao);
+
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 100);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-1025.0", reputacao);
+
 	}
 
 }
