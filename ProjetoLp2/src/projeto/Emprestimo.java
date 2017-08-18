@@ -14,7 +14,7 @@ public class Emprestimo implements Comparable<Emprestimo>{
 	private String item;
 	private Date dataEmprestimo;
 	private int periodo;
-	private SimpleDateFormat formatoData =  new SimpleDateFormat("d/M/yyyy");
+	private SimpleDateFormat formatoData =  new SimpleDateFormat("dd/MM/yyyy");
 	private Date dataDevolucao;
 
 	/**
