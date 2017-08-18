@@ -105,21 +105,25 @@ public class Usuario {
 	public Map<String, Item> getItens() {
 		return mapaItens;
 	}
+	
+	public double getReputacao(){
+		return this.reputacao;
+	}
 
 	public void addReputacaoItemAdicionado(double valorItem) {
-		reputacao += valorItem * 0.05;
+		this.reputacao += valorItem * 0.05;
 	}
 
 	public void addReputacaoItemEmprestado(double valorItem) {
-		reputacao += valorItem * 0.10;
+		this.reputacao += valorItem * 0.10;
 	}
 
 	public void addReputacaoItemDevolvidoNoPrazo(double valorItem) {
-		reputacao += valorItem * 0.05;
+		this.reputacao += valorItem * 0.05;
 	}
 
 	public void addReputacaoItemDevolvidoAtrasado(double valorItem, int diasAtraso) {
-		reputacao -= valorItem * (0.01 * diasAtraso);
+		this.reputacao -= valorItem * (0.01 * diasAtraso);
 	}
 
 	/**
