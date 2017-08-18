@@ -184,7 +184,7 @@ public class ControllerEmprestimo {
 	}
 	
 	/**
-	 * Metodo para ordenar uma lista de emprestimos por nome.
+	 * Metodo  para ordenar uma lista de emprestimos por nome.
 	 * @param emprestimos, Lista de emprestimos passado por parametro.
 	 * @return, retorna a lista ordenada.
 	 */
