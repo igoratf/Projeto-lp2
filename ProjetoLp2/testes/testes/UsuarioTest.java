@@ -134,10 +134,24 @@ public class UsuarioTest {
 	 * porcentagem de 10% sobre o valor do Item e a incrementa em Reputação.
 	 */
 	@Test
-	public void addReputacaoItemEmprestado() {
+	public void addReputacaoItemEmprestadoTest() {
 		usuario.addReputacaoItemEmprestado(100);
 		assertEquals(10.0, usuario.getReputacao(), 0.0);
 
 	}
+	/**
+	 * Testa se o método addReputacaoItemDevolvidoNoPrazo calcula corretamente a
+	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo
+	 * Reputação.
+	 */
+	@Test
+	public void addReputacaoItemDevolvidoNoPrazoTest() {
+		usuario.addReputacaoItemDevolvidoNoPrazo(2000);
+		assertEquals(100.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemDevolvidoNoPrazo(1000);
+		assertEquals(150.0, usuario.getReputacao(), 0.0);
+	}
+	
+	
 
 }
