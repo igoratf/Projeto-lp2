@@ -139,6 +139,7 @@ public class UsuarioTest {
 		assertEquals(10.0, usuario.getReputacao(), 0.0);
 
 	}
+
 	/**
 	 * Testa se o método addReputacaoItemDevolvidoNoPrazo calcula corretamente a
 	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo
@@ -151,7 +152,21 @@ public class UsuarioTest {
 		usuario.addReputacaoItemDevolvidoNoPrazo(1000);
 		assertEquals(150.0, usuario.getReputacao(), 0.0);
 	}
-	
-	
+
+	/**
+	 * Testa se o método addReputacaoItemDevolvidoAtrasado calcula corretamente
+	 * a porcentagem vezes a quantidade de dias atrasados sobre o valor do Item,
+	 * e decrementa no atributo Reputação.
+	 */
+	@Test
+	public void addReputacaoItemDevolvidoAtrasadoTest() {
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 100);
+		assertEquals(-100.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 50);
+		assertEquals(-150.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 1);
+		assertEquals(-151.0, usuario.getReputacao(), 0.0);
+
+	}
 
 }
