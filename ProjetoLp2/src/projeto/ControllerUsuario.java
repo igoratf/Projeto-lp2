@@ -73,6 +73,8 @@ public class ControllerUsuario {
 			return mapaUsuarios.get(chave).getNome();
 		case "Telefone":
 			return mapaUsuarios.get(chave).getNumCelular();
+		case "Reputacao":
+			return String.valueOf(mapaUsuarios.get(chave).getReputacao());
 
 		default:
 			throw new IllegalArgumentException("Atributo invalido");
@@ -207,6 +209,73 @@ public class ControllerUsuario {
 			}
 		}
 		return itensUsuarios;
+	}
+
+	/**
+	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 5%
+	 * referente ao valor do item adicionado.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param valorItem
+	 *            Valor do Item.
+	 */
+	public void addReputacaoItemAdicionado(String nome, String telefone, double valorItem) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).addReputacaoItemAdicionado(valorItem);
+	}
+
+	/**
+	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 10%
+	 * referente ao valor do item emprestado.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param valorItem
+	 *            Valor do Item.
+	 */
+	public void addReputacaoItemEmprestado(String nome, String telefone, double valorItem) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).addReputacaoItemEmprestado(valorItem);
+	}
+
+	/**
+	 * Adiciona ao atributo reputação do Usuário a porcentagem de 5% referente
+	 * ao valor do Item devolvido.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param valorItem
+	 *            Valor do item devolvido.
+	 */
+	public void addReputacaoItemDevolvidoNoPrazo(String nome, String telefone, double valorItem) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).addReputacaoItemDevolvidoNoPrazo(valorItem);
+	}
+
+	/**
+	 * Decrementa o atributo reputação do Usuário o valor calculado referente a
+	 * porcentagem de 1% vezes o número de dias em atraso da devolução vezes o
+	 * valor do Item devolvido.
+	 * 
+	 * @param valorItem
+	 *            Valor do Item devolvido.
+	 * @param diasAtraso
+	 *            Dias em Atraso da devolução.
+	 */
+	public void addReputacaoItemDevolvidoAtrasado(String nome, String telefone, double valorItem, int diasAtraso) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).addReputacaoItemDevolvidoAtrasado(valorItem, diasAtraso);
 	}
 
 }
