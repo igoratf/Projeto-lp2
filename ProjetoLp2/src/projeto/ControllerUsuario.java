@@ -79,7 +79,7 @@ public class ControllerUsuario {
 		}
 	}
 
-	/**actual
+	/**
 	 * Remove um usuario do mapa de Usuarios.
 	 * 
 	 * @param nome
@@ -109,7 +109,7 @@ public class ControllerUsuario {
 	 * @param atributo
 	 *            Atributo que sera atulizado
 	 * @param valor
-	 *            Novo valor do Atributo.actual
+	 *            Novo valor do Atributo.
 	 * @throws IllegalArgumentException
 	 *             Caso as informacoes do usuario nao remetam a um usuario
 	 *             valido.
