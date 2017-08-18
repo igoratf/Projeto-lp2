@@ -2,10 +2,7 @@ package testes;
 
 import static org.junit.Assert.*;
 
-import java.awt.List;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.junit.Before;
 
@@ -36,9 +33,9 @@ public class ControllerUsuarioTest {
 	}
 
 	/**
-	 * Testa o método CadastraUsuario em situações válidas, se este lança a devida
-	 * exceção, e se cadastra corretamente, e se a verficação de um usuário já
-	 * contido é por nome e telefone.
+	 * Testa o método CadastraUsuario em situações válidas, se este lança a
+	 * devida exceção, e se cadastra corretamente, e se a verficação de um
+	 * usuário já contido é por nome e telefone.
 	 */
 	@Test
 	public void cadastraUsuarioTest() {
@@ -67,9 +64,9 @@ public class ControllerUsuarioTest {
 	}
 
 	/**
-	 * Testa se o método getInfoUsuario retorna os atributos requeridos corretamente
-	 * de um usuário, e a se ao pedir-se um atributo de um usuário inexiste, ou um
-	 * atributo inexistente o método lança a devida exceção.
+	 * Testa se o método getInfoUsuario retorna os atributos requeridos
+	 * corretamente de um usuário, e a se ao pedir-se um atributo de um usuário
+	 * inexiste, ou um atributo inexistente o método lança a devida exceção.
 	 */
 	@Test
 	public void getInfoUsuarioTest() {
@@ -95,9 +92,9 @@ public class ControllerUsuarioTest {
 	}
 
 	/**
-	 * Testa o método removerUsuario, testa se ao remover um Usuário com mesmo nome
-	 * porém número diferente, o usuário com mesmo nome e telefone diferente se
-	 * mantém, e o usuário com mesmo nome e telefone é removido.
+	 * Testa o método removerUsuario, testa se ao remover um Usuário com mesmo
+	 * nome porém número diferente, o usuário com mesmo nome e telefone
+	 * diferente se mantém, e o usuário com mesmo nome e telefone é removido.
 	 */
 	@Test
 	public void removerUsuarioTest() {
@@ -116,9 +113,9 @@ public class ControllerUsuarioTest {
 	}
 
 	/**
-	 * Testa se o método atualiza os atributos requeridos podendo ser este: em um
-	 * usuário, nome,telefone ou email e se lança exceção ao tentar atualizar um
-	 * usuário inexistente ou um atributo inválido
+	 * Testa se o método atualiza os atributos requeridos podendo ser este: em
+	 * um usuário, nome,telefone ou email e se lança exceção ao tentar atualizar
+	 * um usuário inexistente ou um atributo inválido
 	 */
 	@Test
 	public void atualizarUsuarioTest() {
@@ -178,8 +175,8 @@ public class ControllerUsuarioTest {
 	}
 
 	/**
-	 * Testa se o método getItensUsuario retorna corretamente a lista de Itens de todos os
-	 * usuários.
+	 * Testa se o método getItensUsuario retorna corretamente a lista de Itens
+	 * de todos os usuários.
 	 */
 	@Test
 	public void getItensUsuarioTest() {
