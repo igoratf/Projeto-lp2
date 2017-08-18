@@ -171,9 +171,7 @@ public class Sistema {
 
 	public String listarItensEmprestados() {
 
-		List<Item> listItens = cUsuario.getItensUsuarios();
-
-		return cItem.listarItensEmprestados(listItens);
+		return cEmprestimo.listarItensEmprestados();
 	}
 
 	public String listarTop10Itens() {

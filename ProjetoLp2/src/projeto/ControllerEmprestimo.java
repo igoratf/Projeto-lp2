@@ -1,8 +1,10 @@
 package projeto;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class ControllerEmprestimo {
@@ -38,13 +40,25 @@ public class ControllerEmprestimo {
 	 * @param dataDevolucao,  String passado por parametro.
 	 * @throws ParseException
 	 */
-	public void devolverItem(ChaveUsuario dono, ChaveUsuario requerente, String nomeItem, String dataEmprestimo,
+	public int devolverItem(ChaveUsuario dono, ChaveUsuario requerente, String nomeItem, String dataEmprestimo,
 			String dataDevolucao) throws ParseException{
 		Emprestimo emprestimo = new Emprestimo(dono, requerente, nomeItem, dataEmprestimo, 0);
 		
 		if (!emprestimos.contains(emprestimo)) throw new IllegalArgumentException("Emprestimo nao encontrado");
 		
 		getEmprestimoEspecifico(emprestimo).setDataDevolucao(dataDevolucao);
+		
+		SimpleDateFormat formatoData =  new SimpleDateFormat("dd/MM/yyyy");
+
+		Date dataEmprestimo1 = formatoData.parse(dataEmprestimo);
+
+		Date dataDevolucao1 = formatoData.parse(dataDevolucao);
+
+		
+
+		int diasAtraso = (int)((dataDevolucao1.getTime() - dataEmprestimo1.getTime()) / 86400000L) - getEmprestimoEspecifico(emprestimo).getPeriodo() ;
+
+		return diasAtraso;
 		
 	}
 
@@ -60,7 +74,7 @@ public class ControllerEmprestimo {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
-		emprestimosTemp.sort(new ComparaNomeEmprestimo());
+		retonarEmprestimosOrdenadosPorNome(emprestimosTemp);
 		return emprestimosTemp;
 	}
 
@@ -76,7 +90,7 @@ public class ControllerEmprestimo {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
-		Collections.sort(emprestimosTemp);;
+		retonarEmprestimosOrdenadosPorNome(emprestimosTemp);
 		return emprestimosTemp;
 	}
 
@@ -122,6 +136,11 @@ public class ControllerEmprestimo {
 		return retorno;
 	}
 	
+	/**
+	 * Metodo para encontrar um emprestimo em especifico no historico de emprestimos do Controller.
+	 * @param emprestimo, Emprestimo passado por parametro.
+	 * @return, retorna o emprestimo encontrado.
+	 */
 	public Emprestimo getEmprestimoEspecifico(Emprestimo emprestimo){
 		for (Emprestimo emprestimoLista : emprestimos) {
 			if (emprestimoLista.equals(emprestimo))
@@ -130,6 +149,10 @@ public class ControllerEmprestimo {
 		throw new IllegalArgumentException("Emprestimo nao encontrado");
 	}
 	
+	/**
+	 * Metodo para listar os emprestimos associados ao item de acordo com o nome do mesmo.
+	 * @return, retorna a lista de emprestimos encontrados naquele item.
+	 */
 	public String listarEmprestimosItem(String nomeItem) {
 		String retorno = "Emprestimos associados ao item: ";
 		for (Emprestimo emprestimo: emprestimos) {
@@ -137,112 +160,44 @@ public class ControllerEmprestimo {
 				retorno += emprestimo.toString() + "|";
 		}
 		if (retorno.equals("Emprestimos associados ao item: "))
-			return "Nenhum mprestimos associados ao item";
+			return "Nenhum emprestimos associados ao item";
 		
 		return retorno;
 	}
 
+	/**
+	 * Metodo para listar todos os itens emprestados nesse momento.
+	 * @return, retorna a lista de itens emprestados junto com o nome do dono.
+	 */
+	public String listarItensEmprestados(){
+		String itens = "";
+		ArrayList<Emprestimo> emprestimosTemp = (ArrayList<Emprestimo>) emprestimos;
+		Collections.sort(emprestimosTemp);
+		for (Emprestimo emprestimo : emprestimosTemp) {
+			if (emprestimo.getDataDevolucao().equals("Emprestimo em andamento")) {
+				itens += "Dono do item: " + emprestimo.getDono().getNome() + ", Nome do item emprestado: " 
+						+ emprestimo.getItem() + "|";
+			}
+		}
+		
+		return itens;
+	}
+	
+	/**
+	 * Metodo para ordenar uma lista de emprestimos por nome.
+	 * @param emprestimos, Lista de emprestimos passado por parametro.
+	 * @return, retorna a lista ordenada.
+	 */
+	public List<Emprestimo> retonarEmprestimosOrdenadosPorNome(ArrayList<Emprestimo> emprestimos){
+		ArrayList<Emprestimo> emprestimosTemp = emprestimos;
+		Collections.sort(emprestimosTemp);
+		return emprestimosTemp;
+	}
 
 	public List<Emprestimo> getEmprestimos() {
 		return emprestimos;
 	}
 
-	/*
-	 * public Emprestimo getEmprestimo(Usuario dono, Usuario requerente, Item
-	 * item, String dataEmprestimo) throws ParseException { Emprestimo
-	 * emprestimoParametro = new Emprestimo(dono, requerente, item,
-	 * dataEmprestimo, 0); for (Emprestimo emprestimo : emprestimos) { if
-	 * (emprestimo.equals(emprestimoParametro)) return emprestimo; } throw new
-	 * IllegalArgumentException("Emprestimo nao encontrado"); }
-	 * 
-	 * public Emprestimo getEmprestimo(String nome, String telefone, Usuario
-	 * dono, Usuario requerente, Item item, String dataEmprestimo) throws
-	 * ParseException { ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-	 * 
-	 * return mapaUsuarios.get(chave).getEmprestimo(dono, requerente, item,
-	 * dataEmprestimo); }
-	 */
-	/*
-	 * public ArrayList<Emprestimo> getEmprestimosFeitos() {
-	 * ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>(); for
-	 * (Emprestimo emprestimo : emprestimos) { if
-	 * (emprestimo.getDono().getNome().equals(this.nome) &&
-	 * emprestimo.getDono().getNumCelular() == this.numCelular) {
-	 * emprestimosTemp.add(emprestimo); } } return emprestimosTemp; }
-	 * 
-	 * public ArrayList<Emprestimo> getEmprestimosPegos() {
-	 * ArrayList<Emprestimo> emprestimosTemp = new ArrayList<>(); for
-	 * (Emprestimo emprestimo : emprestimos) { if
-	 * (emprestimo.getRequerente().getNome().equals(this.nome) &&
-	 * emprestimo.getRequerente().getNumCelular() == this.numCelular) {
-	 * emprestimosTemp.add(emprestimo); } } return emprestimosTemp; }
-	 * 
-	 * /**
-	 * 
-	 * 
-	 * public void registrarEmprestimo(String nomeDono, String telefoneDono,
-	 * String nomeRequerente, String telefoneRequerente, String nomeItem, String
-	 * dataEmprestimo, int periodo) throws ParseException {
-	 * 
-	 * checaSeUsuarioJaExiste(nomeDono, telefoneDono);
-	 * checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
-	 * 
-	 * ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
-	 * ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente,
-	 * telefoneRequerente); Usuario dono = this.mapaUsuarios.get(chaveDono);
-	 * Usuario requerente = this.mapaUsuarios.get(chaveRequerente);
-	 * dono.emprestarItem(nomeItem); Item item = dono.getItem(nomeItem);
-	 * 
-	 * Emprestimo emprestimo = new Emprestimo(dono, requerente, item,
-	 * dataEmprestimo, periodo); dono.cadastroEmprestimo(emprestimo);
-	 * requerente.cadastroEmprestimo(emprestimo);
-	 * 
-	 * }
-	 * 
-	 * /**
-	 * 
-	 * public void devolverItem(String nomeDono, String telefoneDono, String
-	 * nomeRequerente, String telefoneRequerente, String nomeItem, String
-	 * dataEmprestimo, String dataDevolucao) throws ParseException {
-	 * checaSeUsuarioJaExiste(nomeDono, telefoneDono);
-	 * checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
-	 * 
-	 * ChaveUsuario chaveDono = new ChaveUsuario(nomeDono, telefoneDono);
-	 * ChaveUsuario chaveRequerente = new ChaveUsuario(nomeRequerente,
-	 * telefoneRequerente); Usuario dono = this.mapaUsuarios.get(chaveDono);
-	 * Usuario requerente = this.mapaUsuarios.get(chaveRequerente); Item item =
-	 * dono.getItem(nomeItem); dono.devolverItem(nomeItem);
-	 * 
-	 * dono.getEmprestimo(dono, requerente, item,
-	 * dataEmprestimo).setDataDevolucao(dataDevolucao);
-	 * requerente.getEmprestimo(dono, requerente, item,
-	 * dataEmprestimo).setDataDevolucao(dataDevolucao); }
-	 * 
-	 * public String listarEmprestimosUsuarioEmprestando(String nome, String
-	 * telefone) { ChaveUsuario chave = new ChaveUsuario(nome, telefone); String
-	 * retorno = "Emprestimos: "; ArrayList<Emprestimo> emprestimos =
-	 * mapaUsuarios.get(chave).getEmprestimosFeitos(); for (Emprestimo
-	 * emprestimo : emprestimos) { retorno += emprestimo.toString() + "|"; } if
-	 * (emprestimos.size() == 0) { return "Nenhum item emprestado"; }
-	 * 
-	 * return retorno;
-	 * 
-	 * }
-	 * 
-	 * public String listarEmprestimosUsuarioPegandoEmprestado(String nome,
-	 * String telefone) { ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-	 * String retorno = "Emprestimos pegos: "; ArrayList<Emprestimo> emprestimos
-	 * = mapaUsuarios.get(chave).getEmprestimosPegos(); for (Emprestimo
-	 * emprestimo : emprestimos) { retorno += emprestimo.toString() + "|"; } if
-	 * (emprestimos.size() == 0) { return "Nenhum item pego emprestado"; }
-	 * 
-	 * return retorno; }
-	 * 
-	 * 
-	 * public void devolverItem(String nomeItem) {
-	 * 
-	 * Item meuItem = getItem(nomeItem); getItem(nomeItem);
-	 * meuItem.setEstadoDeEmprestimo(false); }
-	 */
+
 
 }
