@@ -188,7 +188,7 @@ public class ControllerEmprestimo {
 	 * @param emprestimos, Lista de emprestimos passado por parametro.
 	 * @return, retorna a lista ordenada.
 	 */
-	public List<Emprestimo> retonarEmprestimosOrdenadosPorNome(ArrayList<Emprestimo> emprestimos){
+	public List<Emprestimo> retornarEmprestimosOrdenadosPorNome(ArrayList<Emprestimo> emprestimos){
 		ArrayList<Emprestimo> emprestimosTemp = emprestimos;
 		Collections.sort(emprestimosTemp);
 		return emprestimosTemp;
