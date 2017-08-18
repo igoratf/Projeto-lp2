@@ -101,19 +101,19 @@ public class Facade {
 	public String listarEmprestimosItem(String nomeItem) {
 		return sistema.listarEmprestimosItem(nomeItem);
 	}
-	/*
+	
 	
 	public String listarItensEmprestados() {
-		return controller.listarItensEmprestados();
+		return sistema.listarItensEmprestados();
 	}
 	
 	public String listarItensNaoEmprestados() {
-		return controller.listarItensNaoEmprestados();
+		return sistema.listarItensNaoEmprestados();
 	}
 	
 	public String listarTop10Itens() {
-		return controller.listarTop10itens();
-	}*/
+		return sistema.listarTop10Itens();
+	}
 
 	public void fecharSistema() {
 

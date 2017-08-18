@@ -1,6 +1,6 @@
 package projeto;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Collections;
 import java.util.Map;
 
@@ -315,7 +315,7 @@ public class ControllerItem {
 	 * 
 	 * @return informações dos itens ordenados por nome
 	 */
-	public String listarItensOrdenadosPorNome(ArrayList<Item> itensUsuarios) {
+	public String listarItensOrdenadosPorNome(List<Item> itensUsuarios) {
 		String itens = "";
 
 		Collections.sort(itensUsuarios);
@@ -330,7 +330,7 @@ public class ControllerItem {
 	 * 
 	 * @return informações dos itens ordenados por valor
 	 */
-	public String listarItensOrdenadosPorValor(ArrayList<Item> itensUsuarios) {
+	public String listarItensOrdenadosPorValor(List<Item> itensUsuarios) {
 		String itens = "";
 		itensUsuarios.sort(new ComparaItemValor());
 		for (Item item : itensUsuarios) {
@@ -349,7 +349,7 @@ public class ControllerItem {
 	 *            é a lista de itens de todos os usuários
 	 * @return informações dos itens emprestados ordenados por nome
 	 */
-	public String listarItensEmprestados(ArrayList<Item> itensUsuarios) {
+	public String listarItensEmprestados(List<Item> itensUsuarios) {
 		String itens = "";
 		Collections.sort(itensUsuarios);
 		for (Item item : itensUsuarios) {
@@ -367,7 +367,7 @@ public class ControllerItem {
 	 *            é a lista de itens de todos os usuários
 	 * @return informações dos itens não emprestados ordenados por nome
 	 */
-	public String listarItensNaoEmprestados(ArrayList<Item> itensUsuarios) {
+	public String listarItensNaoEmprestados(List<Item> itensUsuarios) {
 		String itens = "";
 		Collections.sort(itensUsuarios);
 		for (Item item : itensUsuarios) {
@@ -385,7 +385,7 @@ public class ControllerItem {
 	 * @param itensUsuarios
 	 * @return
 	 */
-	public String listarTop10Itens(ArrayList<Item> itensUsuarios) {
+	public String listarTop10Itens(List<Item> itensUsuarios) {
 		String itens = "";
 		itensUsuarios.sort(new ComparaItemNumEmprestimos());
 		for (int i = 0; i < 10; i++) {
