@@ -2,6 +2,7 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
@@ -176,6 +177,17 @@ public class ControllerItemTest {
 		} catch (Exception e) {
 			assertEquals("Item nao encontrado", e.getMessage());
 		}
+	}
+	
+	@Test
+	public void listarTop10ItensTest() {
+		Map<String, Item> mapaItens = sistema.getItensUsuario("Magaiver", "333");
+		cItem.cadastrarEletronico("Pokemon Ruby", 20.00, "PS4", mapaItens);
+		cItem.emprestarItem("Pokemon Ruby", mapaItens);
+		cItem.cadastrarJogoTabuleiro("Zombiecide", 300.00, mapaItens);
+		cItem.emprestarItem("Zombiecide", mapaItens);
+		List<Item> itensUsuarios = sistema.getItensUsuarios();
+		assertEquals("1) JOGO ELETRONICO: Pokemon Ruby, R$ 20.0, Emprestado, PS4|2) JOGO DE TABULEIRO: Zombiecide, R$ 300.0, Emprestado, COMPLETO|", cItem.listarTop10Itens(itensUsuarios));
 	}
 
 }

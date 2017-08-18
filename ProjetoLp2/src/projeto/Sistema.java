@@ -157,6 +157,7 @@ public class Sistema {
 	}
 
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
+		cUsuario.getUsuario(nome, telefone);
 		return cEmprestimo.listarEmprestimosUsuarioEmprestando(nome, telefone);
 	}
 
