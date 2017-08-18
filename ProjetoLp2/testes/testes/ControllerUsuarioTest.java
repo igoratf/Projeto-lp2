@@ -76,6 +76,7 @@ public class ControllerUsuarioTest {
 		assertEquals("Caio", controllerUsuario.getInfoUsuario("Caio", "980677", "Nome"));
 		assertEquals("980677", controllerUsuario.getInfoUsuario("Caio", "980677", "Telefone"));
 		assertEquals("caio@redhat.com", controllerUsuario.getInfoUsuario("Caio", "980677", "Email"));
+		assertEquals("0.0", controllerUsuario.getInfoUsuario("Caio", "980677", "Reputacao"));
 
 		try {
 			controllerUsuario.getInfoUsuario("Joao", "980677", "Nome");
