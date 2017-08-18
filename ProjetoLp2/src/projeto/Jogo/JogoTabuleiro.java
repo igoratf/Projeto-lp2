@@ -48,13 +48,25 @@ public class JogoTabuleiro extends Item {
 		return result;
 	}
 
-	public boolean equals(JogoTabuleiro jogo) {
-		if (jogo.getNome().equals(this.getNome()) && comparaPecasPerdidas(jogo.pecasPerdidas)) {
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
 			return true;
-		}
-		return false;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		JogoTabuleiro other = (JogoTabuleiro) obj;
+		if (completo != other.completo)
+			return false;
+		if (pecasPerdidas == null) {
+			if (other.pecasPerdidas != null)
+				return false;
+		} else if (!pecasPerdidas.equals(other.pecasPerdidas))
+			return false;
+		return true;
 	}
-	
+
 	public String existePecasPerdidas(){
 		if(pecasPerdidas.size() > 0){
 			return "COM PECAS PERDIDAS";
