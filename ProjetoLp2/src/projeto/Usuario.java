@@ -105,23 +105,59 @@ public class Usuario {
 	public Map<String, Item> getItens() {
 		return mapaItens;
 	}
-	
-	public double getReputacao(){
+
+	/**
+	 * Retorna a reputação de um usuário.
+	 * 
+	 * @return
+	 */
+	public double getReputacao() {
 		return this.reputacao;
 	}
 
+	/**
+	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do
+	 * item adicionado.
+	 * 
+	 * @param valorItem
+	 *            Valor do Item.
+	 */
 	public void addReputacaoItemAdicionado(double valorItem) {
 		this.reputacao += valorItem * 0.05;
 	}
 
+	/**
+	 * Adiciona ao atributo reputação a porcentagem de 10% referente ao valor
+	 * item emprestado.
+	 * 
+	 * @param valorItem
+	 *            Valor do Item.
+	 */
 	public void addReputacaoItemEmprestado(double valorItem) {
 		this.reputacao += valorItem * 0.10;
 	}
 
+	/**
+	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do
+	 * Item devolvido.
+	 * 
+	 * @param valorItem
+	 *            Valor do item devolvido.
+	 */
 	public void addReputacaoItemDevolvidoNoPrazo(double valorItem) {
 		this.reputacao += valorItem * 0.05;
 	}
 
+	/**
+	 * Decrementa o atributo reputação o valor calculado referente a porcentagem
+	 * de 1% vezes o número de dias em atraso da devolução vezes o valor do Item
+	 * devolvido.
+	 * 
+	 * @param valorItem
+	 *            Valor do Item devolvido.
+	 * @param diasAtraso
+	 *            Dias em Atraso da devolução.
+	 */
 	public void addReputacaoItemDevolvidoAtrasado(double valorItem, int diasAtraso) {
 		this.reputacao -= valorItem * (0.01 * diasAtraso);
 	}
