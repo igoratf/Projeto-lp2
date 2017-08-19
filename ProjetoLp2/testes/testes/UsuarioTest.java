@@ -11,7 +11,11 @@ import projeto.Usuario;
 import projeto.Jogo.JogoTabuleiro;
 
 import org.junit.Test;
-
+/**
+ * Classe de Testes de um Usuário.
+ * @author caiosbl
+ *
+ */
 public class UsuarioTest {
 	private Usuario usuario;
 
