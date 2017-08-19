@@ -167,11 +167,19 @@ public class Usuario {
 	public void addReputacaoItemDevolvidoAtrasado(double valorItem, int diasAtraso) {
 		this.reputacao -= valorItem * (0.01 * diasAtraso);
 	}
-	
-	public String getCartao(){
+
+	/**
+	 * Retorna o cartão atual do Usuário.
+	 * 
+	 * @return cartao
+	 */
+	public String getCartao() {
 		return this.cartao.getValor();
 	}
 
+	/**
+	 * Atualiza o valor do cartão do usuário de acordo com sua situação atual.
+	 */
 	public void atualizaCartao() {
 		if (reputacao < 0) {
 			this.cartao = Cartao.CALOTEIRO;
