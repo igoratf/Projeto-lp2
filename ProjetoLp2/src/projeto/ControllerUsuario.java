@@ -1,7 +1,8 @@
 package projeto;
 
 import java.util.ArrayList;
-
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -345,6 +346,23 @@ public class ControllerUsuario {
 		} else {
 			return true;
 		}
+	}
+	
+	public String listarCaloteiros(){
+		String listagem = "Lista de usuarios com reputacao negativa: ";
+		ArrayList<Usuario> listaCaloteiros = new ArrayList<>();
+		for(Usuario usuario: mapaUsuarios.values()){
+			if(usuario.getReputacao() < 0){
+			listaCaloteiros.add(usuario);
+			}
+		}
+		Collections.sort(listaCaloteiros);
+		for(Usuario usuario: listaCaloteiros){
+			listagem += usuario.toString() + "|";
+		}
+		
+		return listagem;
+		
 	}
 
 }
