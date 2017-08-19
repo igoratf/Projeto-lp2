@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import projeto.enums.Cartao;
+
 /**
  * Classe de Usuário.
  * 
@@ -17,6 +19,7 @@ public class Usuario {
 	private String email;
 	private String numCelular;
 	private double reputacao;
+	private Cartao cartao;
 	private Map<String, Item> mapaItens;
 
 	/**
@@ -36,6 +39,7 @@ public class Usuario {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.reputacao = 0.0;
+		this.cartao = Cartao.NOOB;
 		this.mapaItens = new HashMap<String, Item>();
 
 	}
@@ -116,8 +120,8 @@ public class Usuario {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do item
-	 * adicionado.
+	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do
+	 * item adicionado.
 	 * 
 	 * @param valorItem
 	 *            Valor do Item.
@@ -127,8 +131,8 @@ public class Usuario {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação a porcentagem de 10% referente ao valor item
-	 * emprestado.
+	 * Adiciona ao atributo reputação a porcentagem de 10% referente ao valor
+	 * item emprestado.
 	 * 
 	 * @param valorItem
 	 *            Valor do Item.
@@ -139,8 +143,8 @@ public class Usuario {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do Item
-	 * devolvido.
+	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do
+	 * Item devolvido.
 	 * 
 	 * @param valorItem
 	 *            Valor do item devolvido.
@@ -151,8 +155,8 @@ public class Usuario {
 	}
 
 	/**
-	 * Decrementa o atributo reputação o valor calculado referente a porcentagem de
-	 * 1% vezes o número de dias em atraso da devolução vezes o valor do Item
+	 * Decrementa o atributo reputação o valor calculado referente a porcentagem
+	 * de 1% vezes o número de dias em atraso da devolução vezes o valor do Item
 	 * devolvido.
 	 * 
 	 * @param valorItem
@@ -162,6 +166,22 @@ public class Usuario {
 	 */
 	public void addReputacaoItemDevolvidoAtrasado(double valorItem, int diasAtraso) {
 		this.reputacao -= valorItem * (0.01 * diasAtraso);
+	}
+	
+	public String getCartao(){
+		return this.cartao.getValor();
+	}
+
+	public void atualizaCartao() {
+		if (reputacao < 0) {
+			this.cartao = Cartao.CALOTEIRO;
+		} else if (reputacao > 100) {
+			this.cartao = Cartao.BOM_AMIGO;
+		} else if (mapaItens.size() > 0) {
+			this.cartao = Cartao.NOOB;
+		} else {
+			this.cartao = Cartao.FREE_RIDER;
+		}
 	}
 
 	/**
