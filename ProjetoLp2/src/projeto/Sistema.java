@@ -141,10 +141,10 @@ public class Sistema {
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
-		double valorItem = mapaItensDono.get(nomeItem).getValor();
-		
+
 		cItem.emprestarItem(nomeItem, mapaItensDono);
-		
+		double valorItem = mapaItensDono.get(nomeItem).getValor();
+
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
 		cUsuario.addReputacaoItemEmprestado(nomeDono, telefoneDono, valorItem);
 	}
