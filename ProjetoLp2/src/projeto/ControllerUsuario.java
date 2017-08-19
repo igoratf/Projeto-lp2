@@ -244,9 +244,7 @@ public class ControllerUsuario {
 	public void addReputacaoItemEmprestado(String nome, String telefone, double valorItem) {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-
 		Usuario usuario = this.mapaUsuarios.get(chave);
-
 		usuario.addReputacaoItemEmprestado(valorItem);
 	}
 
@@ -295,6 +293,58 @@ public class ControllerUsuario {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).atualizaCartao();
+	}
+
+	/**
+	 * Retorna o valor booleano que indica se o usuário pode pegar um item
+	 * emprestado.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @return valor Booleano.
+	 */
+	public boolean podePegarItemEmprestado(String nome, String telefone) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		Usuario usuario = mapaUsuarios.get(chave);
+
+		if (usuario.getCartao().equals("Caloteiro")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Retorna um valor booleano se o período de empréstimo requerido é valido
+	 * para o atual cartão do Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param periodo
+	 *            Período de Empréstimo.
+	 * @return boolean
+	 */
+	public boolean validaPeriodoEmprestimo(String nome, String telefone, int periodo) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+
+		Usuario usuario = mapaUsuarios.get(chave);
+		String cartao = usuario.getCartao();
+
+		if (periodo > 14) {
+			return false;
+		} else if (cartao.equals("Noob") && periodo > 7) {
+			return false;
+		} else if (cartao.equals("FreeRyder") && periodo > 5) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

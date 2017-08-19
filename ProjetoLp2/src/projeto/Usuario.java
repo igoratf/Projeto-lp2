@@ -39,7 +39,7 @@ public class Usuario {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.reputacao = 0.0;
-		this.cartao = Cartao.NOOB;
+		this.cartao = Cartao.FREE_RIDER;
 		this.mapaItens = new HashMap<String, Item>();
 
 	}

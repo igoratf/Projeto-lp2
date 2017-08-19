@@ -1,7 +1,7 @@
 package projeto.enums;
 
 public enum Cartao {
-	NOOB("noob"), CALOTEIRO("caloteiro"), BOM_AMIGO("bomAmigo"), FREE_RIDER("freeRider");
+	NOOB("Noob"), CALOTEIRO("Caloteiro"), BOM_AMIGO("BomAmigo"), FREE_RIDER("FreeRyder");
 
 	private final String valor;
 

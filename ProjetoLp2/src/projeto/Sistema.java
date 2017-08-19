@@ -54,6 +54,7 @@ public class Sistema {
 
 		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarEletronico(nomeItem, preco, plataforma, mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
@@ -61,6 +62,7 @@ public class Sistema {
 
 		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarJogoTabuleiro(nomeItem, preco, mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
@@ -70,6 +72,7 @@ public class Sistema {
 		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada,
 				mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String serie, int duracao) {
@@ -84,6 +87,7 @@ public class Sistema {
 
 		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento, mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
@@ -92,6 +96,7 @@ public class Sistema {
 
 		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao, mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
@@ -104,6 +109,7 @@ public class Sistema {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		cItem.removerItem(nomeItem, mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
@@ -138,6 +144,13 @@ public class Sistema {
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+
+		if (!cUsuario.podePegarItemEmprestado(nomeRequerente, telefoneRequerente)) {
+			throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
+		} else if (!cUsuario.validaPeriodoEmprestimo(nomeRequerente, telefoneRequerente, periodo)) {
+			throw new IllegalArgumentException("Usuario impossiblitado de pegar emprestado por esse periodo");
+		}
+
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
@@ -147,6 +160,7 @@ public class Sistema {
 
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
 		cUsuario.addReputacaoItemEmprestado(nomeDono, telefoneDono, valorItem);
+		cUsuario.atualizaCartaoUsuario(nomeDono, telefoneDono);
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
@@ -167,6 +181,7 @@ public class Sistema {
 		} else {
 			cUsuario.addReputacaoItemDevolvidoAtrasado(nomeRequerente, telefoneRequerente, valorItem, diasAtraso);
 		}
+		cUsuario.atualizaCartaoUsuario(nomeRequerente, telefoneRequerente);
 
 		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 		cItem.devolverItem(nomeItem, mapaItensDono);
