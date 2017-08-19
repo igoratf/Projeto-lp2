@@ -168,5 +168,14 @@ public class UsuarioTest {
 		assertEquals(-151.0, usuario.getReputacao(), 0.0);
 
 	}
+	
+	@Test
+	public void getCartaoTest(){
+		assertEquals("FreeRyder",usuario.getCartao());
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 100);
+		
+		assertEquals("Caloteiro",usuario.getCartao());
+		
+	}
 
 }

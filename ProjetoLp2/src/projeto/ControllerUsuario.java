@@ -62,19 +62,21 @@ public class ControllerUsuario {
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		ValidaParametros.validaParametrosGetInfoUsuario(nome, telefone, atributo);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		checaSeUsuarioJaExiste(nome, telefone);
 
-		if (!mapaUsuarios.containsKey(chave)) {
-			throw new IllegalArgumentException("Usuario invalido");
-		}
+		Usuario usuario = mapaUsuarios.get(chave);
+
 		switch (atributo) {
 		case "Email":
-			return mapaUsuarios.get(chave).getEmail();
+			return usuario.getEmail();
 		case "Nome":
-			return mapaUsuarios.get(chave).getNome();
+			return usuario.getNome();
 		case "Telefone":
-			return mapaUsuarios.get(chave).getNumCelular();
+			return usuario.getNumCelular();
 		case "Reputacao":
-			return String.valueOf(mapaUsuarios.get(chave).getReputacao());
+			return String.valueOf(usuario.getReputacao());
+		case "Cartao":
+			return usuario.getCartao();
 
 		default:
 			throw new IllegalArgumentException("Atributo invalido");
@@ -113,7 +115,8 @@ public class ControllerUsuario {
 	 * @param valor
 	 *            Novo valor do Atributo.
 	 * @throws IllegalArgumentException
-	 *             Caso as informacoes do usuario nao remetam a um usuario valido.
+	 *             Caso as informacoes do usuario nao remetam a um usuario
+	 *             valido.
 	 * @throws IllegalArgumentException
 	 *             Caso o Atributo informado seja invalido.
 	 */
@@ -211,8 +214,8 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 5% referente ao
-	 * valor do item adicionado.
+	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 5%
+	 * referente ao valor do item adicionado.
 	 * 
 	 * @param nome
 	 *            Nome do Usuário.
@@ -228,8 +231,8 @@ public class ControllerUsuario {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 10% referente
-	 * ao valor do item emprestado.
+	 * Adiciona ao atributo reputação de um Usuário a porcentagem de 10%
+	 * referente ao valor do item emprestado.
 	 * 
 	 * @param nome
 	 *            Nome do Usuário.
@@ -241,15 +244,13 @@ public class ControllerUsuario {
 	public void addReputacaoItemEmprestado(String nome, String telefone, double valorItem) {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-
 		Usuario usuario = this.mapaUsuarios.get(chave);
-		
 		usuario.addReputacaoItemEmprestado(valorItem);
 	}
 
 	/**
-	 * Adiciona ao atributo reputação do Usuário a porcentagem de 5% referente ao
-	 * valor do Item devolvido.
+	 * Adiciona ao atributo reputação do Usuário a porcentagem de 5% referente
+	 * ao valor do Item devolvido.
 	 * 
 	 * @param nome
 	 *            Nome do Usuário.
@@ -266,8 +267,8 @@ public class ControllerUsuario {
 
 	/**
 	 * Decrementa o atributo reputação do Usuário o valor calculado referente a
-	 * porcentagem de 1% vezes o número de dias em atraso da devolução vezes o valor
-	 * do Item devolvido.
+	 * porcentagem de 1% vezes o número de dias em atraso da devolução vezes o
+	 * valor do Item devolvido.
 	 * 
 	 * @param valorItem
 	 *            Valor do Item devolvido.
@@ -278,6 +279,72 @@ public class ControllerUsuario {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).addReputacaoItemDevolvidoAtrasado(valorItem, diasAtraso);
+	}
+
+	/**
+	 * Atualiza o Cartão de um Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 */
+	public void atualizaCartaoUsuario(String nome, String telefone) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).atualizaCartao();
+	}
+
+	/**
+	 * Retorna o valor booleano que indica se o usuário pode pegar um item
+	 * emprestado.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @return valor Booleano.
+	 */
+	public boolean podePegarItemEmprestado(String nome, String telefone) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		Usuario usuario = mapaUsuarios.get(chave);
+
+		if (usuario.getCartao().equals("Caloteiro")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Retorna um valor booleano se o período de empréstimo requerido é valido
+	 * para o atual cartão do Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param periodo
+	 *            Período de Empréstimo.
+	 * @return boolean
+	 */
+	public boolean validaPeriodoEmprestimo(String nome, String telefone, int periodo) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+
+		Usuario usuario = mapaUsuarios.get(chave);
+		String cartao = usuario.getCartao();
+
+		if (periodo > 14) {
+			return false;
+		} else if (cartao.equals("Noob") && periodo > 7) {
+			return false;
+		} else if (cartao.equals("FreeRyder") && periodo > 5) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }
