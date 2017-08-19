@@ -3,6 +3,7 @@ package testes;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.Before;
 
@@ -75,6 +76,7 @@ public class ControllerUsuarioTest {
 		assertEquals("Caio", controllerUsuario.getInfoUsuario("Caio", "980677", "Nome"));
 		assertEquals("980677", controllerUsuario.getInfoUsuario("Caio", "980677", "Telefone"));
 		assertEquals("caio@redhat.com", controllerUsuario.getInfoUsuario("Caio", "980677", "Email"));
+		assertEquals("0.0", controllerUsuario.getInfoUsuario("Caio", "980677", "Reputacao"));
 
 		try {
 			controllerUsuario.getInfoUsuario("Joao", "980677", "Nome");
@@ -175,11 +177,28 @@ public class ControllerUsuarioTest {
 	}
 
 	/**
+	 * Testa se o método getItensUsuario retorna corretamente o mapa de Itens de
+	 * um usuário.
+	 */
+	public void getItensUsuarioTest() {
+		Sistema sistema = new Sistema();
+		sistema.cadastrarUsuario("Caio", "8398056654", "djcaiopb@gmail.com");
+		HashMap<String, Item> mapaTest = new HashMap<>();
+
+		assertEquals(mapaTest, sistema.getItensUsuario("Caio", "8398056654"));
+
+		sistema.cadastrarJogoTabuleiro("Caio", "8398056554", "War", 100);
+		JogoTabuleiro jogo = new JogoTabuleiro("War", 100);
+		mapaTest.put("War", jogo);
+		assertEquals(sistema.getItensUsuario("Caio", "8398056654"), mapaTest);
+	}
+
+	/**
 	 * Testa se o método getItensUsuario retorna corretamente a lista de Itens
 	 * de todos os usuários.
 	 */
 	@Test
-	public void getItensUsuarioTest() {
+	public void getItensUsuariosTest() {
 		Sistema sistema = new Sistema();
 		sistema.cadastrarUsuario("Caio", "8398056654", "djcaiopb@gmail.com");
 		sistema.cadastrarUsuario("Joao", "8398056654", "djcaiopb@gmail.com");
@@ -196,6 +215,88 @@ public class ControllerUsuarioTest {
 		listaTest.add(jogo1);
 
 		assertEquals(listaTest, sistema.getItensUsuarios());
+
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemAdicionado adiciona corretamente a taxa
+	 * de 5% do valor do Item adicionado.
+	 */
+	@Test
+	public void addReputacaoItemAdicionadoTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0", reputacao);
+
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 100);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("5.0", reputacao);
+
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 1000);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("55.0", reputacao);
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemEmprestado adiciona corretamente o
+	 * valor de 10% do Item emprestado ao atributo Reputação.
+	 */
+	@Test
+	public void addReputacaoItemEmprestadoTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0", reputacao);
+
+		controllerUsuario.addReputacaoItemEmprestado("Caio", "190", 1000);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("100.0", reputacao);
+	}
+
+	@Test
+	public void addReputacaoItemDevolvidoNoPrazo() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoNoPrazo("Caio", "190", 10000);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("500.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoNoPrazo("Caio", "190", 1000);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("550.0", reputacao);
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemDevolvidoAtrasado calcula corretamente
+	 * a porcentagem em relação aos dias atrasados e decrementa do valor de
+	 * Reputação.
+	 */
+	@Test
+	public void addReputacaoItemDevolvidoAtrasado() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		String reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("0.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 1000, 1);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-10.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 1000, 2);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-30.0", reputacao);
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 1000, 100);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-1030.0", reputacao);
+
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 100);
+		reputacao = controllerUsuario.getInfoUsuario("Caio", "190", "Reputacao");
+		assertEquals("-1025.0", reputacao);
 
 	}
 
