@@ -300,4 +300,19 @@ public class ControllerUsuarioTest {
 
 	}
 
+	/**
+	 * Testa se o método atualizarCartaoUsuarioTest atualiza corretamente o
+	 * cartão de um usuário.
+	 */
+	@Test
+	public void atualizaCartaoUsuarioTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+		assertEquals("FreeRyder", controllerUsuario.getInfoUsuario("Caio", "190", "Cartao"));
+
+		controllerUsuario.getItensUsuario("Caio", "190").put("Teste", new JogoTabuleiro("Jogo", 1));
+		controllerUsuario.atualizaCartaoUsuario("Caio", "190");
+		assertEquals("Noob", controllerUsuario.getInfoUsuario("Caio", "190", "Cartao"));
+
+	}
+
 }
