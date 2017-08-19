@@ -315,4 +315,42 @@ public class ControllerUsuarioTest {
 
 	}
 
+	/**
+	 * Testa se o método podePegarItemEmprestado retorna false corretamente
+	 * quando o cartão do Usuário é caloteiro.
+	 */
+	@Test
+	public void podePegarItemEmprestadoTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+		assertTrue(controllerUsuario.podePegarItemEmprestado("Caio", "190"));
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 100, 1);
+		assertFalse(controllerUsuario.podePegarItemEmprestado("Caio", "190"));
+
+	}
+
+	/**
+	 * Testa se o método validaPeriodoEmprestimo retorna corretamente o valor
+	 * booleano que informa se o usuário pode ou não pegar o empréstimo pelo
+	 * período informado de acordo com seu cartão atual.
+	 */
+	@Test
+	public void validaPeriodoEmprestimoTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+
+		assertFalse(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 15));
+		assertTrue(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 2));
+		assertFalse(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 6));
+
+		controllerUsuario.getItensUsuario("Caio", "190").put("Teste", new JogoTabuleiro("Jogo", 1));
+		controllerUsuario.atualizaCartaoUsuario("Caio", "190");
+		assertTrue(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 7));
+		assertFalse(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 8));
+
+		controllerUsuario.addReputacaoItemEmprestado("Caio", "190", 10000);
+		assertTrue(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 7));
+		assertFalse(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 15));
+
+	}
+
 }
