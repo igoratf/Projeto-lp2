@@ -160,7 +160,7 @@ public class Sistema {
 
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
 		cUsuario.addReputacaoItemEmprestado(nomeDono, telefoneDono, valorItem);
-		cUsuario.atualizaCartaoUsuario(nomeDono, telefoneDono);
+		
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
@@ -181,7 +181,6 @@ public class Sistema {
 		} else {
 			cUsuario.addReputacaoItemDevolvidoAtrasado(nomeRequerente, telefoneRequerente, valorItem, diasAtraso);
 		}
-		cUsuario.atualizaCartaoUsuario(nomeRequerente, telefoneRequerente);
 
 		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 		cItem.devolverItem(nomeItem, mapaItensDono);

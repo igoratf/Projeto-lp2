@@ -128,6 +128,7 @@ public class Usuario {
 	 */
 	public void addReputacaoItemAdicionado(double valorItem) {
 		this.reputacao += valorItem * 0.05;
+		atualizaCartao();
 	}
 
 	/**
@@ -139,6 +140,7 @@ public class Usuario {
 	 */
 	public void addReputacaoItemEmprestado(double valorItem) {
 		this.reputacao += valorItem * 0.1;
+		atualizaCartao();
 
 	}
 
@@ -151,6 +153,7 @@ public class Usuario {
 	 */
 	public void addReputacaoItemDevolvidoNoPrazo(double valorItem) {
 		this.reputacao += valorItem * 0.05;
+		atualizaCartao();
 
 	}
 
@@ -166,6 +169,7 @@ public class Usuario {
 	 */
 	public void addReputacaoItemDevolvidoAtrasado(double valorItem, int diasAtraso) {
 		this.reputacao -= valorItem * (0.01 * diasAtraso);
+		atualizaCartao();
 	}
 
 	/**
