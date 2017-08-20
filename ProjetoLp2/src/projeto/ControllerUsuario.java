@@ -347,22 +347,38 @@ public class ControllerUsuario {
 			return true;
 		}
 	}
-	
-	public String listarCaloteiros(){
+
+	public String listarCaloteiros() {
 		String listagem = "Lista de usuarios com reputacao negativa: ";
 		ArrayList<Usuario> listaCaloteiros = new ArrayList<>();
-		for(Usuario usuario: mapaUsuarios.values()){
-			if(usuario.getReputacao() < 0){
-			listaCaloteiros.add(usuario);
+		for (Usuario usuario : mapaUsuarios.values()) {
+			if (usuario.getReputacao() < 0) {
+				listaCaloteiros.add(usuario);
 			}
 		}
 		Collections.sort(listaCaloteiros);
-		for(Usuario usuario: listaCaloteiros){
+		for (Usuario usuario : listaCaloteiros) {
 			listagem += usuario.toString() + "|";
 		}
-		
+
 		return listagem;
-		
+	}
+
+	public String listarTop10MelhoresUsuarios() {
+		String listagem = "";
+		ArrayList<Usuario> listaTop10Usuarios = new ArrayList<>(mapaUsuarios.values());
+		listaTop10Usuarios.sort(new ComparaUsuarioReputacao());
+		int cont = 1;
+
+		for (Usuario usuario : listaTop10Usuarios) {
+			if (cont > 10) {
+				break;
+			}
+			listagem += String.format("%d: %s - Reputacao: %.2f|", cont, usuario.getNome(), usuario.getReputacao());
+			cont += 1;
+		}
+		return listagem;
+
 	}
 
 }

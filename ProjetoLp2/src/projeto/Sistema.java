@@ -221,6 +221,15 @@ public class Sistema {
 		return cItem.listarItensNaoEmprestados(listItens);
 
 	}
+	
+	public String listarCaloteiros(){
+		return cUsuario.listarCaloteiros();
+	}
+	public String listarTop10MelhoresUsuarios(){
+		return cUsuario.listarTop10MelhoresUsuarios();
+	}
+	
+	
 
 	public void fecharSistema() {
 

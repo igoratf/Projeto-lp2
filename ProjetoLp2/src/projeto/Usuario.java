@@ -238,7 +238,7 @@ public class Usuario implements Comparable<Usuario> {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s , %s ,%s", nome, email, numCelular);
+		return String.format("%s, %s, %s", nome, email, numCelular);
 	}
 
 	@Override

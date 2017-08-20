@@ -114,6 +114,13 @@ public class Facade {
 	public String listarTop10Itens() {
 		return sistema.listarTop10Itens();
 	}
+	
+	public String listarCaloteiros(){
+		return sistema.listarCaloteiros();
+	}
+	public String listarTop10MelhoresUsuarios(){
+		return sistema.listarTop10MelhoresUsuarios();
+	}
 
 	public void fecharSistema() {
 
