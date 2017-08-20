@@ -11,8 +11,8 @@ import org.junit.Test;
 import projeto.Emprestimo;
 
 import projeto.Item;
-import projeto.ChaveUsuario;
-import projeto.Jogo.JogoTabuleiro;
+import projeto.jogo.JogoTabuleiro;
+import projeto.utilitarios.ChaveUsuario;
 
 public class EmprestimoTest {
 	private Emprestimo emprestimo;

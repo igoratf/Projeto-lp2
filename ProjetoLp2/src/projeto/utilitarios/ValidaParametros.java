@@ -1,6 +1,8 @@
-package projeto;
+package projeto.utilitarios;
 
 import java.util.Map;
+
+import projeto.Item;
 
 /**
  * Classe utilitária para validar Parâmetros.

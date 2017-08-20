@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import projeto.utilitarios.ChaveUsuario;
+
 
 public class Emprestimo implements Comparable<Emprestimo>{
 	

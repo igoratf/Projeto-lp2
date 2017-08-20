@@ -3,7 +3,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import projeto.Jogo.JogoEletronico;
+import projeto.jogo.JogoEletronico;
 
 public class JogoEletronicoTest {
 	

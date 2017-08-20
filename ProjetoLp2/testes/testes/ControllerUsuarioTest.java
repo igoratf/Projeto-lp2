@@ -10,8 +10,8 @@ import org.junit.Before;
 import projeto.Item;
 import projeto.Sistema;
 import projeto.Usuario;
-import projeto.Jogo.JogoTabuleiro;
 import projeto.controllers.ControllerUsuario;
+import projeto.jogo.JogoTabuleiro;
 
 import org.junit.Test;
 

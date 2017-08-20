@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import projeto.ChaveUsuario;
 import projeto.Item;
 import projeto.Usuario;
-import projeto.ValidaParametros;
 import projeto.comparadores.ComparaUsuarioReputacaoMelhorMenor;
 import projeto.comparadores.ComparaUsuarioReputacaoMenorMelhor;
+import projeto.utilitarios.ChaveUsuario;
+import projeto.utilitarios.ValidaParametros;
 
 /**
  * Classe Controladora de Usuarios

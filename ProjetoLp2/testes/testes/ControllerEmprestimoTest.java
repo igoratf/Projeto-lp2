@@ -7,8 +7,8 @@ import java.text.ParseException;
 import org.junit.Before;
 import org.junit.Test;
 
-import projeto.ChaveUsuario;
 import projeto.controllers.ControllerEmprestimo;
+import projeto.utilitarios.ChaveUsuario;
 
 /**
  * Teste da classe ControllerEmprestimo

@@ -1,4 +1,4 @@
-package projeto.Jogo;
+package projeto.jogo;
 
 import projeto.Item;
 import projeto.enums.Plataforma;

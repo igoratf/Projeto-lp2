@@ -8,7 +8,7 @@ import org.junit.Before;
 
 import projeto.Item;
 import projeto.Usuario;
-import projeto.Jogo.JogoTabuleiro;
+import projeto.jogo.JogoTabuleiro;
 
 import org.junit.Test;
 /**
