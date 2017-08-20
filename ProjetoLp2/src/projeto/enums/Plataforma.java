@@ -1,6 +1,11 @@
 package projeto.enums;
 
-
+/**
+ * Classe enum das Plataformas.
+ * 
+ * @author lucasvsa
+ *
+ */
 
 public enum Plataforma {
 	/**
