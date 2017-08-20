@@ -10,6 +10,14 @@ import java.util.List;
 import projeto.ChaveUsuario;
 import projeto.Emprestimo;
 
+
+/**
+ * Classe controladora de Emprestimo, responsável pelo gerenciamento de suas funções para o sistema.
+ * 
+ * 
+ * @author lucasvsa
+ *
+ */
 public class ControllerEmprestimo {
 
 	private List<Emprestimo> emprestimos;
@@ -77,7 +85,7 @@ public class ControllerEmprestimo {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
-		retonarEmprestimosOrdenadosPorNome(emprestimosTemp);
+		retornarEmprestimosOrdenadosPorNome(emprestimosTemp);
 		return emprestimosTemp;
 	}
 
@@ -93,7 +101,7 @@ public class ControllerEmprestimo {
 				emprestimosTemp.add(emprestimo);
 			}
 		}
-		retonarEmprestimosOrdenadosPorNome(emprestimosTemp);
+		retornarEmprestimosOrdenadosPorNome(emprestimosTemp);
 		return emprestimosTemp;
 	}
 
@@ -187,19 +195,16 @@ public class ControllerEmprestimo {
 	}
 	
 	/**
-	 * Metodo para ordenar uma lista de emprestimos por nome.
+	 * Metodo  para ordenar uma lista de emprestimos por nome.
 	 * @param emprestimos, Lista de emprestimos passado por parametro.
 	 * @return, retorna a lista ordenada.
 	 */
-	public List<Emprestimo> retonarEmprestimosOrdenadosPorNome(ArrayList<Emprestimo> emprestimos){
+	public List<Emprestimo> retornarEmprestimosOrdenadosPorNome(ArrayList<Emprestimo> emprestimos){
 		ArrayList<Emprestimo> emprestimosTemp = emprestimos;
 		Collections.sort(emprestimosTemp);
 		return emprestimosTemp;
 	}
 
-	public List<Emprestimo> getEmprestimos() {
-		return emprestimos;
-	}
 
 
 

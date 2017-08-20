@@ -1,5 +1,11 @@
 package projeto.enums;
 
+/**
+ * Classe enum para Generos.
+ * 
+ * @author lucasvsa
+ *
+ */
 public enum Genero {
 	
 	 ACAO("ACAO"), ANIMACAO("ANIMACAO"), AVENTURA("AVENTURA"), COMEDIA("COMEDIA"), DOCUMENTARIO("DOCUMENTARIO"),
