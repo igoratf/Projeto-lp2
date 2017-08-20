@@ -1,10 +1,10 @@
 package projeto;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -348,6 +348,11 @@ public class ControllerUsuario {
 		}
 	}
 
+	/**
+	 * Lista os usuários com reputação negativa.
+	 * 
+	 * @return listagem
+	 */
 	public String listarCaloteiros() {
 		String listagem = "Lista de usuarios com reputacao negativa: ";
 		ArrayList<Usuario> listaCaloteiros = new ArrayList<>();
@@ -364,21 +369,42 @@ public class ControllerUsuario {
 		return listagem;
 	}
 
+	/**
+	 * Lista os usuários com melhores reputações.
+	 * 
+	 * @return listagem
+	 */
 	public String listarTop10MelhoresUsuarios() {
 		String listagem = "";
+		Locale.setDefault(new Locale("pt", "BR"));
 		ArrayList<Usuario> listaTop10Usuarios = new ArrayList<>(mapaUsuarios.values());
-		listaTop10Usuarios.sort(new ComparaUsuarioReputacao());
-		int cont = 1;
+		listaTop10Usuarios.sort(new ComparaUsuarioReputacaoMelhorMenor());
 
-		for (Usuario usuario : listaTop10Usuarios) {
-			if (cont > 10) {
-				break;
-			}
-			listagem += String.format("%d: %s - Reputacao: %.2f|", cont, usuario.getNome(), usuario.getReputacao());
-			cont += 1;
+		for (int i = 0; i < 10; i++) {
+			Usuario usuario = listaTop10Usuarios.get(i);
+			listagem += String.format("%d: %s - Reputacao: %.2f|", i + 1, usuario.getNome(), usuario.getReputacao());
 		}
 		return listagem;
 
+	}
+
+	/**
+	 * Lista os 10 piores Usuários.
+	 * 
+	 * @return listagem
+	 */
+	public String listarTop10PioresUsuarios() {
+		String listagem = "";
+		Locale.setDefault(new Locale("pt", "BR"));
+		ArrayList<Usuario> listaTop10PioresUsuarios = new ArrayList<>(mapaUsuarios.values());
+		listaTop10PioresUsuarios.sort(new ComparaUsuarioReputacaoMenorMelhor());
+
+		for (int i = 0; i < 10; i++) {
+			Usuario usuario = listaTop10PioresUsuarios.get(i);
+			listagem += String.format("%d: %s - Reputacao: %.2f|", i + 1, usuario.getNome(), usuario.getReputacao());
+		}
+
+		return listagem;
 	}
 
 }

@@ -139,7 +139,7 @@ public class Usuario implements Comparable<Usuario> {
 	 *            Valor do Item.
 	 */
 	public void addReputacaoItemEmprestado(double valorItem) {
-		this.reputacao += valorItem * 0.1;
+		this.reputacao += valorItem * 0.10;
 		atualizaCartao();
 
 	}
