@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
+import projeto.controllers.ControllerEmprestimo;
+import projeto.controllers.ControllerItem;
+import projeto.controllers.ControllerUsuario;
+
 public class Sistema {
 
 	private ControllerUsuario cUsuario;
@@ -52,16 +56,16 @@ public class Sistema {
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarEletronico(nomeItem, preco, plataforma, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarJogoTabuleiro(nomeItem, preco, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
@@ -69,10 +73,10 @@ public class Sistema {
 			int duracao, String classificacao, String genero, int temporada) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada,
 				mapaItensDono);
 		cUsuario.atualizaCartaoUsuario(nome, telefone);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String serie, int duracao) {
@@ -85,8 +89,8 @@ public class Sistema {
 			String genero, String classificacao, int anoLancamento) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
@@ -94,8 +98,8 @@ public class Sistema {
 			int numFaixas, String nomeArtista, String classificacao) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
@@ -160,7 +164,7 @@ public class Sistema {
 
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
 		cUsuario.addReputacaoItemEmprestado(nomeDono, telefoneDono, valorItem);
-		
+
 	}
 
 	public void devolverItem(String nomeDono, String telefoneDono, String nomeRequerente, String telefoneRequerente,
@@ -220,6 +224,18 @@ public class Sistema {
 
 		return cItem.listarItensNaoEmprestados(listItens);
 
+	}
+
+	public String listarCaloteiros() {
+		return cUsuario.listarCaloteiros();
+	}
+
+	public String listarTop10MelhoresUsuarios() {
+		return cUsuario.listarTop10MelhoresUsuarios();
+	}
+
+	public String listarTop10PioresUsuarios() {
+		return cUsuario.listarTop10PioresUsuarios();
 	}
 
 	public void fecharSistema() {

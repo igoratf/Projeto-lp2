@@ -14,7 +14,7 @@ import projeto.enums.Cartao;
  *
  */
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
 	private String nome;
 	private String email;
 	private String numCelular;
@@ -139,7 +139,7 @@ public class Usuario {
 	 *            Valor do Item.
 	 */
 	public void addReputacaoItemEmprestado(double valorItem) {
-		this.reputacao += valorItem * 0.1;
+		this.reputacao += valorItem * 0.10;
 		atualizaCartao();
 
 	}
@@ -238,7 +238,12 @@ public class Usuario {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s , %s ,%s", nome, email, numCelular);
+		return String.format("%s, %s, %s", nome, email, numCelular);
+	}
+
+	@Override
+	public int compareTo(Usuario user) {
+		return this.nome.compareTo(user.nome);
 	}
 
 }

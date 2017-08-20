@@ -11,7 +11,11 @@ import projeto.Usuario;
 import projeto.Jogo.JogoTabuleiro;
 
 import org.junit.Test;
-
+/**
+ * Classe de Testes de um Usuário.
+ * @author caiosbl
+ *
+ */
 public class UsuarioTest {
 	private Usuario usuario;
 
@@ -168,14 +172,37 @@ public class UsuarioTest {
 		assertEquals(-151.0, usuario.getReputacao(), 0.0);
 
 	}
-	
+
+	/**
+	 * Testa se o método getCartao retorna corretamente o cartão atual do
+	 * usuário.
+	 */
 	@Test
-	public void getCartaoTest(){
-		assertEquals("FreeRyder",usuario.getCartao());
+	public void getCartaoTest() {
+		assertEquals("FreeRyder", usuario.getCartao());
 		usuario.addReputacaoItemDevolvidoAtrasado(100, 100);
-		
-		assertEquals("Caloteiro",usuario.getCartao());
-		
+		assertEquals("Caloteiro", usuario.getCartao());
+
+	}
+
+	/**
+	 * Testa se o método atualizaCartao atualiza corretamente o cartão do
+	 * usuário durante o fluxo de execução.
+	 */
+	@Test
+	public void atualizaCartaoTest() {
+		assertEquals("FreeRyder", usuario.getCartao());
+
+		usuario.getItens().put("Teste", new JogoTabuleiro("Jogo", 1));
+		usuario.atualizaCartao();
+		assertEquals("Noob", usuario.getCartao());
+
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 100);
+		assertEquals("Caloteiro", usuario.getCartao());
+
+		usuario.addReputacaoItemEmprestado(100000);
+		assertEquals("BomAmigo", usuario.getCartao());
+
 	}
 
 }

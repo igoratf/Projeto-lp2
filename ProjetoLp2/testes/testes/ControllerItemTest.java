@@ -8,10 +8,10 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import projeto.ControllerItem;
 import projeto.Item;
 import projeto.Sistema;
 import projeto.bluray.BluraySeries;
+import projeto.controllers.ControllerItem;
 
 /**
  * Classe de testes da classe ControllerItem

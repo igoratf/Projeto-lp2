@@ -1,10 +1,18 @@
-package projeto;
+package projeto.controllers;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+
+import projeto.ChaveUsuario;
+import projeto.Item;
+import projeto.Usuario;
+import projeto.ValidaParametros;
+import projeto.comparadores.ComparaUsuarioReputacaoMelhorMenor;
+import projeto.comparadores.ComparaUsuarioReputacaoMenorMelhor;
 
 /**
  * Classe Controladora de Usuarios
@@ -345,6 +353,65 @@ public class ControllerUsuario {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * Lista os usuários com reputação negativa.
+	 * 
+	 * @return listagem
+	 */
+	public String listarCaloteiros() {
+		String listagem = "Lista de usuarios com reputacao negativa: ";
+		ArrayList<Usuario> listaCaloteiros = new ArrayList<>();
+		for (Usuario usuario : mapaUsuarios.values()) {
+			if (usuario.getReputacao() < 0) {
+				listaCaloteiros.add(usuario);
+			}
+		}
+		Collections.sort(listaCaloteiros);
+		for (Usuario usuario : listaCaloteiros) {
+			listagem += usuario.toString() + "|";
+		}
+
+		return listagem;
+	}
+
+	/**
+	 * Lista os usuários com melhores reputações.
+	 * 
+	 * @return listagem
+	 */
+	public String listarTop10MelhoresUsuarios() {
+		String listagem = "";
+		Locale.setDefault(new Locale("pt", "BR"));
+		ArrayList<Usuario> listaTop10Usuarios = new ArrayList<>(mapaUsuarios.values());
+		listaTop10Usuarios.sort(new ComparaUsuarioReputacaoMelhorMenor());
+
+		for (int i = 0; i < 10; i++) {
+			Usuario usuario = listaTop10Usuarios.get(i);
+			listagem += String.format("%d: %s - Reputacao: %.2f|", i + 1, usuario.getNome(), usuario.getReputacao());
+		}
+		return listagem;
+
+	}
+
+	/**
+	 * Lista os 10 piores Usuários.
+	 * 
+	 * @return listagem
+	 */
+	public String listarTop10PioresUsuarios() {
+		String listagem = "";
+		Locale.setDefault(new Locale("pt", "BR"));
+		ArrayList<Usuario> listaTop10PioresUsuarios = new ArrayList<>(mapaUsuarios.values());
+		listaTop10PioresUsuarios.sort(new ComparaUsuarioReputacaoMenorMelhor());
+
+		for (int i = 0; i < 10; i++) {
+			Usuario usuario = listaTop10PioresUsuarios.get(i);
+			listagem += String.format("%d: %s - Reputacao: %.2f|", i + 1, usuario.getNome(), usuario.getReputacao());
+		}
+
+		return listagem;
 	}
 
 }
