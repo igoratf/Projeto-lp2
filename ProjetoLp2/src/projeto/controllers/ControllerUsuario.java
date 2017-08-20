@@ -1,4 +1,4 @@
-package projeto;
+package projeto.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,6 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import projeto.ChaveUsuario;
+import projeto.Item;
+import projeto.Usuario;
+import projeto.ValidaParametros;
+import projeto.comparadores.ComparaUsuarioReputacaoMelhorMenor;
+import projeto.comparadores.ComparaUsuarioReputacaoMenorMelhor;
 
 /**
  * Classe Controladora de Usuarios

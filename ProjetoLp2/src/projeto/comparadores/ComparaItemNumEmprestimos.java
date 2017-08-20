@@ -1,6 +1,8 @@
-package projeto;
+package projeto.comparadores;
 
 import java.util.Comparator;
+
+import projeto.Item;
 
 /**
  * Classe comparadora de Item por número de empréstimos

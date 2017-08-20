@@ -1,6 +1,8 @@
-package projeto;
+package projeto.comparadores;
 
 import java.util.Comparator;
+
+import projeto.Usuario;
 
 /**
  * Classe Comparadora de Usuario por Reputação ordenando da menor para melhor.

@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
+import projeto.controllers.ControllerEmprestimo;
+import projeto.controllers.ControllerItem;
+import projeto.controllers.ControllerUsuario;
+
 public class Sistema {
 
 	private ControllerUsuario cUsuario;

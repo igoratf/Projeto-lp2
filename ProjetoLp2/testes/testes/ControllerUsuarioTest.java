@@ -7,11 +7,11 @@ import java.util.HashMap;
 
 import org.junit.Before;
 
-import projeto.ControllerUsuario;
 import projeto.Item;
 import projeto.Sistema;
 import projeto.Usuario;
 import projeto.Jogo.JogoTabuleiro;
+import projeto.controllers.ControllerUsuario;
 
 import org.junit.Test;
 
