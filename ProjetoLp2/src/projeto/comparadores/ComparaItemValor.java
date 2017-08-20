@@ -1,6 +1,8 @@
-package projeto;
+package projeto.comparadores;
 
 import java.util.Comparator;
+
+import projeto.Item;
 
 /**
  * Classe Comparadora de um Item por Valor

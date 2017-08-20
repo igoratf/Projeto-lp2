@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import projeto.enums.Cartao;
+
 /**
  * Classe de Usuário.
  * 
@@ -12,11 +14,12 @@ import java.util.Map;
  *
  */
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
 	private String nome;
 	private String email;
 	private String numCelular;
 	private double reputacao;
+	private Cartao cartao;
 	private Map<String, Item> mapaItens;
 
 	/**
@@ -36,6 +39,7 @@ public class Usuario {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.reputacao = 0.0;
+		this.cartao = Cartao.FREE_RIDER;
 		this.mapaItens = new HashMap<String, Item>();
 
 	}
@@ -124,6 +128,7 @@ public class Usuario {
 	 */
 	public void addReputacaoItemAdicionado(double valorItem) {
 		this.reputacao += valorItem * 0.05;
+		atualizaCartao();
 	}
 
 	/**
@@ -135,6 +140,8 @@ public class Usuario {
 	 */
 	public void addReputacaoItemEmprestado(double valorItem) {
 		this.reputacao += valorItem * 0.10;
+		atualizaCartao();
+
 	}
 
 	/**
@@ -146,6 +153,8 @@ public class Usuario {
 	 */
 	public void addReputacaoItemDevolvidoNoPrazo(double valorItem) {
 		this.reputacao += valorItem * 0.05;
+		atualizaCartao();
+
 	}
 
 	/**
@@ -160,6 +169,31 @@ public class Usuario {
 	 */
 	public void addReputacaoItemDevolvidoAtrasado(double valorItem, int diasAtraso) {
 		this.reputacao -= valorItem * (0.01 * diasAtraso);
+		atualizaCartao();
+	}
+
+	/**
+	 * Retorna o cartão atual do Usuário.
+	 * 
+	 * @return cartao
+	 */
+	public String getCartao() {
+		return this.cartao.getValor();
+	}
+
+	/**
+	 * Atualiza o valor do cartão do usuário de acordo com sua situação atual.
+	 */
+	public void atualizaCartao() {
+		if (reputacao < 0) {
+			this.cartao = Cartao.CALOTEIRO;
+		} else if (reputacao > 100) {
+			this.cartao = Cartao.BOM_AMIGO;
+		} else if (mapaItens.size() > 0) {
+			this.cartao = Cartao.NOOB;
+		} else {
+			this.cartao = Cartao.FREE_RIDER;
+		}
 	}
 
 	/**
@@ -204,7 +238,12 @@ public class Usuario {
 	 */
 	@Override
 	public String toString() {
-		return String.format("%s , %s ,%s", nome, email, numCelular);
+		return String.format("%s, %s, %s", nome, email, numCelular);
+	}
+
+	@Override
+	public int compareTo(Usuario user) {
+		return this.nome.compareTo(user.nome);
 	}
 
 }

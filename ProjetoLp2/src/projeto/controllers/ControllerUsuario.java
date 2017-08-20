@@ -1,10 +1,18 @@
-package projeto;
+package projeto.controllers;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+
+import projeto.ChaveUsuario;
+import projeto.Item;
+import projeto.Usuario;
+import projeto.ValidaParametros;
+import projeto.comparadores.ComparaUsuarioReputacaoMelhorMenor;
+import projeto.comparadores.ComparaUsuarioReputacaoMenorMelhor;
 
 /**
  * Classe Controladora de Usuarios
@@ -62,19 +70,21 @@ public class ControllerUsuario {
 	public String getInfoUsuario(String nome, String telefone, String atributo) {
 		ValidaParametros.validaParametrosGetInfoUsuario(nome, telefone, atributo);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		checaSeUsuarioJaExiste(nome, telefone);
 
-		if (!mapaUsuarios.containsKey(chave)) {
-			throw new IllegalArgumentException("Usuario invalido");
-		}
+		Usuario usuario = mapaUsuarios.get(chave);
+
 		switch (atributo) {
 		case "Email":
-			return mapaUsuarios.get(chave).getEmail();
+			return usuario.getEmail();
 		case "Nome":
-			return mapaUsuarios.get(chave).getNome();
+			return usuario.getNome();
 		case "Telefone":
-			return mapaUsuarios.get(chave).getNumCelular();
+			return usuario.getNumCelular();
 		case "Reputacao":
-			return String.valueOf(mapaUsuarios.get(chave).getReputacao());
+			return String.valueOf(usuario.getReputacao());
+		case "Cartao":
+			return usuario.getCartao();
 
 		default:
 			throw new IllegalArgumentException("Atributo invalido");
@@ -242,7 +252,8 @@ public class ControllerUsuario {
 	public void addReputacaoItemEmprestado(String nome, String telefone, double valorItem) {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
-		mapaUsuarios.get(chave).addReputacaoItemEmprestado(valorItem);
+		Usuario usuario = this.mapaUsuarios.get(chave);
+		usuario.addReputacaoItemEmprestado(valorItem);
 	}
 
 	/**
@@ -276,6 +287,131 @@ public class ControllerUsuario {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		mapaUsuarios.get(chave).addReputacaoItemDevolvidoAtrasado(valorItem, diasAtraso);
+	}
+
+	/**
+	 * Atualiza o Cartão de um Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 */
+	public void atualizaCartaoUsuario(String nome, String telefone) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		mapaUsuarios.get(chave).atualizaCartao();
+	}
+
+	/**
+	 * Retorna o valor booleano que indica se o usuário pode pegar um item
+	 * emprestado.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @return valor Booleano.
+	 */
+	public boolean podePegarItemEmprestado(String nome, String telefone) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+		Usuario usuario = mapaUsuarios.get(chave);
+
+		if (usuario.getCartao().equals("Caloteiro")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Retorna um valor booleano se o período de empréstimo requerido é valido
+	 * para o atual cartão do Usuário.
+	 * 
+	 * @param nome
+	 *            Nome do Usuário.
+	 * @param telefone
+	 *            Telefone do Usuário.
+	 * @param periodo
+	 *            Período de Empréstimo.
+	 * @return boolean
+	 */
+	public boolean validaPeriodoEmprestimo(String nome, String telefone, int periodo) {
+		checaSeUsuarioJaExiste(nome, telefone);
+		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
+
+		Usuario usuario = mapaUsuarios.get(chave);
+		String cartao = usuario.getCartao();
+
+		if (periodo > 14) {
+			return false;
+		} else if (cartao.equals("Noob") && periodo > 7) {
+			return false;
+		} else if (cartao.equals("FreeRyder") && periodo > 5) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * Lista os usuários com reputação negativa.
+	 * 
+	 * @return listagem
+	 */
+	public String listarCaloteiros() {
+		String listagem = "Lista de usuarios com reputacao negativa: ";
+		ArrayList<Usuario> listaCaloteiros = new ArrayList<>();
+		for (Usuario usuario : mapaUsuarios.values()) {
+			if (usuario.getReputacao() < 0) {
+				listaCaloteiros.add(usuario);
+			}
+		}
+		Collections.sort(listaCaloteiros);
+		for (Usuario usuario : listaCaloteiros) {
+			listagem += usuario.toString() + "|";
+		}
+
+		return listagem;
+	}
+
+	/**
+	 * Lista os usuários com melhores reputações.
+	 * 
+	 * @return listagem
+	 */
+	public String listarTop10MelhoresUsuarios() {
+		String listagem = "";
+		Locale.setDefault(new Locale("pt", "BR"));
+		ArrayList<Usuario> listaTop10Usuarios = new ArrayList<>(mapaUsuarios.values());
+		listaTop10Usuarios.sort(new ComparaUsuarioReputacaoMelhorMenor());
+
+		for (int i = 0; i < 10; i++) {
+			Usuario usuario = listaTop10Usuarios.get(i);
+			listagem += String.format("%d: %s - Reputacao: %.2f|", i + 1, usuario.getNome(), usuario.getReputacao());
+		}
+		return listagem;
+
+	}
+
+	/**
+	 * Lista os 10 piores Usuários.
+	 * 
+	 * @return listagem
+	 */
+	public String listarTop10PioresUsuarios() {
+		String listagem = "";
+		Locale.setDefault(new Locale("pt", "BR"));
+		ArrayList<Usuario> listaTop10PioresUsuarios = new ArrayList<>(mapaUsuarios.values());
+		listaTop10PioresUsuarios.sort(new ComparaUsuarioReputacaoMenorMelhor());
+
+		for (int i = 0; i < 10; i++) {
+			Usuario usuario = listaTop10PioresUsuarios.get(i);
+			listagem += String.format("%d: %s - Reputacao: %.2f|", i + 1, usuario.getNome(), usuario.getReputacao());
+		}
+
+		return listagem;
 	}
 
 }

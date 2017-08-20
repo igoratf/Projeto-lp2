@@ -11,7 +11,11 @@ import projeto.Usuario;
 import projeto.Jogo.JogoTabuleiro;
 
 import org.junit.Test;
-
+/**
+ * Classe de Testes de um Usuário.
+ * @author caiosbl
+ *
+ */
 public class UsuarioTest {
 	private Usuario usuario;
 
@@ -95,23 +99,110 @@ public class UsuarioTest {
 		assertEquals(mapa, usuario.getItens());
 
 	}
+
 	/**
 	 * Testa o método Equals de Usuário.
 	 */
 	@Test
-	public void equalsTest(){
+	public void equalsTest() {
 		Usuario usuario1 = new Usuario("Caio", "caio@caio.com.br", "8398056654");
 		Usuario usuario2 = new Usuario("Caioo", "caio@caio.com.br", "8398056654");
 		assertEquals(usuario, usuario1);
 		assertFalse(usuario.equals(usuario2));
 	}
+
 	/**
 	 * Testa o método toString de Usuário.
 	 */
 	@Test
-	public void toStringTest(){
-		assertEquals("Caio , caio@caio.com.br ,8398056654",usuario.toString());
-		
+	public void toStringTest() {
+		assertEquals("Caio , caio@caio.com.br ,8398056654", usuario.toString());
+
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemAdicionada calcula corretamente a
+	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo
+	 * Reputação.
+	 */
+	@Test
+	public void addReputacaoItemAdicionadoTest() {
+		usuario.addReputacaoItemAdicionado(2000);
+		assertEquals(100.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemAdicionado(1000);
+		assertEquals(150.0, usuario.getReputacao(), 0.0);
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemEmprestado calcula corretamente a
+	 * porcentagem de 10% sobre o valor do Item e a incrementa em Reputação.
+	 */
+	@Test
+	public void addReputacaoItemEmprestadoTest() {
+		usuario.addReputacaoItemEmprestado(100);
+		assertEquals(10.0, usuario.getReputacao(), 0.0);
+
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemDevolvidoNoPrazo calcula corretamente a
+	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo
+	 * Reputação.
+	 */
+	@Test
+	public void addReputacaoItemDevolvidoNoPrazoTest() {
+		usuario.addReputacaoItemDevolvidoNoPrazo(2000);
+		assertEquals(100.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemDevolvidoNoPrazo(1000);
+		assertEquals(150.0, usuario.getReputacao(), 0.0);
+	}
+
+	/**
+	 * Testa se o método addReputacaoItemDevolvidoAtrasado calcula corretamente
+	 * a porcentagem vezes a quantidade de dias atrasados sobre o valor do Item,
+	 * e decrementa no atributo Reputação.
+	 */
+	@Test
+	public void addReputacaoItemDevolvidoAtrasadoTest() {
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 100);
+		assertEquals(-100.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 50);
+		assertEquals(-150.0, usuario.getReputacao(), 0.0);
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 1);
+		assertEquals(-151.0, usuario.getReputacao(), 0.0);
+
+	}
+
+	/**
+	 * Testa se o método getCartao retorna corretamente o cartão atual do
+	 * usuário.
+	 */
+	@Test
+	public void getCartaoTest() {
+		assertEquals("FreeRyder", usuario.getCartao());
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 100);
+		assertEquals("Caloteiro", usuario.getCartao());
+
+	}
+
+	/**
+	 * Testa se o método atualizaCartao atualiza corretamente o cartão do
+	 * usuário durante o fluxo de execução.
+	 */
+	@Test
+	public void atualizaCartaoTest() {
+		assertEquals("FreeRyder", usuario.getCartao());
+
+		usuario.getItens().put("Teste", new JogoTabuleiro("Jogo", 1));
+		usuario.atualizaCartao();
+		assertEquals("Noob", usuario.getCartao());
+
+		usuario.addReputacaoItemDevolvidoAtrasado(100, 100);
+		assertEquals("Caloteiro", usuario.getCartao());
+
+		usuario.addReputacaoItemEmprestado(100000);
+		assertEquals("BomAmigo", usuario.getCartao());
+
 	}
 
 }

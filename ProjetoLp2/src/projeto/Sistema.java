@@ -4,6 +4,10 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
+import projeto.controllers.ControllerEmprestimo;
+import projeto.controllers.ControllerItem;
+import projeto.controllers.ControllerUsuario;
+
 public class Sistema {
 
 	private ControllerUsuario cUsuario;
@@ -52,24 +56,27 @@ public class Sistema {
 	public void cadastrarEletronico(String nome, String telefone, String nomeItem, double preco, String plataforma) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarEletronico(nomeItem, preco, plataforma, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void cadastrarJogoTabuleiro(String nome, String telefone, String nomeItem, double preco) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarJogoTabuleiro(nomeItem, preco, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void cadastrarBluRaySerie(String nome, String telefone, String nomeItem, double preco, String descricao,
 			int duracao, String classificacao, String genero, int temporada) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBluraySerie(nomeItem, preco, descricao, duracao, classificacao, genero, temporada,
 				mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 	}
 
 	public void adicionarBluRay(String nome, String telefone, String serie, int duracao) {
@@ -82,16 +89,18 @@ public class Sistema {
 			String genero, String classificacao, int anoLancamento) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBluRayFilme(nomeItem, preco, duracao, genero, classificacao, anoLancamento, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void cadastrarBluRayShow(String nome, String telefone, String nomeItem, double preco, int duracao,
 			int numFaixas, String nomeArtista, String classificacao) {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
-		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
 		cItem.cadastrarBlurayShow(nomeItem, preco, duracao, numFaixas, nomeArtista, classificacao, mapaItensDono);
+		cUsuario.addReputacaoItemAdicionado(nome, telefone, preco);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void adicionarPecaPerdida(String nome, String telefone, String nomeItem, String nomePeca) {
@@ -104,6 +113,7 @@ public class Sistema {
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nome, telefone);
 
 		cItem.removerItem(nomeItem, mapaItensDono);
+		cUsuario.atualizaCartaoUsuario(nome, telefone);
 	}
 
 	public void atualizarItem(String nome, String telefone, String nomeItem, String atributo, String valor) {
@@ -138,12 +148,22 @@ public class Sistema {
 			String telefoneRequerente, String nomeItem, String dataEmprestimo, int periodo) throws ParseException {
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
 		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+
+		if (!cUsuario.podePegarItemEmprestado(nomeRequerente, telefoneRequerente)) {
+			throw new IllegalArgumentException("Usuario nao pode pegar nenhum item emprestado");
+		} else if (!cUsuario.validaPeriodoEmprestimo(nomeRequerente, telefoneRequerente, periodo)) {
+			throw new IllegalArgumentException("Usuario impossiblitado de pegar emprestado por esse periodo");
+		}
+
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
 
 		cItem.emprestarItem(nomeItem, mapaItensDono);
+		double valorItem = mapaItensDono.get(nomeItem).getValor();
+
 		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
+		cUsuario.addReputacaoItemEmprestado(nomeDono, telefoneDono, valorItem);
 
 	}
 
@@ -151,11 +171,20 @@ public class Sistema {
 			String nomeItem, String dataEmprestimo, String dataDevolucao) throws ParseException {
 
 		checaSeUsuarioJaExiste(nomeDono, telefoneDono);
-		checaSeUsuarioJaExiste(nomeRequerente, telefoneRequerente);
+
 		ChaveUsuario dono = new ChaveUsuario(nomeDono, telefoneDono);
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
+		int diasAtraso = cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
+
+		double valorItem = mapaItensDono.get(nomeItem).getValor();
+
+		if (diasAtraso <= 0) {
+			cUsuario.addReputacaoItemDevolvidoNoPrazo(nomeRequerente, telefoneRequerente, valorItem);
+		} else {
+			cUsuario.addReputacaoItemDevolvidoAtrasado(nomeRequerente, telefoneRequerente, valorItem, diasAtraso);
+		}
 
 		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
 		cItem.devolverItem(nomeItem, mapaItensDono);
@@ -195,6 +224,18 @@ public class Sistema {
 
 		return cItem.listarItensNaoEmprestados(listItens);
 
+	}
+
+	public String listarCaloteiros() {
+		return cUsuario.listarCaloteiros();
+	}
+
+	public String listarTop10MelhoresUsuarios() {
+		return cUsuario.listarTop10MelhoresUsuarios();
+	}
+
+	public String listarTop10PioresUsuarios() {
+		return cUsuario.listarTop10PioresUsuarios();
 	}
 
 	public void fecharSistema() {

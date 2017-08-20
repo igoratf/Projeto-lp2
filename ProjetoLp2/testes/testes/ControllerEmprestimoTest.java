@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import projeto.ChaveUsuario;
-import projeto.ControllerEmprestimo;
+import projeto.controllers.ControllerEmprestimo;
 
 /**
  * Teste da classe ControllerEmprestimo

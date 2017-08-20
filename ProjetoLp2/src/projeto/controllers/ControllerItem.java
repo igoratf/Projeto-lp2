@@ -1,11 +1,15 @@
-package projeto;
+package projeto.controllers;
 
 import java.util.List;
 import java.util.Collections;
 import java.util.Map;
 
+import projeto.Item;
+import projeto.ValidaParametros;
 import projeto.Jogo.*;
 import projeto.bluray.*;
+import projeto.comparadores.ComparaItemNumEmprestimos;
+import projeto.comparadores.ComparaItemValor;
 
 /**
  * Classe controladora de itens, responsável por gerenciar funções relacionadas

@@ -2,33 +2,20 @@
 # PROJETO LP2 - US8 #
 #####################
 
-
 iniciarSistema
-
 
 expect "Lista de usuarios com reputacao negativa: Sarah, sarah@email.com, 90809-2010|Tobias, tobias@email.com, 92102-2009|" listarCaloteiros
 
+expect "1: Jericho - Reputacao: 492,85|2: Evaine - Reputacao: 399,90|3: Joao - Reputacao: 173,25|4: Shauna - Reputacao: 20,25|5: Carlos - Reputacao: 15,50|6: Vilmar - Reputacao: 4,00|7: Atreus - Reputacao: 3,00|8: Maria - Reputacao: 1,10|9: Josefina - Reputacao: 0,00|10: Sarah - Reputacao: -55,00|" listarTop10MelhoresUsuarios
 
-expect "1: Jericho - Reputacao: 492,85|2: Evaine - Reputacao: 399,90|3: Joao - Reputacao: 73,25|4: Shauna - Reputacao: 20,25|5: Carlos - Reputacao: 7,50|6: Atreus - Reputacao: 3,00|7: Maria - Reputacao: 1,10|8: Vilmar - Reputacao: 0,00|9: Josefina - Reputacao: 0,00|10: Sarah - Reputacao: -55,00|" listarTop10MelhoresUsuarios
-
-
-expect "1: Tobias - Reputacao: -99,14|2: Sarah - Reputacao: -55,00|3: Vilmar - Reputacao: 0,00|4: Josefina - Reputacao: 0,00|5: Maria - Reputacao: 1,10|6: Atreus - Reputacao: 3,00|7: Carlos - Reputacao: 7,50|8: Shauna - Reputacao: 20,25|9: Joao - Reputacao: 73,25|10: Evaine - Reputacao: 399,90|" listarTop10PioresUsuarios
-
+expect "1: Tobias - Reputacao: -99,14|2: Sarah - Reputacao: -55,00|3: Josefina - Reputacao: 0,00|4: Maria - Reputacao: 1,10|5: Atreus - Reputacao: 3,00|6: Vilmar - Reputacao: 4,00|7: Carlos - Reputacao: 15,50|8: Shauna - Reputacao: 20,25|9: Joao - Reputacao: 173,25|10: Evaine - Reputacao: 399,90|" listarTop10PioresUsuarios
 
 cadastrarJogoTabuleiro nome="Sarah" telefone="90809-2010" nomeItem="Batalha Naval: Nagacaburos" preco=2000.00
 
-
 expect "Lista de usuarios com reputacao negativa: Tobias, tobias@email.com, 92102-2009|" listarCaloteiros
 
+expect "1: Jericho - Reputacao: 492,85|2: Evaine - Reputacao: 399,90|3: Joao - Reputacao: 173,25|4: Sarah - Reputacao: 45,00|5: Shauna - Reputacao: 20,25|6: Carlos - Reputacao: 15,50|7: Vilmar - Reputacao: 4,00|8: Atreus - Reputacao: 3,00|9: Maria - Reputacao: 1,10|10: Josefina - Reputacao: 0,00|" listarTop10MelhoresUsuarios
 
-expect "1: Jericho - Reputacao: 492,85|2: Evaine - Reputacao: 399,90|3: Joao - Reputacao: 73,25|4: Sarah - Reputacao: 45,00|5: Shauna - Reputacao: 20,25|6: Carlos - Reputacao: 7,50|7: Atreus - Reputacao: 3,00|8: Maria - Reputacao: 1,10|9: Vilmar - Reputacao: 0,00|10: Josefina - Reputacao: 0,00|" listarTop10MelhoresUsuarios
-
-
-expect "1: Tobias - Reputacao: -99,14|2: Vilmar - Reputacao: 0,00|3: Josefina - Reputacao: 0,00|4: Maria - Reputacao: 1,10|5: Atreus - Reputacao: 3,00|6: Carlos - Reputacao: 7,50|7: Shauna - Reputacao: 20,25|8: Sarah - Reputacao: 45,00|9: Joao - Reputacao: 73,25|10: Evaine - Reputacao: 399,90|" listarTop10PioresUsuarios
-
-
-
-
-
+expect "1: Tobias - Reputacao: -99,14|2: Josefina - Reputacao: 0,00|3: Maria - Reputacao: 1,10|4: Atreus - Reputacao: 3,00|5: Vilmar - Reputacao: 4,00|6: Carlos - Reputacao: 15,50|7: Shauna - Reputacao: 20,25|8: Sarah - Reputacao: 45,00|9: Joao - Reputacao: 173,25|10: Evaine - Reputacao: 399,90|" listarTop10PioresUsuarios
 
 fecharSistema

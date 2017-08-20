@@ -1,4 +1,4 @@
-package projeto;
+package projeto.controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import projeto.ChaveUsuario;
+import projeto.Emprestimo;
 
 public class ControllerEmprestimo {
 

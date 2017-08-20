@@ -111,12 +111,26 @@ public class ValidaParametros {
 		}
 	}
 
+	/**
+	 * Valida um preço
+	 * 
+	 * @param preco
+	 *            Preço
+	 */
 	public static void validaPreco(double preco) {
 		if (preco <= 0) {
 			throw new IllegalArgumentException("Preco invalido");
 		}
 	}
 
+	/**
+	 * Verifica se um item está no mapa.
+	 * 
+	 * @param mapaItens
+	 *            Mapa
+	 * @param nomeItem
+	 *            Nome do item a ter presença verificada.
+	 */
 	public static void validaItem(Map<String, Item> mapaItens, String nomeItem) {
 		if (!(mapaItens.containsKey(nomeItem))) {
 			throw new IllegalArgumentException("Item nao encontrado");
