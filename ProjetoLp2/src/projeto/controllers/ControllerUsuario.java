@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import projeto.ChaveUsuario;
 import projeto.Item;
 import projeto.Usuario;
-import projeto.ValidaParametros;
 import projeto.comparadores.ComparaUsuarioReputacaoMelhorMenor;
 import projeto.comparadores.ComparaUsuarioReputacaoMenorMelhor;
+import projeto.utilitarios.ChaveUsuario;
+import projeto.utilitarios.ValidaParametros;
 
 /**
  * Classe Controladora de Usuarios
@@ -380,8 +380,13 @@ public class ControllerUsuario {
 	 * Lista os usuários com melhores reputações.
 	 * 
 	 * @return listagem
+	 * @throws IndexOutOfBoundsException
+	 * Lança a exceção se tiver menos que 10 usuários cadastrados no mapaUsuarios
 	 */
 	public String listarTop10MelhoresUsuarios() {
+		if(mapaUsuarios.size() < 10){
+			throw new IndexOutOfBoundsException("Menos de 10 usuários cadastrados!");
+		}
 		String listagem = "";
 		Locale.setDefault(new Locale("pt", "BR"));
 		ArrayList<Usuario> listaTop10Usuarios = new ArrayList<>(mapaUsuarios.values());
@@ -399,8 +404,13 @@ public class ControllerUsuario {
 	 * Lista os 10 piores Usuários.
 	 * 
 	 * @return listagem
+	 * @throws IndexOutOfBoundsException
+	 * Lança a exceção se tiver menos que 10 usuários cadastrados no mapaUsuarios
 	 */
 	public String listarTop10PioresUsuarios() {
+		if(mapaUsuarios.size() < 10){
+			throw new IndexOutOfBoundsException("Menos de 10 usuários cadastrados!");
+		}
 		String listagem = "";
 		Locale.setDefault(new Locale("pt", "BR"));
 		ArrayList<Usuario> listaTop10PioresUsuarios = new ArrayList<>(mapaUsuarios.values());

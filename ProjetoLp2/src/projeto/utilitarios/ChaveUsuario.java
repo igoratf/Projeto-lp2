@@ -1,4 +1,4 @@
-package projeto;
+package projeto.utilitarios;
 
 /**
  * Chave de um Usuário

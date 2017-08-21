@@ -10,8 +10,8 @@ import org.junit.Before;
 import projeto.Item;
 import projeto.Sistema;
 import projeto.Usuario;
-import projeto.Jogo.JogoTabuleiro;
 import projeto.controllers.ControllerUsuario;
+import projeto.jogo.JogoTabuleiro;
 
 import org.junit.Test;
 
@@ -350,6 +350,120 @@ public class ControllerUsuarioTest {
 		controllerUsuario.addReputacaoItemEmprestado("Caio", "190", 10000);
 		assertTrue(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 7));
 		assertFalse(controllerUsuario.validaPeriodoEmprestimo("Caio", "190", 15));
+
+	}
+
+	/**
+	 * Testa se o método listarCaloteiros retorna corretamente a lista de
+	 * usuários com reputação negativa ordenados por ordem lexicográfica dos
+	 * nomes.
+	 */
+	@Test
+	public void listarCaloteirosTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Joao", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Lucas", "190", "caio@caio.com");
+
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Caio", "190", 200, 90);
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Joao", "190", 100, 90);
+
+		String esperado = "Lista de usuarios com reputacao negativa: Caio, caio@caio.com, 190|Joao, caio@caio.com, 190|";
+
+		assertEquals(esperado, controllerUsuario.listarCaloteiros());
+		controllerUsuario.addReputacaoItemDevolvidoAtrasado("Lucas", "190", 1000, 9000);
+		esperado = "Lista de usuarios com reputacao negativa: Caio, caio@caio.com, 190|Joao, caio@caio.com, 190|Lucas, caio@caio.com, 190|";
+		assertEquals(esperado, controllerUsuario.listarCaloteiros());
+	}
+
+	/**
+	 * Testa se o método lança corretamente a exceção aon tentar-se fazer uma
+	 * listagem com menos de 10 usuários cadastrados, testa se a listagem vem na
+	 * ordenação correta, da maior reputação para menor.
+	 */
+	@Test
+	public void listarTop10MelhoresUsuariosTest() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Joao", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Lucas", "190", "caio@caio.com");
+
+		try {
+			controllerUsuario.listarTop10MelhoresUsuarios();
+			fail("Exceção de menos que 10 usuários cadastrados não lançada!");
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Menos de 10 usuários cadastrados!", e.getMessage());
+		}
+
+		controllerUsuario.cadastrarUsuario("Marcelo", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Igor", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Javan", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Ana", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Layslla", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Brenda", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Maria", "190", "caio@caio.com");
+
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 10000);
+		controllerUsuario.addReputacaoItemAdicionado("Joao", "190", 10001);
+		controllerUsuario.addReputacaoItemAdicionado("Lucas", "190", 10002);
+		controllerUsuario.addReputacaoItemAdicionado("Marcelo", "190", 10003);
+		controllerUsuario.addReputacaoItemAdicionado("Igor", "190", 10004);
+		controllerUsuario.addReputacaoItemAdicionado("Javan", "190", 10005);
+		controllerUsuario.addReputacaoItemAdicionado("Ana", "190", 10006);
+		controllerUsuario.addReputacaoItemAdicionado("Layslla", "190", 10007);
+		controllerUsuario.addReputacaoItemAdicionado("Brenda", "190", 10008);
+		controllerUsuario.addReputacaoItemAdicionado("Maria", "190", 10009);
+
+		String esperado = "1: Maria - Reputacao: 500,45|2: Brenda - Reputacao: 500,40|3: Layslla - Reputacao: 500,35|"
+				+ "4: Ana - Reputacao: 500,30|5: Javan - Reputacao: 500,25|6: Igor - Reputacao: 500,20"
+				+ "|7: Marcelo - Reputacao: 500,15|8: Lucas - Reputacao: 500,10|9: Joao - Reputacao: 500,05|"
+				+ "10: Caio - Reputacao: 500,00|";
+
+		assertEquals(esperado, controllerUsuario.listarTop10MelhoresUsuarios());
+
+	}
+
+	/**
+	 * Testa se o método lança corretamente a exceção aon tentar-se fazer uma
+	 * listagem com menos de 10 usuários cadastrados, testa se a listagem vem na
+	 * ordenação correta, da menor reputação para maior.
+	 */
+	@Test
+	public void listarTop10PioresUsuarios() {
+		controllerUsuario.cadastrarUsuario("Caio", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Joao", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Lucas", "190", "caio@caio.com");
+
+		try {
+			controllerUsuario.listarTop10MelhoresUsuarios();
+			fail("Exceção de menos que 10 usuários cadastrados não lançada!");
+		} catch (IndexOutOfBoundsException e) {
+			assertEquals("Menos de 10 usuários cadastrados!", e.getMessage());
+		}
+
+		controllerUsuario.cadastrarUsuario("Marcelo", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Igor", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Javan", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Ana", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Layslla", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Brenda", "190", "caio@caio.com");
+		controllerUsuario.cadastrarUsuario("Maria", "190", "caio@caio.com");
+
+		controllerUsuario.addReputacaoItemAdicionado("Caio", "190", 10000);
+		controllerUsuario.addReputacaoItemAdicionado("Joao", "190", 10001);
+		controllerUsuario.addReputacaoItemAdicionado("Lucas", "190", 10002);
+		controllerUsuario.addReputacaoItemAdicionado("Marcelo", "190", 10003);
+		controllerUsuario.addReputacaoItemAdicionado("Igor", "190", 10004);
+		controllerUsuario.addReputacaoItemAdicionado("Javan", "190", 10005);
+		controllerUsuario.addReputacaoItemAdicionado("Ana", "190", 10006);
+		controllerUsuario.addReputacaoItemAdicionado("Layslla", "190", 10007);
+		controllerUsuario.addReputacaoItemAdicionado("Brenda", "190", 10008);
+		controllerUsuario.addReputacaoItemAdicionado("Maria", "190", 10009);
+
+		String esperado = "1: Caio - Reputacao: 500,00|2: Joao - Reputacao: 500,05|3: Lucas - Reputacao: 500,10|"
+				+ "4: Marcelo - Reputacao: 500,15|5: Igor - Reputacao: 500,20|6: Javan - Reputacao: 500,25|"
+				+ "7: Ana - Reputacao: 500,30|8: Layslla - Reputacao: 500,35|9: Brenda - Reputacao: 500,40|"
+				+ "10: Maria - Reputacao: 500,45|";
+
+		assertEquals(esperado, controllerUsuario.listarTop10PioresUsuarios());
 
 	}
 

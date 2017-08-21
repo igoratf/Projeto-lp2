@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import projeto.enums.Cartao;
+import projeto.utilitarios.ValidaParametros;
 
 /**
  * Classe de Usuário.

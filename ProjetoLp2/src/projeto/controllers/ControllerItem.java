@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.Map;
 
 import projeto.Item;
-import projeto.ValidaParametros;
-import projeto.Jogo.*;
 import projeto.bluray.*;
 import projeto.comparadores.ComparaItemNumEmprestimos;
 import projeto.comparadores.ComparaItemValor;
+import projeto.jogo.*;
+import projeto.utilitarios.ValidaParametros;
 
 /**
  * Classe controladora de itens, responsável por gerenciar funções relacionadas

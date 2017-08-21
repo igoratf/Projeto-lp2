@@ -1,4 +1,4 @@
-package projeto.Jogo;
+package projeto.jogo;
 
 import java.util.ArrayList;
 import java.util.Collections;
