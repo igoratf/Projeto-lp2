@@ -47,8 +47,8 @@ public class JogoEletronico extends Item {
 	}
 
 	/**
-	 * Metodo sobreescrito do Equals() para comparar se um jogo eletronico é
-	 * igual ao outro se o nome e a plataforma forem iguais.
+	 * Metodo sobreescrito do Equals() para comparar se um jogo eletronico é igual
+	 * ao outro se o nome e a plataforma forem iguais.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -75,12 +75,11 @@ public class JogoEletronico extends Item {
 	}
 
 	/**
-	 * Metodo para validar os atributos passados no construtor de
-	 * JogoEletronico.
+	 * Metodo para validar os atributos passados no construtor de JogoEletronico.
 	 * 
 	 * @param plataforma,
-	 *            , String passsado por parametro. @return, , retorna true ou
-	 *            false dependendo da validade dos atributos passados.
+	 *            , String passsado por parametro. @return, , retorna true ou false
+	 *            dependendo da validade dos atributos passados.
 	 */
 	public boolean validaAtributo(String plataforma) {
 		if (plataforma == null) {

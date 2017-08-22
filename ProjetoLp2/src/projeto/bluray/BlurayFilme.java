@@ -72,17 +72,28 @@ public class BlurayFilme extends Bluray {
 
 	/**
 	 * Verifica se o bluray criado é válido
-	 * @param nome é o nome do bluray
-	 * @param valor é o valor do bluray
-	 * @param duracao é a duração do bluray
-	 * @param classificacao é a classificação indicativa do bluray
-	 * @param genero é o gênero do bluray
-	 * @param anoLancamento é o ano de lançamento do bluray
+	 * 
+	 * @param nome
+	 *            é o nome do bluray
+	 * @param valor
+	 *            é o valor do bluray
+	 * @param duracao
+	 *            é a duração do bluray
+	 * @param classificacao
+	 *            é a classificação indicativa do bluray
+	 * @param genero
+	 *            é o gênero do bluray
+	 * @param anoLancamento
+	 *            é o ano de lançamento do bluray
 	 */
-	public void validaBluray(String nome, double valor, int duracao, String classificacao, String genero, int anoLancamento) {
+	public void validaBluray(String nome, double valor, int duracao, String classificacao, String genero,
+			int anoLancamento) {
 		super.validaBluray(nome, valor, duracao, classificacao);
-		if (genero == null) throw new NullPointerException("Genero nulo");
-		if (genero.trim().equals("")) throw new IllegalArgumentException("Genero vazio");
-		if (anoLancamento <= 0) throw new IllegalArgumentException("Ano invalido");
-}
+		if (genero == null)
+			throw new NullPointerException("Genero nulo");
+		if (genero.trim().equals(""))
+			throw new IllegalArgumentException("Genero vazio");
+		if (anoLancamento <= 0)
+			throw new IllegalArgumentException("Ano invalido");
+	}
 }
