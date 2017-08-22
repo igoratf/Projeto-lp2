@@ -14,8 +14,8 @@ import projeto.Usuario;
 
 public class ComparaUsuarioReputacaoMenorMelhor implements Comparator<Usuario> {
 	/**
-	 * Compara dois usuários retorna positivo para o segundo usuário
-	 * menor que o primeiro.
+	 * Compara dois usuários retorna positivo para o segundo usuário menor que o
+	 * primeiro.
 	 */
 	@Override
 	public int compare(Usuario usr1, Usuario usr2) {

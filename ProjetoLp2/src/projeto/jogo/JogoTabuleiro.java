@@ -32,6 +32,24 @@ public class JogoTabuleiro extends Item {
 
 	}
 
+	/**
+	 * Método que compara uma lista de peças perdidas com a lista de peças perdidas
+	 * do jogo
+	 * 
+	 * @param lista
+	 *            é a lista de peças perdidas
+	 * @return boolean correspondente ao resultado da comparação
+	 */
+	public boolean comparaPecasPerdidas(List<String> lista) {
+		Collections.sort(lista);
+		Collections.sort(this.pecasPerdidas);
+		for (int i = 0; i < lista.size(); i++) {
+			if (!(lista.get(i).equals(this.pecasPerdidas.get(i)))) {
+				return false;
+			}
+		}
+		return true;
+	}
 
 	@Override
 	public int hashCode() {
