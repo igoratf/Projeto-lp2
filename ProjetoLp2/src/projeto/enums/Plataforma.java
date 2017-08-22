@@ -21,6 +21,10 @@ public enum Plataforma {
 		
 	}
 
+	/**
+	 * Metodo para retonar a plataforma da classe.
+	 * @return, retorna o valor em String.
+	 */
 	public String getPlataforma(){
 		return this.plataforma;
 	}
