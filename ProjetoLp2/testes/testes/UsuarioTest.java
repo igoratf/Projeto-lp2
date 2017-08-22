@@ -116,7 +116,7 @@ public class UsuarioTest {
 	 */
 	@Test
 	public void toStringTest() {
-		assertEquals("Caio , caio@caio.com.br ,8398056654", usuario.toString());
+		assertEquals("Caio, caio@caio.com.br, 8398056654", usuario.toString());
 
 	}
 
