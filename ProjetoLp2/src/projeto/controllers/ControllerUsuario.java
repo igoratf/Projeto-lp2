@@ -358,7 +358,7 @@ public class ControllerUsuario {
 	/**
 	 * Lista os usuários com reputação negativa.
 	 * 
-	 * @return listagem
+	 * @return lista de caloteiros
 	 */
 	public String listarCaloteiros() {
 		String listagem = "Lista de usuarios com reputacao negativa: ";

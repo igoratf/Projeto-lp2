@@ -126,13 +126,16 @@ public class ControllerEmprestimo {
 
 	}
 
-/**
- * 	 * Listagem dos emprestimo em que o Usuario pegou um item emprestado.
-	 * @param nome, String passado por parametro.
-	 * @param telefone, String passado por parametro.
-	 * @return, retorna a lista de emprestimos realizados em ordem lexicografica.
-	 
- */
+	/**
+	 * * Listagem dos emprestimo em que o Usuario pegou um item emprestado.
+	 * 
+	 * @param nome,
+	 *            String passado por parametro.
+	 * @param telefone,
+	 *            String passado por parametro. @return, retorna a lista de
+	 *            emprestimos realizados em ordem lexicografica.
+	 * 
+	 */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		String retorno = "Emprestimos pegos: ";

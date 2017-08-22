@@ -380,24 +380,24 @@ public class ControllerItem {
 				itens += item.toString() + "|";
 			}
 		}
-		return itens; 	
+		return itens;
 	}
 
 	/**
-	 * Lista os 10 itens com maior quantidade de empréstimos em ordem
-	 * decrescente
+	 * Lista os 10 itens com maior quantidade de empréstimos em ordem decrescente
 	 * 
 	 * @param itensUsuarios
-	 * @return
+	 *            lista de itens do usuario
+	 * @return retorna top 10 itens
 	 */
 	public String listarTop10Itens(List<Item> itensUsuarios) {
 		String itens = "";
 		itensUsuarios.sort(new ComparaItemNumEmprestimos());
 		int i = 1;
-		while ((i <= 10) && (i<=itensUsuarios.size())) {
-			Item item = itensUsuarios.get(i-1);
+		while ((i <= 10) && (i <= itensUsuarios.size())) {
+			Item item = itensUsuarios.get(i - 1);
 			if (item.getNumEmprestimos() > 0) {
-				itens += i + ") " + item.getNumEmprestimos() + " emprestimos" + " - "  + item.toString() + "|";
+				itens += i + ") " + item.getNumEmprestimos() + " emprestimos" + " - " + item.toString() + "|";
 			}
 			i++;
 		}
