@@ -7,6 +7,10 @@ package projeto.enums;
  *
  */
 public enum Genero {
+	/**
+	 * Classe enum criada para manter as plataformas como variaveis constantes.
+	 */
+	
 	
 	 ACAO("ACAO"), ANIMACAO("ANIMACAO"), AVENTURA("AVENTURA"), COMEDIA("COMEDIA"), DOCUMENTARIO("DOCUMENTARIO"),
 	 DRAMA("DRAMA"), EROTICO("EROTICO"), FAROESTE("FAROESTE"), FICCAO("FICCAO"), MUSICAL("MUSICAL"), POLICIAL("POLICIAL"),
@@ -18,6 +22,10 @@ public enum Genero {
 		this.valor = valor;
 	}
 	
+	/**
+	 * Metodo para retornar o genero dessa classe.
+	 * @return, retorna o valor em String.
+	 */
 	public String getValor(){
 		return this.valor;
 	}
