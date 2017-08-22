@@ -14,12 +14,21 @@ import projeto.Item;
  */
 
 public class JogoTabuleiro extends Item {
-	private List<String> pecasPerdidas = new ArrayList<>();
+	private List<String> pecasPerdidas;
 	private boolean completo;
 
+	/**
+	 * Construtor de um jogo de tabuleiro
+	 * 
+	 * @param nome
+	 *            é o nome do jogo
+	 * @param valor
+	 *            é o valor do jogo
+	 */
 	public JogoTabuleiro(String nome, double valor) {
 		super(nome, valor);
 		this.completo = true;
+		this.pecasPerdidas = new ArrayList<String>();
 
 	}
 
@@ -33,9 +42,9 @@ public class JogoTabuleiro extends Item {
 	 */
 	public boolean comparaPecasPerdidas(List<String> lista) {
 		Collections.sort(lista);
-		Collections.sort(pecasPerdidas);
+		Collections.sort(this.pecasPerdidas);
 		for (int i = 0; i < lista.size(); i++) {
-			if (!(lista.get(i).equals(pecasPerdidas.get(i)))) {
+			if (!(lista.get(i).equals(this.pecasPerdidas.get(i)))) {
 				return false;
 			}
 		}
@@ -70,6 +79,11 @@ public class JogoTabuleiro extends Item {
 		return true;
 	}
 
+	/**
+	 * Verifica se existem peças perdidas no jogo de tabuleiro
+	 * 
+	 * @return completo ou com peças perdidas
+	 */
 	public String existePecasPerdidas() {
 		if (pecasPerdidas.size() > 0) {
 			return "COM PECAS PERDIDAS";
@@ -84,6 +98,10 @@ public class JogoTabuleiro extends Item {
 	 */
 	public void adicionarPecaPerdida(String pecaPerdida) {
 		this.pecasPerdidas.add(pecaPerdida);
+	}
+
+	public List<String> getPecasPerdidas() {
+		return this.pecasPerdidas;
 	}
 
 	@Override
