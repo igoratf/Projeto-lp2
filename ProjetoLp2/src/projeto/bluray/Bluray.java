@@ -5,6 +5,7 @@ import projeto.enums.Classificacao;
 
 /**
  * Classe que representa um Bluray genérico
+ * 
  * @author igoratf, javanlacerda
  *
  */
@@ -12,13 +13,18 @@ public class Bluray extends Item {
 
 	private int duracao;
 	private Classificacao classificacao;
-	
+
 	/**
 	 * Construtor de objetos do tipo Bluray
-	 * @param nome é o nome do bluray
-	 * @param valor é o valor do bluray
-	 * @param duracao é a duração do bluray
-	 * @param classificacao é a classificação indicativa do bluray
+	 * 
+	 * @param nome
+	 *            é o nome do bluray
+	 * @param valor
+	 *            é o valor do bluray
+	 * @param duracao
+	 *            é a duração do bluray
+	 * @param classificacao
+	 *            é a classificação indicativa do bluray
 	 */
 	public Bluray(String nome, double valor, int duracao, String classificacao) {
 		super(nome, valor);
@@ -26,11 +32,22 @@ public class Bluray extends Item {
 		this.duracao = duracao;
 		this.classificacao = Classificacao.valueOf(classificacao);
 	}
-	
-	public int getDuracao(){
+
+	/**
+	 * Busca duraçao do bluray
+	 * 
+	 * @return retorna duracao do bluray
+	 */
+	public int getDuracao() {
 		return this.duracao;
 	}
-	public String getClassificao(){
+
+	/**
+	 * Busca a classificação do bluray
+	 * 
+	 * @return retorna a classificação do bluray
+	 */
+	public String getClassificao() {
 		return this.classificacao.getValor();
 	}
 
@@ -63,21 +80,32 @@ public class Bluray extends Item {
 	public String toString() {
 		return "Bluray [duracao=" + duracao + ", classificacao=" + classificacao + "]";
 	}
-	
+
 	/**
 	 * Método de validação do bluray
-	 * @param nome é o nome do bluray
-	 * @param valor é o valor do bluray
-	 * @param duracao é a duração do bluray
-	 * @param classificacao é a classificação do bluray
+	 * 
+	 * @param nome
+	 *            é o nome do bluray
+	 * @param valor
+	 *            é o valor do bluray
+	 * @param duracao
+	 *            é a duração do bluray
+	 * @param classificacao
+	 *            é a classificação do bluray
 	 */
 	public void validaBluray(String nome, double valor, int duracao, String classificacao) {
-		if (nome == null) throw new NullPointerException("Nome nulo");
-		if (classificacao == null) throw new NullPointerException("Classificacao nula");
-		if (nome.trim().equals("")) throw new IllegalArgumentException("Nome vazio");
-		if (classificacao.trim().equals("")) throw new IllegalArgumentException("Classificacao vazia");
-		if (valor <= 0) throw new IllegalArgumentException("Valor invalido");
-		if (duracao <= 0) throw new IllegalArgumentException("Duracao invalida");
+		if (nome == null)
+			throw new NullPointerException("Nome nulo");
+		if (classificacao == null)
+			throw new NullPointerException("Classificacao nula");
+		if (nome.trim().equals(""))
+			throw new IllegalArgumentException("Nome vazio");
+		if (classificacao.trim().equals(""))
+			throw new IllegalArgumentException("Classificacao vazia");
+		if (valor <= 0)
+			throw new IllegalArgumentException("Valor invalido");
+		if (duracao <= 0)
+			throw new IllegalArgumentException("Duracao invalida");
 	}
 
 }

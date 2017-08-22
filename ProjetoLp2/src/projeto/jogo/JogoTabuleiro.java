@@ -20,18 +20,21 @@ public class JogoTabuleiro extends Item {
 	public JogoTabuleiro(String nome, double valor) {
 		super(nome, valor);
 		this.completo = true;
-	
+
 	}
-	
+
 	/**
-	 * Método que compara uma lista de peças perdidas com a lista de peças perdidas do jogo
-	 * @param lista é a lista de peças perdidas
+	 * Método que compara uma lista de peças perdidas com a lista de peças perdidas
+	 * do jogo
+	 * 
+	 * @param lista
+	 *            é a lista de peças perdidas
 	 * @return boolean correspondente ao resultado da comparação
 	 */
 	public boolean comparaPecasPerdidas(List<String> lista) {
 		Collections.sort(lista);
 		Collections.sort(pecasPerdidas);
-		for (int i=0; i<lista.size(); i++) {
+		for (int i = 0; i < lista.size(); i++) {
 			if (!(lista.get(i).equals(pecasPerdidas.get(i)))) {
 				return false;
 			}
@@ -67,23 +70,26 @@ public class JogoTabuleiro extends Item {
 		return true;
 	}
 
-	public String existePecasPerdidas(){
-		if(pecasPerdidas.size() > 0){
+	public String existePecasPerdidas() {
+		if (pecasPerdidas.size() > 0) {
 			return "COM PECAS PERDIDAS";
-		} return "COMPLETO";
+		}
+		return "COMPLETO";
 	}
-	
+
 	/**
 	 * Adiciona uma peça perdida à lista de peças perdidas
+	 * 
 	 * @param pecaPerdida
 	 */
 	public void adicionarPecaPerdida(String pecaPerdida) {
 		this.pecasPerdidas.add(pecaPerdida);
 	}
-	
+
 	@Override
-	public String toString(){
-		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(),getValor(),getEstado(),existePecasPerdidas());
+	public String toString() {
+		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(), getValor(), getEstado(),
+				existePecasPerdidas());
 	}
 
 }
