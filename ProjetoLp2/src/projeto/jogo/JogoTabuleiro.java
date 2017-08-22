@@ -14,30 +14,24 @@ import projeto.Item;
  */
 
 public class JogoTabuleiro extends Item {
-	private List<String> pecasPerdidas = new ArrayList<>();
+	private List<String> pecasPerdidas;
 	private boolean completo;
 
+	/**
+	 * Construtor de um jogo de tabuleiro
+	 * 
+	 * @param nome
+	 *            é o nome do jogo
+	 * @param valor
+	 *            é o valor do jogo
+	 */
 	public JogoTabuleiro(String nome, double valor) {
 		super(nome, valor);
 		this.completo = true;
-	
+		this.pecasPerdidas = new ArrayList<String>();
+
 	}
-	
-	/**
-	 * Método que compara uma lista de peças perdidas com a lista de peças perdidas do jogo
-	 * @param lista é a lista de peças perdidas
-	 * @return boolean correspondente ao resultado da comparação
-	 */
-	public boolean comparaPecasPerdidas(List<String> lista) {
-		Collections.sort(lista);
-		Collections.sort(pecasPerdidas);
-		for (int i=0; i<lista.size(); i++) {
-			if (!(lista.get(i).equals(pecasPerdidas.get(i)))) {
-				return false;
-			}
-		}
-		return true;
-	}
+
 
 	@Override
 	public int hashCode() {
@@ -67,23 +61,35 @@ public class JogoTabuleiro extends Item {
 		return true;
 	}
 
-	public String existePecasPerdidas(){
-		if(pecasPerdidas.size() > 0){
+	/**
+	 * Verifica se existem peças perdidas no jogo de tabuleiro
+	 * 
+	 * @return completo ou com peças perdidas
+	 */
+	public String existePecasPerdidas() {
+		if (pecasPerdidas.size() > 0) {
 			return "COM PECAS PERDIDAS";
-		} return "COMPLETO";
+		}
+		return "COMPLETO";
 	}
-	
+
 	/**
 	 * Adiciona uma peça perdida à lista de peças perdidas
+	 * 
 	 * @param pecaPerdida
 	 */
 	public void adicionarPecaPerdida(String pecaPerdida) {
 		this.pecasPerdidas.add(pecaPerdida);
 	}
-	
+
+	public List<String> getPecasPerdidas() {
+		return this.pecasPerdidas;
+	}
+
 	@Override
-	public String toString(){
-		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(),getValor(),getEstado(),existePecasPerdidas());
+	public String toString() {
+		return String.format("JOGO DE TABULEIRO: %s, R$ %.1f, %s, %s", getNome(), getValor(), getEstado(),
+				existePecasPerdidas());
 	}
 
 }
