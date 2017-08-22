@@ -184,6 +184,9 @@ public class Emprestimo implements Comparable<Emprestimo>{
 	}
 
 
+	/**
+	 * Metodo para sobreescrever o toString() de acordo com o padrão necessitado pelo sistema.
+	 */
 	@Override
 	public String toString() {
 		return String.format("EMPRESTIMO - De: %s, Para: %s, %s, %s, %d dias, ENTREGA: %s", getDono().getNome(),
@@ -191,6 +194,9 @@ public class Emprestimo implements Comparable<Emprestimo>{
 
 	}
 
+	/**
+	 * Metodo para comparar os emprestimos da coleção de acordo com o nome do Dono do Item.
+	 */
 	@Override
 	public int compareTo(Emprestimo o) {
 			

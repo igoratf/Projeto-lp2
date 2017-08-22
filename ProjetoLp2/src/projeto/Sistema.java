@@ -160,10 +160,16 @@ public class Sistema {
 		ChaveUsuario requerente = new ChaveUsuario(nomeRequerente, telefoneRequerente);
 		Map<String, Item> mapaItensDono = cUsuario.getItensUsuario(nomeDono, telefoneDono);
 
-		cItem.emprestarItem(nomeItem, mapaItensDono);
+		this.cItem.emprestarItem(nomeItem, mapaItensDono);
 		double valorItem = mapaItensDono.get(nomeItem).getValor();
 
-		cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
+		try {
+			cEmprestimo.registrarEmprestimo(dono, requerente, nomeItem, dataEmprestimo, periodo);
+
+		} catch (ParseException e) {
+
+			throw new ParseException(e.getMessage(), 43);
+		}
 		cUsuario.addReputacaoItemEmprestado(nomeDono, telefoneDono, valorItem);
 
 	}
@@ -187,7 +193,12 @@ public class Sistema {
 			cUsuario.addReputacaoItemDevolvidoAtrasado(nomeRequerente, telefoneRequerente, valorItem, diasAtraso);
 		}
 
-		cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
+		try {
+			cEmprestimo.devolverItem(dono, requerente, nomeItem, dataEmprestimo, dataDevolucao);
+		} catch (ParseException e) {
+
+			throw new ParseException(e.getMessage(), 43);
+		}
 		cItem.devolverItem(nomeItem, mapaItensDono);
 
 	}
