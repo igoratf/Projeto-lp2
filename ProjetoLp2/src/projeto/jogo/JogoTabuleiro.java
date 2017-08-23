@@ -33,8 +33,8 @@ public class JogoTabuleiro extends Item {
 	}
 
 	/**
-	 * Método que compara uma lista de peças perdidas com a lista de peças perdidas
-	 * do jogo
+	 * Método que compara uma lista de peças perdidas com a lista de peças
+	 * perdidas do jogo
 	 * 
 	 * @param lista
 	 *            é a lista de peças perdidas
@@ -100,6 +100,11 @@ public class JogoTabuleiro extends Item {
 		this.pecasPerdidas.add(pecaPerdida);
 	}
 
+	/**
+	 * Retorna a lista de peças perdidas.
+	 * 
+	 * @return lista
+	 */
 	public List<String> getPecasPerdidas() {
 		return this.pecasPerdidas;
 	}
