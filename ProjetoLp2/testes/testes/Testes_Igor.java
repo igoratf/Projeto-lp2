@@ -136,8 +136,8 @@ public class Testes_Igor {
 	@Test
 	public void adicionarBluRayTest() {
 		sistema.cadastrarBluRaySerie("Magaiver", "333","Game of Thrones", 99.00, "Sabe de nada Jon Snow", 200, "LIVRE", "AVENTURA", 7);
-		Map<String, Item>  = sistema.getItensUsuario("Magaiver", "333");
-		BluraySeries bluray = (BluraySeries) .get("Game of Thrones");
+		Map<String, Item> mapa  = sistema.getItensUsuario("Magaiver", "333");
+		BluraySeries bluray = (BluraySeries) mapa.get("Game of Thrones");
 		assertEquals(false, bluray.contemEpisodio());
 		sistema.adicionarBluRay("Magaiver", "333", "Game of Thrones", 60);
 		assertEquals(true, bluray.contemEpisodio());
@@ -205,9 +205,9 @@ public class Testes_Igor {
 	
 	@Test
 	public void adicionarPecaPerdidaTest() {
-		Map<String, Item>   = sistema.getItensUsuario("Magaiver", "333");
+		Map<String, Item> mapa= sistema.getItensUsuario("Magaiver", "333");
 		sistema.cadastrarJogoTabuleiro("Magaiver", "333", "King of Tokyo", 169.0);
-		JogoTabuleiro jogo = (JogoTabuleiro) .get("King of Tokyo");
+		JogoTabuleiro jogo = (JogoTabuleiro)mapa.get("King of Tokyo");
 		assertEquals("COMPLETO", jogo.existePecasPerdidas());
 		sistema.adicionarPecaPerdida("Magaiver", "333", "King of Tokyo", "Gigazaur");
 		assertEquals("COM PECAS PERDIDAS", jogo.existePecasPerdidas());
