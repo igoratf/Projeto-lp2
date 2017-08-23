@@ -423,6 +423,9 @@ public class SistemaTest {
 
 	}
 
+	/**
+	 * Testa de a lista retornada realmente esta ordenada pelo nome
+	 */
 	@Test
 	public void listarItensOrdenadosPorNomeTest() {
 
@@ -438,6 +441,9 @@ public class SistemaTest {
 				sis.listarItensOrdenadosPorNome());
 	}
 
+	/**
+	 * Testa de a lista retornada realmente esta ordenada pelo valor
+	 */
 	@Test
 	public void listarItensOrdenadosPorValorTest() {
 
@@ -456,6 +462,12 @@ public class SistemaTest {
 				sis.listarItensOrdenadosPorValor());
 	}
 
+	/**
+	 * Testa se o metodo listarEmprestimosUsuarioEmprestando realmente está
+	 * retornando os emprestimos realizados pelo usuario
+	 * 
+	 * @throws ParseException
+	 */
 	@Test
 	public void listarEmprestimosUsuarioEmprestandoTest() throws ParseException {
 
@@ -475,6 +487,11 @@ public class SistemaTest {
 				sis.listarEmprestimosUsuarioEmprestando("Javan", "87008519"));
 	}
 
+	/**
+	 * Testa se o metodo listarEmprestimosUsuarioPegandoEmprestado realmente está
+	 * retornando os emprestimos feitos pelo requerente
+	 * 
+	 */
 	@Test
 	public void listarEmprestimosUsuarioPegandoEmprestadoTest() throws ParseException {
 
@@ -494,6 +511,11 @@ public class SistemaTest {
 				sis.listarEmprestimosItem("DDG"));
 	}
 
+	/**
+	 * Testa se o metodo listaItensEmprestados realmente está retornando os itens
+	 * que estão emprestados no momento
+	 * 
+	 */
 	@Test
 	public void listarItensEmprestadosTest() throws ParseException {
 
@@ -515,6 +537,11 @@ public class SistemaTest {
 				sis.listarItensEmprestados());
 	}
 
+	/**
+	 * Testa se o metodo listarTop10Itens está retornando o 10 itens com maior
+	 * numero de emprestimos de forma rankeada
+	 * 
+	 */
 	@Test
 	public void listarTop10ItensTest() throws ParseException {
 
@@ -537,6 +564,11 @@ public class SistemaTest {
 				sis.listarTop10Itens());
 	}
 
+	/**
+	 * Testa se o metodo listarItensNaoEmprestados está retornando a lista de itens
+	 * que não estao emprestados
+	 * 
+	 */
 	@Test
 	public void listarItensNaoEmprestadosTest() throws ParseException {
 
@@ -558,6 +590,11 @@ public class SistemaTest {
 				sis.listarItensNaoEmprestados());
 	}
 
+	/**
+	 * Testa se o metodo listarCaloteiros está retornando a lista de usuarios com
+	 * nivel de reputacao negativo
+	 * 
+	 */
 	@Test
 	public void listarCaloteirosTest() throws ParseException {
 
@@ -584,6 +621,11 @@ public class SistemaTest {
 				sis.listarCaloteiros());
 	}
 
+	/**
+	 * Testa se o metodo listarTop10MelhoresUsuarios está retornando a lista de
+	 * usuarios com maior nível de reputação de forma rankeada
+	 * 
+	 */
 	@Test
 	public void listarTop10MelhoresTest() throws ParseException {
 
@@ -617,6 +659,11 @@ public class SistemaTest {
 				sis.listarTop10MelhoresUsuarios());
 	}
 
+	/**
+	 * Testa se o metodo listarTop10PioresUsuarios está retornando a lista de
+	 * usuarios com menor nível de reputação de forma rankeada
+	 * 
+	 */
 	@Test
 	public void listarTop10PioresTest() throws ParseException {
 
