@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
  * Classe de Testes de Sistema
  */
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +36,8 @@ public class SistemaTest {
 		assertEquals("Star Wars", sistema.getInfoItem("Magaiver", "333", "Star Wars", "Nome"));
 		assertEquals("80.0", sistema.getInfoItem("Magaiver", "333", "Star Wars", "Preco"));
 		/*
-		 * Verifica se preço inválido está retornando exceção, o que é válido
-		 * para todos os tipos de Bluray
+		 * Verifica se preço inválido está retornando exceção, o que é válido para todos
+		 * os tipos de Bluray
 		 */
 		try {
 			sistema.cadastrarBluRayFilme("Magaiver", "333", "Harry Potter", -1, 200, "AVENTURA", "LIVRE", 1969);
@@ -44,8 +45,8 @@ public class SistemaTest {
 			assertEquals("Preco invalido", e.getMessage());
 		}
 		/*
-		 * Verifica se preço inválido está retornando exceção, o que é válido
-		 * para todos os tipos de Bluray
+		 * Verifica se preço inválido está retornando exceção, o que é válido para todos
+		 * os tipos de Bluray
 		 */
 		try {
 			sistema.cadastrarBluRayFilme("Magaiver", "333", "Senhor dos Aneis", 200.00, -3, "AVENTURA", "LIVRE", 1969);
@@ -53,8 +54,8 @@ public class SistemaTest {
 			assertEquals("Duracao invalida", e.getMessage());
 		}
 		/*
-		 * Verifica se duração menor ou igual a 0 está retornando exceção, o que
-		 * é válido para todos os tipos de Bluray
+		 * Verifica se duração menor ou igual a 0 está retornando exceção, o que é
+		 * válido para todos os tipos de Bluray
 		 */
 		try {
 			sistema.cadastrarBluRayFilme("Magaiver", "333", "MIB", 22.00, -2, "FICCAO", "LIVRE", 2002);
@@ -147,8 +148,8 @@ public class SistemaTest {
 		sistema.adicionarBluRay("Magaiver", "333", "Game of Thrones", 60);
 		assertEquals(true, bluray.contemEpisodio());
 		/*
-		 * Verifica se a tentativa de adicionar um episódio com duração menor ou
-		 * igual a 0 está retornando exceção
+		 * Verifica se a tentativa de adicionar um episódio com duração menor ou igual a
+		 * 0 está retornando exceção
 		 */
 		try {
 			sistema.adicionarBluRay("Magaiver", "333", "Game of Thrones", 0);
@@ -156,8 +157,8 @@ public class SistemaTest {
 			assertEquals("Duracao invalida", e.getMessage());
 		}
 		/*
-		 * Verifica se a tentativa de adicionar um episódio a uma série não
-		 * existente está retornando exceção
+		 * Verifica se a tentativa de adicionar um episódio a uma série não existente
+		 * está retornando exceção
 		 */
 		try {
 			sistema.adicionarBluRay("Magaiver", "333", "The Get Down", 20);
@@ -204,8 +205,8 @@ public class SistemaTest {
 	}
 
 	/**
-	 * Verifica se a adição de uma peça perdida a um JogoTabuleiro está
-	 * ocorrendo corretamente
+	 * Verifica se a adição de uma peça perdida a um JogoTabuleiro está ocorrendo
+	 * corretamente
 	 */
 
 	@Test
@@ -217,8 +218,8 @@ public class SistemaTest {
 		sistema.adicionarPecaPerdida("Magaiver", "333", "King of Tokyo", "Gigazaur");
 		assertEquals("COM PECAS PERDIDAS", jogo.existePecasPerdidas());
 		/*
-		 * Verifica se a tentativa de adicionar uma peça perdida a um jogo que
-		 * não foi cadastrado está lançando exceção
+		 * Verifica se a tentativa de adicionar uma peça perdida a um jogo que não foi
+		 * cadastrado está lançando exceção
 		 */
 		try {
 			sistema.adicionarPecaPerdida("Magaiver", "333", "Camel Cup", "Camelo azul");
@@ -299,9 +300,9 @@ public class SistemaTest {
 	}
 
 	/**
-	 * Testa se o método getInfoUsuario retorna os atributos requeridos
-	 * corretamente de um usuário, e a se ao pedir-se um atributo de um usuário
-	 * inexiste, ou um atributo inexistente o método lança a devida exceção.
+	 * Testa se o método getInfoUsuario retorna os atributos requeridos corretamente
+	 * de um usuário, e a se ao pedir-se um atributo de um usuário inexiste, ou um
+	 * atributo inexistente o método lança a devida exceção.
 	 */
 	@Test
 	public void getInfoUsuarioTest() {
@@ -328,8 +329,8 @@ public class SistemaTest {
 	}
 
 	/**
-	 * Testa se o método getItensUsuario retorna corretamente o mapa de Itens de
-	 * um usuário.
+	 * Testa se o método getItensUsuario retorna corretamente o mapa de Itens de um
+	 * usuário.
 	 */
 	@Test
 	public void getItensUsuarioTest() {
@@ -345,8 +346,8 @@ public class SistemaTest {
 	}
 
 	/**
-	 * Testa se o método getItensUsuarios retorna corretamente a lista de Itens
-	 * de todos os usuários.
+	 * Testa se o método getItensUsuarios retorna corretamente a lista de Itens de
+	 * todos os usuários.
 	 */
 	@Test
 	public void getItensUsuariosTest() {
@@ -368,9 +369,9 @@ public class SistemaTest {
 	}
 
 	/**
-	 * Testa o método removerUsuario, testa se ao remover um Usuário com mesmo
-	 * nome porém número diferente, o usuário com mesmo nome e telefone
-	 * diferente se mantém, e o usuário com mesmo nome e telefone é removido.
+	 * Testa o método removerUsuario, testa se ao remover um Usuário com mesmo nome
+	 * porém número diferente, o usuário com mesmo nome e telefone diferente se
+	 * mantém, e o usuário com mesmo nome e telefone é removido.
 	 */
 	@Test
 	public void removerUsuarioTest() {
@@ -388,9 +389,9 @@ public class SistemaTest {
 	}
 
 	/**
-	 * Testa se o método atualiza os atributos requeridos podendo ser este: em
-	 * um usuário, nome,telefone ou email e se lança exceção ao tentar atualizar
-	 * um usuário inexistente ou um atributo inválido
+	 * Testa se o método atualiza os atributos requeridos podendo ser este: em um
+	 * usuário, nome,telefone ou email e se lança exceção ao tentar atualizar um
+	 * usuário inexistente ou um atributo inválido
 	 */
 	@Test
 	public void atualizarUsuarioTest() {
@@ -421,4 +422,279 @@ public class SistemaTest {
 		}
 
 	}
+
+	/**
+	 * Testa de a lista retornada realmente esta ordenada pelo nome
+	 */
+	@Test
+	public void listarItensOrdenadosPorNomeTest() {
+
+		Sistema sis = new Sistema();
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 29.99, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 29.99);
+		sis.cadastrarEletronico("Joao", "11112222", "Dota 2", 2000, "PC");
+		sis.cadastrarBluRayFilme("Joao", "11112222", "Sherlock Holmes", 29.99, 120, "ACAO", "LIVRE", 2011);
+		assertEquals(
+				"SHOW: DDG, R$ 29.99, Nao emprestado, 105 min, LIVRE, OficinaG3, 19 faixas|JOGO ELETRONICO: Dota 2, R$ 2000.0, Nao emprestado, PC|FILME: Sherlock Holmes, R$ 29.99, Nao emprestado, 120 min, LIVRE, ACAO, 2011|JOGO DE TABULEIRO: Xadrez, R$ 30.0, Nao emprestado, COMPLETO|",
+				sis.listarItensOrdenadosPorNome());
+	}
+
+	/**
+	 * Testa de a lista retornada realmente esta ordenada pelo valor
+	 */
+	@Test
+	public void listarItensOrdenadosPorValorTest() {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+		sis.cadastrarEletronico("Joao", "11112222", "Dota 2", 50, "PC");
+		sis.cadastrarBluRayFilme("Joao", "11112222", "Sherlock Holmes", 500, 120, "ACAO", "LIVRE", 2011);
+
+		assertEquals(
+				"SHOW: DDG, R$ 20.00, Nao emprestado, 105 min, LIVRE, OficinaG3, 19 faixas|JOGO ELETRONICO: Dota 2, R$ 50.0, Nao emprestado, PC|JOGO DE TABULEIRO: Xadrez, R$ 70.0, Nao emprestado, COMPLETO|FILME: Sherlock Holmes, R$ 500.00, Nao emprestado, 120 min, LIVRE, ACAO, 2011|",
+				sis.listarItensOrdenadosPorValor());
+	}
+
+	/**
+	 * Testa se o metodo listarEmprestimosUsuarioEmprestando realmente está
+	 * retornando os emprestimos realizados pelo usuario
+	 * 
+	 * @throws ParseException
+	 */
+	@Test
+	public void listarEmprestimosUsuarioEmprestandoTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "17/07/2017", 5);
+
+		assertEquals(
+				"Emprestimos: EMPRESTIMO - De: Javan, Para: Joao, DDG, 17/07/2017, 5 dias, ENTREGA: Emprestimo em andamento|EMPRESTIMO - De: Javan, Para: Joao, Xadrez, 17/07/2017, 5 dias, ENTREGA: Emprestimo em andamento|",
+				sis.listarEmprestimosUsuarioEmprestando("Javan", "87008519"));
+	}
+
+	/**
+	 * Testa se o metodo listarEmprestimosUsuarioPegandoEmprestado realmente está
+	 * retornando os emprestimos feitos pelo requerente
+	 * 
+	 */
+	@Test
+	public void listarEmprestimosUsuarioPegandoEmprestadoTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", "22/07/2017");
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "22/07/2017", 5);
+
+		assertEquals(
+				"Emprestimos associados ao item: EMPRESTIMO - De: Javan, Para: Joao, DDG, 17/07/2017, 5 dias, ENTREGA: 22/07/2017|EMPRESTIMO - De: Javan, Para: Joao, DDG, 22/07/2017, 5 dias, ENTREGA: Emprestimo em andamento|",
+				sis.listarEmprestimosItem("DDG"));
+	}
+
+	/**
+	 * Testa se o metodo listaItensEmprestados realmente está retornando os itens
+	 * que estão emprestados no momento
+	 * 
+	 */
+	@Test
+	public void listarItensEmprestadosTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+		sis.cadastrarEletronico("Joao", "11112222", "Dota 2", 50, "PC");
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", 5);
+		sis.registrarEmprestimo("Joao", "11112222", "Javan", "87008519", "Dota 2", "22/07/2017", 5);
+
+		assertEquals(
+				"Dono do item: Javan, Nome do item emprestado: DDG|Dono do item: Javan, Nome do item emprestado: Xadrez|Dono do item: Joao, Nome do item emprestado: Dota 2|",
+				sis.listarItensEmprestados());
+	}
+
+	/**
+	 * Testa se o metodo listarTop10Itens está retornando o 10 itens com maior
+	 * numero de emprestimos de forma rankeada
+	 * 
+	 */
+	@Test
+	public void listarTop10ItensTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", 5);
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", "22/07/217");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", "27/07/217");
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+
+		assertEquals(
+				"1) 2 emprestimos - SHOW: DDG, R$ 20.00, Emprestado, 105 min, LIVRE, OficinaG3, 19 faixas|2) 1 emprestimos - JOGO DE TABULEIRO: Xadrez, R$ 70.0, Nao emprestado, COMPLETO|",
+				sis.listarTop10Itens());
+	}
+
+	/**
+	 * Testa se o metodo listarItensNaoEmprestados está retornando a lista de itens
+	 * que não estao emprestados
+	 * 
+	 */
+	@Test
+	public void listarItensNaoEmprestadosTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+		sis.cadastrarEletronico("Joao", "11112222", "Dota 2", 2000, "PC");
+		sis.cadastrarBluRayFilme("Joao", "11112222", "Sherlock Holmes", 29.99, 120, "ACAO", "LIVRE", 2011);
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", 5);
+
+		assertEquals(
+				"JOGO ELETRONICO: Dota 2, R$ 2000.0, Nao emprestado, PC|FILME: Sherlock Holmes, R$ 29.99, Nao emprestado, 120 min, LIVRE, ACAO, 2011|",
+				sis.listarItensNaoEmprestados());
+	}
+
+	/**
+	 * Testa se o metodo listarCaloteiros está retornando a lista de usuarios com
+	 * nivel de reputacao negativo
+	 * 
+	 */
+	@Test
+	public void listarCaloteirosTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+		sis.cadastrarUsuario("Joca", "11113333", "joca@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+		sis.cadastrarEletronico("Joao", "11112222", "Dota 2", 22, "PC");
+		sis.cadastrarBluRayFilme("Joao", "11112222", "Sherlock Holmes", 29.99, 120, "ACAO", "LIVRE", 2011);
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", 5);
+		sis.registrarEmprestimo("Joao", "11112222", "Joca", "11113333", "Dota 2", "17/07/2017", 5);
+		sis.devolverItem("Joao", "11112222", "Joca", "11113333", "Dota 2", "17/07/2017", "25/07/2017");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", "25/07/2017");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", "30/10/2017");
+
+		assertEquals(
+				"Lista de usuarios com reputacao negativa: Joao, joao@joao.com, 11112222|Joca, joca@joao.com, 11113333|",
+				sis.listarCaloteiros());
+	}
+
+	/**
+	 * Testa se o metodo listarTop10MelhoresUsuarios está retornando a lista de
+	 * usuarios com maior nível de reputação de forma rankeada
+	 * 
+	 */
+	@Test
+	public void listarTop10MelhoresTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+		sis.cadastrarUsuario("Joca", "11113333", "joca@joao.com");
+		sis.cadastrarUsuario("Juca", "11114444", "juca@joao.com");
+		sis.cadastrarUsuario("Jaca", "11115555", "jaca@joao.com");
+		sis.cadastrarUsuario("Jica", "11116666", "jica@joao.com");
+		sis.cadastrarUsuario("Jesica", "11117777", "jessica@joao.com");
+		sis.cadastrarUsuario("Jeca", "11118888", "jeca@joao.com");
+		sis.cadastrarUsuario("Jyca", "11119999", "jyca@joao.com");
+		sis.cadastrarUsuario("Jwaca", "11111010", "jwaca@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+		sis.cadastrarEletronico("Joao", "11112222", "Dota 2", 22, "PC");
+		sis.cadastrarBluRayFilme("Joao", "11112222", "Sherlock Holmes", 29.99, 120, "ACAO", "LIVRE", 2011);
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", 5);
+		sis.registrarEmprestimo("Joao", "11112222", "Joca", "11113333", "Dota 2", "17/07/2017", 5);
+		sis.devolverItem("Joao", "11112222", "Joca", "11113333", "Dota 2", "17/07/2017", "25/07/2017");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", "25/07/2017");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", "30/10/2017");
+
+		assertEquals(
+				"1: Javan - Reputacao: 13,50|2: Jesica - Reputacao: 0,00|3: Juca - Reputacao: 0,00|4: Jyca - Reputacao: 0,00|5: Jaca - Reputacao: 0,00|6: Jica - Reputacao: 0,00|7: Jwaca - Reputacao: 0,00|8: Jeca - Reputacao: 0,00|9: Joca - Reputacao: -0,66|10: Joao - Reputacao: -62,30|",
+				sis.listarTop10MelhoresUsuarios());
+	}
+
+	/**
+	 * Testa se o metodo listarTop10PioresUsuarios está retornando a lista de
+	 * usuarios com menor nível de reputação de forma rankeada
+	 * 
+	 */
+	@Test
+	public void listarTop10PioresTest() throws ParseException {
+
+		Sistema sis = new Sistema();
+
+		sis.cadastrarUsuario("Javan", "87008519", "javan.lacerda@ccc.ufcg.edu.br");
+		sis.cadastrarUsuario("Joao", "11112222", "joao@joao.com");
+		sis.cadastrarUsuario("Joca", "11113333", "joca@joao.com");
+		sis.cadastrarUsuario("Juca", "11114444", "juca@joao.com");
+		sis.cadastrarUsuario("Jaca", "11115555", "jaca@joao.com");
+		sis.cadastrarUsuario("Jica", "11116666", "jica@joao.com");
+		sis.cadastrarUsuario("Jesica", "11117777", "jessica@joao.com");
+		sis.cadastrarUsuario("Jeca", "11118888", "jeca@joao.com");
+		sis.cadastrarUsuario("Jyca", "11119999", "jyca@joao.com");
+		sis.cadastrarUsuario("Jwaca", "11111010", "jwaca@joao.com");
+
+		sis.cadastrarBluRayShow("Javan", "87008519", "DDG", 20, 105, 19, "OficinaG3", "LIVRE");
+		sis.cadastrarJogoTabuleiro("Javan", "87008519", "Xadrez", 70);
+		sis.cadastrarEletronico("Joao", "11112222", "Dota 2", 22, "PC");
+		sis.cadastrarBluRayFilme("Joao", "11112222", "Sherlock Holmes", 29.99, 120, "ACAO", "LIVRE", 2011);
+
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
+		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", 5);
+		sis.registrarEmprestimo("Joao", "11112222", "Joca", "11113333", "Dota 2", "17/07/2017", 5);
+		sis.devolverItem("Joao", "11112222", "Joca", "11113333", "Dota 2", "17/07/2017", "25/07/2017");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", "25/07/2017");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", "30/10/2017");
+
+		assertEquals(
+				"1: Joao - Reputacao: -62,30|2: Joca - Reputacao: -0,66|3: Jesica - Reputacao: 0,00|4: Juca - Reputacao: 0,00|5: Jyca - Reputacao: 0,00|6: Jaca - Reputacao: 0,00|7: Jica - Reputacao: 0,00|8: Jwaca - Reputacao: 0,00|9: Jeca - Reputacao: 0,00|10: Javan - Reputacao: 13,50|",
+				sis.listarTop10PioresUsuarios());
+	}
+
 }
