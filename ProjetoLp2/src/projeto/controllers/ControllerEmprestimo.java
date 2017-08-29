@@ -2,10 +2,12 @@ package projeto.controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 import projeto.Emprestimo;
 import projeto.utilitarios.ChaveUsuario;
@@ -73,14 +75,15 @@ public class ControllerEmprestimo {
 
 		getEmprestimoEspecifico(emprestimo).setDataDevolucao(dataDevolucao);
 
-		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		;
 
-		Date dataEmprestimo1 = formatoData.parse(dataEmprestimo);
+		LocalDate dataEmprestimo1 = LocalDate.parse(dataEmprestimo, formatoData);
 
-		Date dataDevolucao1 = formatoData.parse(dataDevolucao);
+		LocalDate dataDevolucao1 = LocalDate.parse(dataDevolucao, formatoData);
 
-		int diasAtraso = (int) ((dataDevolucao1.getTime() - dataEmprestimo1.getTime()) / 86400000L)
-				- getEmprestimoEspecifico(emprestimo).getPeriodo();
+		int diasAtraso = (int) (ChronoUnit.DAYS.between(dataEmprestimo1, dataDevolucao1)
+				- getEmprestimoEspecifico(emprestimo).getPeriodo());
 
 		return diasAtraso;
 
