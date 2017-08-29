@@ -1,5 +1,11 @@
 package projeto.controllers;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -237,5 +243,53 @@ public class ControllerEmprestimo {
 		Collections.sort(emprestimosTemp);
 		return emprestimosTemp;
 	}
-
+	
+	/**
+	 * Metodo para salvar a atual coleção de emprestimos salvos em um arquivo de texto
+	 * no diretorio padrão.
+	 * @throws FileNotFoundException, exceção em caso de arquivo nao encontrado.
+	 * @throws IOException, exceção para leitura ou escrita de dados.
+	 */
+	public void salvarColecaoEmprestimo() throws FileNotFoundException, IOException{
+		ObjectOutputStream oos = null;
+		
+		try{
+		oos = new ObjectOutputStream(new FileOutputStream("emprestimos.txt"));
+		
+		oos.writeObject(emprestimos);
+		
+	} catch (IOException e){
+		throw new FileNotFoundException("Arquivo não encontrado");
+		
+		}
+		oos.close();
+		
+	}
+	
+	/**
+	 * Metodo para recuperar uma coleção dos emprestimos salvos em um arquivo de texto no
+	 * diretorio padrão.
+	 * @param caminho, String representando o nome do arquivo a ser lido.
+	 * @return, retorna a coleção encontrada no arquivo.
+	 * @throws FileNotFoundException, exceção em caso de arquivo nao encontrado.
+	 * @throws IOException, exceção para leitura ou escrita de dados.
+	 * @throws ClassNotFoundException, exceção para caso a classe não seja encontrada.
+	 */
+	public void recuperaColecaoEmprestimo(String caminho) throws FileNotFoundException, IOException, ClassNotFoundException{
+		ObjectInputStream ois = null;
+		
+		try{
+		ois = new ObjectInputStream(new FileInputStream(caminho));
+		
+		ArrayList<Emprestimo> emprestimosRecuperados = (ArrayList<Emprestimo>) ois.readObject();
+		
+		this.emprestimos = emprestimosRecuperados;
+		
+	} catch (IOException e){
+		throw new FileNotFoundException("Arquivo não encontrado");
+		
+		}
+		ois.close();
+	}
 }
+
