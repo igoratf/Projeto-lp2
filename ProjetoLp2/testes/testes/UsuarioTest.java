@@ -11,8 +11,10 @@ import projeto.Usuario;
 import projeto.jogo.JogoTabuleiro;
 
 import org.junit.Test;
+
 /**
  * Classe de Testes de um Usuário.
+ * 
  * @author caiosbl
  *
  */
@@ -31,8 +33,8 @@ public class UsuarioTest {
 	}
 
 	/**
-	 * Testa se ao cadastrar um Usuário com Parâmetros inválidos ele lança a
-	 * devida exceção.
+	 * Testa se ao cadastrar um Usuário com Parâmetros inválidos ele lança a devida
+	 * exceção.
 	 */
 	@Test
 	public void cadastraUsuarioInvalidoTest() {
@@ -87,8 +89,7 @@ public class UsuarioTest {
 	}
 
 	/**
-	 * Testa se o método getItens retorna corretamente o mapa de Itens do
-	 * Usuário.
+	 * Testa se o método getItens retorna corretamente o mapa de Itens do Usuário.
 	 */
 	@Test
 	public void getItensTest() {
@@ -122,8 +123,7 @@ public class UsuarioTest {
 
 	/**
 	 * Testa se o método addReputacaoItemAdicionada calcula corretamente a
-	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo
-	 * Reputação.
+	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo Reputação.
 	 */
 	@Test
 	public void addReputacaoItemAdicionadoTest() {
@@ -146,8 +146,7 @@ public class UsuarioTest {
 
 	/**
 	 * Testa se o método addReputacaoItemDevolvidoNoPrazo calcula corretamente a
-	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo
-	 * Reputação.
+	 * porcentagem de 5% sobre o valor do Item e a incrementa ao atributo Reputação.
 	 */
 	@Test
 	public void addReputacaoItemDevolvidoNoPrazoTest() {
@@ -158,9 +157,9 @@ public class UsuarioTest {
 	}
 
 	/**
-	 * Testa se o método addReputacaoItemDevolvidoAtrasado calcula corretamente
-	 * a porcentagem vezes a quantidade de dias atrasados sobre o valor do Item,
-	 * e decrementa no atributo Reputação.
+	 * Testa se o método addReputacaoItemDevolvidoAtrasado calcula corretamente a
+	 * porcentagem vezes a quantidade de dias atrasados sobre o valor do Item, e
+	 * decrementa no atributo Reputação.
 	 */
 	@Test
 	public void addReputacaoItemDevolvidoAtrasadoTest() {
@@ -174,8 +173,7 @@ public class UsuarioTest {
 	}
 
 	/**
-	 * Testa se o método getCartao retorna corretamente o cartão atual do
-	 * usuário.
+	 * Testa se o método getCartao retorna corretamente o cartão atual do usuário.
 	 */
 	@Test
 	public void getCartaoTest() {
@@ -186,8 +184,8 @@ public class UsuarioTest {
 	}
 
 	/**
-	 * Testa se o método atualizaCartao atualiza corretamente o cartão do
-	 * usuário durante o fluxo de execução.
+	 * Testa se o método atualizaCartao atualiza corretamente o cartão do usuário
+	 * durante o fluxo de execução.
 	 */
 	@Test
 	public void atualizaCartaoTest() {
@@ -202,6 +200,75 @@ public class UsuarioTest {
 
 		usuario.addReputacaoItemEmprestado(100000);
 		assertEquals("BomAmigo", usuario.getCartao());
+
+	}
+
+	/**
+	 * Testa se o método retorna corretamente o valor que corresponde ao status de o
+	 * usuário poder pegar um item emprestado.
+	 */
+	@Test
+	public void emprestimoLiberadoTest() {
+		assertTrue(usuario.emprestimoLiberado());
+		usuario.addReputacaoItemDevolvidoAtrasado(1, 1);
+		assertFalse(usuario.emprestimoLiberado());
+	}
+
+	/**
+	 * Testa se o método valida corretamente o periodo de um empréstimo de acordo
+	 * com o cartão atual do usuário.
+	 */
+	@Test
+	public void validaPeriodoEmprestimoTest() {
+		// FreeRyder
+		assertFalse(usuario.validaPeriodoEmprestimo(6));
+		assertTrue(usuario.validaPeriodoEmprestimo(5));
+		assertTrue(usuario.validaPeriodoEmprestimo(4));
+		assertTrue(usuario.validaPeriodoEmprestimo(3));
+		assertTrue(usuario.validaPeriodoEmprestimo(2));
+		assertTrue(usuario.validaPeriodoEmprestimo(1));
+		assertTrue(usuario.validaPeriodoEmprestimo(0));
+
+		try {
+			usuario.validaPeriodoEmprestimo(-1);
+			fail("Exceção de período invalido não lançada");
+		} catch (IllegalArgumentException e) {
+			assertEquals("Período Inválido", e.getMessage());
+		}
+		// Caloteiro
+		usuario.addReputacaoItemDevolvidoAtrasado(1, 3);
+		assertFalse(usuario.validaPeriodoEmprestimo(0));
+		assertFalse(usuario.validaPeriodoEmprestimo(1));
+		// Noob
+		usuario.getItens().put("Jogo", new JogoTabuleiro("nome", 12));
+		usuario.addReputacaoItemDevolvidoNoPrazo(500);
+		System.out.println(usuario.getReputacao());
+		assertFalse(usuario.validaPeriodoEmprestimo(8));
+		assertTrue(usuario.validaPeriodoEmprestimo(7));
+		assertTrue(usuario.validaPeriodoEmprestimo(6));
+		assertTrue(usuario.validaPeriodoEmprestimo(5));
+		assertTrue(usuario.validaPeriodoEmprestimo(4));
+		assertTrue(usuario.validaPeriodoEmprestimo(3));
+		assertTrue(usuario.validaPeriodoEmprestimo(2));
+		assertTrue(usuario.validaPeriodoEmprestimo(1));
+		assertTrue(usuario.validaPeriodoEmprestimo(0));
+		// Bom Amigo
+		usuario.addReputacaoItemEmprestado(1000000);
+		assertFalse(usuario.validaPeriodoEmprestimo(15));
+		assertTrue(usuario.validaPeriodoEmprestimo(13));
+		assertTrue(usuario.validaPeriodoEmprestimo(12));
+		assertTrue(usuario.validaPeriodoEmprestimo(11));
+		assertTrue(usuario.validaPeriodoEmprestimo(10));
+		assertTrue(usuario.validaPeriodoEmprestimo(9));
+		assertTrue(usuario.validaPeriodoEmprestimo(8));
+		assertTrue(usuario.validaPeriodoEmprestimo(7));
+		assertTrue(usuario.validaPeriodoEmprestimo(6));
+		assertTrue(usuario.validaPeriodoEmprestimo(5));
+		assertTrue(usuario.validaPeriodoEmprestimo(4));
+		assertTrue(usuario.validaPeriodoEmprestimo(3));
+		assertTrue(usuario.validaPeriodoEmprestimo(2));
+		assertTrue(usuario.validaPeriodoEmprestimo(1));
+		assertTrue(usuario.validaPeriodoEmprestimo(0));
 
 	}
 

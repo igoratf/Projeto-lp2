@@ -159,5 +159,11 @@ public class ValidaParametros {
 		}
 
 	}
+	
+	public static void validaPeriodo(int periodo) {
+		if(periodo < 0) {
+			throw new IllegalArgumentException("Período Inválido");
+		}
+	}
 
 }

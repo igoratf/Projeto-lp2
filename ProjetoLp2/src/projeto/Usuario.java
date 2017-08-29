@@ -201,6 +201,7 @@ public class Usuario implements Comparable<Usuario> {
 	 * @return isValido
 	 */
 	public boolean validaPeriodoEmprestimo(int periodo) {
+		ValidaParametros.validaPeriodo(periodo);
 		return this.cartao.validaPeriodo(periodo);
 	}
 
