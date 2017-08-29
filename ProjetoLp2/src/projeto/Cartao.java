@@ -1,35 +1,45 @@
 package projeto;
 
-/**
- * Interface de um Cartão.
- * 
- * @author caiosbl
- * @version 1.0
- *
- */
+import projeto.cartao.BomAmigo;
+import projeto.cartao.Caloteiro;
+import projeto.cartao.FreeRyder;
+import projeto.cartao.Noob;
 
-public interface Cartao {
+public class Cartao {
+	private TipoCartao cartaoReputacao;
 
-	/**
-	 * Retorna se o cartão pode pegar um item emprestado.
-	 * 
-	 * @return boolean
-	 */
-	public boolean emprestimoLiberado();
+	public Cartao() {
+		this.cartaoReputacao = new FreeRyder();
+	}
 
-	/**
-	 * Valida um período de empréstimo de acordo com o cartão.
-	 * 
-	 * @param periodo
-	 *            Perído de emprestimo
-	 * @return boolean
-	 */
-	public boolean validaPeriodo(int periodo);
+	public boolean emprestimoLiberado() {
+		return cartaoReputacao.emprestimoLiberado();
+	}
+
+	public boolean validaPeriodo(int periodo) {
+		return cartaoReputacao.validaPeriodo(periodo);
+	}
+
+	public void setTipo(String tipoCartao) {
+		switch (tipoCartao) {
+		case "Caloteiro":
+			this.cartaoReputacao = new Caloteiro();
+			break;
+		case "BomAmigo":
+			this.cartaoReputacao = new BomAmigo();
+			break;
+		case "Noob":
+			this.cartaoReputacao = new Noob();
+			break;
+		case "FreeRyder":
+			this.cartaoReputacao = new FreeRyder();
+			break;
+		default:
+			throw new IllegalArgumentException("Tipo de cartão inválido");
+		}
+	}
 	
-	/**
-	 * Retorna em String o tipo do Cartão.
-	 * @return
-	 */
-	public String getTipo();
-
+	public String getTipo() {
+		return this.cartaoReputacao.getTipo();
+	}
 }

@@ -3,11 +3,6 @@ package projeto;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import projeto.cartao.BomAmigo;
-import projeto.cartao.Caloteiro;
-import projeto.cartao.FreeRyder;
-import projeto.cartao.Noob;
 import projeto.utilitarios.ValidaParametros;
 
 /**
@@ -43,7 +38,7 @@ public class Usuario implements Comparable<Usuario> {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.reputacao = 0.0;
-		this.cartao = new FreeRyder();
+		this.cartao = new Cartao();
 		this.mapaItens = new HashMap<String, Item>();
 
 	}
@@ -210,13 +205,13 @@ public class Usuario implements Comparable<Usuario> {
 	 */
 	public void atualizaCartao() {
 		if (reputacao < 0) {
-			this.cartao = new Caloteiro();
+			this.cartao.setTipo("Caloteiro");
 		} else if (reputacao > 100) {
-			this.cartao = new BomAmigo();
+			this.cartao.setTipo("BomAmigo");
 		} else if (mapaItens.size() > 0) {
-			this.cartao = new Noob();
+			this.cartao.setTipo("Noob");
 		} else {
-			this.cartao = new FreeRyder();
+			this.cartao.setTipo("FreeRyder");
 		}
 	}
 

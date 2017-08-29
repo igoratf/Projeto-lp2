@@ -1,6 +1,6 @@
 package projeto.cartao;
 
-import projeto.Cartao;
+import projeto.TipoCartao;
 
 /**
  * Cartão do tipo Noob.
@@ -10,7 +10,7 @@ import projeto.Cartao;
  *
  */
 
-public class Noob implements Cartao {
+public class Noob implements TipoCartao {
 
 	/**
 	 * Retorna se o cartão pode pegar um item emprestado.

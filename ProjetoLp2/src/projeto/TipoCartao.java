@@ -1,26 +1,21 @@
-package projeto.cartao;
-
-import projeto.TipoCartao;
+package projeto;
 
 /**
- * Cartão do tipo Caloteiro.
+ * Interface de um Cartão.
  * 
  * @author caiosbl
  * @version 1.0
  *
  */
 
-public class Caloteiro implements TipoCartao {
+public interface TipoCartao {
 
 	/**
 	 * Retorna se o cartão pode pegar um item emprestado.
 	 * 
 	 * @return boolean
 	 */
-	@Override
-	public boolean emprestimoLiberado() {
-		return false;
-	}
+	public boolean emprestimoLiberado();
 
 	/**
 	 * Valida um período de empréstimo de acordo com o cartão.
@@ -29,19 +24,12 @@ public class Caloteiro implements TipoCartao {
 	 *            Perído de emprestimo
 	 * @return boolean
 	 */
-	@Override
-	public boolean validaPeriodo(int periodo) {
-		return false;
-	}
-
+	public boolean validaPeriodo(int periodo);
+	
 	/**
 	 * Retorna em String o tipo do Cartão.
-	 * 
 	 * @return
 	 */
-	@Override
-	public String getTipo() {
-		return "Caloteiro";
-	}
+	public String getTipo();
 
 }

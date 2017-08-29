@@ -1,6 +1,6 @@
 package projeto.cartao;
 
-import projeto.Cartao;
+import projeto.TipoCartao;
 
 /**
  * Cartão do tipo Free Ryder.
@@ -10,7 +10,7 @@ import projeto.Cartao;
  *
  */
 
-public class FreeRyder implements Cartao {
+public class FreeRyder implements TipoCartao {
 
 	/**
 	 * Retorna se o cartão pode pegar um item emprestado.
