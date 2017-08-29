@@ -37,4 +37,14 @@ public class FreeRyder implements Cartao {
 		return true;
 	}
 
+	/**
+	 * Retorna em String o tipo do Cartão.
+	 * 
+	 * @return
+	 */
+	@Override
+	public String getTipo() {
+		return "FreeRyder";
+	}
+
 }

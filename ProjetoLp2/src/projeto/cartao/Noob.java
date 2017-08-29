@@ -37,4 +37,14 @@ public class Noob implements Cartao {
 		return true;
 	}
 
+	/**
+	 * Retorna em String o tipo do Cartão.
+	 * 
+	 * @return
+	 */
+	@Override
+	public String getTipo() {
+		return "Noob";
+	}
+
 }

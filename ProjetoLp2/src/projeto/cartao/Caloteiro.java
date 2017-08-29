@@ -34,4 +34,14 @@ public class Caloteiro implements Cartao {
 		return false;
 	}
 
+	/**
+	 * Retorna em String o tipo do Cartão.
+	 * 
+	 * @return
+	 */
+	@Override
+	public String getTipo() {
+		return "Caloteiro";
+	}
+
 }

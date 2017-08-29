@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import projeto.enums.Cartao;
+import projeto.cartao.BomAmigo;
+import projeto.cartao.Caloteiro;
+import projeto.cartao.FreeRyder;
+import projeto.cartao.Noob;
 import projeto.utilitarios.ValidaParametros;
 
 /**
@@ -40,7 +43,7 @@ public class Usuario implements Comparable<Usuario> {
 		this.email = email.trim();
 		this.numCelular = numCelular.trim();
 		this.reputacao = 0.0;
-		this.cartao = Cartao.FREE_RIDER;
+		this.cartao = new FreeRyder();
 		this.mapaItens = new HashMap<String, Item>();
 
 	}
@@ -179,7 +182,26 @@ public class Usuario implements Comparable<Usuario> {
 	 * @return cartao
 	 */
 	public String getCartao() {
-		return this.cartao.getValor();
+		return this.cartao.getTipo();
+	}
+
+	/**
+	 * Retorna se o cartão do usuário pode pegar um item emprestado.
+	 * 
+	 * @return boolean
+	 */
+	public boolean emprestimoLiberado() {
+		return this.cartao.emprestimoLiberado();
+	}
+
+	/**
+	 * Valida um periodo de emprestimo de acordo com cartão do usuário.
+	 * 
+	 * @param periodo
+	 * @return isValido
+	 */
+	public boolean validaPeriodoEmprestimo(int periodo) {
+		return this.cartao.validaPeriodo(periodo);
 	}
 
 	/**
@@ -187,13 +209,13 @@ public class Usuario implements Comparable<Usuario> {
 	 */
 	public void atualizaCartao() {
 		if (reputacao < 0) {
-			this.cartao = Cartao.CALOTEIRO;
+			this.cartao = new Caloteiro();
 		} else if (reputacao > 100) {
-			this.cartao = Cartao.BOM_AMIGO;
+			this.cartao = new BomAmigo();
 		} else if (mapaItens.size() > 0) {
-			this.cartao = Cartao.NOOB;
+			this.cartao = new Noob();
 		} else {
-			this.cartao = Cartao.FREE_RIDER;
+			this.cartao = new FreeRyder();
 		}
 	}
 

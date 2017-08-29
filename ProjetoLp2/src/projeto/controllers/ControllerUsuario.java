@@ -316,12 +316,7 @@ public class ControllerUsuario {
 		checaSeUsuarioJaExiste(nome, telefone);
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 		Usuario usuario = mapaUsuarios.get(chave);
-
-		if (usuario.getCartao().equals("Caloteiro")) {
-			return false;
-		} else {
-			return true;
-		}
+		return usuario.emprestimoLiberado();
 	}
 
 	/**
@@ -341,17 +336,8 @@ public class ControllerUsuario {
 		ChaveUsuario chave = new ChaveUsuario(nome, telefone);
 
 		Usuario usuario = mapaUsuarios.get(chave);
-		String cartao = usuario.getCartao();
+		return usuario.validaPeriodoEmprestimo(periodo);
 
-		if (periodo > 14) {
-			return false;
-		} else if (cartao.equals("Noob") && periodo > 7) {
-			return false;
-		} else if (cartao.equals("FreeRyder") && periodo > 5) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 	/**

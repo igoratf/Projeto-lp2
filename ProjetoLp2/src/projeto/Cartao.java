@@ -25,5 +25,11 @@ public interface Cartao {
 	 * @return boolean
 	 */
 	public boolean validaPeriodo(int periodo);
+	
+	/**
+	 * Retorna em String o tipo do Cartão.
+	 * @return
+	 */
+	public String getTipo();
 
 }
