@@ -1,23 +1,20 @@
 package projeto;
 
-
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import projeto.utilitarios.ChaveUsuario;
 
-
-public class Emprestimo implements Comparable<Emprestimo>{
-	
+public class Emprestimo implements Comparable<Emprestimo> {
 
 	private ChaveUsuario dono;
 	private ChaveUsuario requerente;
 	private String item;
-	private Date dataEmprestimo;
+	private LocalDate dataEmprestimo;
 	private int periodo;
-	private SimpleDateFormat formatoData =  new SimpleDateFormat("dd/MM/yyyy");
-	private Date dataDevolucao;
+	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	private LocalDate dataDevolucao;
 
 	/**
 	 * Metodo construtor da classe Emprestimo.
@@ -32,21 +29,14 @@ public class Emprestimo implements Comparable<Emprestimo>{
 	 *            String repassado por parametro.
 	 * @param periodo,
 	 *            inteiro repassado por parametro.
-	 * @throws ParseException 
 	 */
-	public Emprestimo(ChaveUsuario dono, ChaveUsuario requerente, String item,
-			String dataInicial, int periodo) throws ParseException{
+	public Emprestimo(ChaveUsuario dono, ChaveUsuario requerente, String item, String dataInicial, int periodo) {
 		checaValidadeAtributos(dono, requerente, item, dataInicial, periodo);
 
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
-		try{
-			this.dataEmprestimo = formatoData.parse(dataInicial);
-		}
-		catch(ParseException e){
-			throw new ParseException("Data Inicial Empréstimo Inválida", 43);
-		}
+		this.dataEmprestimo = LocalDate.parse(dataInicial, formatoData);
 		this.periodo = periodo;
 		this.dataDevolucao = null;
 
@@ -60,8 +50,7 @@ public class Emprestimo implements Comparable<Emprestimo>{
 	}
 
 	/**
-	 * Metodo para retornar o Objeto Usuario. @return, retorna o Objeto
-	 * requerente.
+	 * Metodo para retornar o Objeto Usuario. @return, retorna o Objeto requerente.
 	 */
 	public ChaveUsuario getRequerente() {
 		return requerente;
@@ -91,38 +80,32 @@ public class Emprestimo implements Comparable<Emprestimo>{
 	}
 
 	/**
-	 * Metodo para retornar a data de devolução de um emprestimo. @return,
-	 * retorna a string dataDevolução.
+	 * Metodo para retornar a data de devolução de um emprestimo. @return, retorna a
+	 * string dataDevolução.
 	 */
 	public String getDataDevolucao() {
-		if(dataDevolucao == null){
+		if (dataDevolucao == null) {
 			return "Emprestimo em andamento";
 		}
-		
+
 		return formatoData.format(dataDevolucao);
-				
+
 	}
 
 	/**
-	 * Metodo para alterar a data de devolução de um emprestimo conforme o
-	 * usuario do sistema deseje.
+	 * Metodo para alterar a data de devolução de um emprestimo conforme o usuario
+	 * do sistema deseje.
 	 * 
 	 * @param data,
 	 *            String a ser alterado passado por paramtro.
-	 * @throws ParseException 
 	 */
 	public void setDataDevolucao(String data) throws ParseException {
-		try{
-			this.dataDevolucao =  formatoData.parse(data);
-		}
-		catch(ParseException e){
-			throw new ParseException("Data Inválida", 109);
-		}
+		this.dataDevolucao = LocalDate.parse(data, formatoData);
 	}
 
 	/**
-	 * Metodo para comparar um emprestimo caso o dono, o requerente, o item e a
-	 * data sejam iguais.
+	 * Metodo para comparar um emprestimo caso o dono, o requerente, o item e a data
+	 * sejam iguais.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -172,34 +155,41 @@ public class Emprestimo implements Comparable<Emprestimo>{
 	 *            valor passado por parametro.
 	 */
 
-	public void checaValidadeAtributos(ChaveUsuario dono, ChaveUsuario requerente, String item,
-			String dataInicial, int periodo){
-			
-		if (dono == null) throw new NullPointerException("Dono nulo");
-		if (requerente == null) throw new NullPointerException("Requerente nulo");
-		if (item == null) throw new NullPointerException("Item nulo");
-		if (dataInicial == null) throw new NullPointerException("Data inicial nulo");
-		if (dataInicial.trim().equals("")) throw new IllegalArgumentException("Data inicial vazia");
-		if (periodo < 0) throw new IllegalArgumentException("Periodo invalido");
+	public void checaValidadeAtributos(ChaveUsuario dono, ChaveUsuario requerente, String item, String dataInicial,
+			int periodo) {
+
+		if (dono == null)
+			throw new NullPointerException("Dono nulo");
+		if (requerente == null)
+			throw new NullPointerException("Requerente nulo");
+		if (item == null)
+			throw new NullPointerException("Item nulo");
+		if (dataInicial == null)
+			throw new NullPointerException("Data inicial nulo");
+		if (dataInicial.trim().equals(""))
+			throw new IllegalArgumentException("Data inicial vazia");
+		if (periodo < 0)
+			throw new IllegalArgumentException("Periodo invalido");
 	}
 
-
 	/**
-	 * Metodo para sobreescrever o toString() de acordo com o padrão necessitado pelo sistema.
+	 * Metodo para sobreescrever o toString() de acordo com o padrão necessitado
+	 * pelo sistema.
 	 */
 	@Override
 	public String toString() {
 		return String.format("EMPRESTIMO - De: %s, Para: %s, %s, %s, %d dias, ENTREGA: %s", getDono().getNome(),
-				getRequerente().getNome(),this.getItem(), getDataEmprestimo(), this.periodo, getDataDevolucao());
+				getRequerente().getNome(), this.getItem(), getDataEmprestimo(), this.periodo, getDataDevolucao());
 
 	}
 
 	/**
-	 * Metodo para comparar os emprestimos da coleção de acordo com o nome do Dono do Item.
+	 * Metodo para comparar os emprestimos da coleção de acordo com o nome do Dono
+	 * do Item.
 	 */
 	@Override
 	public int compareTo(Emprestimo o) {
-			
+
 		return this.getDono().getNome().compareTo(o.getDono().getNome());
 	}
 }
