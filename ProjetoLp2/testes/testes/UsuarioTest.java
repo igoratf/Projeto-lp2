@@ -242,7 +242,6 @@ public class UsuarioTest {
 		// Noob
 		usuario.getItens().put("Jogo", new JogoTabuleiro("nome", 12));
 		usuario.addReputacaoItemDevolvidoNoPrazo(500);
-		System.out.println(usuario.getReputacao());
 		assertFalse(usuario.validaPeriodoEmprestimo(8));
 		assertTrue(usuario.validaPeriodoEmprestimo(7));
 		assertTrue(usuario.validaPeriodoEmprestimo(6));

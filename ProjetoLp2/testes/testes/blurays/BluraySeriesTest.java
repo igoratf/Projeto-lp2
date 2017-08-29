@@ -1,4 +1,4 @@
-package testes;
+package testes.blurays;
 import static org.junit.Assert.*;
 
 
