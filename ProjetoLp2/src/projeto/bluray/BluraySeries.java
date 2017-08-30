@@ -74,7 +74,8 @@ public class BluraySeries extends Bluray {
 	/**
 	 * Verifica se o bluray contém blurays de episódios
 	 * 
-	 * @return retorna boleano com resposta se há episodios ou nao no bluray serie
+	 * @return retorna boleano com resposta se há episodios ou nao no bluray
+	 *         serie
 	 */
 	public boolean contemEpisodio() {
 		if (episodios.size() > 0) {

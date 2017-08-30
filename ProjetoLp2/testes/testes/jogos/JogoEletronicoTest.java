@@ -23,6 +23,7 @@ public class JogoEletronicoTest {
 	/**
 	 * Teste de validade do atributo plataforma caso seja 
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void testJogoEletronicoAtributos() {
 		try{

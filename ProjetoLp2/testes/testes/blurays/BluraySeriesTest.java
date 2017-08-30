@@ -45,6 +45,7 @@ public class BluraySeriesTest {
 	/**
 	 * Verifica se parâmetros nulos estão retornando exceção
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void BlurayNullTest() {
 		try {
@@ -67,6 +68,7 @@ public class BluraySeriesTest {
 	/**
 	 * Verifica se nome e classificação vazios estão retornando exceção
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void BlurayVazioTest() {
 		try {
@@ -84,6 +86,7 @@ public class BluraySeriesTest {
 	/**
 	 * Verifica se números inválidos estão retornando exceção
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void BlurayNumbersTest() {
 		try {

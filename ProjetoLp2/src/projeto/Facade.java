@@ -8,6 +8,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.ParseException;
 
+/**
+ * Classe de Fachada
+ * @author caiosbl
+ *
+ */
+
 public class Facade {
 	private Sistema sistema;
 
@@ -35,7 +41,6 @@ public class Facade {
 				this.sistema = new Sistema();
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
 			throw new ClassNotFoundException("Falha na leitura");
 		}
 	}

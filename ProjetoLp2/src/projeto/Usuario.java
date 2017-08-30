@@ -19,7 +19,7 @@ import projeto.utilitarios.ValidaParametros;
  *
  */
 
-public class Usuario implements Comparable<Usuario>,Serializable {
+public class Usuario implements Comparable<Usuario>, Serializable {
 	/**
 	 * 
 	 */
@@ -129,8 +129,8 @@ public class Usuario implements Comparable<Usuario>,Serializable {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do item
-	 * adicionado.
+	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do
+	 * item adicionado.
 	 * 
 	 * @param valorItem
 	 *            Valor do Item.
@@ -141,8 +141,8 @@ public class Usuario implements Comparable<Usuario>,Serializable {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação a porcentagem de 10% referente ao valor item
-	 * emprestado.
+	 * Adiciona ao atributo reputação a porcentagem de 10% referente ao valor
+	 * item emprestado.
 	 * 
 	 * @param valorItem
 	 *            Valor do Item.
@@ -154,8 +154,8 @@ public class Usuario implements Comparable<Usuario>,Serializable {
 	}
 
 	/**
-	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do Item
-	 * devolvido.
+	 * Adiciona ao atributo reputação a porcentagem de 5% referente ao valor do
+	 * Item devolvido.
 	 * 
 	 * @param valorItem
 	 *            Valor do item devolvido.
@@ -167,8 +167,8 @@ public class Usuario implements Comparable<Usuario>,Serializable {
 	}
 
 	/**
-	 * Decrementa o atributo reputação o valor calculado referente a porcentagem de
-	 * 1% vezes o número de dias em atraso da devolução vezes o valor do Item
+	 * Decrementa o atributo reputação o valor calculado referente a porcentagem
+	 * de 1% vezes o número de dias em atraso da devolução vezes o valor do Item
 	 * devolvido.
 	 * 
 	 * @param valorItem

@@ -1,11 +1,14 @@
 package testes.blurays;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import projeto.bluray.Bluray;
+
 /**
  * Classe de teste de Bluray
+ * 
  * @author igoratf
  *
  */
@@ -14,6 +17,7 @@ public class BlurayTest {
 	/**
 	 * Verifica se parâmetros nulos estão retornando exceção
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void BlurayNullTest() {
 		try {
@@ -26,13 +30,13 @@ public class BlurayTest {
 		} catch (Exception e) {
 			assertEquals("Classificacao nula", e.getMessage());
 		}
-		
 
 	}
-	
+
 	/**
 	 * Verifica se nome e classificação vazios estão retornando exceção
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void BlurayVazioTest() {
 		try {
@@ -46,10 +50,11 @@ public class BlurayTest {
 			assertEquals("Classificacao vazia", e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Verifica se números inválidos estão retornando exceção
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void BlurayNumbersTest() {
 		try {
