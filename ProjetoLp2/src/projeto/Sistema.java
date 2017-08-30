@@ -38,11 +38,7 @@ public class Sistema implements Serializable {
 
 	}
 
-	/**
-	 * Inicia o sistema
-	 */
-	public void iniciarSistema() {
-	}
+	
 
 	/**
 	 * Cadastra um usuário no sistema
@@ -601,11 +597,6 @@ public class Sistema implements Serializable {
 		return cUsuario.listarTop10PioresUsuarios();
 	}
 
-	/**
-	 * fecha o sistema
-	 */
-	public void fecharSistema() {
 
-	}
 
 }

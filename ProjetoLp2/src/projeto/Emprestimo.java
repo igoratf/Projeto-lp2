@@ -18,7 +18,6 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	private String item;
 	private LocalDate dataEmprestimo;
 	private int periodo;
-	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	private LocalDate dataDevolucao;
 
 	/**
@@ -41,7 +40,7 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
-		this.dataEmprestimo = LocalDate.parse(dataInicial, formatoData);
+		this.dataEmprestimo = LocalDate.parse(dataInicial,getFormatoData());
 		this.periodo = periodo;
 		this.dataDevolucao = null;
 
@@ -67,13 +66,17 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	public String getItem() {
 		return item;
 	}
+	
+	private DateTimeFormatter getFormatoData() {
+        return DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    }
 
 	/**
 	 * Metodo para retornar a string da data do emprestimo. @return, retorna a
 	 * string dataEmprestimo.
 	 */
 	public String getDataEmprestimo() {
-		return formatoData.format(dataEmprestimo);
+		return getFormatoData().format(dataEmprestimo);
 	}
 
 	/**
@@ -93,7 +96,7 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 			return "Emprestimo em andamento";
 		}
 
-		return formatoData.format(dataDevolucao);
+		return getFormatoData().format(dataDevolucao);
 
 	}
 
@@ -105,7 +108,7 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	 *            String a ser alterado passado por paramtro.
 	 */
 	public void setDataDevolucao(String data) throws ParseException {
-		this.dataDevolucao = LocalDate.parse(data, formatoData);
+		this.dataDevolucao = LocalDate.parse(data, getFormatoData());
 	}
 
 	/**
