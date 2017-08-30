@@ -10,19 +10,21 @@ import projeto.bluray.BlurayEpisodio;
  *
  */
 public class BlurayEpisodioTest {
+	@SuppressWarnings("unused")
+	private BlurayEpisodio bluray;
 	
 	/**
 	 * Verifica se duração inválida está retornando exceção
 	 */
 	@Test
-	public void BlurayEpisodioTest() {
+	public void ConstrutorTest() {
 		try {
-			BlurayEpisodio bluray = new BlurayEpisodio(0);
+			bluray = new BlurayEpisodio(0);
 		} catch (Exception e) {
 			assertEquals("Duracao invalida", e.getMessage());
 		}
 		try {
-			BlurayEpisodio bluray = new BlurayEpisodio(-5);
+			bluray = new BlurayEpisodio(-5);
 		} catch (Exception e) {
 			assertEquals("Duracao invalida", e.getMessage());
 		}

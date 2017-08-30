@@ -3,8 +3,8 @@ package projeto.bluray;
 import java.io.Serializable;
 
 /**
- * Classe que possui informações para a construção de objetos do tipo BlurayEpisodio que irá
- * compor objetos do tipo BluraySeries
+ * Classe que possui informações para a construção de objetos do tipo
+ * BlurayEpisodio que irá compor objetos do tipo BluraySeries
  * 
  * @author igoratf
  *
@@ -26,7 +26,8 @@ public class BlurayEpisodio implements Serializable {
 	 */
 
 	public BlurayEpisodio(int duracao) {
-		if (duracao <= 0) throw new IllegalArgumentException("Duracao invalida");
+		if (duracao <= 0)
+			throw new IllegalArgumentException("Duracao invalida");
 		this.duracao = duracao;
 	}
 
@@ -51,5 +52,5 @@ public class BlurayEpisodio implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

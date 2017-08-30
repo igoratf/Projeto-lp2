@@ -10,11 +10,12 @@ import org.junit.Test;
 
 import projeto.Emprestimo;
 
-import projeto.Item;
+
 import projeto.jogo.JogoTabuleiro;
 import projeto.utilitarios.ChaveUsuario;
 
 public class EmprestimoTest {
+	@SuppressWarnings("unused")
 	private Emprestimo emprestimo;
 
 	/**
