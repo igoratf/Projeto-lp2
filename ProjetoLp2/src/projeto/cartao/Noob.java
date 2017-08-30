@@ -13,6 +13,11 @@ import projeto.Cartao;
 public class Noob implements Cartao {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7067049943461310050L;
+
+	/**
 	 * Retorna se o cartão pode pegar um item emprestado.
 	 * 
 	 * @return boolean

@@ -1,5 +1,11 @@
 package projeto;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 
 public class Facade {
@@ -9,7 +15,29 @@ public class Facade {
 		this.sistema = new Sistema();
 	}
 
-	public void iniciarSistema() {
+	/**
+	 * Carrega a versão salva do Sistema.
+	 * 
+	 * @throws ClassNotFoundException
+	 *             Se o arquivo não for encontrado.
+	 */
+	public void iniciarSistema() throws ClassNotFoundException {
+		try {
+			String nomeArquivo = "storage/sistema.dat";
+			File arquivo = new File(nomeArquivo);
+			if (arquivo.exists()) {
+				FileInputStream f = new FileInputStream(nomeArquivo);
+				ObjectInputStream obj = new ObjectInputStream(f);
+				Sistema sistemaLido = (Sistema) obj.readObject();
+				this.sistema = sistemaLido;
+				obj.close();
+			} else {
+				this.sistema = new Sistema();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ClassNotFoundException("Falha na leitura");
+		}
 	}
 
 	public void cadastrarUsuario(String nome, String telefone, String email) {
@@ -135,8 +163,22 @@ public class Facade {
 		return sistema.listarTop10PioresUsuarios();
 	}
 
-	public void fecharSistema() {
-
+	/**
+	 * Salva o sistema em um arquivo.
+	 * 
+	 * @throws IOException
+	 *             Lança uma exceção caso não seja possível salvar.
+	 */
+	public void fecharSistema() throws IOException {
+		try {
+			String nomeArquivo = "storage/sistema.dat";
+			FileOutputStream f = new FileOutputStream(nomeArquivo);
+			ObjectOutputStream obj = new ObjectOutputStream(f);
+			obj.writeObject(sistema);
+			obj.close();
+		} catch (IOException e) {
+			throw new IOException("Falha ao Salvar Sistema");
+		}
 	}
 
 }

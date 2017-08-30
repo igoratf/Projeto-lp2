@@ -1,19 +1,23 @@
 package projeto;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import projeto.utilitarios.ChaveUsuario;
 
-public class Emprestimo implements Comparable<Emprestimo> {
+public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6021029249976516649L;
 	private ChaveUsuario dono;
 	private ChaveUsuario requerente;
 	private String item;
 	private LocalDate dataEmprestimo;
 	private int periodo;
-	private DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	private LocalDate dataDevolucao;
 
 	/**
@@ -36,7 +40,7 @@ public class Emprestimo implements Comparable<Emprestimo> {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
-		this.dataEmprestimo = LocalDate.parse(dataInicial, formatoData);
+		this.dataEmprestimo = LocalDate.parse(dataInicial,getFormatoData());
 		this.periodo = periodo;
 		this.dataDevolucao = null;
 
@@ -62,13 +66,17 @@ public class Emprestimo implements Comparable<Emprestimo> {
 	public String getItem() {
 		return item;
 	}
+	
+	private DateTimeFormatter getFormatoData() {
+        return DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    }
 
 	/**
 	 * Metodo para retornar a string da data do emprestimo. @return, retorna a
 	 * string dataEmprestimo.
 	 */
 	public String getDataEmprestimo() {
-		return formatoData.format(dataEmprestimo);
+		return getFormatoData().format(dataEmprestimo);
 	}
 
 	/**
@@ -88,7 +96,7 @@ public class Emprestimo implements Comparable<Emprestimo> {
 			return "Emprestimo em andamento";
 		}
 
-		return formatoData.format(dataDevolucao);
+		return getFormatoData().format(dataDevolucao);
 
 	}
 
@@ -100,7 +108,7 @@ public class Emprestimo implements Comparable<Emprestimo> {
 	 *            String a ser alterado passado por paramtro.
 	 */
 	public void setDataDevolucao(String data) throws ParseException {
-		this.dataDevolucao = LocalDate.parse(data, formatoData);
+		this.dataDevolucao = LocalDate.parse(data, getFormatoData());
 	}
 
 	/**

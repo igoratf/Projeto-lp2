@@ -1,5 +1,6 @@
 package projeto.controllers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -22,7 +23,11 @@ import projeto.utilitarios.ValidaParametros;
  *
  */
 
-public class ControllerUsuario {
+public class ControllerUsuario implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6003150948410740512L;
 	private Map<ChaveUsuario, Usuario> mapaUsuarios;
 
 	/**

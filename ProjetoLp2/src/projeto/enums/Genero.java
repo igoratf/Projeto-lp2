@@ -1,12 +1,14 @@
 package projeto.enums;
 
+import java.io.Serializable;
+
 /**
  * Classe enum para Generos.
  * 
  * @author lucasvsa
  *
  */
-public enum Genero {
+public enum Genero implements Serializable {
 	/**
 	 * Classe enum criada para manter as plataformas como variaveis constantes.
 	 */

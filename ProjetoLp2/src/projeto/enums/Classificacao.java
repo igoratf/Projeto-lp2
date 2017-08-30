@@ -1,12 +1,14 @@
 package projeto.enums;
 
+import java.io.Serializable;
+
 /**
  * Classe enum para classificações.
  * 
  * @author lucasvsa
  *
  */
-public enum Classificacao {
+public enum Classificacao implements Serializable {
 	/**
 	 * Classe enum criada para manter as plataformas como variaveis constantes.
 	 */

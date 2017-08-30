@@ -13,6 +13,11 @@ import projeto.Cartao;
 public class Caloteiro implements Cartao {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2785723660903700843L;
+
+	/**
 	 * Retorna se o cartão pode pegar um item emprestado.
 	 * 
 	 * @return boolean

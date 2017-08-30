@@ -11,6 +11,10 @@ import projeto.enums.Classificacao;
  */
 public class Bluray extends Item {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6359216489881445249L;
 	private int duracao;
 	private Classificacao classificacao;
 

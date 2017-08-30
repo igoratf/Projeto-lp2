@@ -14,6 +14,10 @@ import projeto.enums.Genero;
 
 public class BluraySeries extends Bluray {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3757270645795995631L;
 	private ArrayList<BlurayEpisodio> episodios;
 	private int temporada;
 	private String descricao;

@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -18,7 +19,11 @@ import projeto.utilitarios.ValidaParametros;
  *
  */
 
-public class Usuario implements Comparable<Usuario> {
+public class Usuario implements Comparable<Usuario>,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -499292580189127292L;
 	private String nome;
 	private String email;
 	private String numCelular;

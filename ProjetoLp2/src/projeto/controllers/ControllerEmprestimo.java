@@ -1,7 +1,7 @@
 package projeto.controllers;
 
+import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,8 +20,12 @@ import projeto.utilitarios.ChaveUsuario;
  * @author lucasvsa
  *
  */
-public class ControllerEmprestimo {
+public class ControllerEmprestimo implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4868532650974621598L;
 	private List<Emprestimo> emprestimos;
 
 	public ControllerEmprestimo() {

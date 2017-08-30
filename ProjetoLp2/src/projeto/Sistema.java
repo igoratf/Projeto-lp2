@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -16,8 +17,12 @@ import projeto.utilitarios.ChaveUsuario;
  * @author javanktl
  *
  */
-public class Sistema {
+public class Sistema implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2106734740939434273L;
 	private ControllerUsuario cUsuario;
 	private ControllerItem cItem;
 	private ControllerEmprestimo cEmprestimo;
@@ -33,11 +38,7 @@ public class Sistema {
 
 	}
 
-	/**
-	 * Inicia o sistema
-	 */
-	public void iniciarSistema() {
-	}
+	
 
 	/**
 	 * Cadastra um usuário no sistema
@@ -596,11 +597,6 @@ public class Sistema {
 		return cUsuario.listarTop10PioresUsuarios();
 	}
 
-	/**
-	 * fecha o sistema
-	 */
-	public void fecharSistema() {
 
-	}
 
 }

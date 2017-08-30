@@ -1,5 +1,7 @@
 package projeto;
 
+import java.io.Serializable;
+
 /**
  * Interface de um Cartão.
  * 
@@ -8,7 +10,7 @@ package projeto;
  *
  */
 
-public interface Cartao {
+public interface Cartao extends Serializable {
 
 	/**
 	 * Retorna se o cartão pode pegar um item emprestado.

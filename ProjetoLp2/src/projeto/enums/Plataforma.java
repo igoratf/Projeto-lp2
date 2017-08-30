@@ -1,5 +1,7 @@
 package projeto.enums;
 
+import java.io.Serializable;
+
 /**
  * Classe enum das Plataformas.
  * 
@@ -7,7 +9,7 @@ package projeto.enums;
  *
  */
 
-public enum Plataforma {
+public enum Plataforma implements Serializable {
 	/**
 	 * Classe enum criada para manter as plataformas como variaveis constantes.
 	 */

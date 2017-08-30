@@ -1,5 +1,7 @@
 package projeto.utilitarios;
 
+import java.io.Serializable;
+
 /**
  * Chave de um Usuário
  * 
@@ -7,7 +9,11 @@ package projeto.utilitarios;
  *
  */
 
-public class ChaveUsuario {
+public class ChaveUsuario implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5551801930154008472L;
 	private String nome;
 	private String telefone;
 

@@ -1,5 +1,6 @@
 package projeto.comparadores;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import projeto.Item;
@@ -11,7 +12,12 @@ import projeto.Item;
  *
  */
 
-public class ComparaItemNumEmprestimos implements Comparator<Item> {
+public class ComparaItemNumEmprestimos implements Comparator<Item>,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6002311180570234961L;
 
 	@Override
 	/**
