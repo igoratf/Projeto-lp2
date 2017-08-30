@@ -13,6 +13,11 @@ import projeto.Cartao;
 public class FreeRyder implements Cartao {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5973316284682193410L;
+
+	/**
 	 * Retorna se o cartão pode pegar um item emprestado.
 	 * 
 	 * @return boolean

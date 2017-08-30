@@ -8,6 +8,10 @@ package projeto.bluray;
  */
 public class BlurayShow extends Bluray {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2462478823206373521L;
 	private String nomeArtista;
 	private int numFaixas;
 

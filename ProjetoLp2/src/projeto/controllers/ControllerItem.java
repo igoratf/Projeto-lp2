@@ -1,6 +1,7 @@
 package projeto.controllers;
 
 import java.util.List;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Map;
 
@@ -19,7 +20,12 @@ import projeto.utilitarios.ValidaParametros;
  *
  */
 
-public class ControllerItem {
+public class ControllerItem implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6793766497955296982L;
 
 	public ControllerItem() {
 	}

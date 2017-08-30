@@ -1,5 +1,6 @@
 package projeto.comparadores;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 import projeto.Usuario;
@@ -12,7 +13,12 @@ import projeto.Usuario;
  *
  */
 
-public class ComparaUsuarioReputacaoMenorMelhor implements Comparator<Usuario> {
+public class ComparaUsuarioReputacaoMenorMelhor implements Comparator<Usuario>,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8577095992405571046L;
+
 	/**
 	 * Compara dois usuários retorna positivo para o segundo usuário menor que o
 	 * primeiro.

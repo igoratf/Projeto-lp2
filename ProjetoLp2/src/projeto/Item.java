@@ -1,13 +1,19 @@
 package projeto;
 
+import java.io.Serializable;
+
 /**
  * Define um item genérico.
  * 
  * @author javanktl, igoratf
  *
  */
-public abstract class Item implements Comparable<Item> {
+public abstract class Item implements Comparable<Item>,Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1208559691278520724L;
 	private String nome;
 	private int numEmprestimos;
 	private double valor;

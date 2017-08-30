@@ -1,13 +1,18 @@
 package projeto;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import projeto.utilitarios.ChaveUsuario;
 
-public class Emprestimo implements Comparable<Emprestimo> {
+public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6021029249976516649L;
 	private ChaveUsuario dono;
 	private ChaveUsuario requerente;
 	private String item;

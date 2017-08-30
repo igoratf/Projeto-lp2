@@ -1,5 +1,6 @@
 package projeto.utilitarios;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import projeto.Item;
@@ -11,7 +12,12 @@ import projeto.Item;
  *
  */
 
-public class ValidaParametros {
+public class ValidaParametros implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6943006300375957402L;
+
 	/**
 	 * Valida parâmetros para o método getInfoUsuário.
 	 * 

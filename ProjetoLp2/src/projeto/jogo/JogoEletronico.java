@@ -11,6 +11,10 @@ import projeto.enums.Plataforma;
  */
 public class JogoEletronico extends Item {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6813618364931855976L;
 	private Plataforma plataforma;
 
 	/**

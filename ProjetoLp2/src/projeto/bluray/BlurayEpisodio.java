@@ -1,5 +1,7 @@
 package projeto.bluray;
 
+import java.io.Serializable;
+
 /**
  * Classe que possui informações para a construção de objetos do tipo BlurayEpisodio que irá
  * compor objetos do tipo BluraySeries
@@ -8,8 +10,12 @@ package projeto.bluray;
  *
  */
 
-public class BlurayEpisodio {
+public class BlurayEpisodio implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 567546905171239219L;
 	public int duracao;
 
 	/**

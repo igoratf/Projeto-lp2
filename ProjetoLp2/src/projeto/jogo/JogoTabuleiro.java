@@ -14,6 +14,10 @@ import projeto.Item;
  */
 
 public class JogoTabuleiro extends Item {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4067826722610958978L;
 	private List<String> pecasPerdidas;
 	private boolean completo;
 
