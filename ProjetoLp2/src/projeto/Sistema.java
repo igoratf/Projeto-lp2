@@ -38,6 +38,8 @@ public class Sistema implements Serializable {
 
 	}
 
+	
+
 	/**
 	 * Cadastra um usuário no sistema
 	 * 
@@ -523,17 +525,16 @@ public class Sistema implements Serializable {
 	}
 
 	/**
-	 * Metodo para listar os emprestimos associados ao item de acordo com o nome
-	 * do mesmo. @return, retorna a lista de emprestimos encontrados naquele
-	 * item.
+	 * Metodo para listar os emprestimos associados ao item de acordo com o nome do
+	 * mesmo. @return, retorna a lista de emprestimos encontrados naquele item.
 	 */
 	public String listarEmprestimosItem(String nomeItem) {
 		return cEmprestimo.listarEmprestimosItem(nomeItem);
 	}
 
 	/**
-	 * Metodo para listar todos os itens emprestados nesse momento. @return,
-	 * retorna a lista de itens emprestados junto com o nome do dono.
+	 * Metodo para listar todos os itens emprestados nesse momento. @return, retorna
+	 * a lista de itens emprestados junto com o nome do dono.
 	 */
 	public String listarItensEmprestados() {
 
@@ -541,8 +542,7 @@ public class Sistema implements Serializable {
 	}
 
 	/**
-	 * Lista os 10 itens com maior quantidade de empréstimos em ordem
-	 * decrescente
+	 * Lista os 10 itens com maior quantidade de empréstimos em ordem decrescente
 	 * 
 	 * @param itensUsuarios
 	 *            lista de itens do usuario
@@ -596,5 +596,7 @@ public class Sistema implements Serializable {
 	public String listarTop10PioresUsuarios() {
 		return cUsuario.listarTop10PioresUsuarios();
 	}
+
+
 
 }

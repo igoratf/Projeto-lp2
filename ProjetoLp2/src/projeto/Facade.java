@@ -172,10 +172,11 @@ public class Facade {
 	 *            nome do dono do bluray a ser adicionado
 	 * @param telefone
 	 *            telefone do dono do bluray a ser adicionado
-	 * @param serie
+	 * @param nomeBlurayTemporada
 	 *            serie a qual o episodio será adicionado
 	 * @param duracao
 	 *            duracao do episodio a ser adicionado
+	 * 
 	 */
 	public void adicionarBluRay(String nome, String telefone, String nomeBlurayTemporada, int duracao) {
 		sistema.adicionarBluRay(nome, telefone, nomeBlurayTemporada, duracao);
@@ -390,6 +391,7 @@ public class Facade {
 	 * @param telefone,
 	 *            String passado por parametro. @return, retorna a lista de
 	 *            emprestimos realizados em ordem lexicografica.
+	 * @return listagem
 	 */
 	public String listarEmprestimosUsuarioEmprestando(String nome, String telefone) {
 		return sistema.listarEmprestimosUsuarioEmprestando(nome, telefone);
@@ -403,7 +405,7 @@ public class Facade {
 	 * @param telefone,
 	 *            String passado por parametro. @return, retorna a lista de
 	 *            emprestimos realizados em ordem lexicografica.
-	 * 
+	 * @return listagem
 	 */
 	public String listarEmprestimosUsuarioPegandoEmprestado(String nome, String telefone) {
 		return sistema.listarEmprestimosUsuarioPegandoEmprestado(nome, telefone);
@@ -411,16 +413,20 @@ public class Facade {
 
 	/**
 	 * Metodo para listar os emprestimos associados ao item de acordo com o nome
-	 * do mesmo. @return, retorna a lista de emprestimos encontrados naquele
-	 * item.
+	 * do mesmo.
+	 * 
+	 * @param nomeItem
+	 *            Nome do Item
+	 * @return retorna a lista de emprestimos encontrados naquele item.
 	 */
 	public String listarEmprestimosItem(String nomeItem) {
 		return sistema.listarEmprestimosItem(nomeItem);
 	}
 
 	/**
-	 * Metodo para listar todos os itens emprestados nesse momento. @return,
-	 * retorna a lista de itens emprestados junto com o nome do dono.
+	 * Metodo para listar todos os itens emprestados nesse momento.
+	 * 
+	 * @return retorna a lista de itens emprestados junto com o nome do dono.
 	 */
 	public String listarItensEmprestados() {
 		return sistema.listarItensEmprestados();
@@ -429,8 +435,6 @@ public class Facade {
 	/**
 	 * Lista os itens não emprestados ordenados por nome
 	 * 
-	 * @param itensUsuarios
-	 *            é a lista de itens de todos os usuários
 	 * @return informações dos itens não emprestados ordenados por nome
 	 */
 	public String listarItensNaoEmprestados() {
@@ -441,8 +445,6 @@ public class Facade {
 	 * Lista os 10 itens com maior quantidade de empréstimos em ordem
 	 * decrescente
 	 * 
-	 * @param itensUsuarios
-	 *            lista de itens do usuario
 	 * @return retorna top 10 itens
 	 */
 	public String listarTop10Itens() {
