@@ -555,8 +555,8 @@ public class SistemaTest {
 
 		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
 		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", 5);
-		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", "22/07/217");
-		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", "27/07/217");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", "22/07/2017");
+		sis.devolverItem("Javan", "87008519", "Joao", "11112222", "Xadrez", "22/07/2017", "27/07/2017");
 		sis.registrarEmprestimo("Javan", "87008519", "Joao", "11112222", "DDG", "17/07/2017", 5);
 
 		assertEquals(
