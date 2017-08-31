@@ -7,7 +7,15 @@ import java.time.format.DateTimeFormatter;
 
 import projeto.utilitarios.ChaveUsuario;
 
-public class Emprestimo implements Comparable<Emprestimo>,Serializable {
+/**
+ * Classe de Emprestimo.
+ * 
+ * 
+ * @author lucasvsa
+ *
+ */
+
+public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 
 	/**
 	 * 
@@ -40,7 +48,7 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 		this.dono = dono;
 		this.requerente = requerente;
 		this.item = item;
-		this.dataEmprestimo = LocalDate.parse(dataInicial,getFormatoData());
+		this.dataEmprestimo = LocalDate.parse(dataInicial, getFormatoData());
 		this.periodo = periodo;
 		this.dataDevolucao = null;
 
@@ -54,7 +62,8 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	}
 
 	/**
-	 * Metodo para retornar o Objeto Usuario. @return, retorna o Objeto requerente.
+	 * Metodo para retornar o Objeto Usuario. @return, retorna o Objeto
+	 * requerente.
 	 */
 	public ChaveUsuario getRequerente() {
 		return requerente;
@@ -66,10 +75,10 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	public String getItem() {
 		return item;
 	}
-	
+
 	private DateTimeFormatter getFormatoData() {
-        return DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    }
+		return DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	}
 
 	/**
 	 * Metodo para retornar a string da data do emprestimo. @return, retorna a
@@ -88,8 +97,8 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	}
 
 	/**
-	 * Metodo para retornar a data de devolução de um emprestimo. @return, retorna a
-	 * string dataDevolução.
+	 * Metodo para retornar a data de devolução de um emprestimo. @return,
+	 * retorna a string dataDevolução.
 	 */
 	public String getDataDevolucao() {
 		if (dataDevolucao == null) {
@@ -101,8 +110,8 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	}
 
 	/**
-	 * Metodo para alterar a data de devolução de um emprestimo conforme o usuario
-	 * do sistema deseje.
+	 * Metodo para alterar a data de devolução de um emprestimo conforme o
+	 * usuario do sistema deseje.
 	 * 
 	 * @param data,
 	 *            String a ser alterado passado por paramtro.
@@ -112,8 +121,8 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	}
 
 	/**
-	 * Metodo para comparar um emprestimo caso o dono, o requerente, o item e a data
-	 * sejam iguais.
+	 * Metodo para comparar um emprestimo caso o dono, o requerente, o item e a
+	 * data sejam iguais.
 	 */
 	@Override
 	public boolean equals(Object obj) {
@@ -192,8 +201,8 @@ public class Emprestimo implements Comparable<Emprestimo>,Serializable {
 	}
 
 	/**
-	 * Metodo para comparar os emprestimos da coleção de acordo com o nome do Dono
-	 * do Item.
+	 * Metodo para comparar os emprestimos da coleção de acordo com o nome do
+	 * Dono do Item.
 	 */
 	@Override
 	public int compareTo(Emprestimo o) {
