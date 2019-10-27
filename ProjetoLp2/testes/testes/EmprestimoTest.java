@@ -50,6 +50,23 @@ public class EmprestimoTest {
 			assertEquals("Requerente nulo", e.getMessage());
 		}
 	}
+
+		/**
+	 * Teste de validade do Objeto requerente caso seja nulo e Vazio.
+	 * @throws ParseException 
+	 */
+	@Test
+	public void testValidadeAtributoRequerenteNuloVazio() throws ParseException {
+		try{
+			ChaveUsuario dono = new ChaveUsuario(null,"" );
+			ChaveUsuario requerente = null;
+			JogoTabuleiro item = new JogoTabuleiro("Uar", 89.99);
+			emprestimo = new Emprestimo(dono, requerente, item.getNome(), "10/08/2017", 5);
+			fail("Exceção de Requerente nulo não lançada!");
+		} catch(NullPointerException e){
+			assertEquals("Nome nulo invalido!", e.getMessage());
+		}
+	}
 	
 	/**
 	 * Teste de validade do Objeto Item caso seja nulo.
