@@ -96,6 +96,10 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 		return periodo;
 	}
 
+	public boolean periodoIsVazio(){
+		return periodo == 0;
+	}
+
 	/**
 	 * Metodo para retornar a data de devolução de um emprestimo. @return,
 	 * retorna a string dataDevolução.
